@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+
+import { doSignupRequest } from '../../redux/actions/user';
 
 const INITIAL_STATE = {
   username: '',
@@ -10,16 +12,16 @@ const INITIAL_STATE = {
 };
 
 const SignUpForm = () => {
+  const dispatch = useDispatch();
   const [state, setState] = useState(INITIAL_STATE);
-  const { username, email, passwordTwo, passwordOne, error } = state;
-  const { firebase } = useSelector(state => state);
-
-  console.log(firebase);
+  const { username, email, passwordOne, passwordTwo, error } = state;
 
   const onSubmit = event => {
     event.preventDefault();
-    // firebase.on('value').set
-  }
+    dispatch(doSignupRequest({ email, passwordOne }));
+
+    setState(INITIAL_STATE);
+  };
 
   const onChange = event => 
     setState({ ...state, [event.target.name]: event.target.value });
