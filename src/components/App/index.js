@@ -7,6 +7,7 @@ import Navigation from '../Navigation';
 import * as ROUTES from '../constants/routes';
 
 const App = () => {
+
   return (
       <Router>
         <div>
