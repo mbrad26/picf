@@ -16,7 +16,7 @@ const INITIAL_STATE = {
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const signUpError = useSelector(state => state.userState.error);
-  const currentUser = useSelector(state => state.userState.currentUser);
+  let currentUser = useSelector(state => state.userState.currentUser);
   const [state, setState] = useState(INITIAL_STATE);
   const { username, email, passwordOne, passwordTwo, error } = state;
   const history = useHistory();

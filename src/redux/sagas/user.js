@@ -3,11 +3,15 @@ import { put } from 'redux-saga/effects';
 import { auth, firestore } from '../../firebase/config';
 import { doSignupRequestError, doSignupRequestSuccess } from '../actions/user'; 
 
+function* getSnapshot(uid) {
+  const userRef = yield firestore.doc(`users/${uid}`);
+  const doc = yield userRef.get();
+  return doc.data();
+};
+
 function* getCurrentUser(user, username, email) {
   yield firestore.collection('users').doc(user.uid).set({ username, email });
-  const userRef = yield firestore.doc(`users/${user.uid}`);
-  const doc = yield userRef.get();
-  const snapshot = doc.data();
+  const snapshot = yield getSnapshot(user.uid);
   yield put(doSignupRequestSuccess(snapshot));
 };
 
