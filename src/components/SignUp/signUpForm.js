@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { doSignupRequest } from '../../redux/actions/user';
+import * as ROUTES from '../constants/routes';
 
 const INITIAL_STATE = {
   username: '',
@@ -13,24 +15,40 @@ const INITIAL_STATE = {
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
+  const signUpError = useSelector(state => state.userState.error);
+  const currentUser = useSelector(state => state.userState.currentUser);
   const [state, setState] = useState(INITIAL_STATE);
   const { username, email, passwordOne, passwordTwo, error } = state;
+  const history = useHistory();
 
   const isInvalid = 
     passwordOne !== passwordTwo ||
     passwordOne === '' ||
     email === '' ||
     username === '';
-
+    
   const onSubmit = event => {
     event.preventDefault();
     dispatch(doSignupRequest({ username, email, passwordOne }));
-
-    setState(INITIAL_STATE);
   };
-
+  
   const onChange = event => 
     setState({ ...state, [event.target.name]: event.target.value });
+
+  useEffect(() => {
+    if(currentUser) {
+      setState(INITIAL_STATE);
+      history.push(ROUTES.SIGN_IN);
+    }
+  }, [currentUser, history]);
+
+  useEffect(() => {
+    if(signUpError) {
+      setState(state => ({ ...state, error: signUpError }));
+    }
+  }, [signUpError]);
+
+  console.log('SIGNUP', signUpError);
 
   return (
     <form onSubmit={onSubmit}>

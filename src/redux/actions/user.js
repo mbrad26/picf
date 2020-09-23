@@ -10,8 +10,9 @@ const doSignupRequest = credentials => ({
   payload: credentials,
 });
 
-const doSignupRequestSuccess = () => ({
+const doSignupRequestSuccess = snapshot => ({
   type: SIGNUP_REQUEST_SUCCESS,
+  payload: snapshot,
 });
 
 const doSignupRequestError = error => ({
