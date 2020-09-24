@@ -1,8 +1,9 @@
 import  { 
   SIGNUP_REQUEST,
-  SET_CURRENT_USER,
   SIGNUP_REQUEST_ERROR,
-  SIGNUP_REQUEST_SUCCESS,
+  SIGNIN_REQUEST, 
+  SIGNIN_REQUEST_SUCCESS, 
+  SIGNIN_REQUEST_ERROR,
  } from '../constants/actionTypes';
 
 const doSignupRequest = credentials => ({
@@ -10,24 +11,29 @@ const doSignupRequest = credentials => ({
   payload: credentials,
 });
 
-const doSignupRequestSuccess = snapshot => ({
-  type: SIGNUP_REQUEST_SUCCESS,
-  payload: snapshot,
-});
-
 const doSignupRequestError = error => ({
   type: SIGNUP_REQUEST_ERROR,
   payload: error,
 });
 
-const doSetCurrentUser = user => ({
-  type: SET_CURRENT_USER,
+const doSigninRequest = () => ({
+  type: SIGNIN_REQUEST,
+});
+
+const doSigninRequestSuccess = user => ({
+  type: SIGNIN_REQUEST_SUCCESS,
   payload: user,
+});
+
+const doSigninRequestError = error => ({
+  type: SIGNIN_REQUEST_ERROR,
+  payload: error,
 });
 
 export { 
   doSignupRequest, 
-  doSetCurrentUser, 
   doSignupRequestError,
-  doSignupRequestSuccess,
+  doSigninRequest,
+  doSigninRequestSuccess,
+  doSigninRequestError,
 };
