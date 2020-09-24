@@ -48,7 +48,7 @@ const SignUpForm = () => {
     }
   }, [signUpError]);
 
-  console.log('SIGNUP', signUpError);
+  console.log('SIGNUP');
 
   return (
     <form onSubmit={onSubmit}>
@@ -80,7 +80,7 @@ const SignUpForm = () => {
         onChange={onChange}
         placeholder='Confirm Password' 
       />
-      <button type='submit' disabled={isInvalid}>Register</button>
+      <button type='submit' disabled={isInvalid}>Sign Up</button>
 
       {error && <p>{error.message}</p>}
     </form>
