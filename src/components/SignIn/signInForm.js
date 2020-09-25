@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import * as ROUTES from '../constants/routes';
+import { doSigninRequest } from '../../redux/actions/user';
 
 const INITIAL_STATE = {
   email: '',
   password: '',
-  error: '',
+  error: null,
 };
 
 const SignInForm = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { currentUser, authError } = useSelector(state => state.userState);
   const [state, setState] = useState(INITIAL_STATE);
   const { email, password, error } = state;
 
@@ -15,7 +23,21 @@ const SignInForm = () => {
 
   const onSubmit = event => {
     event.preventDefault();
+    dispatch(doSigninRequest({ email, password }));
   };
+
+  useEffect(() => {
+    if(currentUser) {
+      setState(INITIAL_STATE);
+      history.push(ROUTES.HOME);
+    }
+  }, [currentUser, history]);
+
+  useEffect(() => {
+    if(authError) {
+      setState(state => ({ ...state, error: authError }));
+    }
+  }, [authError]);
 
   console.log('SIGNIN');
   

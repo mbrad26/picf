@@ -1,11 +1,12 @@
 import { takeLatest, all } from 'redux-saga/effects';
 
-import { SIGNUP_REQUEST } from '../constants/actionTypes';
-import { signupUser } from './user';
+import { SIGNIN_REQUEST, SIGNUP_REQUEST } from '../constants/actionTypes';
+import { signUpUser, signInUser } from './user';
 
 function* watchAll() {
   yield all([
-    takeLatest(SIGNUP_REQUEST, signupUser),
+    takeLatest(SIGNUP_REQUEST, signUpUser),
+    takeLatest(SIGNIN_REQUEST, signInUser),
   ]);
 };
 

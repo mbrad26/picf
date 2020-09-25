@@ -14,12 +14,11 @@ const INITIAL_STATE = {
 };
 
 const SignUpForm = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
-  const signUpError = useSelector(state => state.userState.error);
-  let currentUser = useSelector(state => state.userState.currentUser);
+  const { currentUser, authError } = useSelector(state => state.userState);
   const [state, setState] = useState(INITIAL_STATE);
   const { username, email, passwordOne, passwordTwo, error } = state;
-  const history = useHistory();
 
   const isInvalid = 
     passwordOne !== passwordTwo ||
@@ -38,15 +37,15 @@ const SignUpForm = () => {
   useEffect(() => {
     if(currentUser) {
       setState(INITIAL_STATE);
-      history.push(ROUTES.SIGN_IN);
+      history.push(ROUTES.HOME);
     }
   }, [currentUser, history]);
 
   useEffect(() => {
-    if(signUpError) {
-      setState(state => ({ ...state, error: signUpError }));
+    if(authError) {
+      setState(state => ({ ...state, error: authError }));
     }
-  }, [signUpError]);
+  }, [authError]);
 
   console.log('SIGNUP');
 

@@ -16,8 +16,9 @@ const doSignupRequestError = error => ({
   payload: error,
 });
 
-const doSigninRequest = () => ({
+const doSigninRequest = credentials => ({
   type: SIGNIN_REQUEST,
+  payload: credentials,
 });
 
 const doSigninRequestSuccess = user => ({
