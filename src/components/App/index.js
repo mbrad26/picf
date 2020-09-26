@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from '../Home';
@@ -9,6 +10,9 @@ import Navigation from '../Navigation';
 import * as ROUTES from '../constants/routes';
 
 const App = () => {
+  const { currentUser } = useSelector(state => state.userState);
+
+  console.log('APP CURRENT_USER: ', currentUser);
 
   return (
       <Router>
