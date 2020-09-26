@@ -1,17 +1,14 @@
-import { call, put } from 'redux-saga/effects';
+import { put } from 'redux-saga/effects';
 
 import { auth } from '../../firebase/config';
 import { 
-  doSignupRequestError, 
+  doRequestError, 
   doSigninRequestSuccess, 
-  doSigninRequestError, 
   doSignoutRequestSuccess, 
-  doSignoutRequestError, 
 } from '../actions/user'; 
 import { 
   setUserInFirestore, 
   getCurrentUserFromFirestore,
-  getCurrentUser,
  } from './utils';
 
 function* signUpUser({ payload: { username, email, passwordOne }}) {
@@ -19,13 +16,9 @@ function* signUpUser({ payload: { username, email, passwordOne }}) {
     const { user } = yield auth.createUserWithEmailAndPassword(email, passwordOne);
     yield setUserInFirestore(user.uid, username, email);
     const currentUser = yield getCurrentUserFromFirestore();
-
-    const authUser = yield call(getCurrentUser);
-    console.log('AUTH_USER', authUser);
-
     yield put(doSigninRequestSuccess(currentUser));
   } catch (error) {
-    yield put(doSignupRequestError(error));
+    yield put(doRequestError(error));
   }
 };
 
@@ -33,26 +26,18 @@ function* signInUser({ payload: { email, password }}) {
   try {
     yield auth.signInWithEmailAndPassword(email, password);
     const currentUser = yield getCurrentUserFromFirestore();
-
-    const authUser = yield call(getCurrentUser);
-    console.log('AUTH_USER', authUser);
-
     yield put(doSigninRequestSuccess(currentUser));
   } catch (error) {
-    yield put(doSigninRequestError(error));
+    yield put(doRequestError(error));
   }
 };
 
 function* signOutUser() {
   try {
     yield auth.signOut();
-
-    const authUser = yield call(getCurrentUser);
-    console.log('AUTH_USER', authUser);
-
     yield put(doSignoutRequestSuccess());
   } catch (error) {
-    yield put(doSignoutRequestError(error));
+    yield put(doRequestError(error));
   }
 };
 
