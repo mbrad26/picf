@@ -4,6 +4,9 @@ import  {
   SIGNIN_REQUEST, 
   SIGNIN_REQUEST_SUCCESS, 
   SIGNIN_REQUEST_ERROR,
+  SIGNOUT_REQUEST, 
+  SIGNOUT_REQUEST_SUCCESS, 
+  SIGNOUT_REQUEST_ERROR,
  } from '../constants/actionTypes';
 
 const doSignupRequest = credentials => ({
@@ -31,10 +34,26 @@ const doSigninRequestError = error => ({
   payload: error,
 });
 
+const doSignoutRequest = () => ({
+  type: SIGNOUT_REQUEST,
+});
+
+const doSignoutRequestSuccess = () => ({
+  type: SIGNOUT_REQUEST_SUCCESS,
+});
+
+const doSignoutRequestError = error => ({
+  type: SIGNOUT_REQUEST_ERROR,
+  payload: error,
+});
+
 export { 
   doSignupRequest, 
   doSignupRequestError,
   doSigninRequest,
   doSigninRequestSuccess,
   doSigninRequestError,
+  doSignoutRequest,
+  doSignoutRequestSuccess,
+  doSignoutRequestError,
 };

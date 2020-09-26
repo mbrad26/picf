@@ -32,6 +32,7 @@ function* setUserInFirestore(uid, username, email) {
 };
 
 export {
+  getCurrentUser,
   setUserInFirestore,
   getCurrentUserFromFirestore,
 };
