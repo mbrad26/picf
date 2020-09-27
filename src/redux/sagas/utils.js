@@ -1,15 +1,4 @@
-import { call } from 'redux-saga/effects';
-
-import { auth, firestore } from '../../firebase/config';
-
-const getCurrentUser = () => {
-  return new Promise((resolve, reject) => {
-    const unsubscribe = auth.onAuthStateChanged(userAuth => {
-      unsubscribe();
-      resolve(userAuth);
-    }, reject);
-  })
-};
+import { firestore } from '../../firebase/config';
 
 function* getUserSnapshotFromFirestore(uid) {
   const userRef = yield firestore.doc(`users/${uid}`);
@@ -17,13 +6,13 @@ function* getUserSnapshotFromFirestore(uid) {
   return doc.data();
 };
 
-function* getCurrentUserFromFirestore() {
-  let authUser = yield call(getCurrentUser);
+function* getCurrentUserFromFirestore(authUser) {
   const user = yield getUserSnapshotFromFirestore(authUser.uid);
   authUser = {
     ...user,
     uid: authUser.uid,
   };
+
   return authUser;
 };
 
@@ -32,7 +21,7 @@ function* setUserInFirestore(uid, username, email) {
 };
 
 export {
-  getCurrentUser,
   setUserInFirestore,
   getCurrentUserFromFirestore,
+  getUserSnapshotFromFirestore,
 };

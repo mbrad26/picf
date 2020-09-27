@@ -3,8 +3,8 @@ import  {
   SIGNUP_REQUEST,
   SIGNIN_REQUEST, 
   SIGNOUT_REQUEST, 
-  SIGNIN_REQUEST_SUCCESS, 
-  SIGNOUT_REQUEST_SUCCESS, 
+  SET_USER_REQUEST, 
+  SET_USER_SUCCESS, 
  } from '../constants/actionTypes';
 
 const doSignupRequest = credentials => ({
@@ -22,17 +22,17 @@ const doSigninRequest = credentials => ({
   payload: credentials,
 });
 
-const doSigninRequestSuccess = user => ({
-  type: SIGNIN_REQUEST_SUCCESS,
-  payload: user,
-});
-
 const doSignoutRequest = () => ({
   type: SIGNOUT_REQUEST,
 });
 
-const doSignoutRequestSuccess = () => ({
-  type: SIGNOUT_REQUEST_SUCCESS,
+const doSetUserRequest = () => ({
+  type: SET_USER_REQUEST,
+});
+
+const doSetUserSuccess = user => ({
+  type: SET_USER_SUCCESS,
+  payload: user,
 });
 
 export { 
@@ -40,6 +40,6 @@ export {
   doSignupRequest, 
   doSigninRequest,
   doSignoutRequest,
-  doSigninRequestSuccess,
-  doSignoutRequestSuccess,
+  doSetUserRequest,
+  doSetUserSuccess,
 };

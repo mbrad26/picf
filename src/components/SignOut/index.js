@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
+import './index.module.css';
 import { doSignoutRequest } from '../../redux/actions/user';
 
 const SignOut = () => {

@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from '../Home';
@@ -8,9 +8,15 @@ import SignUp from '../SignUp';
 import LandingPage from '../Landing';
 import Navigation from '../Navigation';
 import * as ROUTES from '../constants/routes';
+import { doSetUserRequest } from '../../redux/actions/user';
 
 const App = () => {
   const { currentUser } = useSelector(state => state.userState);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(doSetUserRequest());
+  }, [dispatch]);
 
   console.log('APP CURRENT_USER: ', currentUser);
 

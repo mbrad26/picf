@@ -1,7 +1,6 @@
 import {
   REQUEST_ERROR,
-  SIGNIN_REQUEST_SUCCESS,
-  SIGNOUT_REQUEST_SUCCESS,
+  SET_USER_SUCCESS,
 } from '../constants/actionTypes';
 
 const INITIAL_STATE = {
@@ -16,18 +15,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         authError: action.payload,
       };
-    case SIGNIN_REQUEST_SUCCESS: 
+    case SET_USER_SUCCESS:
       return {
         ...state,
         authError: null,
         currentUser: action.payload,
-      };
-    case SIGNOUT_REQUEST_SUCCESS:
-      return {
-        ...state,
-        authError: null,
-        currentUser: null,
-      };
+      }
     default: return state;
   };
 };
