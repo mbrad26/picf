@@ -10,7 +10,7 @@ const SignOut = () => {
 
   return (
     <div>
-      <a href="#" onClick={onClick}>Sign Out</a> 
+      <button onClick={onClick}>Sign Out</button> 
     </div>
   )
 };
