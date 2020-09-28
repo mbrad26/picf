@@ -5,7 +5,8 @@ import {
   SIGNUP_REQUEST, 
   SIGNOUT_REQUEST, 
   SET_USER_REQUEST,
-  RESET_PASSWORD_REQUEST, 
+  RESET_PASSWORD_REQUEST,
+  UPDATE_PASSWORD_REQUEST, 
 } from '../constants/actionTypes';
 import { 
   signUpUser, 
@@ -13,6 +14,7 @@ import {
   signOutUser, 
   resetPassword,
   setCurrentUser,
+  updatePassword,
  } from './user';
 
 function* watchAll() {
@@ -22,6 +24,7 @@ function* watchAll() {
     takeLatest(SIGNOUT_REQUEST, signOutUser),
     takeLatest(SET_USER_REQUEST, setCurrentUser),
     takeLatest(RESET_PASSWORD_REQUEST, resetPassword),
+    takeLatest(UPDATE_PASSWORD_REQUEST, updatePassword),
   ]);
 };
 

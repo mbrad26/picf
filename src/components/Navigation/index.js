@@ -6,9 +6,8 @@ import AuthLinks from './authLinks';
 import NonAuthLinks from './nonAuthLinks';
 
 const Navigation = () => {
-  const { authUser } = useSelector(state => state.userState);
-
   console.log('NAVIGATION');
+  const { authUser } = useSelector(state => state.userState);
 
   return (
     <div>

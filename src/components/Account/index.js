@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import * as ROUTES from '../constants/routes';
+import PasswordChangeForm from '../PasswordChange';
 import PasswordResetForm from '../PasswordForget/passwordResetForm';
 
 const Account = () => {
@@ -14,7 +15,10 @@ const Account = () => {
   return (
     <div>
       <h1>Account</h1>
+      <h3>Password reset</h3>
       <PasswordResetForm />
+      <h3>Password change</h3>
+      <PasswordChangeForm />
     </div>
   );
 };

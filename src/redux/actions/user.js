@@ -6,6 +6,7 @@ import  {
   SET_USER_REQUEST, 
   SET_USER_SUCCESS, 
   RESET_PASSWORD_REQUEST,
+  UPDATE_PASSWORD_REQUEST,
  } from '../constants/actionTypes';
 
 const doSignupRequest = credentials => ({
@@ -41,6 +42,11 @@ const doResetPasswordRequest = email => ({
   payload: email,
 });
 
+const doUpdatePasswordRequest = password => ({
+  type: UPDATE_PASSWORD_REQUEST,
+  payload: password,
+});
+
 export { 
   doRequestError,
   doSignupRequest, 
@@ -49,4 +55,5 @@ export {
   doSetUserRequest,
   doSetUserSuccess,
   doResetPasswordRequest,
+  doUpdatePasswordRequest,
 };

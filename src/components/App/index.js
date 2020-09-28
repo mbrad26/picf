@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from '../Home';
@@ -13,14 +13,12 @@ import * as ROUTES from '../constants/routes';
 import { doSetUserRequest } from '../../redux/actions/user';
 
 const App = () => {
-  const { authUser } = useSelector(state => state.userState);
+  console.log('APP');
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(doSetUserRequest());
   }, [dispatch]);
-
-  console.log('APP', authUser);
 
   return (
     <Router>
