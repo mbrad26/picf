@@ -16,7 +16,7 @@ const INITIAL_STATE = {
 const SignUpForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { currentUser, authError } = useSelector(state => state.userState);
+  const { authUser, authError } = useSelector(state => state.userState);
   const [state, setState] = useState(INITIAL_STATE);
   const { username, email, passwordOne, passwordTwo, error } = state;
 
@@ -35,11 +35,11 @@ const SignUpForm = () => {
     setState({ ...state, [event.target.name]: event.target.value });
 
   useEffect(() => {
-    if(currentUser) {
+    if(authUser) {
       setState(INITIAL_STATE);
       history.push(ROUTES.HOME);
     }
-  }, [currentUser, history]);
+  }, [authUser, history]);
 
   useEffect(() => {
     if(authError) {
@@ -47,7 +47,7 @@ const SignUpForm = () => {
     }
   }, [authError]);
 
-  console.log('SIGNUP');
+  console.log('SIGN_UP_FORM');
 
   return (
     <form onSubmit={onSubmit}>

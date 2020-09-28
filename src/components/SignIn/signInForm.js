@@ -39,7 +39,7 @@ const SignInForm = () => {
     }
   }, [authError]);
 
-  console.log('SIGNIN');
+  console.log('SIGN_IN_FORM');
   
   return (
     <form onSubmit={onSubmit}>

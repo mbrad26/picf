@@ -4,7 +4,7 @@ import {
 } from '../constants/actionTypes';
 
 const INITIAL_STATE = {
-  currentUser: null,
+  authUser: null,
   authError: null,
 };
 
@@ -19,7 +19,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         authError: null,
-        currentUser: action.payload,
+        authUser: action.payload,
       }
     default: return state;
   };

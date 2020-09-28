@@ -1,0 +1,9 @@
+ul {
+  list-style-type: none;
+}
+
+#signout-link {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #800080
+}

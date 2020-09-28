@@ -11,14 +11,14 @@ import * as ROUTES from '../constants/routes';
 import { doSetUserRequest } from '../../redux/actions/user';
 
 const App = () => {
-  const { currentUser } = useSelector(state => state.userState);
+  const { authUser } = useSelector(state => state.userState);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(doSetUserRequest());
   }, [dispatch]);
 
-  console.log('APP CURRENT_USER: ', currentUser);
+  console.log('APP', authUser);
 
   return (
       <Router>
