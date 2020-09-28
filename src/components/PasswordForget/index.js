@@ -8,7 +8,7 @@ const PasswordReset = () => {
       <h1>Reset password</h1>
       <PasswordResetForm />
     </div>
-  )
-}
+  );
+};
 
 export default PasswordReset;

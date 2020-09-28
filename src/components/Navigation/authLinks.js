@@ -14,6 +14,9 @@ const AuthLinks = () =>
         <Link to={ROUTES.HOME}>Home</Link>
       </li>
       <li>
+        <Link to={ROUTES.ACCOUNT}>Account</Link>
+      </li>
+      <li>
         <SignOut />
       </li>
     </ul>

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from '../Home';
 import SignIn from '../SignIn';
 import SignUp from '../SignUp';
+import Account from '../Account';
 import LandingPage from '../Landing';
 import Navigation from '../Navigation';
 import PasswordReset from '../PasswordForget';
@@ -22,21 +23,22 @@ const App = () => {
   console.log('APP', authUser);
 
   return (
-      <Router>
-        <div>
-          <Navigation />
+    <Router>
+      <div>
+        <Navigation />
 
-          <hr/>
+        <hr/>
 
-          <Switch>
-            <Route exact path={ROUTES.LANDING} component={LandingPage} />
-            <Route path={ROUTES.SIGN_UP} component={SignUp} />
-            <Route path={ROUTES.SIGN_IN} component={SignIn} />
-            <Route path={ROUTES.HOME} component={Home} />
-            <Route path={ROUTES.PASSWORD_RESET} component={PasswordReset} />
-          </Switch>
-        </div>
-      </Router>
+        <Switch>
+          <Route exact path={ROUTES.LANDING} component={LandingPage} />
+          <Route path={ROUTES.HOME} component={Home} />
+          <Route path={ROUTES.SIGN_UP} component={SignUp} />
+          <Route path={ROUTES.SIGN_IN} component={SignIn} />
+          <Route path={ROUTES.ACCOUNT} component={Account} />
+          <Route path={ROUTES.PASSWORD_RESET} component={PasswordReset} />
+        </Switch>
+      </div>
+    </Router>
   );
 };
 
