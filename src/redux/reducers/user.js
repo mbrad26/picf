@@ -4,7 +4,7 @@ import {
 } from '../constants/actionTypes';
 
 const INITIAL_STATE = {
-  authUser: null,
+  authUser: JSON.parse(localStorage.getItem('authUser')),
   authError: null,
 };
 
