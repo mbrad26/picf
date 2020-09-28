@@ -11,6 +11,7 @@ const SignIn = () => {
     <div>
       <h1>Sign In</h1>
       <SignInForm />
+      <p><Link to={ROUTES.PASSWORD_RESET}>Forgot password?</Link></p>
       <p>Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link></p>
     </div>
   );

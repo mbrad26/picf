@@ -12,9 +12,10 @@ const INITIAL_STATE = {
 };
 
 const SignInForm = () => {
+  console.log('SIGN_IN_FORM');
   const history = useHistory();
   const dispatch = useDispatch();
-  const { currentUser, authError } = useSelector(state => state.userState);
+  const { authUser, authError } = useSelector(state => state.userState);
   const [state, setState] = useState(INITIAL_STATE);
   const { email, password, error } = state;
 
@@ -27,19 +28,17 @@ const SignInForm = () => {
   };
 
   useEffect(() => {
-    if(currentUser) {
+    if(authUser) {
       setState(INITIAL_STATE);
       history.push(ROUTES.HOME);
     }
-  }, [currentUser, history]);
+  }, [authUser, history]);
 
   useEffect(() => {
     if(authError) {
       setState(state => ({ ...state, error: authError }));
     }
   }, [authError]);
-
-  console.log('SIGN_IN_FORM');
   
   return (
     <form onSubmit={onSubmit}>

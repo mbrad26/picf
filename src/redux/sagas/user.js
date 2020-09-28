@@ -51,4 +51,19 @@ function* setCurrentUser() {
   };
 };
 
-export { signUpUser, signInUser, signOutUser, setCurrentUser };
+function* resetPassword({ payload: email }) {
+  try {
+    console.log('EMAIL: ', email);
+    yield auth.sendPasswordResetEmail(email);
+  } catch (error) {
+    yield put(doRequestError(error));
+  };
+};
+
+export { 
+  signUpUser, 
+  signInUser, 
+  signOutUser, 
+  resetPassword, 
+  setCurrentUser,
+};

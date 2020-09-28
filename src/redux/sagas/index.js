@@ -4,9 +4,16 @@ import {
   SIGNIN_REQUEST, 
   SIGNUP_REQUEST, 
   SIGNOUT_REQUEST, 
-  SET_USER_REQUEST, 
+  SET_USER_REQUEST,
+  RESET_PASSWORD_REQUEST, 
 } from '../constants/actionTypes';
-import { signUpUser, signInUser, signOutUser, setCurrentUser } from './user';
+import { 
+  signUpUser, 
+  signInUser, 
+  signOutUser, 
+  resetPassword,
+  setCurrentUser,
+ } from './user';
 
 function* watchAll() {
   yield all([
@@ -14,6 +21,7 @@ function* watchAll() {
     takeLatest(SIGNIN_REQUEST, signInUser),
     takeLatest(SIGNOUT_REQUEST, signOutUser),
     takeLatest(SET_USER_REQUEST, setCurrentUser),
+    takeLatest(RESET_PASSWORD_REQUEST, resetPassword),
   ]);
 };
 
