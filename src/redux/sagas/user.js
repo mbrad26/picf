@@ -18,6 +18,9 @@ function* signUpUser({ payload: { username, email, passwordOne }}) {
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, passwordOne);
     yield setUserInFirestore(user.uid, username, email);
+    yield auth.currentUser.sendEmailVerification({
+      url: process.env.REACT_APP_DEV_CONFIRMATION_EMAIL_REDIRECT,
+    });
   } catch (error) {
     yield put(doRequestError(error));
   };
@@ -49,6 +52,7 @@ function* setCurrentUser() {
 
   while(true) {
     const { data } = yield take(channel);
+    console.log('USER_DATA: ', data);
     const user = data ? yield getCurrentUserFromFirestore(data) : data;
     localStorage.setItem('authUser', JSON.stringify(user));
     yield put(doSetUserSuccess(user));

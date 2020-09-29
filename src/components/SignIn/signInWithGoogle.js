@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 import { doSigninWithGoogleRequest } from '../../redux/actions/user';
 
@@ -9,13 +8,12 @@ const SignInWithGoogle = () => {
   const dispatch = useDispatch();
   const { authError } = useSelector(state => state.userState);
   const [error, setError] = useState(null);
-  const history = useHistory();
 
   const onSubmit = event => {
     event.preventDefault();
     dispatch(doSigninWithGoogleRequest());
   };
-  
+
   useEffect(() => {
     if(authError) {
       setError(authError);

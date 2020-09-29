@@ -8,6 +8,7 @@ import  {
   RESET_PASSWORD_REQUEST,
   UPDATE_PASSWORD_REQUEST,
   SIGNIN_WITH_GOOGLE_REQUEST,
+  EMAIL_VERIFICATION_REQUEST,
  } from '../constants/actionTypes';
 
 const doSignupRequest = credentials => ({
@@ -52,6 +53,10 @@ const doSigninWithGoogleRequest = () => ({
   type: SIGNIN_WITH_GOOGLE_REQUEST,
 });
 
+const doEmailVerificationRequest = () => ({
+  type: EMAIL_VERIFICATION_REQUEST,
+});
+
 export { 
   doRequestError,
   doSignupRequest, 
@@ -62,4 +67,5 @@ export {
   doResetPasswordRequest,
   doUpdatePasswordRequest,
   doSigninWithGoogleRequest,
+  doEmailVerificationRequest,
 };

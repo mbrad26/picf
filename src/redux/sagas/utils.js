@@ -11,6 +11,8 @@ function* getCurrentUserFromFirestore(authUser) {
   authUser = {
     ...user,
     uid: authUser.uid,
+    emailVerified: authUser.emailVerified,
+    providerData: authUser.providerData,
   };
 
   return authUser;

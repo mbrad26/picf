@@ -1,16 +1,44 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import * as ROUTES from '../constants/routes';
 import PasswordChangeForm from '../PasswordChange';
 import PasswordResetForm from '../PasswordForget/passwordResetForm';
+import { doEmailVerificationRequest } from '../../redux/actions/user';
 
 const Account = () => {
   console.log('ACCOUNT');
+  const dispatch = useDispatch();
   const { authUser } = useSelector(state => state.userState);
 
-  if(!authUser) return <Redirect to={ROUTES.SIGN_IN} />
+  const onClick = () => dispatch(doEmailVerificationRequest());
+
+  if(!authUser) return <Redirect to={ROUTES.SIGN_IN}/>
+
+  if(authUser && 
+    !authUser.emailVerified &&
+    authUser.providerData
+            .map(provider => provider.providerId)
+            .includes('password')
+  ) {
+    return (
+      <div>
+        <p>
+          Verify your E-Mail: Check you E-Mails (Spam folder 
+          included) for a confirmation E-Mail or 
+          send another confirmation E-Mail.
+        </p>
+
+        <button
+          type="button" 
+          onClick={onClick}
+        >
+          Send confirmation E-Mail
+        </button>
+      </div>
+    );
+  };
 
   return (
     <div>
