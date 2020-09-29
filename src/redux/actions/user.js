@@ -7,6 +7,7 @@ import  {
   SET_USER_SUCCESS, 
   RESET_PASSWORD_REQUEST,
   UPDATE_PASSWORD_REQUEST,
+  SIGNIN_WITH_GOOGLE_REQUEST,
  } from '../constants/actionTypes';
 
 const doSignupRequest = credentials => ({
@@ -47,6 +48,10 @@ const doUpdatePasswordRequest = password => ({
   payload: password,
 });
 
+const doSigninWithGoogleRequest = () => ({
+  type: SIGNIN_WITH_GOOGLE_REQUEST,
+});
+
 export { 
   doRequestError,
   doSignupRequest, 
@@ -56,4 +61,5 @@ export {
   doSetUserSuccess,
   doResetPasswordRequest,
   doUpdatePasswordRequest,
+  doSigninWithGoogleRequest,
 };

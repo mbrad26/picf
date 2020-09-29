@@ -7,6 +7,7 @@ import {
   SET_USER_REQUEST,
   RESET_PASSWORD_REQUEST,
   UPDATE_PASSWORD_REQUEST, 
+  SIGNIN_WITH_GOOGLE_REQUEST, 
 } from '../constants/actionTypes';
 import { 
   signUpUser, 
@@ -15,6 +16,7 @@ import {
   resetPassword,
   setCurrentUser,
   updatePassword,
+  signInWithGoogle,
  } from './user';
 
 function* watchAll() {
@@ -25,6 +27,7 @@ function* watchAll() {
     takeLatest(SET_USER_REQUEST, setCurrentUser),
     takeLatest(RESET_PASSWORD_REQUEST, resetPassword),
     takeLatest(UPDATE_PASSWORD_REQUEST, updatePassword),
+    takeLatest(SIGNIN_WITH_GOOGLE_REQUEST, signInWithGoogle),
   ]);
 };
 

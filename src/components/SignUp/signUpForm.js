@@ -14,6 +14,7 @@ const INITIAL_STATE = {
 };
 
 const SignUpForm = () => {
+  console.log('SIGN_UP_FORM');
   const history = useHistory();
   const dispatch = useDispatch();
   const { authUser, authError } = useSelector(state => state.userState);
@@ -26,7 +27,7 @@ const SignUpForm = () => {
     email === '' ||
     username === '';
     
-  const onSubmit = event => {
+    const onSubmit = event => {
     event.preventDefault();
     dispatch(doSignupRequest({ username, email, passwordOne }));
   };
@@ -46,8 +47,6 @@ const SignUpForm = () => {
       setState(state => ({ ...state, error: authError }));
     }
   }, [authError]);
-
-  console.log('SIGN_UP_FORM');
 
   return (
     <form onSubmit={onSubmit}>

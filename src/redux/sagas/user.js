@@ -1,7 +1,10 @@
 import { eventChannel } from 'redux-saga';
 import { put, take } from 'redux-saga/effects';
 
-import { auth } from '../../firebase/config';
+import { 
+  auth, 
+  googleProvider, 
+} from '../../firebase/config';
 import { 
   doRequestError, 
   doSetUserSuccess, 
@@ -17,7 +20,7 @@ function* signUpUser({ payload: { username, email, passwordOne }}) {
     yield setUserInFirestore(user.uid, username, email);
   } catch (error) {
     yield put(doRequestError(error));
-  }
+  };
 };
 
 function* signInUser({ payload: { email, password }}) {
@@ -25,7 +28,7 @@ function* signInUser({ payload: { email, password }}) {
     yield auth.signInWithEmailAndPassword(email, password);
   } catch (error) {
     yield put(doRequestError(error));
-  }
+  };
 };
 
 function* signOutUser() {
@@ -33,7 +36,7 @@ function* signOutUser() {
     yield auth.signOut();
   } catch (error) {
     yield put(doRequestError(error));
-  }
+  };
 };
 
 function* setCurrentUser() {
@@ -68,6 +71,14 @@ function* updatePassword({ payload: password }) {
   };
 };
 
+function* signInWithGoogle() {
+  try {
+    yield auth.signInWithPopup(googleProvider);
+  } catch (error) {
+    yield put(doRequestError(error));
+  }
+};
+
 export { 
   signUpUser, 
   signInUser, 
@@ -75,4 +86,5 @@ export {
   resetPassword, 
   updatePassword,
   setCurrentUser,
+  signInWithGoogle,
 };
