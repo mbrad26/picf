@@ -27,7 +27,7 @@ const SignUpForm = () => {
     email === '' ||
     username === '';
     
-    const onSubmit = event => {
+  const onSubmit = event => {
     event.preventDefault();
     dispatch(doSignupRequest({ username, email, passwordOne }));
   };
