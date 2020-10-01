@@ -5,10 +5,12 @@ import {
   SIGNUP_REQUEST, 
   SIGNOUT_REQUEST, 
   SET_USER_REQUEST,
+  FILE_UPLOAD_REQUEST,
   RESET_PASSWORD_REQUEST,
   UPDATE_PASSWORD_REQUEST, 
-  SIGNIN_WITH_GOOGLE_REQUEST, 
+  SIGNIN_WITH_GOOGLE_REQUEST,
 } from '../constants/actionTypes';
+import { fileUpload } from './images';
 import { 
   signUpUser, 
   signInUser, 
@@ -28,6 +30,7 @@ function* watchAll() {
     takeLatest(RESET_PASSWORD_REQUEST, resetPassword),
     takeLatest(UPDATE_PASSWORD_REQUEST, updatePassword),
     takeLatest(SIGNIN_WITH_GOOGLE_REQUEST, signInWithGoogle),
+    takeLatest(FILE_UPLOAD_REQUEST, fileUpload),
   ]);
 };
 

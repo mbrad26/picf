@@ -52,7 +52,6 @@ function* setCurrentUser() {
 
   while(true) {
     const { data } = yield take(channel);
-    console.log('USER_DATA: ', data);
     const user = data ? yield getCurrentUserFromFirestore(data) : data;
     localStorage.setItem('authUser', JSON.stringify(user));
     yield put(doSetUserSuccess(user));
