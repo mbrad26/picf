@@ -1,5 +1,4 @@
-import { eventChannel } from 'redux-saga';
-import { put, take } from 'redux-saga/effects';
+import { call, put, take } from 'redux-saga/effects';
 
 import { 
   auth, 
@@ -10,6 +9,7 @@ import {
   doSetUserSuccess, 
 } from '../actions/user'; 
 import { 
+  userChannel,
   setUserInFirestore, 
   getCurrentUserFromFirestore,
  } from './utils';
@@ -43,12 +43,7 @@ function* signOutUser() {
 };
 
 function* setCurrentUser() {
-  const channel = new eventChannel(emiter => {
-    const listener = auth.onAuthStateChanged(authUser => {
-      emiter({ data: authUser });
-    });
-    return () => listener.off();
-  });
+  const channel = yield call(userChannel);
 
   while(true) {
     const { data } = yield take(channel);

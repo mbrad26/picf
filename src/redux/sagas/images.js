@@ -1,22 +1,8 @@
-import { eventChannel } from 'redux-saga';
 import { call, put, take } from 'redux-saga/effects';
 
-import { storage } from '../../firebase/config';
+import { storageChannel } from './utils';
 import { doSetUploadProgress } from '../actions/images';
 import { doRequestError } from '../actions/user';
-
-function* storageChannel(selected) {
-  return new eventChannel(emiter => {
-    const listener = storage.ref(selected.name).put(selected)
-                            .on('state_changed', snapshot => {
-      let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      
-      emiter({ data: progress });
-    });
-
-    return () => listener.off();
-  });
-};
 
 function* fileUpload({ payload: selected }) {
   const channel = yield call(storageChannel, selected);
@@ -32,4 +18,12 @@ function* fileUpload({ payload: selected }) {
   };
 };
 
-export { fileUpload };
+// function* downloadUrl({ payload: selected }) {
+//   const imageRef = storage.ref(selected.name);
+
+//   imageRef.getDownloadURL().then(function(downloadURL) {
+//     console.log('File available at', downloadURL);
+//   });
+// };
+
+export { fileUpload, };
