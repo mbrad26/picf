@@ -1,8 +1,8 @@
 import { call, put, take } from 'redux-saga/effects';
 
 import { storageChannel } from './utils';
-import { doSetUploadProgress } from '../actions/images';
 import { doRequestError } from '../actions/user';
+import { doSetUploadProgress } from '../actions/images';
 
 function* fileUpload({ payload: selected }) {
   const channel = yield call(storageChannel, selected);
@@ -18,12 +18,4 @@ function* fileUpload({ payload: selected }) {
   };
 };
 
-// function* downloadUrl({ payload: selected }) {
-//   const imageRef = storage.ref(selected.name);
-
-//   imageRef.getDownloadURL().then(function(downloadURL) {
-//     console.log('File available at', downloadURL);
-//   });
-// };
-
-export { fileUpload, };
+export { fileUpload };

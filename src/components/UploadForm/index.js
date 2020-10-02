@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { doFileUploadRequest } from '../../redux/actions/images';
+import { doFileUploadRequest, doImageUrlRequest } from '../../redux/actions/images';
 
 const types = ['image/jpeg', 'image/png'];
 

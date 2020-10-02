@@ -10,14 +10,12 @@ function* getUserSnapshotFromFirestore(uid) {
 
 function* getCurrentUserFromFirestore(authUser) {
   const user = yield getUserSnapshotFromFirestore(authUser.uid);
-  authUser = {
+  return {
     ...user,
     uid: authUser.uid,
     emailVerified: authUser.emailVerified,
     providerData: authUser.providerData,
   };
-
-  return authUser;
 };
 
 function* setUserInFirestore(uid, username, email) {
@@ -40,6 +38,13 @@ const storageChannel = selected => {
       let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       
       emiter({ data: progress });
+    }, error => {
+      console.log(error);
+    }, async ()=> {
+      const url = await storage.ref(selected.name).getDownloadURL();
+
+      firestore.collection('images').doc(auth.currentUser.uid)
+               .collection('albums').doc(selected.name).set({ url });
     });
 
     return () => listener.off();
