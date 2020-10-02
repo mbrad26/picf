@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { doFileUploadRequest, doImageUrlRequest } from '../../redux/actions/images';
+import { doFileUploadRequest } from '../../redux/actions/images';
 
 const types = ['image/jpeg', 'image/png'];
 
 const INITIAL_STATE = {
   error: null,
   progress: null,
+  album: '',
 };
 
 const UploadForm = () => {
@@ -14,15 +15,23 @@ const UploadForm = () => {
   const dispatch = useDispatch();
   const [state, setState] = useState(INITIAL_STATE);
   const { uploadProgress, uploadError } = useSelector(state => state.imagesState);
-  const { error, progress } = state;
+  const { error, progress, album } = state;
 
-  const onChange = event => {
-    const selected = event.target.files[0];
-    if(selected && types.includes(selected.type)) {
-      dispatch(doFileUploadRequest(selected));
-      setState({ ...state, error: null});
-    } else {
-      setState({ ...state, error: 'Please select a png/jpeg file', progress: null });
+  const onSubmit = event => null;
+
+  const onChange = event => 
+    setState({ ...state, album: event.target.value });
+
+  const onUpload = event => {
+    const images = event.target.files;
+    console.log('IMAGES: ', images);
+    for (const selected in images) {
+      if(images[selected] && types.includes(images[selected].type)) {
+        dispatch(doFileUploadRequest(images[selected]));
+        setState({ ...state, error: null});
+      } else {
+        setState({ ...state, error: 'Please select a png/jpeg file', progress: null });
+      };
     };
   };
 
@@ -35,15 +44,24 @@ const UploadForm = () => {
   }, [uploadError]);
 
   return (
-    <form>
+    <form onSubmit={onSubmit}>
+      <input 
+        type='text'
+        name='album'
+        value={album}
+        onChange={onChange}
+        placeholder='Album title'
+      />
       <input 
         type='file'
-        onChange={onChange}
+        onChange={onUpload}
+        multiple
       />
+      <button type='submit'>Create album</button>
 
       {error && <p>{error}</p>}
-      {progress && <h4>Upload is <span>{Math.floor(progress)}</span> % done</h4>}  
-    </form>
+      {progress && <h4>Upload is <span>{Math.floor(progress)}</span> % done</h4>} 
+    </form> 
   );
 };
 

@@ -9,9 +9,8 @@ import {
   RESET_PASSWORD_REQUEST,
   UPDATE_PASSWORD_REQUEST, 
   SIGNIN_WITH_GOOGLE_REQUEST,
-  IMAGE_URL_REQUEST,
 } from '../constants/actionTypes';
-import { fileUpload, setImageToFirestore } from './images';
+import { fileUpload } from './images';
 import { 
   signUpUser, 
   signInUser, 
