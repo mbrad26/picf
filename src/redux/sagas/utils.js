@@ -44,8 +44,28 @@ const storageChannel = selected => {
       const url = await storage.ref(selected.name).getDownloadURL();
 
       firestore.collection('images').doc(auth.currentUser.uid)
-               .collection('albums').doc(selected.name).set({ url });
+               .collection('timeline').doc(selected.name).set({ url });
     });
+
+    return () => listener.off();
+  });
+};
+
+const imageUrlChannel = () => {
+  return new eventChannel(emiter => {
+    let listener;
+    if(auth.currentUser) {
+      listener = firestore.collection(`images/${auth.currentUser.uid}/timeline`)
+                          .onSnapshot(snapshot => {
+        
+        let urls = [];
+        snapshot.docs.forEach(doc => {
+          urls.push(doc.data().url);
+        });
+        
+        emiter({ data: urls});
+      });
+    };
 
     return () => listener.off();
   });
@@ -54,6 +74,7 @@ const storageChannel = selected => {
 export {
   userChannel,
   storageChannel,
+  imageUrlChannel,
   setUserInFirestore,
   getCurrentUserFromFirestore,
   getUserSnapshotFromFirestore,

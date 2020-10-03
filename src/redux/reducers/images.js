@@ -1,10 +1,13 @@
 import { 
   REQUEST_ERROR, 
-  SET_UPLOAD_PROGRESS } from '../constants/actionTypes';
+  SET_UPLOAD_PROGRESS, 
+  SET_URLS,
+} from '../constants/actionTypes';
 
 const INITIAL_STATE = {
   uploadError: null,
   uploadProgress: '',
+  imagesUrls: '',
 };
 
 const imagesReducer = (state = INITIAL_STATE, action) => {
@@ -18,6 +21,11 @@ const imagesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         uploadProgress: action.payload,
+      };
+    case SET_URLS:
+      return {
+        ...state,
+        imagesUrls: action.payload,
       };
     default: return state;
   };

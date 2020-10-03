@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+import Gallery from '../Gallery';
 import UploadForm from '../UploadForm';
 import * as ROUTES from '../constants/routes';
 import { doEmailVerificationRequest } from '../../redux/actions/user';
@@ -43,6 +44,7 @@ const Home = () => {
     <div>
       <h1>Home Page</h1>
       <UploadForm />
+      <Gallery />
     </div>
   )
 }

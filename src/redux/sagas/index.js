@@ -1,6 +1,7 @@
 import { takeLatest, all } from 'redux-saga/effects';
 
 import { 
+  URL_REQUEST,
   SIGNIN_REQUEST, 
   SIGNUP_REQUEST, 
   SIGNOUT_REQUEST, 
@@ -10,7 +11,7 @@ import {
   UPDATE_PASSWORD_REQUEST, 
   SIGNIN_WITH_GOOGLE_REQUEST,
 } from '../constants/actionTypes';
-import { fileUpload } from './images';
+import { fileUpload, getImageUrl } from './images';
 import { 
   signUpUser, 
   signInUser, 
@@ -31,6 +32,7 @@ function* watchAll() {
     takeLatest(UPDATE_PASSWORD_REQUEST, updatePassword),
     takeLatest(SIGNIN_WITH_GOOGLE_REQUEST, signInWithGoogle),
     takeLatest(FILE_UPLOAD_REQUEST, fileUpload),
+    takeLatest(URL_REQUEST, getImageUrl),
   ]);
 };
 
