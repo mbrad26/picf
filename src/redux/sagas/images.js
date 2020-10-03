@@ -1,6 +1,6 @@
 import { call, put, take } from 'redux-saga/effects';
 
-import { storageChannel, imageUrlChannel } from './utils';
+import { storageChannel, imagesUrlsChannel } from './utils';
 import { doRequestError } from '../actions/user';
 import { doSetUploadProgress, doSetUrls } from '../actions/images';
 
@@ -18,8 +18,8 @@ function* fileUpload({ payload: selected }) {
   };
 };
 
-function* getImageUrl() {
-  const channel = yield call(imageUrlChannel);
+function* getImagesUrls() {
+  const channel = yield call(imagesUrlsChannel);
 
   while(true) {
     try {
@@ -34,4 +34,4 @@ function* getImageUrl() {
   };
 };
 
-export { fileUpload, getImageUrl };
+export { fileUpload, getImagesUrls };

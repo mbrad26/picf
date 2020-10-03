@@ -1,6 +1,6 @@
 import { eventChannel } from 'redux-saga';
 
-import { auth, firestore, storage } from '../../firebase/config';
+import { auth, firestore, storage, timestamp } from '../../firebase/config';
 
 function* getUserSnapshotFromFirestore(uid) {
   const userRef = yield firestore.doc(`users/${uid}`);
@@ -42,28 +42,30 @@ const storageChannel = selected => {
       console.log(error);
     }, async ()=> {
       const url = await storage.ref(selected.name).getDownloadURL();
+      const createdAt = timestamp();
 
       firestore.collection('images').doc(auth.currentUser.uid)
-               .collection('timeline').doc(selected.name).set({ url });
+               .collection('timeline').doc(selected.name).set({ url, createdAt });
     });
 
     return () => listener.off();
   });
 };
 
-const imageUrlChannel = () => {
+const imagesUrlsChannel = () => {
   return new eventChannel(emiter => {
     let listener;
     if(auth.currentUser) {
       listener = firestore.collection(`images/${auth.currentUser.uid}/timeline`)
+                          .orderBy('createdAt', 'desc')
                           .onSnapshot(snapshot => {
         
         let urls = [];
         snapshot.docs.forEach(doc => {
           urls.push(doc.data().url);
         });
-        
-        emiter({ data: urls});
+
+        emiter({ data: urls });
       });
     };
 
@@ -74,7 +76,7 @@ const imageUrlChannel = () => {
 export {
   userChannel,
   storageChannel,
-  imageUrlChannel,
+  imagesUrlsChannel,
   setUserInFirestore,
   getCurrentUserFromFirestore,
   getUserSnapshotFromFirestore,

@@ -11,7 +11,7 @@ import {
   UPDATE_PASSWORD_REQUEST, 
   SIGNIN_WITH_GOOGLE_REQUEST,
 } from '../constants/actionTypes';
-import { fileUpload, getImageUrl } from './images';
+import { fileUpload, getImagesUrls } from './images';
 import { 
   signUpUser, 
   signInUser, 
@@ -32,7 +32,7 @@ function* watchAll() {
     takeLatest(UPDATE_PASSWORD_REQUEST, updatePassword),
     takeLatest(SIGNIN_WITH_GOOGLE_REQUEST, signInWithGoogle),
     takeLatest(FILE_UPLOAD_REQUEST, fileUpload),
-    takeLatest(URL_REQUEST, getImageUrl),
+    takeLatest(URL_REQUEST, getImagesUrls),
   ]);
 };
 

@@ -18,17 +18,22 @@ const Gallery = () => {
     dispatch(doUrlRequest());
   }, [dispatch]);
 
-  useEffect(() => {
+  useEffect(() =>  {
     if(imagesUrls) {
       setState(state => ({ ...state, urls: imagesUrls }))
     }
   }, [imagesUrls]);
 
+
   return (
     <div>
       Gallery
 
-      {urls && urls.map(url => <img src={url} />)}
+      {urls && urls.map(url => 
+        <div>
+          <img src={url} />
+        </div>
+      )}
     </div>
   );
 };
