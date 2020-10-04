@@ -1,4 +1,4 @@
-import { takeLatest, all } from 'redux-saga/effects';
+import { takeLatest, all, takeEvery } from 'redux-saga/effects';
 
 import { 
   URL_REQUEST,
@@ -32,7 +32,7 @@ function* watchAll() {
     takeLatest(UPDATE_PASSWORD_REQUEST, updatePassword),
     takeLatest(SIGNIN_WITH_GOOGLE_REQUEST, signInWithGoogle),
     takeLatest(FILE_UPLOAD_REQUEST, fileUpload),
-    takeLatest(URL_REQUEST, getImagesUrls),
+    takeEvery(URL_REQUEST, getImagesUrls),
   ]);
 };
 

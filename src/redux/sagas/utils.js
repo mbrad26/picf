@@ -55,14 +55,16 @@ const storageChannel = selected => {
 const imagesUrlsChannel = () => {
   return new eventChannel(emiter => {
     let listener;
-    if(auth.currentUser) {
-      listener = firestore.collection(`images/${auth.currentUser.uid}/timeline`)
+    let authUser = JSON.parse(localStorage.getItem('authUser'));
+
+    if(authUser) {
+      listener = firestore.collection(`images/${authUser.uid}/timeline`)
                           .orderBy('createdAt', 'desc')
                           .onSnapshot(snapshot => {
         
         let urls = [];
         snapshot.docs.forEach(doc => {
-          urls.push(doc.data().url);
+          urls.push(doc.data());
         });
 
         emiter({ data: urls });

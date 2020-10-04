@@ -14,6 +14,8 @@ const Gallery = () => {
   const [state, setState] = useState(INITIAL_STATE);
   const { urls } = state;
 
+  console.log('URLS: ', urls);
+
   useEffect(() =>  {
     dispatch(doUrlRequest());
   }, [dispatch]);
@@ -24,14 +26,13 @@ const Gallery = () => {
     }
   }, [imagesUrls]);
 
-
   return (
     <div>
       Gallery
 
-      {urls && urls.map(url => 
-        <div>
-          <img src={url} />
+      {urls && urls.map(data => 
+        <div key={data.url}>
+          <img src={data.url} alt='img'/>
         </div>
       )}
     </div>

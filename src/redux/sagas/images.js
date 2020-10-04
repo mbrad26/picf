@@ -25,8 +25,6 @@ function* getImagesUrls() {
     try {
       const { data } = yield take(channel);
 
-      console.log('SNAPSHOT: ', data);
-
       yield put(doSetUrls(data));
     } catch(error) {
       yield put(doRequestError(error));
