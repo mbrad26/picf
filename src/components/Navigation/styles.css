@@ -1,9 +1,12 @@
-ul {
+ul { 
   list-style-type: none;
 }
 
+ul li a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
 #signout-link {
-  text-decoration: underline;
   cursor: pointer;
-  color: #800080
 }

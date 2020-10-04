@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { 
+  TextField, 
+  Button,
+} from '@material-ui/core';
 
 import * as ROUTES from '../constants/routes';
 import { doSigninRequest } from '../../redux/actions/user';
@@ -42,21 +46,31 @@ const SignInForm = () => {
   
   return (
     <form onSubmit={onSubmit}>
-      <input 
-        type='text'
-        name='email'
-        value={email}
-        onChange={onChange}
-        placeholder='Email'
-      />
-      <input 
-        type='password'
-        name='password'
-        value={password}
-        onChange={onChange}
-        placeholder='Password'
-      />
-      <button type='submit'>Sign In</button>
+      <div>
+        <TextField 
+          type='text'
+          name='email'
+          value={email}
+          onChange={onChange}
+          label='Email'
+          multiline
+        />
+      </div>
+
+      <div>
+        <TextField
+          type='password'
+          name='password'
+          value={password}
+          onChange={onChange}
+          label='Password'
+          multiline
+        />
+      </div>
+
+      <div>
+        <Button type='submit'>Sign In</Button>
+      </div>
 
       {error && <p>{error.message}</p>}
     </form>

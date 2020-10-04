@@ -6,25 +6,34 @@ import {
   IconButton,
   Typography,
   Button,
+  makeStyles
  } from '@material-ui/core';
 
 import './styles.css';
 import AuthLinks from './authLinks';
 import NonAuthLinks from './nonAuthLinks';
 
+const useStyles = makeStyles(() => ({
+  root: {
+    flexGrow: 1,
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
+
 const Navigation = () => {
   console.log('NAVIGATION');
+  const classes = useStyles();
   const { authUser } = useSelector(state => state.userState);
 
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" >
+        <Typography variant="h6" className={classes.title}>
           Picturesque
         </Typography>
-        <Button color="inherit">
           {authUser ? <AuthLinks /> : <NonAuthLinks />}
-        </Button>
       </Toolbar>
     </AppBar>
   );
