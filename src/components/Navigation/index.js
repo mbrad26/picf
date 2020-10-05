@@ -1,5 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { 
+  Navbar,
+ } from 'react-bootstrap';
 
 import './styles.css';
 import AuthLinks from './authLinks';
@@ -10,9 +13,10 @@ const Navigation = () => {
   const { authUser } = useSelector(state => state.userState);
 
   return (
-    <div>
-      {authUser ? <AuthLinks /> : <NonAuthLinks />}
-    </div>
+    <Navbar>
+      <Navbar.Brand>Picturesque</Navbar.Brand>
+        {authUser ? <AuthLinks /> : <NonAuthLinks />}
+    </Navbar>
   );
 };
 

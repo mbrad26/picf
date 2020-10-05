@@ -1,16 +1,18 @@
-#root > div > header {
+ .navbar {
   background-color: #2196f3;
 }
 
-ul { 
-  list-style-type: none;
-}
-
-ul li a {
-  text-decoration: none;
-  /* color: #ffffff; */
+.navbar-light .navbar-nav .nav-link,
+.navbar-light .navbar-brand {
+  color: white;
 }
 
 #signout-link {
   cursor: pointer;
+}
+
+#signout-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #007bff;
 }

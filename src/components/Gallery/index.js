@@ -14,8 +14,6 @@ const Gallery = () => {
   const [state, setState] = useState(INITIAL_STATE);
   const { urls } = state;
 
-  console.log('URLS: ', urls);
-
   useEffect(() =>  {
     dispatch(doUrlRequest());
   }, [dispatch]);

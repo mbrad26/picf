@@ -1,21 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Nav } from 'react-bootstrap';
 
 import * as ROUTES from '../constants/routes';
 
 const NonAuthLinks = () => 
-  <div>
-    <ul>
-      <li>
-        <Link to={ROUTES.LANDING}>Landing</Link>
-      </li>
-      <li>
-        <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-      </li>
-      <li>
-        <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-      </li>
-    </ul>
-  </div>
+  <Nav className='ml-auto'>
+    <Nav.Link to={ROUTES.LANDING}>Landing</Nav.Link>
+    <Nav.Link to={ROUTES.SIGN_UP}>Sign Up</Nav.Link>
+    <Nav.Link to={ROUTES.SIGN_IN}>Sign In</Nav.Link>
+  </Nav>
 
 export default NonAuthLinks;
