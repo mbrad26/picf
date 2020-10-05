@@ -25,8 +25,6 @@ const App = () => {
       <div>
         <Navigation />
 
-        <hr/>
-
         <Switch>
           <Route exact path={ROUTES.LANDING} component={LandingPage} />
           <Route path={ROUTES.HOME} component={Home} />

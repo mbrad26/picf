@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Children } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { doSignoutRequest } from '../../redux/actions/user';
 
-const SignOut = () => {
+const SignOut = (props, ref) => {
   const dispatch = useDispatch();
 
   const onClick = () => dispatch(doSignoutRequest());
@@ -11,12 +11,13 @@ const SignOut = () => {
   console.log('SIGN_OUT');
   
   return (
-    <div>
+    <div ref={ref} {...props}>
       <div id='signout-link' onClick={onClick}>
         Sign Out
+        {Children.props}
       </div>
     </div>
   )
 };
 
-export default SignOut;
+export default React.forwardRef(SignOut);
