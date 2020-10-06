@@ -1,0 +1,19 @@
+.home-container {
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  grid-template-rows: 100vh;
+}
+
+.vertical-nav {
+  grid-row: span 2;
+  padding: 10px;
+}
+
+.vertical-nav .container {
+  position: fixed;
+}
+
+.gallery {
+  grid-row: span 10;
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+import './style.css';
 import Gallery from '../Gallery';
 import UploadForm from '../UploadForm';
 import * as ROUTES from '../constants/routes';
@@ -41,12 +42,18 @@ const Home = () => {
   };
 
   return (
-    <>
-      <h1>Home Page</h1>
-      <UploadForm />
-      <Gallery />
-    </>
-  )
-}
+    <div className='home-container'>
+      <div className='vertical-nav'>
+        <div className='container'>
+          Vertical Navigation
+        </div>
+      </div>
+      <div className='gallery'>
+        <UploadForm />
+        <Gallery />
+      </div>
+    </div>
+  );
+};
 
 export default Home;

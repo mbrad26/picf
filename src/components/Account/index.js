@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import './style.css';
 import * as ROUTES from '../constants/routes';
 import PasswordChangeForm from '../PasswordChange';
 import PasswordResetForm from '../PasswordForget/passwordResetForm';
@@ -41,7 +42,7 @@ const Account = () => {
   };
 
   return (
-    <div>
+    <div className='account-container'>
       <h1>Account</h1>
       <h3>Password reset</h3>
       <PasswordResetForm />
