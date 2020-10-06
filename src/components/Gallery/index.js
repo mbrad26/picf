@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { 
+  Image,
+} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+
+import './style.css';
 import { doUrlRequest } from '../../redux/actions/images';
 
 const INITIAL_STATE = {
@@ -14,7 +19,7 @@ const Gallery = () => {
   const [state, setState] = useState(INITIAL_STATE);
   const { urls } = state;
 
-  useEffect(() =>  {
+  useEffect(() => {
     dispatch(doUrlRequest());
   }, [dispatch]);
 
@@ -25,12 +30,10 @@ const Gallery = () => {
   }, [imagesUrls]);
 
   return (
-    <div>
-      Gallery
-
+    <div className='grid-container'>
       {urls && urls.map(data => 
-        <div key={data.url}>
-          <img src={data.url} alt='img'/>
+        <div key={data.url} className='grid-item'>
+          <Image src={data.url} alt='img' />
         </div>
       )}
     </div>

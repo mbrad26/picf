@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { ProgressBar } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { doFileUploadRequest } from '../../redux/actions/images';
 
 const types = ['image/jpeg', 'image/png'];
@@ -45,7 +47,7 @@ const UploadForm = () => {
       />
 
       {error && <p>{error}</p>}
-      {progress && <h4>Upload is <span>{Math.floor(progress)}</span> % done</h4>} 
+      {progress && <ProgressBar now={Math.floor(progress)} />} 
     </> 
   );
 };
