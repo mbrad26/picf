@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ProgressBar } from 'react-bootstrap';
+import { 
+  Form,
+  ProgressBar, 
+} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { doFileUploadRequest } from '../../redux/actions/images';
@@ -39,16 +42,18 @@ const UploadForm = () => {
   }, [uploadError]);
 
   return (
-    <>
-      <input 
-        type='file'
-        onChange={onUpload}
-        multiple
-      />
-
+    <Form>
+      <Form.Group>
+        <Form.File
+          type='file'
+          onChange={onUpload}
+          multiple
+        />
+      </Form.Group>
+      
       {error && <p>{error}</p>}
       {progress && <ProgressBar now={Math.floor(progress)} />} 
-    </> 
+    </Form> 
   );
 };
 

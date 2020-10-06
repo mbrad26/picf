@@ -42,17 +42,19 @@ const Home = () => {
   };
 
   return (
-    <div className='home-container'>
-      <div className='vertical-nav'>
-        <div className='container'>
-          Vertical Navigation
+    <>
+      <div className='home-container'>
+        <div className='vertical-nav'>
+          <div className='container'>
+            <UploadForm />
+            Vertical Navigation
+          </div>
+        </div>
+        <div className='gallery'>
+          <Gallery />
         </div>
       </div>
-      <div className='gallery'>
-        <UploadForm />
-        <Gallery />
-      </div>
-    </div>
+    </>
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+import './style.css';
 import Home from '../Home';
 import SignIn from '../SignIn';
 import SignUp from '../SignUp';

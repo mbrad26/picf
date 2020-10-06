@@ -10,7 +10,7 @@ const SignIn = () => {
   console.log('SIGN_In');
 
   return (
-    <div>
+    <div className='component-container'>
       <h1>Sign In</h1>
       <SignInForm />
       <p><Link to={ROUTES.PASSWORD_RESET}>Forgot password?</Link></p>
