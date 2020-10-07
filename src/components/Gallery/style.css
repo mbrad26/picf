@@ -1,6 +1,5 @@
 .grid-container {
   margin: 1em;
-
   display: grid;
   grid-template-columns: repeat(3, minmax(100px, 1fr));
   grid-auto-rows: minmax(230px, 270px);
@@ -8,9 +7,9 @@
   grid-gap: 1.5em;
 }
 
-.grid-item {
+/* .grid-item {
   overflow: hidden;
-}
+} */
 
 .grid-item:first-child {
   grid-row: span 1;
@@ -37,3 +36,8 @@ img {
   transform: scale(1.2);
 }
   */
+
+.modal-header {
+  padding: 0;
+  object-fit: contain;
+}
