@@ -1,11 +1,9 @@
 .home-container {
-  margin: 75px 1em 1em;
   display: grid;
   grid-template-columns: 2fr 10fr;
-  grid-template-rows: 100vh;
 }
 
-.vertical-nav {
+.sidebar {
   grid-row: span 2;
   padding: 10px;
 }
@@ -14,10 +12,12 @@
   width: 230px;
 }
 
-/* .vertical-nav .container {
-  position: fixed;
-} */
+.sidebar .container {
+  -webkit-transform: translateZ(0);
+}
 
 .gallery {
+  overflow-y: scroll;
+  max-height: 91vh;
   grid-row: span 10;
 }

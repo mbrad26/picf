@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Image,
 } from 'react-bootstrap';
@@ -19,29 +19,21 @@ const Gallery = () => {
   const [state, setState] = useState(INITIAL_STATE);
   const { urls } = state;
 
-  const setImages = useCallback(() => {
+  useEffect(() => {
+    dispatch(doUrlRequest())
+  }, [dispatch]);
+
+  useEffect(() =>  {
     if(imagesUrls) {
       setState(state => ({ ...state, urls: imagesUrls }))
     }
   }, [imagesUrls]);
 
-  const urlRequest = useCallback(() => {
-    dispatch(doUrlRequest())
-  }, [dispatch]);
-
-  useEffect(() => {
-    urlRequest()
-  }, [urlRequest]);
-
-  useEffect(() =>  {
-    setImages()
-  }, [setImages]);
-
   return (
     <div className='grid-container'>
       {urls && urls.map(data => 
         <div key={data.url} className='grid-item'>
-          <Image src={data.url} alt='img' />
+          <Image src={data.url} alt='img' loading='lazy'/>
         </div>
       )}
     </div>
@@ -49,4 +41,3 @@ const Gallery = () => {
 };
 
 export default Gallery;
-// export default React.memo(Gallery);

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import './style.css';
+import Sidebar from '../Sidebar';
 import Gallery from '../Gallery';
-import UploadForm from '../UploadForm';
 import * as ROUTES from '../constants/routes';
 import { doEmailVerificationRequest } from '../../redux/actions/user';
 
@@ -44,10 +44,8 @@ const Home = () => {
   return (
     <>
       <div className='home-container'>
-        <div className='vertical-nav'>
-          <div className='container'>
-            <UploadForm />
-          </div>
+        <div className='sidebar'>
+          <Sidebar />
         </div>
         <div className='gallery'>
           <Gallery />

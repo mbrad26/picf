@@ -1,6 +1,6 @@
  .navbar {
   background-color: #2196f3;
-  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
 }
 
 .navbar-light .navbar-nav .nav-link,

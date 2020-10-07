@@ -16,7 +16,7 @@ const Navigation = () => {
   const { authUser } = useSelector(state => state.userState);
 
   return (
-    <Navbar fixed='top'>
+    <Navbar>
       <Navbar.Brand>
         <Nav.Link as={Link} to={ROUTES.LANDING}>Picturesque</Nav.Link>
       </Navbar.Brand>
