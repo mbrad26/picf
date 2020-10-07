@@ -1,10 +1,10 @@
 .grid-container {
   margin-top: 1em;
   display: grid;
-  grid-template-columns: repeat(6, minmax(80px, 1fr));
-  grid-auto-rows: minmax(50px, 180px);
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
+  grid-auto-rows: minmax(100px, 200px);
   grid-auto-flow: dense;
-  grid-gap: 1em;
+  grid-gap: 1.5em;
 }
 
 .grid-item {
@@ -12,17 +12,11 @@
 }
 
 .grid-item:first-child {
-  grid-column: span 2;
-  grid-row: span 3;
+  grid-row: span 2;
 }
 
 .grid-item:nth-of-type(2n) {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-
-.grid-item:nth-of-type(5n) {
-  grid-row: span 2;
+  grid-row: span 3;
 }
 
 img {
@@ -31,10 +25,10 @@ img {
   height: 100%; 
   object-fit: cover;
   object-position: 50% 50%;
-  transition: .5s ease-in-out;
+  /* transition: .5s ease-in-out; */
 } 
 
-img:hover {
+/* img:hover {
   transform: scale(1.2);
 }
- 
+  */

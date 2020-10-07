@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { 
   Image,
 } from 'react-bootstrap';
@@ -19,15 +19,23 @@ const Gallery = () => {
   const [state, setState] = useState(INITIAL_STATE);
   const { urls } = state;
 
-  useEffect(() => {
-    dispatch(doUrlRequest());
-  }, [dispatch]);
-
-  useEffect(() =>  {
+  const setImages = useCallback(() => {
     if(imagesUrls) {
       setState(state => ({ ...state, urls: imagesUrls }))
     }
   }, [imagesUrls]);
+
+  const urlRequest = useCallback(() => {
+    dispatch(doUrlRequest())
+  }, [dispatch]);
+
+  useEffect(() => {
+    urlRequest()
+  }, [urlRequest]);
+
+  useEffect(() =>  {
+    setImages()
+  }, [setImages]);
 
   return (
     <div className='grid-container'>
@@ -41,3 +49,4 @@ const Gallery = () => {
 };
 
 export default Gallery;
+// export default React.memo(Gallery);

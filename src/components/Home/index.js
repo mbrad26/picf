@@ -47,7 +47,6 @@ const Home = () => {
         <div className='vertical-nav'>
           <div className='container'>
             <UploadForm />
-            Vertical Navigation
           </div>
         </div>
         <div className='gallery'>

@@ -14,9 +14,9 @@
   width: 230px;
 }
 
-.vertical-nav .container {
+/* .vertical-nav .container {
   position: fixed;
-}
+} */
 
 .gallery {
   grid-row: span 10;

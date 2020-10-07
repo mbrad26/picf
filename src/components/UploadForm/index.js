@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useCallback } from 'react';
 import { 
   Form,
   ProgressBar, 
@@ -33,13 +34,21 @@ const UploadForm = () => {
     };
   };
 
-  useEffect(() => {
+  const setUploadProgress = useCallback(() => {
     setState(state => ({ ...state, progress: uploadProgress, error: null }));
   }, [uploadProgress]);
 
-  useEffect(() => {
+  const setError = useCallback(() => {
     setState(state => ({ ...state, error: uploadError }));
   }, [uploadError]);
+
+  useEffect(() => {
+    setUploadProgress();
+  }, [setUploadProgress]);
+
+  useEffect(() => {
+    setError();
+  }, [setError]);
 
   return (
     <Form>
@@ -57,4 +66,5 @@ const UploadForm = () => {
   );
 };
 
-export default UploadForm;
+// export default UploadForm;
+export default React.memo(UploadForm);
