@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   uploadError: null,
   uploadProgress: '',
   imagesUrls: '',
+  activeImage: '',
 };
 
 const imagesReducer = (state = INITIAL_STATE, action) => {
