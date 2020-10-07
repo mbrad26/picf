@@ -1,4 +1,5 @@
 import { 
+  CLOSE_MODAL,
   FILE_UPLOAD_REQUEST, 
   SET_ACTIVE_IMAGE, 
   SET_UPLOAD_PROGRESS,
@@ -28,7 +29,11 @@ const doSetUrls = urls => ({
 const doSetActiveImage = url => ({
   type: SET_ACTIVE_IMAGE,
   payload: url,
-})
+});
+
+const doCloseModal = () => ({
+  type: CLOSE_MODAL,
+});
 
 export { 
   doFileUploadRequest, 
@@ -36,4 +41,5 @@ export {
   doUrlRequest,
   doSetUrls,
   doSetActiveImage,
+  doCloseModal,
 };

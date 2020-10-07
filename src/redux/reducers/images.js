@@ -1,4 +1,5 @@
 import { 
+  CLOSE_MODAL,
   REQUEST_ERROR, 
   SET_ACTIVE_IMAGE, 
   SET_UPLOAD_PROGRESS, 
@@ -35,7 +36,13 @@ const imagesReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isOpen: true,
         activeImage: action.payload,
-      }
+      };
+    case CLOSE_MODAL:
+      return {
+        ...state,
+        isOpen: false,
+        activeImage: '',
+      };
     default: return state;
   };
 };
