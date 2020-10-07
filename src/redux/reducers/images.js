@@ -1,5 +1,6 @@
 import { 
   REQUEST_ERROR, 
+  SET_ACTIVE_IMAGE, 
   SET_UPLOAD_PROGRESS, 
   SET_URLS,
 } from '../constants/actionTypes';
@@ -9,6 +10,7 @@ const INITIAL_STATE = {
   uploadProgress: '',
   imagesUrls: '',
   activeImage: '',
+  isOpen: false,
 };
 
 const imagesReducer = (state = INITIAL_STATE, action) => {
@@ -28,6 +30,12 @@ const imagesReducer = (state = INITIAL_STATE, action) => {
         ...state,
         imagesUrls: action.payload,
       };
+    case SET_ACTIVE_IMAGE:
+      return {
+        ...state,
+        isOpen: true,
+        activeImage: action.payload,
+      }
     default: return state;
   };
 };

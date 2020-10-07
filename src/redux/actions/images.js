@@ -1,5 +1,6 @@
 import { 
   FILE_UPLOAD_REQUEST, 
+  SET_ACTIVE_IMAGE, 
   SET_UPLOAD_PROGRESS,
   SET_URLS,
   URL_REQUEST,
@@ -24,9 +25,15 @@ const doSetUrls = urls => ({
   payload: urls,
 });
 
+const doSetActiveImage = url => ({
+  type: SET_ACTIVE_IMAGE,
+  payload: url,
+})
+
 export { 
   doFileUploadRequest, 
   doSetUploadProgress,
   doUrlRequest,
   doSetUrls,
+  doSetActiveImage,
 };

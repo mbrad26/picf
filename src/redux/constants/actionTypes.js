@@ -21,3 +21,4 @@ export const SET_UPLOAD_PROGRESS = 'SET_UPLOAD_PROGRESS';
 
 export const URL_REQUEST = 'URL_REQUEST';
 export const SET_URLS = 'SET_URLS';
+export const SET_ACTIVE_IMAGE= 'SET_ACTIVE_IMAGE';
