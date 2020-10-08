@@ -43,7 +43,10 @@ const UploadForm = () => {
   
   useEffect(() => {
     setUploadProgress();
-  }, [setUploadProgress]);
+    if(uploadProgress === 100) {
+      setState(state => ({ ...state, progress: null }));
+    };
+  }, [setUploadProgress, uploadProgress]);
 
   useEffect(() => {
     setError();
