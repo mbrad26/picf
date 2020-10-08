@@ -37,10 +37,11 @@ const Gallery = () => {
     <div className='grid-container'>
       {urls && urls.map(data => 
         <div key={data.url} className='grid-item'>
-          <Image src={data.url} alt='img' loading='lazy'/>
-          <Button onClick={() => setActiveImage(data.url)}>
-            Open
-          </Button>
+          <Image 
+            src={data.url} alt='img' 
+            onClick={() => setActiveImage(data.url)} 
+            loading='lazy' 
+          />
         </div>
       )}
 
