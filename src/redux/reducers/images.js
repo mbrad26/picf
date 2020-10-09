@@ -9,7 +9,7 @@ import {
 const INITIAL_STATE = {
   uploadError: null,
   uploadProgress: '',
-  imagesUrls: '',
+  imagesData: '',
   activeImage: '',
   isOpen: false,
 };
@@ -29,7 +29,7 @@ const imagesReducer = (state = INITIAL_STATE, action) => {
     case SET_URLS:
       return {
         ...state,
-        imagesUrls: action.payload,
+        imagesData: action.payload,
       };
     case SET_ACTIVE_IMAGE:
       return {

@@ -39,7 +39,7 @@ img {
 #overlay {
   position: absolute; 
   bottom: 0px; 
-  background: rgba(0, 0, 0, 0.5); 
+  background: rgba(52, 52, 53, 0.5); 
   color: #f1f1f1; 
   width: 100%;
   transition: .5s ease;

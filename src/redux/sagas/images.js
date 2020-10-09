@@ -33,10 +33,11 @@ function* getImagesUrls() {
   };
 };
 
-function* setFavouriteImage({ payload: url }) {
+function* setFavouriteImage({ payload: data }) {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
 
-  yield firestore.collection('favourites').doc(`${authUser.uid}`).set({ url });
+  // yield firestore.collection('favourites').doc(`${authUser.uid}`)
+  //                collection().set({ url });
 }
 
 export { 

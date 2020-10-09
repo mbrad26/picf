@@ -45,7 +45,8 @@ const storageChannel = selected => {
       const createdAt = timestamp();
 
       firestore.collection('images').doc(auth.currentUser.uid)
-               .collection('timeline').doc(selected.name).set({ url, createdAt });
+               .collection('timeline').doc(selected.name)
+               .set({ url, createdAt, name: selected.name });
     });
 
     return () => listener.off();

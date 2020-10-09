@@ -1,4 +1,4 @@
-import { takeLatest, all, takeEvery } from 'redux-saga/effects';
+import { takeLatest, all} from 'redux-saga/effects';
 
 import { 
   URL_REQUEST,

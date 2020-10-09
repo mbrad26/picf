@@ -36,9 +36,9 @@ const doCloseModal = () => ({
   type: CLOSE_MODAL,
 });
 
-const doAddFavouriteRequest = url => ({
+const doAddFavouriteRequest = data => ({
   type: ADD_FAVOURITE_REQUEST,
-  payload: url,
+  payload: data,
 });
 
 export { 

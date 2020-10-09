@@ -1,25 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Overlay from './overlay';
 import { doSetActiveImage } from '../../redux/actions/images';
 
-const Images = ({ urls }) => {
+const INITIAL_STATE = {
+  data: null,
+  error: null,
+};
+
+const Images = () => {
   console.log('IMAGES');
   const dispatch = useDispatch();
+  const { imagesData } = useSelector(state => state.imagesState);
+  const [state, setState] = useState(INITIAL_STATE);
+  const { data } = state;
 
   const setActiveImage = url => dispatch(doSetActiveImage(url));
 
+  useEffect(() =>  {
+    if(imagesData) {
+      setState(state => ({ ...state, data: imagesData }));
+    };
+  }, [imagesData]);
+
   return (
     <>
-      {urls && urls.map(data => 
-        <div key={data.url} className='grid-item'>
+      {data && data.map(img => 
+        <div key={img.url} className='grid-item'>
           <Image 
-            src={data.url} alt='img' 
-            onClick={() => setActiveImage(data.url)} 
+            src={img.url} alt='img' 
+            onClick={() => setActiveImage(img.url)} 
           />
-          <Overlay url={data.url}/>
+          <Overlay data={data}/>
         </div>
       )}
     </>
