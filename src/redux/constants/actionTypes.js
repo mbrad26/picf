@@ -23,3 +23,5 @@ export const URL_REQUEST = 'URL_REQUEST';
 export const SET_URLS = 'SET_URLS';
 export const SET_ACTIVE_IMAGE = 'SET_ACTIVE_IMAGE';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
+
+export const ADD_FAVOURITE_REQUEST = 'ADD_FAVOURITE_REQUEST'

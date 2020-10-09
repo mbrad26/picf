@@ -9,9 +9,14 @@ import {
   FILE_UPLOAD_REQUEST,
   RESET_PASSWORD_REQUEST,
   UPDATE_PASSWORD_REQUEST, 
-  SIGNIN_WITH_GOOGLE_REQUEST,
+  SIGNIN_WITH_GOOGLE_REQUEST, 
+  ADD_FAVOURITE_REQUEST,
 } from '../constants/actionTypes';
-import { fileUpload, getImagesUrls } from './images';
+import { 
+  fileUpload, 
+  getImagesUrls,
+  setFavouriteImage, 
+} from './images';
 import { 
   signUpUser, 
   signInUser, 
@@ -32,7 +37,8 @@ function* watchAll() {
     takeLatest(UPDATE_PASSWORD_REQUEST, updatePassword),
     takeLatest(SIGNIN_WITH_GOOGLE_REQUEST, signInWithGoogle),
     takeLatest(FILE_UPLOAD_REQUEST, fileUpload),
-    takeEvery(URL_REQUEST, getImagesUrls),
+    takeLatest(URL_REQUEST, getImagesUrls),
+    takeLatest(ADD_FAVOURITE_REQUEST, setFavouriteImage),
   ]);
 };
 

@@ -1,4 +1,5 @@
 import { 
+  ADD_FAVOURITE_REQUEST,
   CLOSE_MODAL,
   FILE_UPLOAD_REQUEST, 
   SET_ACTIVE_IMAGE, 
@@ -35,6 +36,11 @@ const doCloseModal = () => ({
   type: CLOSE_MODAL,
 });
 
+const doAddFavouriteRequest = url => ({
+  type: ADD_FAVOURITE_REQUEST,
+  payload: url,
+});
+
 export { 
   doFileUploadRequest, 
   doSetUploadProgress,
@@ -42,4 +48,5 @@ export {
   doSetUrls,
   doSetActiveImage,
   doCloseModal,
+  doAddFavouriteRequest,
 };
