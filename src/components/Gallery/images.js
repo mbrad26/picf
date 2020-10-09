@@ -2,7 +2,7 @@ import React from 'react';
 import { Image } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
-// import './style.css';
+import Overlay from './overlay';
 import { doSetActiveImage } from '../../redux/actions/images';
 
 const Images = ({ urls }) => {
@@ -10,11 +10,6 @@ const Images = ({ urls }) => {
   const dispatch = useDispatch();
 
   const setActiveImage = url => dispatch(doSetActiveImage(url));
-
-  const renderOverlay = (props) => 
-    <div id='overlay' { ...props }>
-      Image
-    </div>
 
   return (
     <>
@@ -24,9 +19,7 @@ const Images = ({ urls }) => {
             src={data.url} alt='img' 
             onClick={() => setActiveImage(data.url)} 
           />
-          <div id='overlay'>
-            Image
-          </div>
+          <Overlay url={data.url}/>
         </div>
       )}
     </>
