@@ -5,6 +5,7 @@ import {
   SET_ACTIVE_IMAGE, 
   SET_UPLOAD_PROGRESS,
   SET_URLS,
+  UNFAVOUR_REQUEST,
   URL_REQUEST,
 } from '../constants/actionTypes';
 
@@ -41,6 +42,11 @@ const doAddFavouriteRequest = data => ({
   payload: data,
 });
 
+const doUnfavourRequest = name => ({
+  type: UNFAVOUR_REQUEST,
+  payload: name,
+});
+
 export { 
   doFileUploadRequest, 
   doSetUploadProgress,
@@ -49,4 +55,5 @@ export {
   doSetActiveImage,
   doCloseModal,
   doAddFavouriteRequest,
+  doUnfavourRequest,
 };

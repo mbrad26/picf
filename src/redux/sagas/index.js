@@ -11,11 +11,13 @@ import {
   UPDATE_PASSWORD_REQUEST, 
   SIGNIN_WITH_GOOGLE_REQUEST, 
   ADD_FAVOURITE_REQUEST,
+  UNFAVOUR_REQUEST,
 } from '../constants/actionTypes';
 import { 
   fileUpload, 
   getImagesUrls,
-  setFavouriteImage, 
+  setFavouriteImage,
+  unFavourImage, 
 } from './images';
 import { 
   signUpUser, 
@@ -39,6 +41,7 @@ function* watchAll() {
     takeLatest(FILE_UPLOAD_REQUEST, fileUpload),
     takeLatest(URL_REQUEST, getImagesUrls),
     takeLatest(ADD_FAVOURITE_REQUEST, setFavouriteImage),
+    takeLatest(UNFAVOUR_REQUEST, unFavourImage),
   ]);
 };
 

@@ -36,8 +36,6 @@ function* getImagesUrls() {
 function* setFavouriteImage({ payload: { url, name } }) {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
 
-  console.log('NAME: ', name);
-
   try {
     const createdAt = timestamp();
 
@@ -48,8 +46,20 @@ function* setFavouriteImage({ payload: { url, name } }) {
   }
 };
 
+function* unFavourImage({ payload: name }) {
+  const authUser = JSON.parse(localStorage.getItem('authUser'));
+
+  try {
+    yield firestore.collection('favourites').doc(`${authUser.uid}`)
+                   .collection('images').doc(name).delete();
+  } catch(error) {
+    yield put(doRequestError(error));
+  }
+}
+
 export { 
   fileUpload, 
   getImagesUrls, 
   setFavouriteImage,
+  unFavourImage,
 };
