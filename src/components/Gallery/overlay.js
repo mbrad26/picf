@@ -9,13 +9,11 @@ const Overlay = ({ data }) => {
   const dispatch = useDispatch();
   const { authUser } = useSelector(state => state.userState);
 
-  // console.log('AUTHUSER: ', data);
-
-  const handleFavourite = url => dispatch(doAddFavouriteRequest(url));
+  const handleFavourite = (url, name) => dispatch(doAddFavouriteRequest({ url, name }));
 
   return (
     <div id='overlay'>
-      <StarBorderIcon onClick={() => handleFavourite(data.url)} />
+      <StarBorderIcon onClick={() => handleFavourite(data.url, data.name)} />
       <p>by {authUser.username}</p>
     </div>
   );

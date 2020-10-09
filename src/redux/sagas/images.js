@@ -1,7 +1,7 @@
 import { call, put, take } from 'redux-saga/effects';
 
 import { doRequestError } from '../actions/user';
-import { firestore } from '../../firebase/config';
+import { firestore, timestamp } from '../../firebase/config';
 import { storageChannel, imagesUrlsChannel } from './utils';
 import { doSetUploadProgress, doSetUrls } from '../actions/images';
 
@@ -33,12 +33,20 @@ function* getImagesUrls() {
   };
 };
 
-function* setFavouriteImage({ payload: data }) {
+function* setFavouriteImage({ payload: { url, name } }) {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
 
-  // yield firestore.collection('favourites').doc(`${authUser.uid}`)
-  //                collection().set({ url });
-}
+  console.log('NAME: ', name);
+
+  try {
+    const createdAt = timestamp();
+
+    yield firestore.collection('favourites').doc(`${authUser.uid}`)
+                   .collection('images').doc(name).set({ url, name, createdAt });
+  } catch(error) {
+    yield put(doRequestError(error));
+  }
+};
 
 export { 
   fileUpload, 

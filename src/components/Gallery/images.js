@@ -30,10 +30,11 @@ const Images = () => {
       {data && data.map(img => 
         <div key={img.url} className='grid-item'>
           <Image 
-            src={img.url} alt='img' 
+            src={img.url} 
+            alt={img.name} 
             onClick={() => setActiveImage(img.url)} 
           />
-          <Overlay data={data}/>
+          {img && <Overlay data={img}/>}
         </div>
       )}
     </>
