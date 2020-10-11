@@ -16,7 +16,7 @@ import {
 import { 
   fileUpload, 
   getImagesUrls,
-  setFavouriteImage,
+  favouriteImage,
   unFavourImage, 
 } from './images';
 import { 
@@ -40,7 +40,7 @@ function* watchAll() {
     takeLatest(SIGNIN_WITH_GOOGLE_REQUEST, signInWithGoogle),
     takeLatest(FILE_UPLOAD_REQUEST, fileUpload),
     takeLatest(URL_REQUEST, getImagesUrls),
-    takeLatest(ADD_FAVOURITE_REQUEST, setFavouriteImage),
+    takeLatest(ADD_FAVOURITE_REQUEST, favouriteImage),
     takeLatest(UNFAVOUR_REQUEST, unFavourImage),
   ]);
 };

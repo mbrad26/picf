@@ -56,7 +56,7 @@ const storageChannel = selected => {
 const imagesUrlsChannel = () => {
   return new eventChannel(emiter => {
     let listener;
-    let authUser = JSON.parse(localStorage.getItem('authUser'));
+    const authUser = JSON.parse(localStorage.getItem('authUser'));
 
     if(authUser) {
       listener = firestore.collection(`images/${authUser.uid}/timeline`)
@@ -76,6 +76,22 @@ const imagesUrlsChannel = () => {
   });
 };
 
+const favouritesChannel = () => {
+  const authUser = JSON.parse(localStorage.getItem('authUser'));
+
+  return new eventChannel(emiter => {
+    const listener = firestore.collection('users').doc(`${authUser.uid}`)
+                              .collection('favourites')
+                              .onSnapshot(snapshot => {
+                                snapshot.forEach(snap =>
+                                  emiter({ data: snap.data().name })
+                                );
+                              });
+
+    return () => listener.off();
+  });
+};
+
 export {
   userChannel,
   storageChannel,
@@ -83,4 +99,5 @@ export {
   setUserInFirestore,
   getCurrentUserFromFirestore,
   getUserSnapshotFromFirestore,
+  favouritesChannel,
 };

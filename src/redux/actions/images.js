@@ -3,6 +3,7 @@ import {
   CLOSE_MODAL,
   FILE_UPLOAD_REQUEST, 
   SET_ACTIVE_IMAGE, 
+  SET_FAVOURITE_STATUS, 
   SET_UPLOAD_PROGRESS,
   SET_URLS,
   UNFAVOUR_REQUEST,
@@ -47,6 +48,11 @@ const doUnfavourRequest = name => ({
   payload: name,
 });
 
+const doSetFavouriteStatus = name => ({
+  type: SET_FAVOURITE_STATUS,
+  payload: name,
+});
+
 export { 
   doFileUploadRequest, 
   doSetUploadProgress,
@@ -56,4 +62,5 @@ export {
   doCloseModal,
   doAddFavouriteRequest,
   doUnfavourRequest,
+  doSetFavouriteStatus,
 };

@@ -2,6 +2,7 @@ import {
   CLOSE_MODAL,
   REQUEST_ERROR, 
   SET_ACTIVE_IMAGE, 
+  SET_FAVOURITE_STATUS, 
   SET_UPLOAD_PROGRESS, 
   SET_URLS,
 } from '../constants/actionTypes';
@@ -12,6 +13,7 @@ const INITIAL_STATE = {
   imagesData: '',
   activeImage: '',
   isOpen: false,
+  isFav: [],
 };
 
 const imagesReducer = (state = INITIAL_STATE, action) => {
@@ -42,6 +44,11 @@ const imagesReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isOpen: false,
         activeImage: '',
+      };
+    case SET_FAVOURITE_STATUS:
+      return {
+        ...state,
+        isFav: [ ...state.isFav, action.payload ],
       };
     default: return state;
   };
