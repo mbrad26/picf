@@ -83,9 +83,10 @@ const favouritesChannel = () => {
     const listener = firestore.collection('users').doc(`${authUser.uid}`)
                               .collection('favourites')
                               .onSnapshot(snapshot => {
-                                snapshot.forEach(snap =>
-                                  emiter({ data: snap.data().name })
-                                );
+                                emiter({ data: snapshot })
+                                // snapshot.forEach(snap =>
+                                //   emiter({ data: snap.data().name })
+                                // );
                               });
 
     return () => listener.off();

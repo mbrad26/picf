@@ -26,7 +26,7 @@ const ImageModal = () => {
         <Image src={activeImage} alt='image' />
       </Modal.Header>
       <Modal.Body>
-        <p>Modal</p>
+  <p>Image name: {activeImage}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={closeModal}>Close</Button>

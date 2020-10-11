@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   imagesData: '',
   activeImage: '',
   isOpen: false,
-  isFav: [],
+  favourites: null,
 };
 
 const imagesReducer = (state = INITIAL_STATE, action) => {
@@ -48,7 +48,7 @@ const imagesReducer = (state = INITIAL_STATE, action) => {
     case SET_FAVOURITE_STATUS:
       return {
         ...state,
-        isFav: [ ...state.isFav, action.payload ],
+        favourites: action.payload,
       };
     default: return state;
   };

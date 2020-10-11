@@ -1,6 +1,7 @@
 import { 
   ADD_FAVOURITE_REQUEST,
   CLOSE_MODAL,
+  FAVOURITE_STATUS_REQUEST,
   FILE_UPLOAD_REQUEST, 
   SET_ACTIVE_IMAGE, 
   SET_FAVOURITE_STATUS, 
@@ -48,9 +49,13 @@ const doUnfavourRequest = name => ({
   payload: name,
 });
 
-const doSetFavouriteStatus = name => ({
+const doSetFavouriteStatus = favourites => ({
   type: SET_FAVOURITE_STATUS,
-  payload: name,
+  payload: favourites,
+});
+
+const doFavouriteStatusRequest = () => ({
+  type: FAVOURITE_STATUS_REQUEST,
 });
 
 export { 
@@ -63,4 +68,5 @@ export {
   doAddFavouriteRequest,
   doUnfavourRequest,
   doSetFavouriteStatus,
+  doFavouriteStatusRequest,
 };

@@ -67,9 +67,12 @@ function* getFavouriteImages() {
 
   while(true) {
     try {
+      const favourites = [];
       const { data } = yield take(channel);
 
-      yield put(doSetFavouriteStatus(data));
+      data.forEach(snap => favourites.push(snap.data().name))
+
+      yield put(doSetFavouriteStatus(favourites));
     } catch(error) {
       yield put(doRequestError(error));
     }
@@ -81,4 +84,5 @@ export {
   getImagesUrls, 
   favouriteImage,
   unFavourImage,
+  getFavouriteImages,
 };
