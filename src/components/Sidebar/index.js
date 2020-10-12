@@ -11,8 +11,6 @@ const Sidebar = () => {
   const history = useHistory();
   const isHome = history.location.pathname === '/home';
 
-  console.log('HISTORY_LOCATION: ', history.location);
-
   return (
     <div className='container'>
       {isHome 
@@ -23,6 +21,7 @@ const Sidebar = () => {
         : <>
             <UploadForm />
 
+            <Nav.Link as={Link} to={ROUTES.ACCOUNT}>Profile</Nav.Link>
             <Nav.Link as={Link} to={ROUTES.SETTINGS}>Settings</Nav.Link>
             <Nav.Link as={Link} to={ROUTES.TIMELINE}>Timeline</Nav.Link>
 

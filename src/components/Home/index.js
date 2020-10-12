@@ -15,7 +15,7 @@ const Home = () => {
 
   const onClick = () => dispatch(doEmailVerificationRequest());
 
-  if(!authUser) return <Redirect to={ROUTES.SIGN_IN}/>
+  if(!authUser) return <Redirect to={ROUTES.SIGN_IN} />
 
   if(authUser && 
     !authUser.emailVerified &&

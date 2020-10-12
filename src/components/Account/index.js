@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import './style.css';
+import Profile from './profile';
 import Sidebar from '../Sidebar';
 import Gallery from '../Gallery';
 import Settings from './settings';
@@ -27,7 +28,7 @@ const Account = () => {
     return (
       <div>
         <p>
-          Verify your E-Mail: Check you E-Mails (Spam folder 
+          Verify your E-Mail: Check your E-Mails (Spam folder 
           included) for a confirmation E-Mail or 
           send another confirmation E-Mail.
         </p>
@@ -47,10 +48,11 @@ const Account = () => {
       <div className='sidebar'>
         <Sidebar />
       </div>
-      <div className='account'>
+      <div className='main'>
         <Switch>
-          <Route exact path={ROUTES.SETTINGS} component={Settings} />
-          <Route exact path={ROUTES.TIMELINE} component={Gallery} />
+          <Route exact path={ROUTES.ACCOUNT} component={Profile} />
+          <Route path={ROUTES.SETTINGS} component={Settings} />
+          <Route path={ROUTES.TIMELINE} component={Gallery} />
         </Switch>
       </div>
     </div>
