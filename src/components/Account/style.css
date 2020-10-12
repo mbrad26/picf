@@ -3,7 +3,8 @@
   grid-template-columns: 2fr 10fr;
 }
 
-/* .sidebar {
-  grid-row: span 2;
+.sidebar {
+  /* grid-row: span 2; */
+  margin: 1em;
   padding: 10px;
-} */
+}

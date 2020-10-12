@@ -21,6 +21,25 @@ Clone this repository to your local machine.
 
 ### Approach
 
+#### Done
+
+* User Registration
+* User Login
+* User Google Login
+* User Log Out
+* User Password change
+* User Passord reset
+* Account Page
+* Home Page
+* Images Upload
+* Gallery
+* Image Likes
+* Image Overlay
+* Click on an image opens a modal
+
+#### To do
+
+**A lot ...**
 
 ### Tech Stack
 
