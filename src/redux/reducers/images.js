@@ -1,7 +1,5 @@
 import { 
-  CLOSE_MODAL,
   REQUEST_ERROR, 
-  SET_ACTIVE_IMAGE, 
   SET_FAVOURITE_STATUS, 
   SET_UPLOAD_PROGRESS, 
   SET_URLS,
@@ -11,8 +9,6 @@ const INITIAL_STATE = {
   uploadError: null,
   uploadProgress: '',
   imagesData: '',
-  activeImage: '',
-  isOpen: false,
   favourites: null,
 };
 
@@ -32,18 +28,6 @@ const imagesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         imagesData: action.payload,
-      };
-    case SET_ACTIVE_IMAGE:
-      return {
-        ...state,
-        isOpen: true,
-        activeImage: action.payload,
-      };
-    case CLOSE_MODAL:
-      return {
-        ...state,
-        isOpen: false,
-        activeImage: '',
       };
     case SET_FAVOURITE_STATUS:
       return {

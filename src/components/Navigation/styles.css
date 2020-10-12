@@ -8,6 +8,10 @@
   color: white;
 }
 
+.nav-link:hover {
+  color: black;
+}
+
 #signout-link {
   cursor: pointer;
 }

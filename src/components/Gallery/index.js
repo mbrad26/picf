@@ -9,7 +9,7 @@ import { doUrlRequest } from '../../redux/actions/images';
 const Gallery = () => {
   console.log('GALLERY: ');
   const dispatch = useDispatch();
-  const { isOpen } = useSelector(state => state.imagesState);
+  const { isOpen } = useSelector(state => state.modalState);
 
   useEffect(() => {
     dispatch(doUrlRequest());

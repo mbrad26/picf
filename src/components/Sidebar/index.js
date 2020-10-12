@@ -19,7 +19,7 @@ const Sidebar = () => {
           </>
         : <>
             <UploadForm />
-            <p>Pictures Wall</p>
+            <div>Pictures Wall</div>
             <Followers />
           </>
       }
