@@ -12,6 +12,7 @@ import Navigation from '../Navigation';
 import PasswordReset from '../PasswordForget';
 import * as ROUTES from '../constants/routes';
 import { doSetUserRequest } from '../../redux/actions/user';
+import Sidebar from '../Sidebar';
 
 const App = () => {
   console.log('APP');

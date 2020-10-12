@@ -1,10 +1,13 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { Nav } from 'react-bootstrap';
 
 import Followers from '../Followers';
 import UploadForm from '../UploadForm';
+import * as ROUTES from  '../constants/routes';
 
 const Sidebar = () => {
+  console.log('SIDEBAR');
   const history = useHistory();
   const isHome = history.location.pathname === '/home';
 
@@ -19,7 +22,10 @@ const Sidebar = () => {
           </>
         : <>
             <UploadForm />
-            <div>Pictures Wall</div>
+
+            <Nav.Link as={Link} to={ROUTES.SETTINGS}>Settings</Nav.Link>
+            <Nav.Link as={Link} to={ROUTES.TIMELINE}>Timeline</Nav.Link>
+
             <Followers />
           </>
       }

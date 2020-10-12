@@ -1,12 +1,12 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import './style.css';
 import Sidebar from '../Sidebar';
+import Gallery from '../Gallery';
+import Settings from './settings';
 import * as ROUTES from '../constants/routes';
-import PasswordChangeForm from '../PasswordChange';
-import PasswordResetForm from '../PasswordForget/passwordResetForm';
 import { doEmailVerificationRequest } from '../../redux/actions/user';
 
 const Account = () => {
@@ -48,11 +48,10 @@ const Account = () => {
         <Sidebar />
       </div>
       <div className='account'>
-        <h1>Account</h1>
-        <h3>Password reset</h3>
-        <PasswordResetForm />
-        <h3>Password change</h3>
-        <PasswordChangeForm />
+        <Switch>
+          <Route exact path={ROUTES.SETTINGS} component={Settings} />
+          <Route exact path={ROUTES.TIMELINE} component={Gallery} />
+        </Switch>
       </div>
     </div>
   );
