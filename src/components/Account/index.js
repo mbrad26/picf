@@ -2,6 +2,8 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import './style.css';
+import Sidebar from '../Sidebar';
 import * as ROUTES from '../constants/routes';
 import PasswordChangeForm from '../PasswordChange';
 import PasswordResetForm from '../PasswordForget/passwordResetForm';
@@ -42,11 +44,16 @@ const Account = () => {
 
   return (
     <div className='component-container'>
-      <h1>Account</h1>
-      <h3>Password reset</h3>
-      <PasswordResetForm />
-      <h3>Password change</h3>
-      <PasswordChangeForm />
+      <div className='sidebar'>
+        <Sidebar />
+      </div>
+      <div className='account'>
+        <h1>Account</h1>
+        <h3>Password reset</h3>
+        <PasswordResetForm />
+        <h3>Password change</h3>
+        <PasswordChangeForm />
+      </div>
     </div>
   );
 };

@@ -70,7 +70,7 @@ function* getFavouriteImages() {
       const favourites = [];
       const { data } = yield take(channel);
 
-      data.forEach(snap => favourites.push(snap.data().name))
+      data.forEach(snap => favourites.push(snap.data().name));
 
       yield put(doSetFavouriteStatus(favourites));
     } catch(error) {
