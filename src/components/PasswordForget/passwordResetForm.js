@@ -15,6 +15,8 @@ const PasswordResetForm = () => {
   const [state, setState] = useState(INITIAL_STATE);
   const { email, error } = state;
 
+  const isInvalid = email === '';
+
   const onChange = event => 
     setState({ ...state, email: event.target.value });
 
@@ -39,7 +41,7 @@ const PasswordResetForm = () => {
         onChange={onChange}
         placeholder='Email'
       />
-      <button type='submit'>Reset</button>
+      <button type='submit' disabled={isInvalid}>Reset</button>
 
       {error && <p>{error.message}</p>}
     </form>

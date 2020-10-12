@@ -16,7 +16,7 @@ const PasswordChangeForm = () => {
   const [state, setState] = useState(INITIAL_STATE);
   const { passwordOne, passwordTwo, error } = state;
 
-  const isInvalid = passwordOne !== passwordTwo;
+  const isInvalid = passwordOne !== passwordTwo || passwordOne === '';
 
   const onSubmit = event => {
     event.preventDefault();
