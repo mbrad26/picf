@@ -7,10 +7,15 @@ import {
   timestamp 
 } from '../../firebase/config';
 
-const createImagesCollection = (uid, name, url, time) => 
+const createUserImagesCollection = (uid, name, url, createdAt) => 
   firestore.collection('images').doc(uid)
            .collection('timeline').doc(name)
-           .set({ url: url, createdAt: time, name: name });
+           .set({ url, createdAt, name });
+
+const createUsersImagesCollection = (uid, name, url, createdAt) => 
+  firestore.collection('timeline')
+           .doc(name)
+           .set({ uid, url, createdAt });
 
 const storageChannel = selected => {
   return new eventChannel(emiter => {
@@ -27,7 +32,8 @@ const storageChannel = selected => {
       const uid = auth.currentUser.uid;
       const name = selected.name;
 
-      createImagesCollection(uid, name, url, createdAt);
+      createUserImagesCollection(uid, name, url, createdAt);
+      createUsersImagesCollection(uid, name, url, createdAt);
     });
 
     return () => listener.off();
