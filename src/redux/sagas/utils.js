@@ -31,6 +31,11 @@ const userChannel = () => {
   });
 };
 
+const createImagesCollection = (uid, name, url, time) => 
+  firestore.collection('images').doc(uid)
+           .collection('timeline').doc(name)
+           .set({ url: url, createdAt: time, name: name });
+
 const storageChannel = selected => {
   return new eventChannel(emiter => {
     const listener = storage.ref(selected.name).put(selected)
@@ -43,10 +48,10 @@ const storageChannel = selected => {
     }, async ()=> {
       const url = await storage.ref(selected.name).getDownloadURL();
       const createdAt = timestamp();
+      const uid = auth.currentUser.uid;
+      const name = selected.name;
 
-      firestore.collection('images').doc(auth.currentUser.uid)
-               .collection('timeline').doc(selected.name)
-               .set({ url, createdAt, name: selected.name });
+      createImagesCollection(uid, name, url, createdAt);
     });
 
     return () => listener.off();
