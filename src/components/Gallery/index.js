@@ -10,6 +10,7 @@ const Gallery = () => {
   console.log('GALLERY: ');
   const dispatch = useDispatch();
   const { isOpen } = useSelector(state => state.modalState);
+  const { imagesData } = useSelector(state => state.imagesState);
 
   useEffect(() => {
     dispatch(doUrlRequest());
@@ -17,7 +18,7 @@ const Gallery = () => {
 
   return (
     <div className='grid-container'>
-      <Images />
+      <Images imagesData={imagesData} />
 
       {isOpen && <ImageModal />}
     </div>

@@ -10,10 +10,9 @@ const INITIAL_STATE = {
   error: null,
 };
 
-const Images = () => {
+const Images = ({ imagesData }) => {
   console.log('IMAGES');
   const dispatch = useDispatch();
-  const { imagesData } = useSelector(state => state.imagesState);
   const [state, setState] = useState(INITIAL_STATE);
   const { data } = state;
 

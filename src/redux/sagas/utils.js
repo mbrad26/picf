@@ -84,9 +84,6 @@ const favouritesChannel = () => {
                               .collection('favourites')
                               .onSnapshot(snapshot => {
                                 emiter({ data: snapshot })
-                                // snapshot.forEach(snap =>
-                                //   emiter({ data: snap.data().name })
-                                // );
                               });
 
     return () => listener.off();

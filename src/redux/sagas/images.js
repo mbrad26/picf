@@ -21,7 +21,7 @@ function* fileUpload({ payload: selected }) {
 
 function* getImagesUrls() {
   const channel = yield call(imagesUrlsChannel);
-
+  
   while(true) {
     try {
       const { data } = yield take(channel);
