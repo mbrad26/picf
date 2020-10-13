@@ -12,7 +12,7 @@ import {
   userChannel,
   setUserInFirestore, 
   getCurrentUserFromFirestore,
- } from './utils';
+ } from './utilsUser';
 
 function* signUpUser({ payload: { username, email, passwordOne }}) {
   try {

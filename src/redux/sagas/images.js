@@ -2,8 +2,16 @@ import { call, put, take } from 'redux-saga/effects';
 
 import { doRequestError } from '../actions/user';
 import { firestore, timestamp } from '../../firebase/config';
-import { storageChannel, imagesUrlsChannel, favouritesChannel } from './utils';
-import { doSetFavouriteStatus, doSetUploadProgress, doSetUrls } from '../actions/images';
+import { 
+  storageChannel, 
+  imagesUrlsChannel, 
+  favouritesChannel 
+} from './utilsImages';
+import { 
+  doSetFavouriteStatus, 
+  doSetUploadProgress, 
+  doSetUrls 
+} from '../actions/images';
 
 function* fileUpload({ payload: selected }) {
   const channel = yield call(storageChannel, selected);
