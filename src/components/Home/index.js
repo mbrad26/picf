@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import './style.css';
 import Sidebar from '../Sidebar';
@@ -46,8 +46,11 @@ const Home = () => {
       <div className='sidebar'>
         <Sidebar />
       </div>
-      <div className='gallery'>
-        <Gallery />
+      <div className='main'>
+        <Switch>
+          <Route exact path={ROUTES.HOME} component={Gallery} />
+          <Route exact path={ROUTES.HOME_TIMELINE} component={Gallery} />
+        </Switch>
       </div>
     </div>
   );

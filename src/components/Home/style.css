@@ -16,7 +16,7 @@
   -webkit-transform: translateZ(0);
 }
 
-.gallery {
+.main {
   overflow-y: scroll;
   max-height: 91vh;
   grid-row: span 10;

@@ -7,7 +7,7 @@ import * as ROUTES from '../constants/routes';
 
 const AuthLinks = () => {
   const history = useHistory();
-  const isHome = history.location.pathname === '/home';
+  const isHome = history.location.pathname.includes('/home');
 
   return  (
     <>

@@ -9,13 +9,17 @@ import * as ROUTES from  '../constants/routes';
 const Sidebar = () => {
   console.log('SIDEBAR');
   const history = useHistory();
-  const isHome = history.location.pathname === '/home';
+  const isHome = history.location.pathname.includes('/home');
 
   return (
     <div className='container'>
       {isHome 
         ? <>
             <UploadForm />
+            
+            <Nav.Link as={Link} to={ROUTES.HOME}>Gallery</Nav.Link>
+            <Nav.Link as={Link} to={ROUTES.HOME_TIMELINE}>Timeline</Nav.Link>
+
             <Followers />
           </>
         : <>
@@ -27,7 +31,7 @@ const Sidebar = () => {
 
             <Followers />
           </>
-      }
+      } 
     </div>
   );
 };
