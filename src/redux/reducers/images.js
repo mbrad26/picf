@@ -1,17 +1,17 @@
 import { 
   REQUEST_ERROR, 
-  SET_FAVOURITE_ERROR, 
-  SET_FAVOURITE_STATUS, 
+  SET_LIKE_ERROR, 
+  SET_LIKE_STATUS, 
   SET_UPLOAD_PROGRESS, 
   SET_URLS,
 } from '../constants/actionTypes';
 
 const INITIAL_STATE = {
   uploadError: null,
-  favouriteError: null,
+  likeError: null,
   uploadProgress: '',
   imagesData: '',
-  favourites: null,
+  likes: null,
 };
 
 const imagesReducer = (state = INITIAL_STATE, action) => {
@@ -31,15 +31,15 @@ const imagesReducer = (state = INITIAL_STATE, action) => {
         ...state,
         imagesData: action.payload,
       };
-    case SET_FAVOURITE_STATUS:
+    case SET_LIKE_STATUS:
       return {
         ...state,
-        favourites: action.payload,
+        likes: action.payload,
       };
-    case SET_FAVOURITE_ERROR:
+    case SET_LIKE_ERROR:
       return {
         ...state,
-        favouriteError: action.payload,
+        likeError: action.payload,
       };
     default: return state;
   };

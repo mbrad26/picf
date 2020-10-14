@@ -8,8 +8,8 @@ import {
   favouritesChannel 
 } from './utilsImages';
 import { 
-  doSetFavouriteError,
-  doSetFavouriteStatus, 
+  doSetLikeError,
+  doSetLikeStatus, 
   doSetUploadProgress, 
   doSetUrls 
 } from '../actions/images';
@@ -42,48 +42,48 @@ function* getImagesUrls({ payload: collection }) {
   };
 };
 
-function* favouriteImage({ payload: { url, name } }) {
+function* likeImage({ payload: { url, name } }) {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
 
   try {
-    const favedAt = timestamp();
+    const likedAt = timestamp();
 
     yield firestore.collection('users').doc(authUser.uid)
                    .collection('favourites').doc(name)
-                   .set({ url, name, favedAt })
+                   .set({ url, name, likedAt })
     
-    yield call(getFavouriteImages);
+    yield call(getLikedImages);
   } catch(error) {
-    yield put(doSetFavouriteError(error));
+    yield put(doSetLikeError(error));
   }
 };
 
-function* unFavourImage({ payload: name }) {
+function* unLikeImage({ payload: name }) {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
 
   try {
     yield firestore.collection('users').doc(`${authUser.uid}`)
                    .collection('favourites').doc(name).delete();
     
-    yield call(getFavouriteImages);
+    yield call(getLikedImages);
   } catch(error) {
-    yield put(doSetFavouriteError(error));
+    yield put(doSetLikeError(error));
   }
 };
 
-function* getFavouriteImages() {
+function* getLikedImages() {
   const channel = yield call(favouritesChannel);
 
   while(true) {
     try {
-      const favourites = [];
+      const likes = [];
       const { data } = yield take(channel);
 
-      data.forEach(snap => favourites.push(snap.data().name));
+      data.forEach(snap => likes.push(snap.data().name));
 
-      yield put(doSetFavouriteStatus(favourites));
+      yield put(doSetLikeStatus(likes));
     } catch(error) {
-      yield put(doRequestError(error));
+      yield put(doSetLikeError(error));
     }
   };
 };
@@ -91,7 +91,7 @@ function* getFavouriteImages() {
 export { 
   fileUpload, 
   getImagesUrls, 
-  favouriteImage,
-  unFavourImage,
-  getFavouriteImages,
+  likeImage,
+  unLikeImage,
+  getLikedImages,
 };

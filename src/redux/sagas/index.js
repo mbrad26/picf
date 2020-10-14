@@ -10,16 +10,16 @@ import {
   RESET_PASSWORD_REQUEST,
   UPDATE_PASSWORD_REQUEST, 
   SIGNIN_WITH_GOOGLE_REQUEST, 
-  ADD_FAVOURITE_REQUEST,
-  UNFAVOUR_REQUEST,
-  FAVOURITE_STATUS_REQUEST,
+  ADD_LIKE_REQUEST,
+  UNLIKE_REQUEST,
+  LIKE_STATUS_REQUEST,
 } from '../constants/actionTypes';
 import { 
   fileUpload, 
   getImagesUrls,
-  favouriteImage,
-  unFavourImage, 
-  getFavouriteImages,
+  likeImage,
+  unLikeImage, 
+  getLikedImages,
 } from './images';
 import { 
   signUpUser, 
@@ -42,9 +42,9 @@ function* watchAll() {
     takeLatest(SIGNIN_WITH_GOOGLE_REQUEST, signInWithGoogle),
     takeLatest(FILE_UPLOAD_REQUEST, fileUpload),
     takeLatest(URL_REQUEST, getImagesUrls),
-    takeLatest(ADD_FAVOURITE_REQUEST, favouriteImage),
-    takeLatest(UNFAVOUR_REQUEST, unFavourImage),
-    takeLatest(FAVOURITE_STATUS_REQUEST, getFavouriteImages),
+    takeLatest(ADD_LIKE_REQUEST, likeImage),
+    takeLatest(UNLIKE_REQUEST, unLikeImage),
+    takeLatest(LIKE_STATUS_REQUEST, getLikedImages),
   ]);
 };
 

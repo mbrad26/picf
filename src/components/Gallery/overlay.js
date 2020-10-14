@@ -4,36 +4,36 @@ import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone';
 import FavoriteBorderTwoToneIcon from '@material-ui/icons/FavoriteBorderTwoTone';
 
 import { 
-  doAddFavouriteRequest, 
-  doFavouriteStatusRequest, 
-  doUnfavourRequest, 
+  doAddLikeRequest, 
+  doLikeStatusRequest, 
+  doUnlikeRequest, 
 } from '../../redux/actions/images';
 
 const Overlay = ({ data }) => {
   console.log('OVERLAY');
   const dispatch = useDispatch();
-  const { favourites } = useSelector(state => state.imagesState);
+  const { likes } = useSelector(state => state.imagesState);
   const { name, url } = data;
 
   console.log('IMAGE_DATA: ', data )
 
-  const handleFavourite = () => {
-    dispatch(doAddFavouriteRequest({ url, name }));
+  const handleLike = () => {
+    dispatch(doAddLikeRequest({ url, name }));
   };
 
-  const handleUnFavourite = () => {
-    dispatch(doUnfavourRequest(name));
+  const handleUnlike = () => {
+    dispatch(doUnlikeRequest(name));
   };
   
   useEffect(() => {
-    dispatch(doFavouriteStatusRequest());
+    dispatch(doLikeStatusRequest());
   }, [dispatch]);
 
   return (
     <div id='overlay'>
-      {favourites && favourites.includes(name)
-        ? <FavoriteTwoToneIcon fontSize='large' onClick={handleUnFavourite} />
-        : <FavoriteBorderTwoToneIcon  onClick={handleFavourite} />
+      {likes && likes.includes(name)
+        ? <FavoriteTwoToneIcon fontSize='large' onClick={handleUnlike} />
+        : <FavoriteBorderTwoToneIcon  onClick={handleLike} />
       } 
 
       <p>by {data.username}</p>
