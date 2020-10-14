@@ -13,7 +13,7 @@ const Overlay = ({ data }) => {
   console.log('OVERLAY');
   const dispatch = useDispatch();
   const { authUser } = useSelector(state => state.userState);
-  const { favourites } = useSelector(state => state.imagesState);
+  const { favourites, imagesData } = useSelector(state => state.imagesState);
   const { name, url } = data;
 
   const handleFavourite = () => {
@@ -35,7 +35,7 @@ const Overlay = ({ data }) => {
         : <FavoriteBorderTwoToneIcon  onClick={handleFavourite} />
       } 
 
-      <p>by {authUser.username}</p>
+      <p>by {data.username}</p>
     </div>
   );
 };

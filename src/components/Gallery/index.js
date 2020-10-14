@@ -16,8 +16,6 @@ const Gallery = () => {
   const history = useHistory();
   const path = history.location.pathname;
 
-  console.log('LOCATION: ', path);
-
   useEffect(() => {
     if(path.includes('/timeline')) {
       dispatch(doUrlRequest(`images/${authUser.uid}/timeline`));
@@ -30,6 +28,8 @@ const Gallery = () => {
   return (
     <div className='grid-container'>
       <Images imagesData={imagesData} />
+
+      {imagesData.length === 0 && <p>You have no pictures to show!</p>}
 
       {isOpen && <ImageModal />}
     </div>

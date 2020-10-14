@@ -7,15 +7,15 @@ import {
   timestamp 
 } from '../../firebase/config';
 
-const createUserImagesCollection = (uid, name, url, createdAt) => 
+const createUserImagesCollection = (uid, username, name, url, createdAt) => 
   firestore.collection('images').doc(uid)
            .collection('timeline').doc(name)
-           .set({ url, createdAt, name });
+           .set({ url, createdAt, name, username });
 
-const createUsersImagesCollection = (uid, name, url, createdAt) => 
+const createUsersImagesCollection = (uid, username, name, url, createdAt) => 
   firestore.collection('timeline')
            .doc(name)
-           .set({ userUid: uid, url, createdAt });
+           .set({ userUid: uid, username, url, createdAt });
 
 const storageChannel = selected => {
   return new eventChannel(emiter => {
@@ -28,12 +28,14 @@ const storageChannel = selected => {
       console.log(error);
     }, async ()=> {
       const url = await storage.ref(selected.name).getDownloadURL();
+      const authUser = JSON.parse(localStorage.getItem('authUser'));
       const createdAt = timestamp();
-      const uid = auth.currentUser.uid;
+      const uid = authUser.uid;
+      const username = authUser.username;
       const name = selected.name;
 
-      createUserImagesCollection(uid, name, url, createdAt);
-      createUsersImagesCollection(uid, name, url, createdAt);
+      createUserImagesCollection(uid, username, name, url, createdAt);
+      createUsersImagesCollection(uid, username, name, url, createdAt);
     });
 
     return () => listener.off();
