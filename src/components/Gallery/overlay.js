@@ -15,6 +15,8 @@ const Overlay = ({ data }) => {
   const { favourites } = useSelector(state => state.imagesState);
   const { name, url } = data;
 
+  console.log('IMAGE_DATA: ', data )
+
   const handleFavourite = () => {
     dispatch(doAddFavouriteRequest({ url, name }));
   };
