@@ -27,8 +27,8 @@ function* fileUpload({ payload: selected }) {
   };
 };
 
-function* getImagesUrls() {
-  const channel = yield call(imagesUrlsChannel);
+function* getImagesUrls({ payload: collection }) {
+  const channel = yield call(imagesUrlsChannel, collection);
   
   while(true) {
     try {

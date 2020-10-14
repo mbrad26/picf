@@ -40,24 +40,19 @@ const storageChannel = selected => {
   });
 };
 
-const imagesUrlsChannel = () => {
+const imagesUrlsChannel = collection => {
   return new eventChannel(emiter => {
-    let listener;
-    const authUser = JSON.parse(localStorage.getItem('authUser'));
-
-    if(authUser) {
-      listener = firestore.collection(`images/${authUser.uid}/timeline`)
-                          .orderBy('createdAt', 'desc')
-                          .onSnapshot(snapshot => {
-        
-        let urls = [];
-        snapshot.docs.forEach(doc => {
-          urls.push(doc.data());
-        });
-
-        emiter({ data: urls });
+    const listener = firestore.collection(collection)
+                        .orderBy('createdAt', 'desc')
+                        .onSnapshot(snapshot => {
+      
+      let urls = [];
+      snapshot.docs.forEach(doc => {
+        urls.push(doc.data());
       });
-    };
+
+      emiter({ data: urls });
+    });
 
     return () => listener.off();
   });

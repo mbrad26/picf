@@ -21,8 +21,9 @@ const doSetUploadProgress = progress => ({
   payload: progress,
 });
 
-const doUrlRequest = () => ({
+const doUrlRequest = collection => ({
   type: URL_REQUEST,
+  payload: collection,
 });
 
 const doSetUrls = urls => ({
