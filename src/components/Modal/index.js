@@ -23,10 +23,10 @@ const ImageModal = () => {
       onHide={closeModal}
     >
       <Modal.Header closeButton>
-        <Image src={activeImage} alt='image' />
+        <Image src={activeImage.url} alt='image' />
       </Modal.Header>
       <Modal.Body>
-        <p>Image name: {activeImage}</p>
+        <p>Image name: {activeImage.name}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={closeModal}>Close</Button>

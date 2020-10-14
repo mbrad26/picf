@@ -31,9 +31,9 @@ const doSetUrls = urls => ({
   payload: urls,
 });
 
-const doSetActiveImage = url => ({
+const doSetActiveImage = img => ({
   type: SET_ACTIVE_IMAGE,
-  payload: url,
+  payload: img,
 });
 
 const doCloseModal = () => ({

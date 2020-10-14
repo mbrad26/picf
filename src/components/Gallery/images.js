@@ -16,7 +16,7 @@ const Images = ({ imagesData }) => {
   const [state, setState] = useState(INITIAL_STATE);
   const { data } = state;
 
-  const setActiveImage = url => dispatch(doSetActiveImage(url));
+  const setActiveImage = img => dispatch(doSetActiveImage(img));
 
   useEffect(() =>  {
     if(imagesData) {
@@ -31,7 +31,7 @@ const Images = ({ imagesData }) => {
           <Image 
             src={img.url} 
             alt={img.name} 
-            onClick={() => setActiveImage(img.url)} 
+            onClick={() => setActiveImage(img)} 
           />
           {img && <Overlay data={img}/>}
         </div>
