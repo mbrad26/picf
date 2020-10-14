@@ -71,6 +71,11 @@ function* unLikeImage({ payload: name }) {
     yield firestore.collection('users').doc(`${authUser.uid}`)
                    .collection('favourites').doc(name).delete();
     
+    yield firestore.collection('timeline').doc(name)
+                   .update({
+                     likes: firebase.firestore.FieldValue.arrayRemove(authUser.uid)
+                   })
+    
     yield call(getLikedImages);
   } catch(error) {
     yield put(doSetLikeError(error));
