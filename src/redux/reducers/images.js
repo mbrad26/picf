@@ -1,5 +1,6 @@
 import { 
   REQUEST_ERROR, 
+  SET_FAVOURITE_ERROR, 
   SET_FAVOURITE_STATUS, 
   SET_UPLOAD_PROGRESS, 
   SET_URLS,
@@ -7,6 +8,7 @@ import {
 
 const INITIAL_STATE = {
   uploadError: null,
+  favouriteError: null,
   uploadProgress: '',
   imagesData: '',
   favourites: null,
@@ -33,6 +35,11 @@ const imagesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         favourites: action.payload,
+      };
+    case SET_FAVOURITE_ERROR:
+      return {
+        ...state,
+        favouriteError: action.payload,
       };
     default: return state;
   };

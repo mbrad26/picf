@@ -4,6 +4,7 @@ import {
   FAVOURITE_STATUS_REQUEST,
   FILE_UPLOAD_REQUEST, 
   SET_ACTIVE_IMAGE, 
+  SET_FAVOURITE_ERROR, 
   SET_FAVOURITE_STATUS, 
   SET_UPLOAD_PROGRESS,
   SET_URLS,
@@ -59,6 +60,11 @@ const doFavouriteStatusRequest = () => ({
   type: FAVOURITE_STATUS_REQUEST,
 });
 
+const doSetFavouriteError = error => ({
+  type: SET_FAVOURITE_ERROR,
+  payload: error,
+});
+
 export { 
   doFileUploadRequest, 
   doSetUploadProgress,
@@ -70,4 +76,5 @@ export {
   doUnfavourRequest,
   doSetFavouriteStatus,
   doFavouriteStatusRequest,
+  doSetFavouriteError,
 };

@@ -8,6 +8,7 @@ import {
   favouritesChannel 
 } from './utilsImages';
 import { 
+  doSetFavouriteError,
   doSetFavouriteStatus, 
   doSetUploadProgress, 
   doSetUrls 
@@ -53,7 +54,7 @@ function* favouriteImage({ payload: { url, name } }) {
     
     yield call(getFavouriteImages);
   } catch(error) {
-    yield put(doRequestError(error));
+    yield put(doSetFavouriteError(error));
   }
 };
 
@@ -66,7 +67,7 @@ function* unFavourImage({ payload: name }) {
     
     yield call(getFavouriteImages);
   } catch(error) {
-    yield put(doRequestError(error));
+    yield put(doSetFavouriteError(error));
   }
 };
 

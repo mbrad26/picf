@@ -13,8 +13,9 @@ const INITIAL_STATE = {
 const Images = ({ imagesData }) => {
   console.log('IMAGES');
   const dispatch = useDispatch();
-  const [state, setState] = useState(INITIAL_STATE);
-  const { data } = state;
+  const { favouriteError } = useSelector(state => state.imagesState);
+  const [state, setState] = useState(INITIAL_STATE)
+  const { data, error } = state;
 
   const setActiveImage = img => dispatch(doSetActiveImage(img));
 
@@ -23,6 +24,10 @@ const Images = ({ imagesData }) => {
       setState(state => ({ ...state, data: imagesData }));
     };
   }, [imagesData]);
+
+  useEffect(() => {
+    setState(state => ({ ...state, error: favouriteError }));
+  }, [favouriteError]);
 
   return (
     <>
@@ -34,6 +39,8 @@ const Images = ({ imagesData }) => {
             onClick={() => setActiveImage(img)} 
           />
           {img && <Overlay data={img}/>}
+
+          {error && <p>{error.message}</p>}
         </div>
       )}
     </>

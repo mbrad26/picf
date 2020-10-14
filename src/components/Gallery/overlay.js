@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone';
 import FavoriteBorderTwoToneIcon from '@material-ui/icons/FavoriteBorderTwoTone';
@@ -12,8 +12,7 @@ import {
 const Overlay = ({ data }) => {
   console.log('OVERLAY');
   const dispatch = useDispatch();
-  const { authUser } = useSelector(state => state.userState);
-  const { favourites, imagesData } = useSelector(state => state.imagesState);
+  const { favourites } = useSelector(state => state.imagesState);
   const { name, url } = data;
 
   const handleFavourite = () => {
