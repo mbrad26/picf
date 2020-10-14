@@ -15,8 +15,8 @@ const createUserImagesCollection = (uid, username, name, url, createdAt) =>
 const createUsersImagesCollection = (uid, username, name, url, createdAt) => 
   firestore.collection('timeline')
            .doc(name)
-           .set({ userUid: uid, name, username, url, likes: [], createdAt });
-
+           .set({ userUid: uid, name, username, url, likes: [], createdAt })
+          
 const storageChannel = selected => {
   return new eventChannel(emiter => {
     const listener = storage.ref(selected.name).put(selected)

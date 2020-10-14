@@ -1,3 +1,4 @@
+import firebase from 'firebase/app';
 import { call, put, take } from 'redux-saga/effects';
 
 import { doRequestError } from '../actions/user';
@@ -50,7 +51,12 @@ function* likeImage({ payload: { url, name } }) {
 
     yield firestore.collection('users').doc(authUser.uid)
                    .collection('favourites').doc(name)
-                   .set({ url, name, likedAt })
+                   .set({ url, name, likedAt });
+
+    yield firestore.collection('timeline').doc(name)
+                    .update({ 
+                      likes: firebase.firestore.FieldValue.arrayUnion(authUser.uid)
+                    });
     
     yield call(getLikedImages);
   } catch(error) {
