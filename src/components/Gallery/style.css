@@ -52,3 +52,7 @@ img {
 .grid-item:hover #overlay{
   opacity: 1;
 }
+
+#icon:hover {
+  cursor: pointer;
+}
