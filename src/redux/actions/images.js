@@ -10,8 +10,6 @@ import {
   SET_URLS,
   UNLIKE_REQUEST,
   URL_REQUEST,
-  LIKES_NUMBER_REQUEST,
-  SET_LIKES_NUMBER,
 } from '../constants/actionTypes';
 
 const doFileUploadRequest = file => ({
@@ -67,16 +65,6 @@ const doSetLikeError = error => ({
   payload: error,
 });
 
-const doLikesRequest = name => ({
-  type: LIKES_NUMBER_REQUEST,
-  payload: name,
-});
-
-const doSetLikesNumber = likes => ({
-  type: SET_LIKES_NUMBER,
-  payload: likes,
-});
-
 export { 
   doFileUploadRequest, 
   doSetUploadProgress,
@@ -89,6 +77,4 @@ export {
   doSetLikeStatus,
   doLikeStatusRequest,
   doSetLikeError,
-  doLikesRequest,
-  doSetLikesNumber,
 };

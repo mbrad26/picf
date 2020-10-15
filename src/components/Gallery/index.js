@@ -15,15 +15,16 @@ const Gallery = () => {
   const { imagesData } = useSelector(state => state.imagesState);
   const history = useHistory();
   const path = history.location.pathname;
+  const uid = authUser.uid;
 
   useEffect(() => {
     if(path.includes('/timeline')) {
-      dispatch(doUrlRequest(`images/${authUser.uid}/timeline`));
+      dispatch(doUrlRequest(`images/${uid}/timeline`));
     } else {
 
       dispatch(doUrlRequest('timeline'));
     }
-  }, [dispatch, path]);
+  }, [dispatch, path, uid]);
 
   return (
     <div className='grid-container'>

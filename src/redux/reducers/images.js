@@ -3,7 +3,6 @@ import {
   REQUEST_ERROR, 
   SET_LIKE_ERROR, 
   SET_LIKE_STATUS, 
-  SET_LIKES_NUMBER, 
   SET_UPLOAD_PROGRESS,
 } from '../constants/actionTypes';
 
@@ -13,7 +12,6 @@ const INITIAL_STATE = {
   uploadProgress: '',
   imagesData: '',
   likedStatus: null,
-  likes: null,
 };
 
 const imagesReducer = (state = INITIAL_STATE, action) => {
@@ -37,11 +35,6 @@ const imagesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         likedStatus: action.payload,
-      };
-    case SET_LIKES_NUMBER:
-      return {
-        ...state,
-        likes: action.payload,
       };
     case SET_LIKE_ERROR:
       return {

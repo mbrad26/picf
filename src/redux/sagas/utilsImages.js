@@ -1,7 +1,6 @@
 import { eventChannel } from 'redux-saga';
 
 import { 
-  auth, 
   firestore, 
   storage, 
   timestamp 
@@ -74,20 +73,8 @@ const favouritesChannel = () => {
   });
 };
 
-const likesChannel = name => {
-  return new eventChannel(emiter => {
-    const listener = firestore.collection('timeline').doc(name)
-                              .onSnapshot(snapshot => {
-                                emiter({ data: snapshot })
-                              });
-    
-    return () => listener.off();
-  })
-}
-
 export {
   storageChannel,
   imagesUrlsChannel,
   favouritesChannel,
-  likesChannel,
 };
