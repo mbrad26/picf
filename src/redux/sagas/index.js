@@ -1,4 +1,4 @@
-import { takeLatest, all} from 'redux-saga/effects';
+import { takeLatest, all } from 'redux-saga/effects';
 
 import { 
   URL_REQUEST,
@@ -13,6 +13,7 @@ import {
   ADD_LIKE_REQUEST,
   UNLIKE_REQUEST,
   LIKE_STATUS_REQUEST,
+  LIKES_NUMBER_REQUEST,
 } from '../constants/actionTypes';
 import { 
   fileUpload, 
@@ -20,6 +21,7 @@ import {
   likeImage,
   unLikeImage, 
   getLikedImages,
+  getImageLikes,
 } from './images';
 import { 
   signUpUser, 
@@ -45,6 +47,7 @@ function* watchAll() {
     takeLatest(ADD_LIKE_REQUEST, likeImage),
     takeLatest(UNLIKE_REQUEST, unLikeImage),
     takeLatest(LIKE_STATUS_REQUEST, getLikedImages),
+    takeLatest(LIKES_NUMBER_REQUEST, getImageLikes),
   ]);
 };
 

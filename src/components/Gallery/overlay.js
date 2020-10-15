@@ -7,15 +7,16 @@ import {
   doAddLikeRequest, 
   doLikeStatusRequest, 
   doUnlikeRequest, 
+  doLikesRequest,
 } from '../../redux/actions/images';
 
 const Overlay = ({ data }) => {
   console.log('OVERLAY');
   const dispatch = useDispatch();
-  const { likes } = useSelector(state => state.imagesState);
+  const { likedStatus, likes} = useSelector(state => state.imagesState);
   const { name, url } = data;
 
-  console.log('IMAGE_DATA: ', data )
+  console.log('LIKES_OVERLAY: ', likes);
 
   const handleLike = () => {
     dispatch(doAddLikeRequest({ url, name }));
@@ -27,15 +28,16 @@ const Overlay = ({ data }) => {
   
   useEffect(() => {
     dispatch(doLikeStatusRequest());
+    dispatch(doLikesRequest(name));
   }, [dispatch]);
 
   return (
     <div id='overlay'>
-      {likes && likes.includes(name)
+      {likedStatus && likedStatus.includes(name)
         ? <FavoriteTwoToneIcon fontSize='large' onClick={handleUnlike} />
         : <FavoriteBorderTwoToneIcon  onClick={handleLike} />
       } 
-
+      <span>{likes}</span>
       <p>by {data.username}</p>
     </div>
   );

@@ -4,15 +4,17 @@ import { call, put, take } from 'redux-saga/effects';
 import { doRequestError } from '../actions/user';
 import { firestore, timestamp } from '../../firebase/config';
 import { 
+  likesChannel,
   storageChannel, 
   imagesUrlsChannel, 
-  favouritesChannel 
+  favouritesChannel, 
 } from './utilsImages';
 import { 
+  doSetUrls, 
   doSetLikeError,
+  doSetLikesNumber,
   doSetLikeStatus, 
   doSetUploadProgress, 
-  doSetUrls 
 } from '../actions/images';
 
 function* fileUpload({ payload: selected }) {
@@ -99,10 +101,28 @@ function* getLikedImages() {
   };
 };
 
+function* getImageLikes({ payload: name }) {
+  const channel = yield call(likesChannel, name);
+
+  while(true) {
+    try {
+      const { data } = yield take(channel);
+      const likesNumber = data.data().likes.length;
+
+      console.log('LIKES: ', likesNumber);
+
+      yield put(doSetLikesNumber(likesNumber));
+    } catch(error) {
+      console.log(error);
+    }
+  };
+};
+
 export { 
   fileUpload, 
   getImagesUrls, 
   likeImage,
   unLikeImage,
   getLikedImages,
+  getImageLikes,
 };
