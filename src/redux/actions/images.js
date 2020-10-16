@@ -11,6 +11,7 @@ import {
   UNLIKE_REQUEST,
   URL_REQUEST,
   DELETE_REQUEST,
+  DELETE_ERROR,
 } from '../constants/actionTypes';
 
 const doFileUploadRequest = file => ({
@@ -72,7 +73,7 @@ const doDeleteRequest = name => ({
 });
 
 const doDeleteError = error => ({
-  type: DELETE_REQUEST,
+  type: DELETE_ERROR,
   payload: error,
 });
 

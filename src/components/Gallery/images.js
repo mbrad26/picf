@@ -17,6 +17,8 @@ const Images = ({ imagesData }) => {
   const [state, setState] = useState(INITIAL_STATE)
   const { data, error } = state;
 
+  console.log('ERROR: ', error);
+
   const setActiveImage = img => dispatch(doSetActiveImage(img));
 
   useEffect(() =>  {
@@ -35,6 +37,8 @@ const Images = ({ imagesData }) => {
 
   return (
     <>
+      {error && <p>{error.message}</p>}
+
       {data && data.map(img => 
         <div key={img.url} className='grid-item'>
           <Image 
@@ -43,8 +47,6 @@ const Images = ({ imagesData }) => {
             onClick={() => setActiveImage(img)} 
           />
           {img && <Overlay data={img}/>}
-
-          {error && <p>{error.message}</p>}
         </div>
       )}
     </>

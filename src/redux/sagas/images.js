@@ -105,8 +105,6 @@ function* deleteImage({ payload: name }) {
   const uid = authUser.uid;
   const ref = storage.ref(name);
 
-  console.log('NAME: ', name);
-
   yield ref.delete()
            .then(console.log('Image deleted!'))
            .catch(error => console.log('ERROR: ', error));

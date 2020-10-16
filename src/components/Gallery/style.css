@@ -53,6 +53,6 @@ img {
   opacity: 1;
 }
 
-#icon:hover {
+.icon:hover {
   cursor: pointer;
 }

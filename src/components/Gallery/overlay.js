@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone';
 import FavoriteBorderTwoToneIcon from '@material-ui/icons/FavoriteBorderTwoTone';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import GroupAddSharpIcon from '@material-ui/icons/GroupAddSharp';
 
 import { 
   doAddLikeRequest, 
@@ -24,6 +25,8 @@ const Overlay = ({ data }) => {
   const handleUnlike = () => dispatch(doUnlikeRequest(name));
 
   const handleDelete = () => dispatch(doDeleteRequest(name));
+
+  const handleFollow = () => null;
   
   useEffect(() => {
     dispatch(doLikeStatusRequest());
@@ -32,14 +35,18 @@ const Overlay = ({ data }) => {
   return (
     <div id='overlay'>
       {likedStatus && likedStatus.includes(name)
-        ? <FavoriteTwoToneIcon id='icon' onClick={handleUnlike} />
-        : <FavoriteBorderTwoToneIcon id='icon' onClick={handleLike} />
+        ? <FavoriteTwoToneIcon className='icon' onClick={handleUnlike} />
+        : <FavoriteBorderTwoToneIcon className='icon' onClick={handleLike} />
       } 
       <span> {data.likes && data.likes.length}</span>
-      <p>by {data.username}</p>
+
+      <p>
+        by {data.username} 
+        <span> <GroupAddSharpIcon className='icon' onClick={handleFollow} /></span>
+      </p>
 
       {history.location.pathname.includes('/timeline') &&
-        <HighlightOffIcon id='icon' onClick={handleDelete} />} 
+        <HighlightOffIcon className='icon' onClick={handleDelete} />} 
     </div>
   );
 };
