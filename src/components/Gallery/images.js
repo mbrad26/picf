@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 const Images = ({ imagesData }) => {
   console.log('IMAGES');
   const dispatch = useDispatch();
-  const { favouriteError } = useSelector(state => state.imagesState);
+  const { likeError, deleteError } = useSelector(state => state.imagesState);
   const [state, setState] = useState(INITIAL_STATE)
   const { data, error } = state;
 
@@ -26,8 +26,12 @@ const Images = ({ imagesData }) => {
   }, [imagesData]);
 
   useEffect(() => {
-    setState(state => ({ ...state, error: favouriteError }));
-  }, [favouriteError]);
+    setState(state => ({ ...state, error: likeError }));
+  }, [likeError]);
+
+  useEffect(() => {
+    setState(state => ({ ...state, error: deleteError }));
+  }, [deleteError]);
 
   return (
     <>

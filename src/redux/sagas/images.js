@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import { call, put, take } from 'redux-saga/effects';
 
 import { doRequestError } from '../actions/user';
-import { firestore, timestamp } from '../../firebase/config';
+import { firestore, storage, timestamp } from '../../firebase/config';
 import { 
   storageChannel, 
   imagesUrlsChannel, 
@@ -12,7 +12,8 @@ import {
   doSetUrls, 
   doSetLikeError,
   doSetLikeStatus, 
-  doSetUploadProgress, 
+  doSetUploadProgress,
+  doDeleteError, 
 } from '../actions/images';
 
 function* fileUpload({ payload: selected }) {
@@ -99,10 +100,32 @@ function* getLikedImages() {
   };
 };
 
+function* deleteImage({ payload: name }) {
+  const authUser = JSON.parse(localStorage.getItem('authUser'));
+  const ref = storage.ref(name);
+
+  console.log('NAME: ', name);
+
+  yield ref.delete()
+           .then(console.log('Image deleted!'))
+           .catch(error => console.log('ERROR: ', error));
+  
+  yield firestore.collection('timeline')
+                 .doc(name)
+                 .delete();
+  
+  yield firestore.collection('images')
+                 .doc(authUser.uid)
+                 .collection('timeline')
+                 .doc(name)
+                 .delete();
+};
+
 export { 
   fileUpload, 
   getImagesUrls, 
   likeImage,
   unLikeImage,
   getLikedImages,
+  deleteImage,
 };

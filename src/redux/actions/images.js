@@ -10,6 +10,7 @@ import {
   SET_URLS,
   UNLIKE_REQUEST,
   URL_REQUEST,
+  DELETE_REQUEST,
 } from '../constants/actionTypes';
 
 const doFileUploadRequest = file => ({
@@ -65,6 +66,16 @@ const doSetLikeError = error => ({
   payload: error,
 });
 
+const doDeleteRequest = name => ({
+  type: DELETE_REQUEST,
+  payload: name,
+});
+
+const doDeleteError = error => ({
+  type: DELETE_REQUEST,
+  payload: error,
+});
+
 export { 
   doFileUploadRequest, 
   doSetUploadProgress,
@@ -77,4 +88,6 @@ export {
   doSetLikeStatus,
   doLikeStatusRequest,
   doSetLikeError,
+  doDeleteRequest,
+  doDeleteError,
 };
