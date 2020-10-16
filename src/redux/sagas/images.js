@@ -102,6 +102,7 @@ function* getLikedImages() {
 
 function* deleteImage({ payload: name }) {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
+  const uid = authUser.uid;
   const ref = storage.ref(name);
 
   console.log('NAME: ', name);
@@ -115,8 +116,14 @@ function* deleteImage({ payload: name }) {
                  .delete();
   
   yield firestore.collection('images')
-                 .doc(authUser.uid)
+                 .doc(uid)
                  .collection('timeline')
+                 .doc(name)
+                 .delete();
+  
+  yield firestore.collection('users')
+                 .doc(uid)
+                 .collection('favourites')
                  .doc(name)
                  .delete();
 };
