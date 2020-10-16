@@ -17,8 +17,6 @@ const Images = ({ imagesData }) => {
   const [state, setState] = useState(INITIAL_STATE)
   const { data, error } = state;
 
-  console.log('ERROR: ', error);
-
   const setActiveImage = img => dispatch(doSetActiveImage(img));
 
   useEffect(() =>  {

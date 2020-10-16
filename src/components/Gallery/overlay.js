@@ -9,16 +9,21 @@ import GroupAddSharpIcon from '@material-ui/icons/GroupAddSharp';
 import { 
   doAddLikeRequest, 
   doDeleteRequest, 
+  doFollowRequest, 
   doLikeStatusRequest, 
   doUnlikeRequest, 
 } from '../../redux/actions/images';
+import { auth } from 'firebase';
 
 const Overlay = ({ data }) => {
   console.log('OVERLAY');
   const history = useHistory();
   const dispatch = useDispatch();
   const { likedStatus } = useSelector(state => state.imagesState);
+  const { authUser } = useSelector(state => state.userState);
   const { name, url } = data;
+
+  console.log('USER_UID: ', authUser);
 
   const handleLike = () => dispatch(doAddLikeRequest({ url, name }));
 
@@ -26,7 +31,7 @@ const Overlay = ({ data }) => {
 
   const handleDelete = () => dispatch(doDeleteRequest(name));
 
-  const handleFollow = () => null;
+  const handleFollow = userUid => dispatch(doFollowRequest(userUid));
   
   useEffect(() => {
     dispatch(doLikeStatusRequest());
@@ -42,7 +47,11 @@ const Overlay = ({ data }) => {
 
       <p>
         by {data.username} 
-        <span> <GroupAddSharpIcon className='icon' onClick={handleFollow} /></span>
+        {data.userUid !== authUser.uid &&
+          <span> 
+            <GroupAddSharpIcon className='icon' onClick={handleFollow} />
+          </span>
+        }
       </p>
 
       {history.location.pathname.includes('/timeline') &&

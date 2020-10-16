@@ -12,6 +12,7 @@ import {
   URL_REQUEST,
   DELETE_REQUEST,
   DELETE_ERROR,
+  FOLLOW_REQUEST,
 } from '../constants/actionTypes';
 
 const doFileUploadRequest = file => ({
@@ -77,6 +78,11 @@ const doDeleteError = error => ({
   payload: error,
 });
 
+const doFollowRequest = uid => ({
+  type: FOLLOW_REQUEST,
+  payload: uid,
+});
+
 export { 
   doFileUploadRequest, 
   doSetUploadProgress,
@@ -91,4 +97,5 @@ export {
   doSetLikeError,
   doDeleteRequest,
   doDeleteError,
+  doFollowRequest,
 };
