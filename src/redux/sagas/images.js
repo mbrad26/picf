@@ -7,13 +7,16 @@ import {
   storageChannel, 
   imagesUrlsChannel, 
   favouritesChannel, 
+  deleteImageFromUsersCollection,
+  deleteImageFromImagesCollection,
+  deleteImageFromTimelineCollection,
 } from './utilsImages';
 import { 
   doSetUrls, 
+  doDeleteError, 
   doSetLikeError,
   doSetLikeStatus, 
   doSetUploadProgress,
-  doDeleteError, 
 } from '../actions/images';
 
 function* fileUpload({ payload: selected }) {
@@ -121,28 +124,16 @@ function* deleteImage({ payload: name }) {
            .then(console.log('Image deleted!'))
            .catch(error => console.log('ERROR: ', error));
   
-  yield firestore.collection('timeline')
-                 .doc(name)
-                 .delete();
-  
-  yield firestore.collection('images')
-                 .doc(uid)
-                 .collection('timeline')
-                 .doc(name)
-                 .delete();
-  
-  yield firestore.collection('users')
-                 .doc(uid)
-                 .collection('favourites')
-                 .doc(name)
-                 .delete();
+  yield call(deleteImageFromTimelineCollection, name);
+  yield call(deleteImageFromImagesCollection, uid, name);
+  yield call(deleteImageFromUsersCollection, uid, name);
 };
 
 export { 
-  fileUpload, 
-  getImagesUrls, 
   likeImage,
+  fileUpload, 
   unLikeImage,
-  getLikedImages,
   deleteImage,
+  getImagesUrls, 
+  getLikedImages,
 };

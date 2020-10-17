@@ -73,8 +73,30 @@ const favouritesChannel = () => {
   });
 };
 
+const deleteImageFromTimelineCollection = name =>
+  firestore.collection('timeline')
+          .doc(name)
+          .delete();
+
+const deleteImageFromImagesCollection = (uid, name) =>
+  firestore.collection('images')
+           .doc(uid)
+           .collection('timeline')
+           .doc(name)
+           .delete();
+
+const deleteImageFromUsersCollection = (uid, name) =>
+  firestore.collection('users')
+           .doc(uid)
+           .collection('favourites')
+           .doc(name)
+           .delete();
+
 export {
   storageChannel,
   imagesUrlsChannel,
   favouritesChannel,
+  deleteImageFromUsersCollection,
+  deleteImageFromImagesCollection,
+  deleteImageFromTimelineCollection,
 };

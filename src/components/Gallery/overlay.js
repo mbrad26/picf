@@ -17,8 +17,6 @@ const Overlay = ({ data }) => {
   // const { authUser } = useSelector(state => state.userState);
   const { name, url, likes, username, userUid } = data;
 
-  // console.log('USER_UID: ', data);
-
   const handleDelete = () => dispatch(doDeleteRequest(name));
 
   return (
