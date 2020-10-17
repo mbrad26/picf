@@ -14,7 +14,7 @@ const Images = ({ imagesData }) => {
   console.log('IMAGES');
   const dispatch = useDispatch();
   const { likeError, deleteError } = useSelector(state => state.imagesState);
-  const [state, setState] = useState(INITIAL_STATE)
+  const [state, setState] = useState(INITIAL_STATE);
   const { data, error } = state;
 
   const setActiveImage = img => dispatch(doSetActiveImage(img));
@@ -48,7 +48,7 @@ const Images = ({ imagesData }) => {
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
 export default Images;

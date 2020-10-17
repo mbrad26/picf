@@ -44,7 +44,7 @@ function* getImagesUrls({ payload: collection }) {
   };
 };
 
-function* likeImage({ payload: { url, name } }) {
+function* likeImage({ payload: { url, name, uid } }) {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
 
   try {
@@ -58,6 +58,12 @@ function* likeImage({ payload: { url, name } }) {
                     .update({ 
                       likes: firebase.firestore.FieldValue.arrayUnion(authUser.uid)
                     });
+
+    yield firestore.collection('images').doc(uid)
+                   .collection('timeline').doc(name)
+                   .update({ 
+                       likes: firebase.firestore.FieldValue.arrayUnion(authUser.uid)
+                     });
     
     yield call(getLikedImages);
   } catch(error) {
@@ -65,7 +71,7 @@ function* likeImage({ payload: { url, name } }) {
   }
 };
 
-function* unLikeImage({ payload: name }) {
+function* unLikeImage({ payload: { name, uid } }) {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
 
   try {
@@ -75,7 +81,13 @@ function* unLikeImage({ payload: name }) {
     yield firestore.collection('timeline').doc(name)
                    .update({
                      likes: firebase.firestore.FieldValue.arrayRemove(authUser.uid)
-                   })
+                   });
+        
+    yield firestore.collection('images').doc(uid)
+                   .collection('timeline').doc(name)
+                   .update({ 
+                      likes: firebase.firestore.FieldValue.arrayRemove(authUser.uid)
+                    });
     
     yield call(getLikedImages);
   } catch(error) {

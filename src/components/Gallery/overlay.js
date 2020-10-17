@@ -14,16 +14,16 @@ const Overlay = ({ data }) => {
   console.log('OVERLAY');
   const history = useHistory();
   const dispatch = useDispatch();
-  const { authUser } = useSelector(state => state.userState);
+  // const { authUser } = useSelector(state => state.userState);
   const { name, url, likes, username, userUid } = data;
 
-  console.log('USER_UID: ', data);
+  // console.log('USER_UID: ', data);
 
   const handleDelete = () => dispatch(doDeleteRequest(name));
 
   return (
     <div id='overlay'>
-      <LikeStatus name={name} url={url} likes={likes} />
+      <LikeStatus name={name} url={url} likes={likes} uid={userUid} />
       <FollowStatus username={username} userUid={userUid} />
 
       {history.location.pathname.includes('/timeline') &&

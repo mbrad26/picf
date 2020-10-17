@@ -9,7 +9,7 @@ import {
 const createUserImagesCollection = (uid, username, name, url, createdAt) => 
   firestore.collection('images').doc(uid)
            .collection('timeline').doc(name)
-           .set({ url, createdAt, name, username });
+           .set({ userUid: uid, name, username, url, likes: [], createdAt });
 
 const createUsersImagesCollection = (uid, username, name, url, createdAt) => 
   firestore.collection('timeline')

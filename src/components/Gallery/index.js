@@ -21,7 +21,6 @@ const Gallery = () => {
     if(path.includes('/timeline')) {
       dispatch(doUrlRequest(`images/${uid}/timeline`));
     } else {
-
       dispatch(doUrlRequest('timeline'));
     }
   }, [dispatch, path, uid]);

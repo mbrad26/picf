@@ -49,9 +49,9 @@ const doAddLikeRequest = data => ({
   payload: data,
 });
 
-const doUnlikeRequest = name => ({
+const doUnlikeRequest = data => ({
   type: UNLIKE_REQUEST,
-  payload: name,
+  payload: data,
 });
 
 const doSetLikeStatus = likes => ({
