@@ -129,10 +129,26 @@ const removeLikesImagesCollection = (uid, name, authUid) =>
              likes: firebase.firestore.FieldValue.arrayRemove(authUid)
            });
 
+const updateCurrentUserFollowing = (uid, userUid) => 
+  firestore.collection('users')
+          .doc(uid)
+          .update({
+            following: firebase.firestore.FieldValue.arrayUnion(userUid)
+          });
+
+const updateFollowedUserFollowers = (userUid, uid) =>
+  firestore.collection('users')
+          .doc(userUid)
+          .update({
+            followers: firebase.firestore.FieldValue.arrayUnion(uid)
+          });
+         
 export {
   storageChannel,
   imagesUrlsChannel,
   favouritesChannel,
+  updateCurrentUserFollowing,
+  updateFollowedUserFollowers,
   updateLikesImagesCollection,
   removeLikesImagesCollection,
   removeLikesTimelineCollection,

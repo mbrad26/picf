@@ -1,12 +1,14 @@
-import firebase from 'firebase/app';
 import { call, put, take } from 'redux-saga/effects';
+import firebase from 'firebase/app';
 
 import { doRequestError } from '../actions/user';
 import { firestore, storage, timestamp } from '../../firebase/config';
 import { 
   storageChannel, 
   imagesUrlsChannel, 
-  favouritesChannel, 
+  favouritesChannel,
+  updateCurrentUserFollowing,
+  updateFollowedUserFollowers, 
   removeLikesImagesCollection,
   updateLikesImagesCollection,
   removeLikesTimelineCollection,
@@ -19,8 +21,8 @@ import {
 } from './utilsImages';
 import { 
   doSetUrls, 
-  doDeleteError, 
-  doSetLikeError,
+  doOverlayError, 
+  // doSetLikeError,
   doSetLikeStatus, 
   doSetUploadProgress,
 } from '../actions/images';
@@ -33,7 +35,7 @@ function* fileUpload({ payload: selected }) {
       const { data } = yield take(channel);
   
       yield put(doSetUploadProgress(data));
-    } catch(error) {
+    } catch (error) {
       yield put(doRequestError(error));
     }
   };
@@ -47,7 +49,7 @@ function* getImagesUrls({ payload: collection }) {
       const { data } = yield take(channel);
 
       yield put(doSetUrls(data));
-    } catch(error) {
+    } catch (error) {
       yield put(doRequestError(error));
     }
   };
@@ -65,8 +67,8 @@ function* likeImage({ payload: { url, name, uid } }) {
     yield call(updateLikesImagesCollection, uid, name, authUid);
 
     yield call(getLikedImages);
-  } catch(error) {
-    yield put(doSetLikeError(error));
+  } catch (error) {
+    yield put(doOverlayError(error));
   }
 };
 
@@ -80,8 +82,8 @@ function* unLikeImage({ payload: { name, uid } }) {
     yield call(removeLikesImagesCollection, uid, name, authUid);
     
     yield call(getLikedImages);
-  } catch(error) {
-    yield put(doSetLikeError(error));
+  } catch (error) {
+    yield put(doOverlayError(error));
   }
 };
 
@@ -96,8 +98,8 @@ function* getLikedImages() {
       data.forEach(snap => likes.push(snap.data().name));
 
       yield put(doSetLikeStatus(likes));
-    } catch(error) {
-      yield put(doSetLikeError(error));
+    } catch (error) {
+      yield put(doOverlayError(error));
     }
   };
 };
@@ -116,11 +118,24 @@ function* deleteImage({ payload: name }) {
   yield call(deleteImageFromUsersCollection, uid, name);
 };
 
+function* manageFollowing({ payload: userUid }) {
+  const authUser = JSON.parse(localStorage.getItem('authUser'));
+  const uid = authUser.uid;
+
+  try {
+    yield call(updateCurrentUserFollowing, uid, userUid);
+    yield call(updateFollowedUserFollowers, userUid, uid);
+  } catch (error) {
+    yield put(doOverlayError(error));
+  }
+};
+
 export { 
   likeImage,
   fileUpload, 
   unLikeImage,
   deleteImage,
+  manageFollowing,
   getImagesUrls, 
   getLikedImages,
 };

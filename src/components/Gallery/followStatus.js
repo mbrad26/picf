@@ -10,16 +10,14 @@ const FollowStatus = ({ username, userUid }) => {
   const dispatch = useDispatch();
   const { authUser } = useSelector(state => state.userState);
 
-  const handleFollow = userUid => dispatch(doFollowRequest(userUid));
+  const handleFollow = () => dispatch(doFollowRequest(userUid));
 
   return (
     <>
       <p>
         by {username} 
         {userUid !== authUser.uid && 
-          <span> 
-            <GroupAddSharpIcon className='icon' onClick={handleFollow} />
-          </span>
+          <span> <GroupAddSharpIcon className='icon' onClick={handleFollow} /></span>
         }
       </p>
     </>

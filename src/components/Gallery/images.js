@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 const Images = ({ imagesData }) => {
   console.log('IMAGES');
   const dispatch = useDispatch();
-  const { likeError, deleteError } = useSelector(state => state.imagesState);
+  const { overlayError } = useSelector(state => state.imagesState);
   const [state, setState] = useState(INITIAL_STATE);
   const { data, error } = state;
 
@@ -26,12 +26,8 @@ const Images = ({ imagesData }) => {
   }, [imagesData]);
 
   useEffect(() => {
-    setState(state => ({ ...state, error: likeError }));
-  }, [likeError]);
-
-  useEffect(() => {
-    setState(state => ({ ...state, error: deleteError }));
-  }, [deleteError]);
+    setState(state => ({ ...state, error: overlayError }));
+  }, [overlayError]);
 
   return (
     <>

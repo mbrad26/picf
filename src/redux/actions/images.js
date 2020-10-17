@@ -11,7 +11,7 @@ import {
   UNLIKE_REQUEST,
   URL_REQUEST,
   DELETE_REQUEST,
-  DELETE_ERROR,
+  OVERLAY_ERROR,
   FOLLOW_REQUEST,
 } from '../constants/actionTypes';
 
@@ -63,24 +63,24 @@ const doLikeStatusRequest = () => ({
   type: LIKE_STATUS_REQUEST,
 });
 
-const doSetLikeError = error => ({
-  type: SET_LIKE_ERROR,
-  payload: error,
-});
+// const doSetLikeError = error => ({
+//   type: SET_LIKE_ERROR,
+//   payload: error,
+// });
 
 const doDeleteRequest = name => ({
   type: DELETE_REQUEST,
   payload: name,
 });
 
-const doDeleteError = error => ({
-  type: DELETE_ERROR,
-  payload: error,
-});
-
 const doFollowRequest = uid => ({
   type: FOLLOW_REQUEST,
   payload: uid,
+});
+
+const doOverlayError = error => ({
+  type: OVERLAY_ERROR,
+  payload: error,
 });
 
 export { 
@@ -94,8 +94,8 @@ export {
   doUnlikeRequest,
   doSetLikeStatus,
   doLikeStatusRequest,
-  doSetLikeError,
+  // doSetLikeError,
   doDeleteRequest,
-  doDeleteError,
+  doOverlayError,
   doFollowRequest,
 };
