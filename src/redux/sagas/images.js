@@ -7,8 +7,14 @@ import {
   storageChannel, 
   imagesUrlsChannel, 
   favouritesChannel, 
+  removeLikesImagesCollection,
+  updateLikesImagesCollection,
+  removeLikesTimelineCollection,
+  setLikeImageInUsersCollection,
+  updateLikesTimelineCollection,
   deleteImageFromUsersCollection,
   deleteImageFromImagesCollection,
+  deleteLikeImageInUsersCollection,
   deleteImageFromTimelineCollection,
 } from './utilsImages';
 import { 
@@ -49,25 +55,15 @@ function* getImagesUrls({ payload: collection }) {
 
 function* likeImage({ payload: { url, name, uid } }) {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
+  const authUid = authUser.uid;
 
   try {
     const likedAt = timestamp();
 
-    yield firestore.collection('users').doc(authUser.uid)
-                   .collection('favourites').doc(name)
-                   .set({ url, name, likedAt });
+    yield call(setLikeImageInUsersCollection, authUid, name, url, likedAt);
+    yield call(updateLikesTimelineCollection, name, authUid);
+    yield call(updateLikesImagesCollection, uid, name, authUid);
 
-    yield firestore.collection('timeline').doc(name)
-                    .update({ 
-                      likes: firebase.firestore.FieldValue.arrayUnion(authUser.uid)
-                    });
-
-    yield firestore.collection('images').doc(uid)
-                   .collection('timeline').doc(name)
-                   .update({ 
-                       likes: firebase.firestore.FieldValue.arrayUnion(authUser.uid)
-                     });
-    
     yield call(getLikedImages);
   } catch(error) {
     yield put(doSetLikeError(error));
@@ -76,21 +72,12 @@ function* likeImage({ payload: { url, name, uid } }) {
 
 function* unLikeImage({ payload: { name, uid } }) {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
+  const authUid = authUser.uid;
 
   try {
-    yield firestore.collection('users').doc(`${authUser.uid}`)
-                   .collection('favourites').doc(name).delete();
-    
-    yield firestore.collection('timeline').doc(name)
-                   .update({
-                     likes: firebase.firestore.FieldValue.arrayRemove(authUser.uid)
-                   });
-        
-    yield firestore.collection('images').doc(uid)
-                   .collection('timeline').doc(name)
-                   .update({ 
-                      likes: firebase.firestore.FieldValue.arrayRemove(authUser.uid)
-                    });
+    yield call(deleteLikeImageInUsersCollection, authUid, name);
+    yield call(removeLikesTimelineCollection, name, authUid);
+    yield call(removeLikesImagesCollection, uid, name, authUid);
     
     yield call(getLikedImages);
   } catch(error) {
