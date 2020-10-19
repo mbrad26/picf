@@ -1,19 +1,19 @@
 import { 
   SET_URLS,
   REQUEST_ERROR, 
-  // SET_LIKE_ERROR, 
   SET_LIKE_STATUS, 
   SET_UPLOAD_PROGRESS,
   OVERLAY_ERROR,
+  SET_FOLLOWERS,
 } from '../constants/actionTypes';
 
 const INITIAL_STATE = {
   uploadError: null,
-  // likeError: null,
   overlayError: null,
   uploadProgress: '',
   imagesData: '',
   likedStatus: null,
+  followers: '',
 };
 
 const imagesReducer = (state = INITIAL_STATE, action) => {
@@ -38,16 +38,16 @@ const imagesReducer = (state = INITIAL_STATE, action) => {
         ...state,
         likedStatus: action.payload,
       };
-    // case SET_LIKE_ERROR:
-    //   return {
-    //     ...state,
-    //     likeError: action.payload,
-    //   };
     case OVERLAY_ERROR:
       return {
         ...state,
         overlayError: action.payload,
       };
+    case SET_FOLLOWERS: 
+      return {
+        ...state,
+        followers: action.payload,
+      }
     default: return state;
   };
 };

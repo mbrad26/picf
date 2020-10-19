@@ -4,7 +4,6 @@ import {
   LIKE_STATUS_REQUEST,
   FILE_UPLOAD_REQUEST, 
   SET_ACTIVE_IMAGE, 
-  SET_LIKE_ERROR, 
   SET_LIKE_STATUS, 
   SET_UPLOAD_PROGRESS,
   SET_URLS,
@@ -13,6 +12,8 @@ import {
   DELETE_REQUEST,
   OVERLAY_ERROR,
   FOLLOW_REQUEST,
+  FOLLOW_STATUS_REQUEST,
+  SET_FOLLOWERS,
 } from '../constants/actionTypes';
 
 const doFileUploadRequest = file => ({
@@ -63,11 +64,6 @@ const doLikeStatusRequest = () => ({
   type: LIKE_STATUS_REQUEST,
 });
 
-// const doSetLikeError = error => ({
-//   type: SET_LIKE_ERROR,
-//   payload: error,
-// });
-
 const doDeleteRequest = name => ({
   type: DELETE_REQUEST,
   payload: name,
@@ -83,6 +79,16 @@ const doOverlayError = error => ({
   payload: error,
 });
 
+const doFollowStatusRequest = uid => ({
+  type: FOLLOW_STATUS_REQUEST,
+  payload: uid,
+});
+
+const doSetFollowers = followers => ({
+  type: SET_FOLLOWERS,
+  payload: followers,
+});
+
 export { 
   doFileUploadRequest, 
   doSetUploadProgress,
@@ -94,8 +100,9 @@ export {
   doUnlikeRequest,
   doSetLikeStatus,
   doLikeStatusRequest,
-  // doSetLikeError,
   doDeleteRequest,
   doOverlayError,
   doFollowRequest,
+  doFollowStatusRequest,
+  doSetFollowers,
 };

@@ -22,7 +22,7 @@ const Overlay = ({ data }) => {
   return (
     <div id='overlay'>
       <LikeStatus name={name} url={url} likes={likes} uid={userUid} />
-      <FollowStatus username={username} userUid={userUid} />
+      <FollowStatus name={name} username={username} userUid={userUid} />
 
       {path === '/home/timeline' 
         ? <HighlightOffIcon className='icon' onClick={handleDelete} />

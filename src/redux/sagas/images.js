@@ -5,6 +5,7 @@ import { doRequestError } from '../actions/user';
 import { firestore, storage, timestamp } from '../../firebase/config';
 import { 
   storageChannel, 
+  followersChannel,
   imagesUrlsChannel, 
   favouritesChannel,
   updateCurrentUserFollowing,
@@ -22,7 +23,7 @@ import {
 import { 
   doSetUrls, 
   doOverlayError, 
-  // doSetLikeError,
+  doSetFollowers,
   doSetLikeStatus, 
   doSetUploadProgress,
 } from '../actions/images';
@@ -130,6 +131,23 @@ function* manageFollowing({ payload: userUid }) {
   }
 };
 
+function* getFollowers({ payload: userUid }) {
+  const channel = yield call(followersChannel, userUid);
+
+  while(true) {
+    try {
+      const { data } = yield take(channel);
+      const followers = data.data().followers;
+
+      console.log('FOLOWERS: ', followers);
+
+      yield put(doSetFollowers(followers));
+    } catch (error) {
+      yield put(doOverlayError(error));
+    }
+  }
+};
+
 export { 
   likeImage,
   fileUpload, 
@@ -138,4 +156,5 @@ export {
   manageFollowing,
   getImagesUrls, 
   getLikedImages,
+  getFollowers,
 };

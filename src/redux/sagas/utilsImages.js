@@ -64,6 +64,17 @@ const favouritesChannel = () => {
   });
 };
 
+const followersChannel = userUid => {
+  return new eventChannel(emiter => {
+    const listener = firestore.collection('users').doc(userUid)
+      .onSnapshot(snapshot => 
+        emiter({ data: snapshot })
+        );
+
+    return () => listener.off();
+  });
+};
+
 const createUserImagesCollection = (uid, username, name, url, createdAt) => 
   firestore.collection('images').doc(uid)
            .collection('timeline').doc(name)
@@ -145,6 +156,7 @@ const updateFollowedUserFollowers = (userUid, uid) =>
          
 export {
   storageChannel,
+  followersChannel,
   imagesUrlsChannel,
   favouritesChannel,
   updateCurrentUserFollowing,
