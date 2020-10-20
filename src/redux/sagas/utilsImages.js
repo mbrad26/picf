@@ -64,23 +64,18 @@ const favouritesChannel = () => {
   });
 };
 
-const followersChannel = uid => {
-  // return new eventChannel(emiter => {
-  //   const listener = firestore.collection('users').doc('followers')
-  //     .onSnapshot(snapshot => {
+// const followersChannel = uid => {
+//   return new eventChannel(emiter => {
+//     const listener = firestore.collection('users').doc(uid)
+//       .collection('followers')
+//       .onSnapshot(snapshot => {
 
-  //       // let fs = [];
+//         emiter({ data: snapshot })
+//       });
 
-  //       // snapshot.docs.forEach(doc =>
-  //       //   fs[uid] = doc.data().followers
-  //       // )
-
-  //       emiter({ data: snapshot.data().followers })
-  //     });
-
-  //   return () => listener.off();
-  // });
-};
+//     return () => listener.off();
+//   });
+// };
 
 const createUserImagesCollection = (uid, username, name, url, createdAt) => 
   firestore.collection('images').doc(uid)
@@ -152,16 +147,24 @@ const updateCurrentUserFollowing = (uid, userUid) =>
            .collection('following').doc(userUid)
            .set({ userUid });
 
-const updateFollowedUserFollowers = (userUid, uid) =>
+const updateFollowedUserFollowers = (userUid, uid) => 
   firestore.collection('users').doc(userUid)
            .collection('followers').doc(uid)
            .set({ uid });
+
+const updateImageUserFollowers = (uid, name) => 
+  firestore.collection('timeline').doc(name)
+           .update({ 
+            ownerFollowers: firebase.firestore.FieldValue.arrayUnion(uid)
+          });
+
          
 export {
   storageChannel,
-  followersChannel,
+  // followersChannel,
   imagesUrlsChannel,
   favouritesChannel,
+  updateImageUserFollowers,
   updateCurrentUserFollowing,
   updateFollowedUserFollowers,
   updateLikesImagesCollection,

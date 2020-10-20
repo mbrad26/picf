@@ -21,7 +21,7 @@ function* getCurrentUserFromFirestore(authUser) {
 function* setUserInFirestore(uid, username, email) {
   yield firestore.collection('users')
                  .doc(uid)
-                 .set({ username, email, followers: [], following: [] });
+                 .set({ username, email });
 };
 
 const userChannel = () => {

@@ -1,13 +1,14 @@
 import { call, put, take } from 'redux-saga/effects';
-import firebase, { database } from 'firebase/app';
+// import firebase, { database } from 'firebase/app';
 
 import { doRequestError } from '../actions/user';
-import { firestore, storage, timestamp } from '../../firebase/config';
+import { storage, timestamp } from '../../firebase/config';
 import { 
   storageChannel, 
-  followersChannel,
+  // followersChannel,
   imagesUrlsChannel, 
   favouritesChannel,
+  updateImageUserFollowers,
   updateCurrentUserFollowing,
   updateFollowedUserFollowers, 
   removeLikesImagesCollection,
@@ -23,10 +24,11 @@ import {
 import { 
   doSetUrls, 
   doOverlayError, 
-  doSetFollowers,
+  // doSetFollowers,
   doSetLikeStatus, 
   doSetUploadProgress,
 } from '../actions/images';
+import { auth } from 'firebase';
 
 function* fileUpload({ payload: selected }) {
   const channel = yield call(storageChannel, selected);
@@ -119,35 +121,39 @@ function* deleteImage({ payload: name }) {
   yield call(deleteImageFromUsersCollection, uid, name);
 };
 
-function* manageFollowing({ payload: userUid }) {
+function* manageFollowing({ payload: { userUid, name } }) {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
   const uid = authUser.uid;
 
   try {
     yield call(updateCurrentUserFollowing, uid, userUid);
     yield call(updateFollowedUserFollowers, userUid, uid);
+    yield call(updateImageUserFollowers, uid, name);
   } catch (error) {
     yield put(doOverlayError(error));
   }
 };
 
-function* getFollowers({ payload: userUid }) {
-  // const channel = yield call(followersChannel, userUid);
+// function* getFollowers({ payload: userUid }) {
+//   const channel = yield call(followersChannel, userUid);
 
-  // while(true) {
-  //   try {
-  //     const { data } = yield take(channel);
-  //     // const followers = data.data().followers;
+//   while(true) {
+//     try {
+//       const followers = []
+//       const { data } = yield take(channel);
+//       // const followers = data.data().followers;
 
-  //     // console.log('FOLLOWERS_SAGA: ', userUid);
-  //     console.log('FOLLOWERS_SAGA: ', data);
+//       // console.log('FOLLOWERS_SAGA: ', userUid);
+//       data.forEach(snap => followers.push(snap.data()))
 
-  //     yield put(doSetFollowers(data));
-  //   } catch (error) {
-  //     yield put(doOverlayError(error));
-  //   }
-  // };
-};
+//       console.log('FOLLOWERS_SAGA: ', followers);
+
+//       yield put(doSetFollowers(followers));
+//     } catch (error) {
+//       yield put(doOverlayError(error));
+//     }
+//   };
+// };
 
 export { 
   likeImage,
@@ -157,5 +163,5 @@ export {
   manageFollowing,
   getImagesUrls, 
   getLikedImages,
-  getFollowers,
+  // getFollowers,
 };

@@ -1,4 +1,4 @@
-import { takeLatest, all } from 'redux-saga/effects';
+import { takeLatest, all, takeEvery } from 'redux-saga/effects';
 
 import { 
   URL_REQUEST,
@@ -53,7 +53,7 @@ function* watchAll() {
     takeLatest(LIKE_STATUS_REQUEST, getLikedImages),
     takeLatest(DELETE_REQUEST, deleteImage),
     takeLatest(FOLLOW_REQUEST, manageFollowing),
-    takeLatest(FOLLOW_STATUS_REQUEST, getFollowers),
+    // takeEvery(FOLLOW_STATUS_REQUEST, getFollowers),
   ]);
 };
 
