@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   uploadProgress: '',
   imagesData: '',
   likedStatus: null,
-  followers: '',
+  followers: null,
 };
 
 const imagesReducer = (state = INITIAL_STATE, action) => {
@@ -47,7 +47,7 @@ const imagesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         followers: action.payload,
-      }
+      };
     default: return state;
   };
 };

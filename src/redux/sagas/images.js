@@ -1,5 +1,5 @@
 import { call, put, take } from 'redux-saga/effects';
-import firebase from 'firebase/app';
+import firebase, { database } from 'firebase/app';
 
 import { doRequestError } from '../actions/user';
 import { firestore, storage, timestamp } from '../../firebase/config';
@@ -56,7 +56,7 @@ function* getImagesUrls({ payload: collection }) {
   };
 };
 
-function* likeImage({ payload: { url, name, uid } }) {
+function* likeImage({ payload: { url, name, userUid } }) {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
   const authUid = authUser.uid;
 
@@ -65,7 +65,7 @@ function* likeImage({ payload: { url, name, uid } }) {
 
     yield call(setLikeImageInUsersCollection, authUid, name, url, likedAt);
     yield call(updateLikesTimelineCollection, name, authUid);
-    yield call(updateLikesImagesCollection, uid, name, authUid);
+    yield call(updateLikesImagesCollection, userUid, name, authUid);
 
     yield call(getLikedImages);
   } catch (error) {
@@ -73,14 +73,14 @@ function* likeImage({ payload: { url, name, uid } }) {
   }
 };
 
-function* unLikeImage({ payload: { name, uid } }) {
+function* unLikeImage({ payload: { name, userUid } }) {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
   const authUid = authUser.uid;
 
   try {
     yield call(deleteLikeImageInUsersCollection, authUid, name);
     yield call(removeLikesTimelineCollection, name, authUid);
-    yield call(removeLikesImagesCollection, uid, name, authUid);
+    yield call(removeLikesImagesCollection, userUid, name, authUid);
     
     yield call(getLikedImages);
   } catch (error) {
@@ -132,20 +132,21 @@ function* manageFollowing({ payload: userUid }) {
 };
 
 function* getFollowers({ payload: userUid }) {
-  const channel = yield call(followersChannel, userUid);
+  // const channel = yield call(followersChannel, userUid);
 
-  while(true) {
-    try {
-      const { data } = yield take(channel);
-      const followers = data.data().followers;
+  // while(true) {
+  //   try {
+  //     const { data } = yield take(channel);
+  //     // const followers = data.data().followers;
 
-      console.log('FOLOWERS: ', followers);
+  //     // console.log('FOLLOWERS_SAGA: ', userUid);
+  //     console.log('FOLLOWERS_SAGA: ', data);
 
-      yield put(doSetFollowers(followers));
-    } catch (error) {
-      yield put(doOverlayError(error));
-    }
-  }
+  //     yield put(doSetFollowers(data));
+  //   } catch (error) {
+  //     yield put(doOverlayError(error));
+  //   }
+  // };
 };
 
 export { 

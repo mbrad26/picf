@@ -7,20 +7,25 @@ import {
   doFollowStatusRequest, 
 } from '../../redux/actions/images';
 
-const FollowStatus = ({ name, username, userUid }) => {
+const FollowStatus = ({ data }) => {
   const dispatch = useDispatch();
   const { authUser } = useSelector(state => state.userState);
   const { followers } = useSelector(state => state.imagesState);
+  const { userUid, username, name } = data;
 
-  console.log('USER_UID: ', userUid);
-  console.log('NAME: ', name);
-  console.log('USERNAME: ', username);
+  // console.log('USER_UID: ', name);
+  // console.log('USER_UID: ', imgUserUid);
+  // console.log('NAME: ', name);
+  // console.log('USERNAME: ', username);
+  // console.log('FOLLOWERS: ', followers);
 
-  console.log('AUTH_USER: ', authUser.uid);
+  // console.log('AUTH_USER: ', authUser.uid);
 
   const handleFollow = () => dispatch(doFollowRequest(userUid));
 
   useEffect(() => {
+    // console.log('USE_EFFECT_USER_UID: ', name);
+    // console.log('USE_EFFECT_USER_UID: ', imgUserUid);
     dispatch(doFollowStatusRequest(userUid));
   }, [dispatch, userUid]);
 
@@ -30,10 +35,9 @@ const FollowStatus = ({ name, username, userUid }) => {
         by {username} 
         {userUid !== authUser.uid && 
           <span> <GroupAddSharpIcon className='icon' onClick={handleFollow} /></span>
-        } {
-          <span> {followers && followers.length}</span>
-        }
+        } 
       </p>
+      <span> {followers && followers.length}</span>
     </>
   )
 }

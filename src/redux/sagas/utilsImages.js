@@ -64,15 +64,22 @@ const favouritesChannel = () => {
   });
 };
 
-const followersChannel = userUid => {
-  return new eventChannel(emiter => {
-    const listener = firestore.collection('users').doc(userUid)
-      .onSnapshot(snapshot => 
-        emiter({ data: snapshot })
-        );
+const followersChannel = uid => {
+  // return new eventChannel(emiter => {
+  //   const listener = firestore.collection('users').doc('followers')
+  //     .onSnapshot(snapshot => {
 
-    return () => listener.off();
-  });
+  //       // let fs = [];
+
+  //       // snapshot.docs.forEach(doc =>
+  //       //   fs[uid] = doc.data().followers
+  //       // )
+
+  //       emiter({ data: snapshot.data().followers })
+  //     });
+
+  //   return () => listener.off();
+  // });
 };
 
 const createUserImagesCollection = (uid, username, name, url, createdAt) => 
@@ -141,18 +148,14 @@ const removeLikesImagesCollection = (uid, name, authUid) =>
            });
 
 const updateCurrentUserFollowing = (uid, userUid) => 
-  firestore.collection('users')
-          .doc(uid)
-          .update({
-            following: firebase.firestore.FieldValue.arrayUnion(userUid)
-          });
+  firestore.collection('users').doc(uid)
+           .collection('following').doc(userUid)
+           .set({ userUid });
 
 const updateFollowedUserFollowers = (userUid, uid) =>
-  firestore.collection('users')
-          .doc(userUid)
-          .update({
-            followers: firebase.firestore.FieldValue.arrayUnion(uid)
-          });
+  firestore.collection('users').doc(userUid)
+           .collection('followers').doc(uid)
+           .set({ uid });
          
 export {
   storageChannel,

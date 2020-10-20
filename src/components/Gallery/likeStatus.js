@@ -9,13 +9,16 @@ import {
   doUnlikeRequest, 
 } from '../../redux/actions/images';
 
-const LikeStatus = ({ name, url, likes, uid }) => {
+const LikeStatus = ({ data }) => {
   const dispatch = useDispatch();
   const { likedStatus } = useSelector(state => state.imagesState);
+  const { url, name, userUid, likes } = data;
 
-  const handleLike = () => dispatch(doAddLikeRequest({ url, name, uid }));
+  // console.log('DATA: ', data);
 
-  const handleUnlike = () => dispatch(doUnlikeRequest({ name, uid }));
+  const handleLike = () => dispatch(doAddLikeRequest({ url, name, userUid }));
+
+  const handleUnlike = () => dispatch(doUnlikeRequest({ name, userUid }));
   
   useEffect(() => {
     dispatch(doLikeStatusRequest());
