@@ -26,11 +26,26 @@ const storageChannel = selected => {
       
       createUserImagesCollection(uid, username, name, url, createdAt);
       createUsersImagesCollection(uid, username, name, url, createdAt);
+      setFollowers(uid, name);
     });
     
     return () => listener.off();
   });
 };
+
+const setFollowers = (uid, name) => 
+  firestore.collection('users').doc(uid)
+           .collection('followers').get()
+           .then(snapshot => {
+             snapshot.forEach(doc => 
+              firestore.collection('timeline')
+                       .doc(name)
+                       .update({ 
+                          ownerFollowers: firebase.firestore.FieldValue.arrayUnion(doc.data())
+                        })
+             
+             )
+           });
 
 const imagesUrlsChannel = collection => {
   return new eventChannel(emiter => {
@@ -63,19 +78,6 @@ const favouritesChannel = () => {
     return () => listener.off();
   });
 };
-
-// const followersChannel = uid => {
-//   return new eventChannel(emiter => {
-//     const listener = firestore.collection('users').doc(uid)
-//       .collection('followers')
-//       .onSnapshot(snapshot => {
-
-//         emiter({ data: snapshot })
-//       });
-
-//     return () => listener.off();
-//   });
-// };
 
 const createUserImagesCollection = (uid, username, name, url, createdAt) => 
   firestore.collection('images').doc(uid)
@@ -152,16 +154,23 @@ const updateFollowedUserFollowers = (userUid, uid) =>
            .collection('followers').doc(uid)
            .set({ uid });
 
-const updateImageUserFollowers = (uid, name) => 
-  firestore.collection('timeline').doc(name)
-           .update({ 
-            ownerFollowers: firebase.firestore.FieldValue.arrayUnion(uid)
-          });
+const updateImageUserFollowers = async (uid, name, userUid) => {
+  const timelineRef = firestore.collection('timeline')
 
-         
+  timelineRef.where('userUid', '==', userUid)
+             .get()
+             .then(snapshot =>
+                snapshot.forEach(doc =>
+                  timelineRef.doc(doc.data().name)
+                            .update({ 
+                              ownerFollowers: firebase.firestore.FieldValue.arrayUnion(uid)
+                            })
+                    )
+               );
+};
+
 export {
   storageChannel,
-  // followersChannel,
   imagesUrlsChannel,
   favouritesChannel,
   updateImageUserFollowers,

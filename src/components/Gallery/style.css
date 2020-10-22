@@ -44,7 +44,7 @@ img {
   width: 100%;
   transition: .5s ease;
   opacity: 0;
-  font-size: 15px;
+  font-size: 14px;
   padding: 25px 10px 8px 12px;
   text-align: center;
 }
@@ -54,7 +54,12 @@ img {
 }
 
 #overlay #details .MuiSvgIcon-root {
-  fill: currentColor;
+  fill: white;
+  font-size: 1.1rem;
+}
+
+#overlay #details .MuiSvgIcon-root:hover {
+  fill: rgb(182, 215, 253);
   font-size: 1.1rem;
 }
 

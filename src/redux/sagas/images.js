@@ -128,7 +128,7 @@ function* manageFollowing({ payload: { userUid, name } }) {
   try {
     yield call(updateCurrentUserFollowing, uid, userUid);
     yield call(updateFollowedUserFollowers, userUid, uid);
-    yield call(updateImageUserFollowers, uid, name);
+    yield call(updateImageUserFollowers, uid, name, userUid);
   } catch (error) {
     yield put(doOverlayError(error));
   }
