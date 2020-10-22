@@ -36,7 +36,21 @@ img {
   object-fit: contain;
 }
 
-#overlay {
+.overlay-top {
+  position: absolute; 
+  top: 0px; 
+  background: linear-gradient(to bottom,rgba(0,0,0,.6) 0,transparent); 
+  color: #fff; 
+  width: 100%;
+  min-height: 59.4px;
+  transition: .5s ease;
+  opacity: 0;
+  font-size: 14px;
+  padding: 8px 10px 8px 12px;
+  text-align: center;
+}
+
+.overlay-bottom {
   position: absolute; 
   bottom: 0px; 
   background: linear-gradient(0deg,rgba(0,0,0,.6) 0,transparent); 
@@ -49,17 +63,24 @@ img {
   text-align: center;
 }
 
-.grid-item:hover #overlay{
+.grid-item:hover .overlay-bottom,
+.grid-item:hover .overlay-top {
   opacity: 1;
 }
 
-#overlay #details .MuiSvgIcon-root {
+.overlay #details .MuiSvgIcon-root {
   fill: white;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
-#overlay #details .MuiSvgIcon-root:hover {
+.overlay #details .MuiSvgIcon-root:hover {
   fill: rgb(182, 215, 253);
+  font-size: 1.2rem;
+}
+
+.numbers {
+  position: relative;
+  bottom: -3px;
   font-size: 1.1rem;
 }
 

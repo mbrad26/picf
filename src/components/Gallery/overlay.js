@@ -19,13 +19,8 @@ const Overlay = ({ data }) => {
   const handleDelete = () => dispatch(doDeleteRequest(data.name));
 
   return (
-    <div id='overlay'>
-      <p id='user'>{data.username}</p> 
-
-      <div id='details'>
-        <FollowStatus data={data} />
-        <LikeStatus data={data} />
-
+    <>
+      <div className='overlay-top'>
         {path === '/home/timeline' 
           ? <HighlightOffIcon className='icon' onClick={handleDelete} />
           : path === '/home' && authUser.uid === data.userUid
@@ -33,7 +28,15 @@ const Overlay = ({ data }) => {
           : null
         } 
       </div>
-    </div>
+      <div className='overlay-bottom'>
+        <p id='user'>{data.username}</p> 
+
+        <div id='details'>
+          <FollowStatus data={data} />
+          <LikeStatus data={data} />
+        </div>
+      </div>
+    </>
   );
 };
 

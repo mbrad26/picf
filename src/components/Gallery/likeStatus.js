@@ -29,7 +29,7 @@ const LikeStatus = ({ data }) => {
         ? <FavoriteTwoToneIcon className='icon' onClick={handleUnlike} />
         : <FavoriteBorderTwoToneIcon className='icon' onClick={handleLike} />
       } 
-      <span> {likes && likes.length}</span>
+      <span className='numbers'> {likes && likes.length}</span>
     </em>
   );
 };

@@ -41,9 +41,8 @@ const setFollowers = (uid, name) =>
               firestore.collection('timeline')
                        .doc(name)
                        .update({ 
-                          ownerFollowers: firebase.firestore.FieldValue.arrayUnion(doc.data())
+                          ownerFollowers: firebase.firestore.FieldValue.arrayUnion(doc.data().uid)
                         })
-             
              )
            });
 
