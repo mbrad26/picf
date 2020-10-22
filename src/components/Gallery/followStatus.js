@@ -22,15 +22,13 @@ const FollowStatus = ({ data }) => {
   // }, [dispatch, userUid]);
 
   return (
-    <>
-      <p>[]
-        by {username} 
-        {userUid !== authUser.uid && 
-          <span> <GroupAddSharpIcon className='icon' onClick={handleFollow} /></span>
-        } 
-      </p>
+    <em>
+      {userUid !== authUser.uid && 
+        <span> <GroupAddSharpIcon className='icon' onClick={handleFollow} /></span>
+      } 
+
       <span> {ownerFollowers && ownerFollowers.length}</span>
-    </>
+    </em>
   )
 }
 

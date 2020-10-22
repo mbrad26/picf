@@ -39,13 +39,13 @@ img {
 #overlay {
   position: absolute; 
   bottom: 0px; 
-  background: rgba(12, 12, 12, 0.5); 
-  color: #f1f1f1; 
+  background: linear-gradient(0deg,rgba(0,0,0,.6) 0,transparent); 
+  color: #fff; 
   width: 100%;
   transition: .5s ease;
   opacity: 0;
-  font-size: 20px;
-  padding: 20px;
+  font-size: 15px;
+  padding: 25px 10px 8px 12px;
   text-align: center;
 }
 
@@ -53,6 +53,29 @@ img {
   opacity: 1;
 }
 
+#overlay #details .MuiSvgIcon-root {
+  fill: currentColor;
+  font-size: 1.1rem;
+}
+
 .icon:hover {
   cursor: pointer;
 }
+
+#user {
+  position: absolute; 
+  bottom: -9px;
+  float: left;
+  font-style: normal;
+}
+
+#details {
+  float: right;
+  position: relative;
+}
+
+em {
+  margin-right: 10px;
+  font-style: normal;
+}
+

@@ -14,8 +14,6 @@ const LikeStatus = ({ data }) => {
   const { likedStatus } = useSelector(state => state.imagesState);
   const { url, name, userUid, likes } = data;
 
-  // console.log('DATA: ', data);
-
   const handleLike = () => dispatch(doAddLikeRequest({ url, name, userUid }));
 
   const handleUnlike = () => dispatch(doUnlikeRequest({ name, userUid }));
@@ -25,13 +23,13 @@ const LikeStatus = ({ data }) => {
   }, [dispatch]);
 
   return (
-    <>
+    <em>
       {likedStatus && likedStatus.includes(name)
         ? <FavoriteTwoToneIcon className='icon' onClick={handleUnlike} />
         : <FavoriteBorderTwoToneIcon className='icon' onClick={handleLike} />
       } 
       <span> {likes && likes.length}</span>
-    </>
+    </em>
   );
 };
 

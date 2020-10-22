@@ -20,15 +20,19 @@ const Overlay = ({ data }) => {
 
   return (
     <div id='overlay'>
-      <LikeStatus data={data} />
-      <FollowStatus data={data} />
+      <p id='user'>{data.username}</p> 
 
-      {path === '/home/timeline' 
-        ? <HighlightOffIcon className='icon' onClick={handleDelete} />
-        : path === '/home' && authUser.uid === data.userUid
-        ? <HighlightOffIcon className='icon' onClick={handleDelete} />
-        : null
-      } 
+      <div id='details'>
+        <FollowStatus data={data} />
+        <LikeStatus data={data} />
+
+        {path === '/home/timeline' 
+          ? <HighlightOffIcon className='icon' onClick={handleDelete} />
+          : path === '/home' && authUser.uid === data.userUid
+          ? <HighlightOffIcon className='icon' onClick={handleDelete} />
+          : null
+        } 
+      </div>
     </div>
   );
 };
