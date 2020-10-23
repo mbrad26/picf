@@ -163,6 +163,26 @@ const updateFollowedUserFollowers = (userUid, uid) =>
            .collection('followers').doc(uid)
            .set({ uid });
 
+const unfollowUser = (userUid, uid) => 
+  firestore.collection('users').doc(userUid)
+           .collection('followers').doc(uid)
+           .delete();
+
+const unfolowUserTimelineCollection = (userUid, uid) => {
+  const timelineRef = firestore.collection('timeline');
+
+  timelineRef.where('userUid', '==', userUid)
+             .get()
+             .then(snapshot =>
+                snapshot.forEach(doc => 
+                  timelineRef.doc(doc.data().name)
+                            .update({ 
+                              ownerFollowers: firebase.firestore.FieldValue.arrayRemove(uid)
+                            })
+                )
+              );
+}
+  
 const updateTimelineUserFollowers = (uid, userUid) => {
   const timelineRef = firestore.collection('timeline');
 
@@ -179,6 +199,7 @@ const updateTimelineUserFollowers = (uid, userUid) => {
 };
 
 export {
+  unfollowUser,
   storageChannel,
   followersChannel,
   imagesUrlsChannel,
@@ -188,6 +209,7 @@ export {
   updateFollowedUserFollowers,
   updateLikesImagesCollection,
   removeLikesImagesCollection,
+  unfolowUserTimelineCollection,
   removeLikesTimelineCollection,
   setLikeImageInUsersCollection,
   updateLikesTimelineCollection,

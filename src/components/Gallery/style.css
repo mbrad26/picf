@@ -73,10 +73,15 @@ img {
   font-size: 1.2rem;
 }
 
-.overlay-bottom #details .MuiSvgIcon-root:hover,
-.overlay-top .MuiSvgIcon-root:hover {
+.overlay-bottom #details .MuiSvgIcon-root:hover {
   fill: rgb(182, 215, 253);
   font-size: 1.2rem;
+}
+
+.overlay-top .MuiSvgIcon-root:hover {
+  fill: rgb(247, 20, 3);
+  transition: .5 ease-in;
+  font-size: 2.1rem;
 }
 
 .numbers {

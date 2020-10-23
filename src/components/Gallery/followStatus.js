@@ -5,7 +5,9 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import GroupAddSharpIcon from '@material-ui/icons/GroupAddSharp';
 
 import { 
-  doFollowRequest, doFollowStatusRequest, 
+  doFollowRequest, 
+  doUnfollowRequest,
+  doFollowStatusRequest, 
 } from '../../redux/actions/images';
 
 const FollowStatus = ({ data }) => {
@@ -13,12 +15,14 @@ const FollowStatus = ({ data }) => {
   const history = useHistory();
   const { authUser } = useSelector(state => state.userState);
   const { followers } = useSelector(state => state.imagesState);
-  const { userUid, name, ownerFollowers } = data;
+  const { userUid, ownerFollowers } = data;
   const path = history.location.pathname;
 
   const userFollowers = path === '/home/timeline' ? followers : ownerFollowers;
 
-  const handleFollow = () => dispatch(doFollowRequest({userUid, name}));
+  const handleFollow = () => dispatch(doFollowRequest(userUid));
+
+  const handleUnfollow = () => dispatch(doUnfollowRequest(userUid));
 
   useEffect(() => {
     dispatch(doFollowStatusRequest())
@@ -27,7 +31,7 @@ const FollowStatus = ({ data }) => {
   return (
     <em>
       {userUid === authUser.uid || (ownerFollowers && ownerFollowers.includes(authUser.uid))
-        ? <span> <PeopleAltIcon className='icon' /></span>
+        ? <span> <PeopleAltIcon className='icon' onClick={handleUnfollow} /></span>
         : <span> <GroupAddSharpIcon className='icon' onClick={handleFollow} /></span>
       }
 

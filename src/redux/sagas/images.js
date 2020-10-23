@@ -3,6 +3,7 @@ import { call, put, take } from 'redux-saga/effects';
 import { doRequestError } from '../actions/user';
 import { storage, timestamp } from '../../firebase/config';
 import { 
+  unfollowUser,
   storageChannel, 
   followersChannel,
   imagesUrlsChannel, 
@@ -12,6 +13,7 @@ import {
   updateFollowedUserFollowers, 
   removeLikesImagesCollection,
   updateLikesImagesCollection,
+  unfolowUserTimelineCollection,
   removeLikesTimelineCollection,
   setLikeImageInUsersCollection,
   updateLikesTimelineCollection,
@@ -119,7 +121,7 @@ function* deleteImage({ payload: name }) {
   yield call(deleteImageFromUsersCollection, uid, name);
 };
 
-function* manageFollowing({ payload: { userUid, name } }) {
+function* manageFollowing({ payload: userUid }) {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
   const uid = authUser.uid;
 
@@ -127,6 +129,18 @@ function* manageFollowing({ payload: { userUid, name } }) {
     yield call(updateCurrentUserFollowing, uid, userUid);
     yield call(updateFollowedUserFollowers, userUid, uid);
     yield call(updateTimelineUserFollowers, uid, userUid);
+  } catch (error) {
+    yield put(doOverlayError(error));
+  }
+};
+
+function* manageUnfollowing({ payload: userUid }) {
+  const authUser = JSON.parse(localStorage.getItem('authUser'));
+  const uid = authUser.uid;
+
+  try {
+    yield call(unfollowUser, userUid, uid);
+    yield call(unfolowUserTimelineCollection, userUid, uid);
   } catch (error) {
     yield put(doOverlayError(error));
   }
@@ -158,4 +172,5 @@ export {
   getImagesUrls, 
   getLikedImages,
   getFollowers,
+  manageUnfollowing,
 };

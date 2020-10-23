@@ -14,6 +14,7 @@ import {
   FOLLOW_REQUEST,
   FOLLOW_STATUS_REQUEST,
   SET_FOLLOWERS,
+  UNFOLLOW_REQUEST,
 } from '../constants/actionTypes';
 
 const doFileUploadRequest = file => ({
@@ -89,6 +90,11 @@ const doSetFollowers = followers => ({
   payload: followers,
 });
 
+const doUnfollowRequest = data => ({
+  type: UNFOLLOW_REQUEST,
+  payload: data,
+});
+
 export { 
   doFileUploadRequest, 
   doSetUploadProgress,
@@ -105,4 +111,5 @@ export {
   doFollowRequest,
   doFollowStatusRequest,
   doSetFollowers,
+  doUnfollowRequest,
 };

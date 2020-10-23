@@ -16,6 +16,7 @@ import {
   DELETE_REQUEST,
   FOLLOW_REQUEST,
   FOLLOW_STATUS_REQUEST,
+  UNFOLLOW_REQUEST,
 } from '../constants/actionTypes';
 import { 
   fileUpload, 
@@ -26,6 +27,7 @@ import {
   deleteImage,
   manageFollowing,
   getFollowers,
+  manageUnfollowing,
 } from './images';
 import { 
   signUpUser, 
@@ -54,6 +56,7 @@ function* watchAll() {
     takeLatest(DELETE_REQUEST, deleteImage),
     takeLatest(FOLLOW_REQUEST, manageFollowing),
     takeLatest(FOLLOW_STATUS_REQUEST, getFollowers),
+    takeLatest(UNFOLLOW_REQUEST, manageUnfollowing),
   ]);
 };
 
