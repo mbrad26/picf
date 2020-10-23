@@ -17,8 +17,6 @@ const Gallery = () => {
   const path = history.location.pathname;
   const uid = authUser.uid;
 
-  // console.log('IMAGES_DATA: ', imagesData);
-
   useEffect(() => {
     if(path.includes('/timeline')) {
       dispatch(doUrlRequest(`images/${uid}/timeline`));
