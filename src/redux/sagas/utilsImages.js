@@ -38,11 +38,11 @@ const setFollowers = (uid, name) =>
            .collection('followers').get()
            .then(snapshot => {
              snapshot.forEach(doc => 
-              firestore.collection('timeline')
-                       .doc(name)
-                       .update({ 
-                          ownerFollowers: firebase.firestore.FieldValue.arrayUnion(doc.data().uid)
-                        })
+               firestore.collection('timeline')
+                        .doc(name)
+                        .update({ 
+                           ownerFollowers: firebase.firestore.FieldValue.arrayUnion(doc.data().uid)
+                         })
              )
            });
 
@@ -153,19 +153,19 @@ const updateFollowedUserFollowers = (userUid, uid) =>
            .collection('followers').doc(uid)
            .set({ uid });
 
-const updateImageUserFollowers = async (uid, name, userUid) => {
+const updateImageUserFollowers = async (uid, userUid) => {
   const timelineRef = firestore.collection('timeline')
 
   timelineRef.where('userUid', '==', userUid)
              .get()
              .then(snapshot =>
-                snapshot.forEach(doc =>
+                snapshot.forEach(doc => 
                   timelineRef.doc(doc.data().name)
                             .update({ 
                               ownerFollowers: firebase.firestore.FieldValue.arrayUnion(uid)
                             })
-                    )
-               );
+                )
+              );
 };
 
 export {

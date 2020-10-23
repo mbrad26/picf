@@ -16,10 +16,10 @@ const FollowStatus = ({ data }) => {
 
   return (
     <em>
-      {userUid !== authUser.uid && ownerFollowers && !ownerFollowers.includes(authUser.uid)
-        ? <span> <GroupAddSharpIcon className='icon' onClick={handleFollow} /></span>
-        : <span> <PeopleAltIcon className='icon' /></span>
-      } 
+      {userUid === authUser.uid || (ownerFollowers && ownerFollowers.includes(authUser.uid))
+        ? <span> <PeopleAltIcon className='icon' /></span>
+        : <span> <GroupAddSharpIcon className='icon' onClick={handleFollow} /></span>
+      }
 
       <span className='numbers'> {
           ownerFollowers 
