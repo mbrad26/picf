@@ -36,6 +36,7 @@ Clone this repository to your local machine.
 * Image Likes
 * Image Overlay
 * Click on an image opens a modal
+* Follow and Unfollow user
 
 #### To do
 

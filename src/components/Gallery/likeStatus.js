@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone';
-// import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteBorderTwoToneIcon from '@material-ui/icons/FavoriteBorderTwoTone';
 
 import { 

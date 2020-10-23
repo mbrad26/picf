@@ -19,8 +19,8 @@ const FollowStatus = ({ data }) => {
   const path = history.location.pathname;
 
   const userFollowers = path === '/home/timeline' || path === '/account/timeline'
-                              ? followers 
-                              : ownerFollowers;
+                          ? followers 
+                          : ownerFollowers;
 
   const handleFollow = () => dispatch(doFollowRequest(userUid));
 
