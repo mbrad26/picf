@@ -1,18 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import GroupAddSharpIcon from '@material-ui/icons/GroupAddSharp';
 
 import { 
-  doFollowRequest, 
+  doFollowRequest, doFollowStatusRequest, 
 } from '../../redux/actions/images';
 
 const FollowStatus = ({ data }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { authUser } = useSelector(state => state.userState);
-  const { userUid, name, ownerFollowers} = data;
+  const { followers } = useSelector(state => state.imagesState);
+  const { userUid, name, ownerFollowers } = data;
+  const path = history.location.pathname;
+
+  const userFollowers = path === '/home/timeline' ? followers : ownerFollowers;
 
   const handleFollow = () => dispatch(doFollowRequest({userUid, name}));
+
+  useEffect(() => {
+    dispatch(doFollowStatusRequest())
+  }, [dispatch])
 
   return (
     <em>
@@ -22,8 +32,8 @@ const FollowStatus = ({ data }) => {
       }
 
       <span className='numbers'> {
-          ownerFollowers 
-            ? ownerFollowers.length
+          userFollowers 
+            ? userFollowers.length
             : 0
         }
       </span>

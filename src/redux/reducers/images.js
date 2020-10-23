@@ -4,7 +4,7 @@ import {
   SET_LIKE_STATUS, 
   SET_UPLOAD_PROGRESS,
   OVERLAY_ERROR,
-  // SET_FOLLOWERS,
+  SET_FOLLOWERS,
 } from '../constants/actionTypes';
 
 const INITIAL_STATE = {
@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   uploadProgress: '',
   imagesData: '',
   likedStatus: null,
-  // followers: null,
+  followers: null,
 };
 
 const imagesReducer = (state = INITIAL_STATE, action) => {
@@ -43,11 +43,11 @@ const imagesReducer = (state = INITIAL_STATE, action) => {
         ...state,
         overlayError: action.payload,
       };
-    // case SET_FOLLOWERS: 
-    //   return {
-    //     ...state,
-    //     followers: action.payload,
-    //   };
+    case SET_FOLLOWERS: 
+      return {
+        ...state,
+        followers: action.payload,
+      };
     default: return state;
   };
 };

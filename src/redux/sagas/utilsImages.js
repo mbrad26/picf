@@ -42,7 +42,7 @@ const setFollowers = (uid, name) =>
                         .doc(name)
                         .update({ 
                            ownerFollowers: firebase.firestore.FieldValue.arrayUnion(doc.data().uid)
-                         })
+                        })
              )
            });
 
@@ -69,11 +69,21 @@ const favouritesChannel = () => {
   
   return new eventChannel(emiter => {
     const listener = firestore.collection('users').doc(`${authUser.uid}`)
-    .collection('favourites')
-    .onSnapshot(snapshot => {
-      emiter({ data: snapshot })
-    });
+                              .collection('favourites')
+                              .onSnapshot(snapshot => emiter({ data: snapshot }));
     
+    return () => listener.off();
+  });
+};
+
+const followersChannel = () => {
+  const authUser = JSON.parse(localStorage.getItem('authUser'));
+
+  return new eventChannel(emiter => {
+    const listener = firestore.collection('users').doc(`${authUser.uid}`)
+                              .collection('followers')
+                              .onSnapshot(snapshot => emiter({ data: snapshot}));
+
     return () => listener.off();
   });
 };
@@ -153,8 +163,8 @@ const updateFollowedUserFollowers = (userUid, uid) =>
            .collection('followers').doc(uid)
            .set({ uid });
 
-const updateImageUserFollowers = async (uid, userUid) => {
-  const timelineRef = firestore.collection('timeline')
+const updateTimelineUserFollowers = (uid, userUid) => {
+  const timelineRef = firestore.collection('timeline');
 
   timelineRef.where('userUid', '==', userUid)
              .get()
@@ -170,10 +180,11 @@ const updateImageUserFollowers = async (uid, userUid) => {
 
 export {
   storageChannel,
+  followersChannel,
   imagesUrlsChannel,
   favouritesChannel,
-  updateImageUserFollowers,
   updateCurrentUserFollowing,
+  updateTimelineUserFollowers,
   updateFollowedUserFollowers,
   updateLikesImagesCollection,
   removeLikesImagesCollection,
