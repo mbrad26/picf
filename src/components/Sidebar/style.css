@@ -1,3 +1,9 @@
 .container {
   font-weight: bold;
 }
+
+.followers {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  color: rebeccapurple;
+}

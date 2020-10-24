@@ -5,17 +5,11 @@ import {
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { doFileUploadRequest } from '../../redux/actions/images';
+import { types, INITIAL_STATE } from './utils';
+// import { doFileUploadRequest } from '../../redux/actions/images';
 
-const types = ['image/jpeg', 'image/png'];
-
-const INITIAL_STATE = {
-  error: null,
-  progress: null,
-};
-
-const UploadForm = () => {
-  console.log('UPLOADFORM');
+const AvatarUploadForm = () => {
+  console.log('AVATAR_UPLOAD_FORM');
   const dispatch = useDispatch();
   const [state, setState] = useState(INITIAL_STATE);
   const { uploadProgress, uploadError } = useSelector(state => state.imagesState);
@@ -25,7 +19,7 @@ const UploadForm = () => {
     const images = event.target.files;
     for (const selected in images) {
       if(images[selected] && types.includes(images[selected].type)) {
-        dispatch(doFileUploadRequest(images[selected]));
+        // dispatch(doFileUploadRequest(images[selected]));
         setState({ ...state, error: null});
       } else {
         setState({ ...state, error: 'Please select a png/jpeg file', progress: null });
@@ -68,4 +62,4 @@ const UploadForm = () => {
   );
 };
 
-export default UploadForm;
+export default AvatarUploadForm;

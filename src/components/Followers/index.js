@@ -16,8 +16,8 @@ const Followers = () => {
       Followers
       {followers &&
         followers.map(user => 
-          <p>
-            {user.uid}
+          <p className='followers'>
+            {user.username}
           </p>
         )
       }

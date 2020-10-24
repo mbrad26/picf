@@ -4,7 +4,7 @@ import { Nav } from 'react-bootstrap';
 
 import './style.css';
 import Followers from '../Followers';
-import UploadForm from '../UploadForm';
+import UploadForm from '../UploadForm/uploadForm';
 import * as ROUTES from  '../constants/routes';
 
 const Sidebar = () => {
