@@ -3,7 +3,6 @@ import { call, put, take } from 'redux-saga/effects';
 import { doRequestError } from '../actions/user';
 import { storage, timestamp } from '../../firebase/config';
 import { 
-  unfollowUser,
   storageChannel, 
   followersChannel,
   imagesUrlsChannel, 
@@ -19,6 +18,8 @@ import {
   updateLikesTimelineCollection,
   deleteImageFromUsersCollection,
   deleteImageFromImagesCollection,
+  removeFollowedUserFromFollowing,
+  removeFollowingUserFromFollowers,
   deleteLikeImageInUsersCollection,
   deleteImageFromTimelineCollection,
 } from './utilsImages';
@@ -124,10 +125,11 @@ function* deleteImage({ payload: name }) {
 function* manageFollowing({ payload: userUid }) {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
   const uid = authUser.uid;
+  const username = authUser.username;
 
   try {
-    yield call(updateCurrentUserFollowing, uid, userUid);
-    yield call(updateFollowedUserFollowers, userUid, uid);
+    yield call(updateCurrentUserFollowing, uid, username, userUid);
+    yield call(updateFollowedUserFollowers, userUid, username, uid);
     yield call(updateTimelineUserFollowers, uid, userUid);
   } catch (error) {
     yield put(doOverlayError(error));
@@ -139,7 +141,8 @@ function* manageUnfollowing({ payload: userUid }) {
   const uid = authUser.uid;
 
   try {
-    yield call(unfollowUser, userUid, uid);
+    yield call(removeFollowingUserFromFollowers, userUid, uid);
+    yield call(removeFollowedUserFromFollowing, userUid, uid);
     yield call(unfolowUserTimelineCollection, userUid, uid);
   } catch (error) {
     yield put(doOverlayError(error));
@@ -151,10 +154,10 @@ function* getFollowers() {
 
   while(true) {
     try {
-      const followers = []
+      const followers = [];
       const { data } = yield take(channel);
 
-      data.forEach(snap => followers.push(snap.data()))
+      data.forEach(snap => followers.push(snap.data()));
 
       yield put(doSetFollowers(followers));
     } catch (error) {

@@ -153,19 +153,24 @@ const removeLikesImagesCollection = (uid, name, authUid) =>
              likes: firebase.firestore.FieldValue.arrayRemove(authUid)
            });
 
-const updateCurrentUserFollowing = (uid, userUid) => 
+const updateCurrentUserFollowing = (uid, username, userUid) => 
   firestore.collection('users').doc(uid)
            .collection('following').doc(userUid)
-           .set({ userUid });
+           .set({ userUid, username });
 
-const updateFollowedUserFollowers = (userUid, uid) => 
+const updateFollowedUserFollowers = (userUid, username, uid) => 
   firestore.collection('users').doc(userUid)
            .collection('followers').doc(uid)
-           .set({ uid });
+           .set({ uid , username});
 
-const unfollowUser = (userUid, uid) => 
+const removeFollowingUserFromFollowers = (userUid, uid) => 
   firestore.collection('users').doc(userUid)
            .collection('followers').doc(uid)
+           .delete();
+
+const removeFollowedUserFromFollowing = (userUid, uid) =>
+  firestore.collection('users').doc(uid)
+           .collection('following').doc(userUid)
            .delete();
 
 const unfolowUserTimelineCollection = (userUid, uid) => {
@@ -199,7 +204,6 @@ const updateTimelineUserFollowers = (uid, userUid) => {
 };
 
 export {
-  unfollowUser,
   storageChannel,
   followersChannel,
   imagesUrlsChannel,
@@ -215,6 +219,8 @@ export {
   updateLikesTimelineCollection,
   deleteImageFromUsersCollection,
   deleteImageFromImagesCollection,
+  removeFollowedUserFromFollowing,
+  removeFollowingUserFromFollowers,
   deleteLikeImageInUsersCollection,
   deleteImageFromTimelineCollection,
 };
