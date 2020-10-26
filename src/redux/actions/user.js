@@ -3,6 +3,7 @@ import  {
   SIGNUP_REQUEST,
   SIGNIN_REQUEST, 
   SET_AVATAR_URL,
+  AVATAR_REQUEST,
   SIGNOUT_REQUEST, 
   SET_USER_REQUEST, 
   SET_USER_SUCCESS, 
@@ -75,9 +76,14 @@ const doSetAvatarUrl = url => ({
   payload: url,
 });
 
+const doGetAvatarUrl = () => ({
+  type: AVATAR_REQUEST,
+});
+
 export { 
   doRequestError,
   doSetAvatarUrl,
+  doGetAvatarUrl,
   doSignupRequest, 
   doSigninRequest,
   doSignoutRequest,

@@ -33,7 +33,7 @@ const userChannel = () => {
   });
 };
 
-const avatarChannel = image => {
+const avatarUploadChannel = image => {
   return new eventChannel(emiter => {
     const listener = storage.ref(image.name).put(image)
     .on('state_changed', snapshot => {
@@ -55,11 +55,25 @@ const avatarChannel = image => {
   });
 };
 
+const avatarChannel = () => {
+  const authUser = JSON.parse(localStorage.getItem('authUser'));
+  const uid = authUser.uid;
+
+  return new eventChannel(emiter => {
+    const listener = firestore.collection('users')
+                              .doc(uid)
+                              .onSnapshot(snap => emiter({ data: snap.data() }));
+      
+    return () => listener.off();
+  });
+};
+
 
 export {
   userChannel,
   avatarChannel,
   setUserInFirestore,
+  avatarUploadChannel,
   getCurrentUserFromFirestore,
   getUserSnapshotFromFirestore,
 };
