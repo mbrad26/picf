@@ -15,10 +15,16 @@ import {
   FOLLOW_STATUS_REQUEST,
   SET_FOLLOWERS,
   UNFOLLOW_REQUEST,
+  AVATAR_UPLOAD_REQUEST,
 } from '../constants/actionTypes';
 
 const doFileUploadRequest = file => ({
   type: FILE_UPLOAD_REQUEST,
+  payload: file,
+});
+
+const doAvatarUploadRequest = file => ({
+  type: AVATAR_UPLOAD_REQUEST,
   payload: file,
 });
 
@@ -112,4 +118,5 @@ export {
   doFollowStatusRequest,
   doSetFollowers,
   doUnfollowRequest,
+  doAvatarUploadRequest,
 };
