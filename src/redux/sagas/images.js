@@ -171,9 +171,9 @@ export {
   fileUpload, 
   unLikeImage,
   deleteImage,
-  manageFollowing,
+  getFollowers,
   getImagesUrls, 
   getLikedImages,
-  getFollowers,
+  manageFollowing,
   manageUnfollowing,
 };

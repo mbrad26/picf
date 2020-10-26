@@ -5,6 +5,7 @@ import  {
   SIGNOUT_REQUEST, 
   SET_USER_REQUEST, 
   SET_USER_SUCCESS, 
+  AVATAR_UPLOAD_REQUEST,
   RESET_PASSWORD_REQUEST,
   UPDATE_PASSWORD_REQUEST,
   SIGNIN_WITH_GOOGLE_REQUEST,
@@ -57,6 +58,11 @@ const doEmailVerificationRequest = () => ({
   type: EMAIL_VERIFICATION_REQUEST,
 });
 
+const doAvatarUploadRequest = file => ({
+  type: AVATAR_UPLOAD_REQUEST,
+  payload: file,
+});
+
 export { 
   doRequestError,
   doSignupRequest, 
@@ -64,6 +70,7 @@ export {
   doSignoutRequest,
   doSetUserRequest,
   doSetUserSuccess,
+  doAvatarUploadRequest,
   doResetPasswordRequest,
   doUpdatePasswordRequest,
   doSigninWithGoogleRequest,

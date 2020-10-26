@@ -5,7 +5,7 @@ const Followers = () => {
   const dispatch = useDispatch();
   const { followers } = useSelector(state => state.imagesState);
 
-  console.log('AUTH_USER: ', JSON.parse(localStorage.getItem('authUser')))
+  // console.log('AUTH_USER: ', JSON.parse(localStorage.getItem('authUser')))
 
   useEffect(() => {
     // dispatch(doGetGollowersData());

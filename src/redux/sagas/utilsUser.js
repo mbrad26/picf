@@ -1,6 +1,6 @@
 import { eventChannel } from 'redux-saga';
 
-import { auth, firestore } from '../../firebase/config';
+import { auth, firestore, storage } from '../../firebase/config';
 
 function* getUserSnapshotFromFirestore(uid) {
   const userRef = yield firestore.doc(`users/${uid}`);
@@ -33,9 +33,31 @@ const userChannel = () => {
   });
 };
 
+const avatarChannel = image => {
+  return new eventChannel(emiter => {
+    const listener = storage.ref(image.name).put(image)
+    .on('state_changed', snapshot => {
+      let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      
+      emiter({ data: progress });
+    }, error => {
+      console.log(error);
+    }, async ()=> {
+      const url = await storage.ref(image.name).getDownloadURL();
+      const authUser = JSON.parse(localStorage.getItem('authUser'));
+      const uid = authUser.uid;
+      
+      firestore.collection('users').doc(uid).update({ avatarUrl: url });
+    });
+    
+    return () => listener.off();
+  });
+};
+
 
 export {
   userChannel,
+  avatarChannel,
   setUserInFirestore,
   getCurrentUserFromFirestore,
   getUserSnapshotFromFirestore,

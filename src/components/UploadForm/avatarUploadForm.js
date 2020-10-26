@@ -7,7 +7,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import { types, INITIAL_STATE } from './utils';
-import { doAvatarUploadRequest } from '../../redux/actions/images';
+import { doAvatarUploadRequest } from '../../redux/actions/user';
 
 const AvatarUploadForm = () => {
   console.log('AVATAR_UPLOAD_FORM');

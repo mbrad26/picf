@@ -9,7 +9,11 @@ import {
   doSetUserSuccess, 
 } from '../actions/user'; 
 import { 
+  doSetUploadProgress,
+} from '../actions/images';
+import { 
   userChannel,
+  avatarChannel,
   setUserInFirestore, 
   getCurrentUserFromFirestore,
  } from './utilsUser';
@@ -77,10 +81,25 @@ function* signInWithGoogle() {
   }
 };
 
+function* avatarUpload({ payload: image }) {
+  const channel = yield call(avatarChannel, image);
+
+  while(true) {
+    try {
+      const { data } = yield take(channel);
+  
+      yield put(doSetUploadProgress(data));
+    } catch (error) {
+      yield put(doRequestError(error));
+    }
+  };
+};
+
 export { 
   signUpUser, 
   signInUser, 
   signOutUser, 
+  avatarUpload,
   resetPassword, 
   updatePassword,
   setCurrentUser,
