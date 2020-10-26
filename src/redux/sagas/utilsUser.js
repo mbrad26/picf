@@ -55,10 +55,7 @@ const avatarUploadChannel = image => {
   });
 };
 
-const avatarChannel = () => {
-  const authUser = JSON.parse(localStorage.getItem('authUser'));
-  const uid = authUser.uid;
-
+const avatarChannel = uid => {
   return new eventChannel(emiter => {
     const listener = firestore.collection('users')
                               .doc(uid)

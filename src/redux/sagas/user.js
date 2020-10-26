@@ -97,8 +97,8 @@ function* avatarUpload({ payload: image }) {
   };
 };
 
-function* getAvatar() {
-  const channel = yield call(avatarChannel);
+function* getAvatar({ payload: uid }) {
+  const channel = yield call(avatarChannel, uid);
 
   while(true) {
     try {

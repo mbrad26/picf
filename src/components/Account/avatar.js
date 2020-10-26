@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { doGetAvatarUrl } from '../../redux/actions/user';
 
-const Avatar = () => {
+const Avatar = ({ uid }) => {
   const dispatch = useDispatch();
   const { avatarUrl } = useSelector(state => state.userState);
   const [state, setState] = useState(avatarUrl);
 
   useEffect(() => {
-    dispatch(doGetAvatarUrl());
+    dispatch(doGetAvatarUrl(uid));
     setState(avatarUrl);
   }, [dispatch, avatarUrl]);
 

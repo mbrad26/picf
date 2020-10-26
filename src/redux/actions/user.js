@@ -76,8 +76,9 @@ const doSetAvatarUrl = url => ({
   payload: url,
 });
 
-const doGetAvatarUrl = () => ({
+const doGetAvatarUrl = uid => ({
   type: AVATAR_REQUEST,
+  payload: uid,
 });
 
 export { 
