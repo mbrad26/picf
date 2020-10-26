@@ -1,6 +1,5 @@
 import React from 'react';
 
-import OverlayTop from './overlayTop';
 import LikeStatus from './likeStatus';
 import FollowStatus from './followStatus';
 

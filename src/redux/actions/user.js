@@ -2,6 +2,7 @@ import  {
   REQUEST_ERROR,
   SIGNUP_REQUEST,
   SIGNIN_REQUEST, 
+  SET_AVATAR_URL,
   SIGNOUT_REQUEST, 
   SET_USER_REQUEST, 
   SET_USER_SUCCESS, 
@@ -69,8 +70,14 @@ const doSetAvatarUploadProgress = progress => ({
   payload: progress,
 });
 
+const doSetAvatarUrl = url => ({
+  type: SET_AVATAR_URL,
+  payload: url,
+});
+
 export { 
   doRequestError,
+  doSetAvatarUrl,
   doSignupRequest, 
   doSigninRequest,
   doSignoutRequest,

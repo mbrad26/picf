@@ -46,8 +46,9 @@ const avatarChannel = image => {
       const url = await storage.ref(image.name).getDownloadURL();
       const authUser = JSON.parse(localStorage.getItem('authUser'));
       const uid = authUser.uid;
+      const name = image.name;
       
-      firestore.collection('users').doc(uid).update({ avatarUrl: url });
+      firestore.collection('users').doc(uid).update({ avatarUrl: url, name });
     });
     
     return () => listener.off();

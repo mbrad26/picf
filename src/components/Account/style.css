@@ -14,3 +14,8 @@
 .profile-container {
   margin: 1em;
 }
+
+#avatar {
+  width: 150px;
+  height: 150px;
+}

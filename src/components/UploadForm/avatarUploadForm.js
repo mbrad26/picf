@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
 import { 
   Form,
   ProgressBar, 
@@ -12,12 +11,9 @@ import { doAvatarUploadRequest } from '../../redux/actions/user';
 const AvatarUploadForm = () => {
   console.log('AVATAR_UPLOAD_FORM');
   const dispatch = useDispatch();
-  const history = useHistory();
   const [state, setState] = useState(INITIAL_STATE);
-  const { uploadProgress, uploadError } = useSelector(state => state.imagesState);
+  const { uploadProgress, authError } = useSelector(state => state.userState);
   const { error, progress } = state;
-
-  console.log('PATHNAME: ', history.location.pathname);
 
   const onUpload = event => {
     const image = event.target.files[0];
@@ -30,14 +26,12 @@ const AvatarUploadForm = () => {
   };
 
   const setUploadProgress = useCallback(() => {
-    if(history.location.pathname === '/account') {
-      setState(state => ({ ...state, progress: uploadProgress, error: null }));
-    }
+    setState(state => ({ ...state, progress: uploadProgress, error: null }));
   }, [uploadProgress]);
   
   const setError = useCallback(() => {
-    setState(state => ({ ...state, error: uploadError }));
-  }, [uploadError]);
+    setState(state => ({ ...state, error: authError }));
+  }, [authError]);
   
   useEffect(() => {
     setUploadProgress();
