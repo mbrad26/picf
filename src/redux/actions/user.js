@@ -10,6 +10,7 @@ import  {
   UPDATE_PASSWORD_REQUEST,
   SIGNIN_WITH_GOOGLE_REQUEST,
   EMAIL_VERIFICATION_REQUEST,
+  SET_AVATAR_UPLOAD_PROGRESS,
  } from '../constants/actionTypes';
 
 const doSignupRequest = credentials => ({
@@ -63,6 +64,11 @@ const doAvatarUploadRequest = file => ({
   payload: file,
 });
 
+const doSetAvatarUploadProgress = progress => ({
+  type: SET_AVATAR_UPLOAD_PROGRESS,
+  payload: progress,
+});
+
 export { 
   doRequestError,
   doSignupRequest, 
@@ -74,5 +80,6 @@ export {
   doResetPasswordRequest,
   doUpdatePasswordRequest,
   doSigninWithGoogleRequest,
+  doSetAvatarUploadProgress,
   doEmailVerificationRequest,
 };

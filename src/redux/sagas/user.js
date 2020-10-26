@@ -9,8 +9,8 @@ import {
   doSetUserSuccess, 
 } from '../actions/user'; 
 import { 
-  doSetUploadProgress,
-} from '../actions/images';
+  doSetAvatarUploadProgress,
+} from '../actions/user';
 import { 
   userChannel,
   avatarChannel,
@@ -88,7 +88,7 @@ function* avatarUpload({ payload: image }) {
     try {
       const { data } = yield take(channel);
   
-      yield put(doSetUploadProgress(data));
+      yield put(doSetAvatarUploadProgress(data));
     } catch (error) {
       yield put(doRequestError(error));
     }
