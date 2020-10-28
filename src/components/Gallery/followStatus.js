@@ -14,7 +14,7 @@ const FollowStatus = ({ data }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { authUser } = useSelector(state => state.userState);
-  const { followers } = useSelector(state => state.imagesState);
+  const { followers } = useSelector(state => state.userState);
   const { userUid, ownerFollowers } = data;
   const path = history.location.pathname;
 

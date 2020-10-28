@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import { Image } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { doFollowStatusRequest } from '../../redux/actions/user';
 
 const Followers = () => {
-  const { followers } = useSelector(state => state.imagesState);
-
-  console.log('FOLLOWERS: ', followers)
+  const dispatch = useDispatch();
+  const { followers } = useSelector(state => state.userState);
 
   useEffect(() => {
-    
-  })
+    dispatch(doFollowStatusRequest());
+  }, [dispatch])
 
   return (
     <>
