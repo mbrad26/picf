@@ -4,6 +4,8 @@
 
 [<img src="images/Screenshot 2020-10-06 at 17.27.18.png" width="55%">]()
 
+[<img src="images/Screenshot 2020-10-28 at 17.08.03.png" width="55%">]()
+
 ### Getting started
 
 Clone this repository to your local machine.
