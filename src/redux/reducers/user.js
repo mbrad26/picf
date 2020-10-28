@@ -3,6 +3,7 @@ import {
   SET_AVATAR_URL,
   SET_USER_SUCCESS,
   SET_AVATAR_UPLOAD_PROGRESS,
+  SET_FOLLOWERS,
 } from '../constants/actionTypes';
 
 const INITIAL_STATE = {
@@ -10,6 +11,7 @@ const INITIAL_STATE = {
   authError: null,
   uploadProgress: '',
   avatarUrl: '',
+  followers: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -24,7 +26,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         authError: null,
         authUser: action.payload,
-      }
+      };
     case SET_AVATAR_UPLOAD_PROGRESS:
       return {
         ...state,
@@ -34,7 +36,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         avatarUrl: action.payload,
-      }
+      };
+    case SET_FOLLOWERS: 
+      return {
+        ...state,
+        followers: action.payload,
+    };
     default: return state;
   };
 };

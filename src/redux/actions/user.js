@@ -13,6 +13,10 @@ import  {
   SIGNIN_WITH_GOOGLE_REQUEST,
   EMAIL_VERIFICATION_REQUEST,
   SET_AVATAR_UPLOAD_PROGRESS,
+  FOLLOW_STATUS_REQUEST,
+  SET_FOLLOWERS,
+  UNFOLLOW_REQUEST,
+  FOLLOW_REQUEST,
  } from '../constants/actionTypes';
 
 const doSignupRequest = credentials => ({
@@ -81,6 +85,26 @@ const doGetAvatarUrl = uid => ({
   payload: uid,
 });
 
+const doFollowRequest = data => ({
+  type: FOLLOW_REQUEST,
+  payload: data,
+});
+
+const doFollowStatusRequest = uid => ({
+  type: FOLLOW_STATUS_REQUEST,
+  payload: uid,
+});
+
+const doSetFollowers = followers => ({
+  type: SET_FOLLOWERS,
+  payload: followers,
+});
+
+const doUnfollowRequest = data => ({
+  type: UNFOLLOW_REQUEST,
+  payload: data,
+});
+
 export { 
   doRequestError,
   doSetAvatarUrl,
@@ -96,4 +120,8 @@ export {
   doSigninWithGoogleRequest,
   doSetAvatarUploadProgress,
   doEmailVerificationRequest,
+  doFollowStatusRequest,
+  doSetFollowers,
+  doUnfollowRequest,
+  doFollowRequest,
 };

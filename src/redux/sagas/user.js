@@ -7,8 +7,7 @@ import {
 import { 
   doRequestError, 
   doSetUserSuccess, 
-} from '../actions/user'; 
-import { 
+  doSetFollowers,
   doSetAvatarUrl,
   doSetAvatarUploadProgress,
 } from '../actions/user';
@@ -28,7 +27,6 @@ import {
  } from './utilsUser';
 import { 
   doOverlayError, 
-  doSetFollowers,
 } from '../actions/images';
 
 function* signUpUser({ payload: { username, email, passwordOne }}) {

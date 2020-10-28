@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Image } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
@@ -7,6 +7,10 @@ const Followers = () => {
 
   console.log('FOLLOWERS: ', followers)
 
+  useEffect(() => {
+    
+  })
+
   return (
     <>
       <p className='titles'>Followers</p>
@@ -14,7 +18,6 @@ const Followers = () => {
         followers.map(user => 
           <div key={user.uid}>
             <div className='sidebar-avatars'>
-              {console.log('FOLLOWER_UID: ', user.uid)}
               <Image id='avatar' src={user.avatarUrl} roundedCircle/>
               <span> {user.username}</span>
             </div>

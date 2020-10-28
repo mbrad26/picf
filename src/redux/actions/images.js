@@ -11,10 +11,6 @@ import {
   URL_REQUEST,
   DELETE_REQUEST,
   OVERLAY_ERROR,
-  FOLLOW_REQUEST,
-  FOLLOW_STATUS_REQUEST,
-  SET_FOLLOWERS,
-  UNFOLLOW_REQUEST,
 } from '../constants/actionTypes';
 
 const doFileUploadRequest = file => ({
@@ -70,29 +66,9 @@ const doDeleteRequest = name => ({
   payload: name,
 });
 
-const doFollowRequest = data => ({
-  type: FOLLOW_REQUEST,
-  payload: data,
-});
-
 const doOverlayError = error => ({
   type: OVERLAY_ERROR,
   payload: error,
-});
-
-const doFollowStatusRequest = uid => ({
-  type: FOLLOW_STATUS_REQUEST,
-  payload: uid,
-});
-
-const doSetFollowers = followers => ({
-  type: SET_FOLLOWERS,
-  payload: followers,
-});
-
-const doUnfollowRequest = data => ({
-  type: UNFOLLOW_REQUEST,
-  payload: data,
 });
 
 export { 
@@ -108,8 +84,4 @@ export {
   doLikeStatusRequest,
   doDeleteRequest,
   doOverlayError,
-  doFollowRequest,
-  doFollowStatusRequest,
-  doSetFollowers,
-  doUnfollowRequest,
 };

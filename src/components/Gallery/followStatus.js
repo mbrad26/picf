@@ -8,7 +8,7 @@ import {
   doFollowRequest, 
   doUnfollowRequest,
   doFollowStatusRequest, 
-} from '../../redux/actions/images';
+} from '../../redux/actions/user';
 
 const FollowStatus = ({ data }) => {
   const dispatch = useDispatch();
