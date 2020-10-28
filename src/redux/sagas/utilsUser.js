@@ -34,18 +34,15 @@ const userChannel = () => {
   });
 };
 
-
-
-
 const updateCurrentUserFollowing = (uid, username, userUid) => 
   firestore.collection('users').doc(uid)
            .collection('following').doc(userUid)
            .set({ userUid, username });
 
-const updateFollowedUserFollowers = (userUid, username, uid) => 
+const updateFollowedUserFollowers = (userUid, username, uid, avatarUrl) => 
   firestore.collection('users').doc(userUid)
            .collection('followers').doc(uid)
-           .set({ uid , username});
+           .set({ uid , username, avatarUrl});
 
 const updateTimelineUserFollowers = (uid, userUid) => {
   const timelineRef = firestore.collection('timeline');
@@ -98,11 +95,6 @@ const followersChannel = () => {
     return () => listener.off();
   });
 };
-
-
-
-
-
 
 const avatarUploadChannel = image => {
   return new eventChannel(emiter => {

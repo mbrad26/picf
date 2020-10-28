@@ -1,27 +1,21 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import Avatar from '../Account/avatar';
+import React from 'react';
+import { Image } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
 const Followers = () => {
-  const dispatch = useDispatch();
   const { followers } = useSelector(state => state.imagesState);
 
   console.log('FOLLOWERS: ', followers)
-
-  useEffect(() => {
-    // dispatch(doGetFollowersData());
-  }, [dispatch]);
 
   return (
     <>
       <p className='titles'>Followers</p>
       {followers &&
         followers.map(user => 
-          <div>
+          <div key={user.uid}>
             <div className='sidebar-avatars'>
               {console.log('FOLLOWER_UID: ', user.uid)}
-              <Avatar uid={user.uid} />
+              <Image id='avatar' src={user.avatarUrl} roundedCircle/>
               <span> {user.username}</span>
             </div>
           </div>

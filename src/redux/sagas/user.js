@@ -26,13 +26,9 @@ import {
   followersChannel,
   unfolowUserTimelineCollection,
  } from './utilsUser';
-
- import { 
-  // doSetUrls, 
+import { 
   doOverlayError, 
   doSetFollowers,
-  // doSetLikeStatus, 
-  // doSetUploadProgress,
 } from '../actions/images';
 
 function* signUpUser({ payload: { username, email, passwordOne }}) {
@@ -98,17 +94,15 @@ function* signInWithGoogle() {
   }
 };
 
-
-
-
 function* manageFollowing({ payload: userUid }) {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
   const uid = authUser.uid;
   const username = authUser.username;
+  const avatarUrl = authUser.avatarUrl;
 
   try {
     yield call(updateCurrentUserFollowing, uid, username, userUid);
-    yield call(updateFollowedUserFollowers, userUid, username, uid);
+    yield call(updateFollowedUserFollowers, userUid, username, uid, avatarUrl);
     yield call(updateTimelineUserFollowers, uid, userUid);
   } catch (error) {
     yield put(doOverlayError(error));
@@ -145,9 +139,6 @@ function* getFollowers() {
   };
 };
 
-
-
-
 function* avatarUpload({ payload: image }) {
   const channel = yield call(avatarUploadChannel, image);
 
@@ -167,14 +158,9 @@ function* getAvatar({ payload: uid }) {
 
   while(true) {
     try {
-      const avatars = []
       const { data } = yield take(channel);
 
-      // avatars.push(data.avatarUrl)
-
-      console.log('SAGA_DATA: ', data);
-
-      // yield put(doSetAvatarUrl(avatars));
+      yield put(doSetAvatarUrl(data.avatarUrl));
     } catch (error) {
       yield put(doRequestError(error));
     }

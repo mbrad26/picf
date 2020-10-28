@@ -4,29 +4,21 @@ import { doRequestError } from '../actions/user';
 import { storage, timestamp } from '../../firebase/config';
 import { 
   storageChannel, 
-  // followersChannel,
   imagesUrlsChannel, 
   favouritesChannel,
-  // updateTimelineUserFollowers,
-  // updateCurrentUserFollowing,
-  // updateFollowedUserFollowers, 
   removeLikesImagesCollection,
   updateLikesImagesCollection,
-  // unfolowUserTimelineCollection,
   removeLikesTimelineCollection,
   setLikeImageInUsersCollection,
   updateLikesTimelineCollection,
   deleteImageFromUsersCollection,
   deleteImageFromImagesCollection,
-  // removeFollowedUserFromFollowing,
-  // removeFollowingUserFromFollowers,
   deleteLikeImageInUsersCollection,
   deleteImageFromTimelineCollection,
 } from './utilsImages';
 import { 
   doSetUrls, 
   doOverlayError, 
-  doSetFollowers,
   doSetLikeStatus, 
   doSetUploadProgress,
 } from '../actions/images';
@@ -122,58 +114,11 @@ function* deleteImage({ payload: name }) {
   yield call(deleteImageFromUsersCollection, uid, name);
 };
 
-// function* manageFollowing({ payload: userUid }) {
-//   const authUser = JSON.parse(localStorage.getItem('authUser'));
-//   const uid = authUser.uid;
-//   const username = authUser.username;
-
-//   try {
-//     yield call(updateCurrentUserFollowing, uid, username, userUid);
-//     yield call(updateFollowedUserFollowers, userUid, username, uid);
-//     yield call(updateTimelineUserFollowers, uid, userUid);
-//   } catch (error) {
-//     yield put(doOverlayError(error));
-//   }
-// };
-
-// function* manageUnfollowing({ payload: userUid }) {
-//   const authUser = JSON.parse(localStorage.getItem('authUser'));
-//   const uid = authUser.uid;
-
-//   try {
-//     yield call(removeFollowingUserFromFollowers, userUid, uid);
-//     yield call(removeFollowedUserFromFollowing, userUid, uid);
-//     yield call(unfolowUserTimelineCollection, userUid, uid);
-//   } catch (error) {
-//     yield put(doOverlayError(error));
-//   }
-// };
-
-// function* getFollowers() {
-//   const channel = yield call(followersChannel);
-
-//   while(true) {
-//     try {
-//       const followers = [];
-//       const { data } = yield take(channel);
-
-//       data.forEach(snap => followers.push(snap.data()));
-
-//       yield put(doSetFollowers(followers));
-//     } catch (error) {
-//       yield put(doOverlayError(error));
-//     }
-//   };
-// };
-
 export { 
   likeImage,
   fileUpload, 
   unLikeImage,
   deleteImage,
-  // getFollowers,
   getImagesUrls, 
   getLikedImages,
-  // manageFollowing,
-  // manageUnfollowing,
 };
