@@ -34,7 +34,7 @@ Clone this repository to your local machine.
 * Images Upload
 * Gallery
 * Image Likes
-* Image Overlay
+* Image Overlay with likes, followers and delete
 * Click on an image opens a modal
 * Follow and Unfollow user
 

@@ -76,17 +76,17 @@ const favouritesChannel = () => {
   });
 };
 
-const followersChannel = () => {
-  const authUser = JSON.parse(localStorage.getItem('authUser'));
+// const followersChannel = () => {
+//   const authUser = JSON.parse(localStorage.getItem('authUser'));
 
-  return new eventChannel(emiter => {
-    const listener = firestore.collection('users').doc(`${authUser.uid}`)
-                              .collection('followers')
-                              .onSnapshot(snapshot => emiter({ data: snapshot}));
+//   return new eventChannel(emiter => {
+//     const listener = firestore.collection('users').doc(`${authUser.uid}`)
+//                               .collection('followers')
+//                               .onSnapshot(snapshot => emiter({ data: snapshot}));
 
-    return () => listener.off();
-  });
-};
+//     return () => listener.off();
+//   });
+// };
 
 const createUserImagesCollection = (uid, username, name, url, createdAt) => 
   firestore.collection('images').doc(uid)
@@ -153,74 +153,74 @@ const removeLikesImagesCollection = (uid, name, authUid) =>
              likes: firebase.firestore.FieldValue.arrayRemove(authUid)
            });
 
-const updateCurrentUserFollowing = (uid, username, userUid) => 
-  firestore.collection('users').doc(uid)
-           .collection('following').doc(userUid)
-           .set({ userUid, username });
+// const updateCurrentUserFollowing = (uid, username, userUid) => 
+//   firestore.collection('users').doc(uid)
+//            .collection('following').doc(userUid)
+//            .set({ userUid, username });
 
-const updateFollowedUserFollowers = (userUid, username, uid) => 
-  firestore.collection('users').doc(userUid)
-           .collection('followers').doc(uid)
-           .set({ uid , username});
+// const updateFollowedUserFollowers = (userUid, username, uid) => 
+//   firestore.collection('users').doc(userUid)
+//            .collection('followers').doc(uid)
+//            .set({ uid , username});
 
-const removeFollowingUserFromFollowers = (userUid, uid) => 
-  firestore.collection('users').doc(userUid)
-           .collection('followers').doc(uid)
-           .delete();
+// const removeFollowingUserFromFollowers = (userUid, uid) => 
+//   firestore.collection('users').doc(userUid)
+//            .collection('followers').doc(uid)
+//            .delete();
 
-const removeFollowedUserFromFollowing = (userUid, uid) =>
-  firestore.collection('users').doc(uid)
-           .collection('following').doc(userUid)
-           .delete();
+// const removeFollowedUserFromFollowing = (userUid, uid) =>
+//   firestore.collection('users').doc(uid)
+//            .collection('following').doc(userUid)
+//            .delete();
 
-const unfolowUserTimelineCollection = (userUid, uid) => {
-  const timelineRef = firestore.collection('timeline');
+// const unfolowUserTimelineCollection = (userUid, uid) => {
+//   const timelineRef = firestore.collection('timeline');
 
-  timelineRef.where('userUid', '==', userUid)
-             .get()
-             .then(snapshot =>
-                snapshot.forEach(doc => 
-                  timelineRef.doc(doc.data().name)
-                            .update({ 
-                              ownerFollowers: firebase.firestore.FieldValue.arrayRemove(uid)
-                            })
-                )
-              );
-}
+//   timelineRef.where('userUid', '==', userUid)
+//              .get()
+//              .then(snapshot =>
+//                 snapshot.forEach(doc => 
+//                   timelineRef.doc(doc.data().name)
+//                             .update({ 
+//                               ownerFollowers: firebase.firestore.FieldValue.arrayRemove(uid)
+//                             })
+//                 )
+//               );
+// }
   
-const updateTimelineUserFollowers = (uid, userUid) => {
-  const timelineRef = firestore.collection('timeline');
+// const updateTimelineUserFollowers = (uid, userUid) => {
+//   const timelineRef = firestore.collection('timeline');
 
-  timelineRef.where('userUid', '==', userUid)
-             .get()
-             .then(snapshot =>
-                snapshot.forEach(doc => 
-                  timelineRef.doc(doc.data().name)
-                            .update({ 
-                              ownerFollowers: firebase.firestore.FieldValue.arrayUnion(uid)
-                            })
-                )
-              );
-};
+//   timelineRef.where('userUid', '==', userUid)
+//              .get()
+//              .then(snapshot =>
+//                 snapshot.forEach(doc => 
+//                   timelineRef.doc(doc.data().name)
+//                             .update({ 
+//                               ownerFollowers: firebase.firestore.FieldValue.arrayUnion(uid)
+//                             })
+//                 )
+//               );
+// };
 
 export {
   storageChannel,
-  followersChannel,
+  // followersChannel,
   imagesUrlsChannel,
   favouritesChannel,
-  updateCurrentUserFollowing,
-  updateTimelineUserFollowers,
-  updateFollowedUserFollowers,
+  // updateCurrentUserFollowing,
+  // updateTimelineUserFollowers,
+  // updateFollowedUserFollowers,
   updateLikesImagesCollection,
   removeLikesImagesCollection,
-  unfolowUserTimelineCollection,
+  // unfolowUserTimelineCollection,
   removeLikesTimelineCollection,
   setLikeImageInUsersCollection,
   updateLikesTimelineCollection,
   deleteImageFromUsersCollection,
   deleteImageFromImagesCollection,
-  removeFollowedUserFromFollowing,
-  removeFollowingUserFromFollowers,
+  // removeFollowedUserFromFollowing,
+  // removeFollowingUserFromFollowers,
   deleteLikeImageInUsersCollection,
   deleteImageFromTimelineCollection,
 };

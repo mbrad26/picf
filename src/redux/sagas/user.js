@@ -18,7 +18,22 @@ import {
   setUserInFirestore, 
   avatarUploadChannel,
   getCurrentUserFromFirestore,
+  updateTimelineUserFollowers,
+  updateCurrentUserFollowing,
+  updateFollowedUserFollowers, 
+  removeFollowedUserFromFollowing,
+  removeFollowingUserFromFollowers,
+  followersChannel,
+  unfolowUserTimelineCollection,
  } from './utilsUser';
+
+ import { 
+  // doSetUrls, 
+  doOverlayError, 
+  doSetFollowers,
+  // doSetLikeStatus, 
+  // doSetUploadProgress,
+} from '../actions/images';
 
 function* signUpUser({ payload: { username, email, passwordOne }}) {
   try {
@@ -83,6 +98,56 @@ function* signInWithGoogle() {
   }
 };
 
+
+
+
+function* manageFollowing({ payload: userUid }) {
+  const authUser = JSON.parse(localStorage.getItem('authUser'));
+  const uid = authUser.uid;
+  const username = authUser.username;
+
+  try {
+    yield call(updateCurrentUserFollowing, uid, username, userUid);
+    yield call(updateFollowedUserFollowers, userUid, username, uid);
+    yield call(updateTimelineUserFollowers, uid, userUid);
+  } catch (error) {
+    yield put(doOverlayError(error));
+  }
+};
+
+function* manageUnfollowing({ payload: userUid }) {
+  const authUser = JSON.parse(localStorage.getItem('authUser'));
+  const uid = authUser.uid;
+
+  try {
+    yield call(removeFollowingUserFromFollowers, userUid, uid);
+    yield call(removeFollowedUserFromFollowing, userUid, uid);
+    yield call(unfolowUserTimelineCollection, userUid, uid);
+  } catch (error) {
+    yield put(doOverlayError(error));
+  }
+};
+
+function* getFollowers() {
+  const channel = yield call(followersChannel);
+
+  while(true) {
+    try {
+      const followers = [];
+      const { data } = yield take(channel);
+
+      data.forEach(snap => followers.push(snap.data()));
+
+      yield put(doSetFollowers(followers));
+    } catch (error) {
+      yield put(doOverlayError(error));
+    }
+  };
+};
+
+
+
+
 function* avatarUpload({ payload: image }) {
   const channel = yield call(avatarUploadChannel, image);
 
@@ -102,11 +167,16 @@ function* getAvatar({ payload: uid }) {
 
   while(true) {
     try {
+      const avatars = []
       const { data } = yield take(channel);
 
-      yield put(doSetAvatarUrl(data.avatarUrl));
-    } catch (error) {
+      // avatars.push(data.avatarUrl)
 
+      console.log('SAGA_DATA: ', data);
+
+      // yield put(doSetAvatarUrl(avatars));
+    } catch (error) {
+      yield put(doRequestError(error));
     }
   };
 }; 
@@ -121,4 +191,7 @@ export {
   updatePassword,
   setCurrentUser,
   signInWithGoogle,
+  manageFollowing,
+  manageUnfollowing,
+  getFollowers,
 };

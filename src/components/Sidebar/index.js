@@ -18,8 +18,8 @@ const Sidebar = () => {
         ? <>
             <UploadForm />
             
-            <Nav.Link as={Link} to={ROUTES.HOME}>Gallery</Nav.Link>
-            <Nav.Link as={Link} to={ROUTES.HOME_TIMELINE}>Timeline</Nav.Link>
+            <Nav.Link as={Link} to={ROUTES.HOME}><span className='titles'>Gallery</span></Nav.Link>
+            <Nav.Link as={Link} to={ROUTES.HOME_TIMELINE}><span className='titles'>Timeline</span></Nav.Link>
 
             <Followers />
           </>

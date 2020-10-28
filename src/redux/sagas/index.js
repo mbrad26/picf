@@ -27,9 +27,6 @@ import {
   unLikeImage, 
   getLikedImages,
   deleteImage,
-  manageFollowing,
-  getFollowers,
-  manageUnfollowing,
 } from './images';
 import { 
   getAvatar,
@@ -41,6 +38,9 @@ import {
   setCurrentUser,
   updatePassword,
   signInWithGoogle,
+  manageFollowing,
+  getFollowers,
+  manageUnfollowing,
  } from './user';
 
 function* watchAll() {

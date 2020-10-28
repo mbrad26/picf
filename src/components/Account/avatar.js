@@ -10,9 +10,10 @@ const Avatar = ({ uid }) => {
   const [state, setState] = useState(avatarUrl);
 
   useEffect(() => {
+    // console.log('AVATAR_UID: ', uid);
     dispatch(doGetAvatarUrl(uid));
     setState(avatarUrl);
-  }, [dispatch, avatarUrl]);
+  }, [dispatch, uid, avatarUrl]);
 
   return (
     <>

@@ -1,4 +1,5 @@
 import { eventChannel } from 'redux-saga';
+import firebase from 'firebase/app';
 
 import { auth, firestore, storage } from '../../firebase/config';
 
@@ -33,6 +34,76 @@ const userChannel = () => {
   });
 };
 
+
+
+
+const updateCurrentUserFollowing = (uid, username, userUid) => 
+  firestore.collection('users').doc(uid)
+           .collection('following').doc(userUid)
+           .set({ userUid, username });
+
+const updateFollowedUserFollowers = (userUid, username, uid) => 
+  firestore.collection('users').doc(userUid)
+           .collection('followers').doc(uid)
+           .set({ uid , username});
+
+const updateTimelineUserFollowers = (uid, userUid) => {
+  const timelineRef = firestore.collection('timeline');
+
+  timelineRef.where('userUid', '==', userUid)
+              .get()
+              .then(snapshot =>
+                snapshot.forEach(doc => 
+                  timelineRef.doc(doc.data().name)
+                            .update({ 
+                              ownerFollowers: firebase.firestore.FieldValue.arrayUnion(uid)
+                            })
+                )
+              );
+  };
+
+const removeFollowingUserFromFollowers = (userUid, uid) => 
+  firestore.collection('users').doc(userUid)
+           .collection('followers').doc(uid)
+           .delete();
+
+const removeFollowedUserFromFollowing = (userUid, uid) =>
+  firestore.collection('users').doc(uid)
+           .collection('following').doc(userUid)
+           .delete();
+
+const unfolowUserTimelineCollection = (userUid, uid) => {
+  const timelineRef = firestore.collection('timeline');
+
+  timelineRef.where('userUid', '==', userUid)
+             .get()
+             .then(snapshot =>
+                snapshot.forEach(doc => 
+                  timelineRef.doc(doc.data().name)
+                            .update({ 
+                              ownerFollowers: firebase.firestore.FieldValue.arrayRemove(uid)
+                            })
+                )
+              );
+};
+
+const followersChannel = () => {
+  const authUser = JSON.parse(localStorage.getItem('authUser'));
+
+  return new eventChannel(emiter => {
+    const listener = firestore.collection('users').doc(`${authUser.uid}`)
+                              .collection('followers')
+                              .onSnapshot(snapshot => emiter({ data: snapshot}));
+
+    return () => listener.off();
+  });
+};
+
+
+
+
+
+
 const avatarUploadChannel = image => {
   return new eventChannel(emiter => {
     const listener = storage.ref(image.name).put(image)
@@ -65,7 +136,6 @@ const avatarChannel = uid => {
   });
 };
 
-
 export {
   userChannel,
   avatarChannel,
@@ -73,4 +143,11 @@ export {
   avatarUploadChannel,
   getCurrentUserFromFirestore,
   getUserSnapshotFromFirestore,
+  followersChannel,
+  removeFollowedUserFromFollowing,
+  removeFollowingUserFromFollowers,
+  unfolowUserTimelineCollection,
+  updateCurrentUserFollowing,
+  updateFollowedUserFollowers,
+  updateTimelineUserFollowers,
 };

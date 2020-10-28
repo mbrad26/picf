@@ -1,27 +1,33 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Avatar from '../Account/avatar';
+
 const Followers = () => {
   const dispatch = useDispatch();
   const { followers } = useSelector(state => state.imagesState);
 
-  // console.log('AUTH_USER: ', JSON.parse(localStorage.getItem('authUser')))
+  console.log('FOLLOWERS: ', followers)
 
   useEffect(() => {
-    // dispatch(doGetGollowersData());
+    // dispatch(doGetFollowersData());
   }, [dispatch]);
 
   return (
-    <div>
-      Followers
+    <>
+      <p className='titles'>Followers</p>
       {followers &&
         followers.map(user => 
-          <p className='followers'>
-            {user.username}
-          </p>
+          <div>
+            <div className='sidebar-avatars'>
+              {console.log('FOLLOWER_UID: ', user.uid)}
+              <Avatar uid={user.uid} />
+              <span> {user.username}</span>
+            </div>
+          </div>
         )
       }
-    </div>
+    </>
   );
 };
 
