@@ -19,24 +19,17 @@ const ImageModal = () => {
 
   return (
     <Modal
+      size="lg"
       fade='true'
       centered
       scrollable
       show={isOpen}
       onHide={closeModal}
     >
-      <Modal.Header className='modal-item'>
-        <Image src={activeImage.url} alt='image' />
-        <Overlay data={activeImage} />
-      </Modal.Header>
-      <Modal.Body>
-        <p>Image name: {activeImage.name}</p>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={closeModal}>Close</Button>
-      </Modal.Footer>
+      <Image src={activeImage.url} alt='image' />
+      <Overlay data={activeImage} />
     </Modal>
-  )
-}
+  );
+};
 
 export default ImageModal;
