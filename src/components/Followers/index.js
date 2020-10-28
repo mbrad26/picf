@@ -10,7 +10,7 @@ const Followers = () => {
 
   useEffect(() => {
     dispatch(doFollowStatusRequest());
-  }, [dispatch])
+  }, [dispatch]);
 
   return (
     <>

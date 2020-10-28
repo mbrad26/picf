@@ -28,7 +28,7 @@ const FollowStatus = ({ data }) => {
 
   useEffect(() => {
     dispatch(doFollowStatusRequest())
-  }, [dispatch])
+  }, [dispatch]);
 
   return (
     <em>

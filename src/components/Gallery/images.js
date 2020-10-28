@@ -40,7 +40,7 @@ const Images = ({ imagesData }) => {
             alt={img.name} 
             onClick={() => setActiveImage(img)} 
           />
-          {img && <Overlay data={img}/>}
+          {img && <Overlay data={img} />}
         </div>
       )}
     </>

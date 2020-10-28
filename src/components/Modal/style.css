@@ -1,0 +1,74 @@
+.overlay-top {
+  position: absolute; 
+  top: 0px; 
+  background: linear-gradient(to bottom,rgba(0,0,0,.4) 0,transparent); 
+  color: #fff; 
+  width: 100%;
+  min-height: 59.4px;
+  transition: .5s ease;
+  opacity: 0;
+  font-size: 14px;
+  padding: 8px 10px 8px 12px;
+  text-align: center;
+}
+
+.overlay-bottom {
+  position: absolute; 
+  bottom: 0px; 
+  background: linear-gradient(0deg,rgba(0,0,0,.4) 0,transparent); 
+  color: #fff; 
+  width: 100%;
+  transition: .5s ease;
+  opacity: 0;
+  font-size: 14px;
+  padding: 25px 10px 8px 12px;
+  text-align: center;
+}
+
+.modal-item:hover .overlay-bottom,
+.modal-item:hover .overlay-top {
+  opacity: 1;
+}
+
+.overlay-bottom #details .MuiSvgIcon-root {
+  fill: white;
+  font-size: 1.2rem;
+}
+
+.overlay-bottom #details .MuiSvgIcon-root:hover {
+  fill: rgb(182, 215, 253);
+  font-size: 1.2rem;
+}
+
+.overlay-top .MuiSvgIcon-root:hover {
+  fill: rgb(247, 20, 3);
+  transition: .5 ease;
+  font-size: 2.1rem;
+}
+
+.numbers {
+  position: relative;
+  bottom: -3px;
+  font-size: 1rem;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+
+#user {
+  position: absolute; 
+  bottom: -9px;
+  float: left;
+  font-style: normal;
+}
+
+#details {
+  float: right;
+  position: relative;
+}
+
+em {
+  margin-right: 10px;
+  font-style: normal;
+}

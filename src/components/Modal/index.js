@@ -6,6 +6,9 @@ import {
   Button,
  } from 'react-bootstrap';
 
+
+import './style.css';
+import Overlay from '../Gallery/overlay';
 import { doCloseModal } from '../../redux/actions/images';
 
 const ImageModal = () => {
@@ -22,8 +25,9 @@ const ImageModal = () => {
       show={isOpen}
       onHide={closeModal}
     >
-      <Modal.Header closeButton>
+      <Modal.Header className='modal-item'>
         <Image src={activeImage.url} alt='image' />
+        <Overlay data={activeImage} />
       </Modal.Header>
       <Modal.Body>
         <p>Image name: {activeImage.name}</p>
