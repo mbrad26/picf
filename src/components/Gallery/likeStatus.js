@@ -8,16 +8,19 @@ import {
   doLikeStatusRequest, 
   doUnlikeRequest, 
 } from '../../redux/actions/images';
-import { doUpdateActiveImage } from '../../redux/actions/modal';
+// import { doUpdateActiveImageLikes } from '../../redux/actions/modal';
 
 const LikeStatus = ({ data }) => {
   const dispatch = useDispatch();
   const { likedStatus } = useSelector(state => state.imagesState);
-  const { isOpen } = useSelector(state => state.modalState);
+  const { isOpen, likesActiveImage } = useSelector(state => state.modalState);
   const { url, name, userUid, likes } = data;
+
+  console.log('LIKES: ', likesActiveImage);
 
   const handleLike = () => {
     dispatch(doAddLikeRequest({ url, name, userUid }));
+    
   };
 
   const handleUnlike = () => {
@@ -25,19 +28,27 @@ const LikeStatus = ({ data }) => {
   };
   
   useEffect(() => {
+    // const updateActiveImage = async () => 
+    //   await dispatch(doUpdateActiveImage(data));
+    
     dispatch(doLikeStatusRequest());
     // if(isOpen) {
-    //   dispatch(doUpdateActiveImage(data));
-    // }
-  }, [dispatch]);
+    //   dispatch(doUpdateActiveImageLikes(likes));
+    // };
+  }, [dispatch, isOpen, data]);
 
   return (
     <em>
       {likedStatus && likedStatus.includes(name)
         ? <FavoriteTwoToneIcon className='icon' onClick={handleUnlike} />
         : <FavoriteBorderTwoToneIcon className='icon' onClick={handleLike} />
-      } 
-      <span className='numbers'> {likes && likes.length}</span>
+      }
+      {isOpen 
+        ? <span className='numbers'> {likesActiveImage && likesActiveImage.length}</span>
+        : likes 
+        ? <span className='numbers'> {likes && likes.length}</span>
+        : null
+      }
     </em>
   );
 };

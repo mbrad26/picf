@@ -1,6 +1,7 @@
 import { 
   SET_ACTIVE_IMAGE, 
-  UPDATE_ACTIVE_IMAGE,
+  UPDATE_ACTIVE_IMAGE_LIKES,
+  UPDATE_ACTIVE_IMAGE_FOLLOWERS, 
 } from '../constants/actionTypes';
 
 const doSetActiveImage = img => ({
@@ -8,12 +9,18 @@ const doSetActiveImage = img => ({
   payload: img,
 });
 
-const doUpdateActiveImage = data => ({
-  type: UPDATE_ACTIVE_IMAGE,
-  payload: data,
+const doUpdateActiveImageLikes = likes => ({
+  type: UPDATE_ACTIVE_IMAGE_LIKES,
+  payload: likes,
+});
+
+const doUpdateActiveImageFollowers = followers => ({
+  type: UPDATE_ACTIVE_IMAGE_FOLLOWERS,
+  payload: followers,
 });
 
 export { 
   doSetActiveImage,
-  doUpdateActiveImage,
+  doUpdateActiveImageLikes,
+  doUpdateActiveImageFollowers,
 };

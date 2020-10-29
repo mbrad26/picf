@@ -3,7 +3,10 @@ import { Image } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Overlay from './overlay';
-import { doSetActiveImage } from '../../redux/actions/modal';
+import { 
+  doSetActiveImage, 
+  // doUpdateActiveImageLikes, 
+} from '../../redux/actions/modal';
 
 const INITIAL_STATE = {
   data: null,
@@ -17,7 +20,10 @@ const Images = ({ imagesData }) => {
   const [state, setState] = useState(INITIAL_STATE);
   const { data, error } = state;
 
-  const setActiveImage = img => dispatch(doSetActiveImage(img));
+  const setActiveImage = img => {
+    dispatch(doSetActiveImage(img));
+    // dispatch(doUpdateActiveImageLikes(img.likes));
+  } 
 
   useEffect(() =>  {
     if(imagesData) {

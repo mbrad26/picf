@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
   Modal, 
@@ -9,6 +9,7 @@ import './style.css';
 import Overlay from '../Gallery/overlay';
 import { doCloseModal } from '../../redux/actions/images';
 // import { doSetActiveImage } from '../../redux/actions/images';
+// import { doUpdateActiveImage } from '../../redux/actions/modal';
 
 const ImageModal = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,17 @@ const ImageModal = () => {
   const closeModal = () => dispatch(doCloseModal());
 
   // dispatch(doSetActiveImage(data));
+
+  // useEffect(() => {
+  //   const updateActiveImage = async () => 
+  //     await dispatch(doUpdateActiveImage(data));
+    
+  //   dispatch(doLikeStatusRequest());
+  //   if(isOpen) {
+  //     updateActiveImage(data);
+  //   }
+  // }, [dispatch, isOpen, data]);
+
 
   return (
     <Modal
