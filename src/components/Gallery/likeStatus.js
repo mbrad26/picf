@@ -8,18 +8,27 @@ import {
   doLikeStatusRequest, 
   doUnlikeRequest, 
 } from '../../redux/actions/images';
+import { doUpdateActiveImage } from '../../redux/actions/modal';
 
 const LikeStatus = ({ data }) => {
   const dispatch = useDispatch();
   const { likedStatus } = useSelector(state => state.imagesState);
+  const { isOpen } = useSelector(state => state.modalState);
   const { url, name, userUid, likes } = data;
 
-  const handleLike = () => dispatch(doAddLikeRequest({ url, name, userUid }));
+  const handleLike = () => {
+    dispatch(doAddLikeRequest({ url, name, userUid }));
+  };
 
-  const handleUnlike = () => dispatch(doUnlikeRequest({ name, userUid }));
+  const handleUnlike = () => {
+    dispatch(doUnlikeRequest({ name, userUid }));
+  };
   
   useEffect(() => {
     dispatch(doLikeStatusRequest());
+    // if(isOpen) {
+    //   dispatch(doUpdateActiveImage(data));
+    // }
   }, [dispatch]);
 
   return (

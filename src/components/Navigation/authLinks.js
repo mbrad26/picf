@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useHistory, withRouter } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
+import { Link, useHistory, withRouter } from 'react-router-dom';
 
 import SignOut from '../SignOut';
 import * as ROUTES from '../constants/routes';

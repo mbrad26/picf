@@ -3,7 +3,7 @@ import {
   CLOSE_MODAL,
   LIKE_STATUS_REQUEST,
   FILE_UPLOAD_REQUEST, 
-  SET_ACTIVE_IMAGE, 
+  // SET_ACTIVE_IMAGE, 
   SET_LIKE_STATUS, 
   SET_UPLOAD_PROGRESS,
   SET_URLS,
@@ -33,10 +33,10 @@ const doSetUrls = urls => ({
   payload: urls,
 });
 
-const doSetActiveImage = img => ({
-  type: SET_ACTIVE_IMAGE,
-  payload: img,
-});
+// const doSetActiveImage = img => ({
+//   type: SET_ACTIVE_IMAGE,
+//   payload: img,
+// });
 
 const doCloseModal = () => ({
   type: CLOSE_MODAL,
@@ -76,7 +76,7 @@ export {
   doSetUploadProgress,
   doUrlRequest,
   doSetUrls,
-  doSetActiveImage,
+  // doSetActiveImage,
   doCloseModal,
   doAddLikeRequest,
   doUnlikeRequest,

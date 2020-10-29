@@ -3,7 +3,7 @@ import { Image } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Overlay from './overlay';
-import { doSetActiveImage } from '../../redux/actions/images';
+import { doSetActiveImage } from '../../redux/actions/modal';
 
 const INITIAL_STATE = {
   data: null,

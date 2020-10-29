@@ -29,6 +29,7 @@ export const URL_REQUEST = 'URL_REQUEST';
 
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const SET_ACTIVE_IMAGE = 'SET_ACTIVE_IMAGE';
+export const UPDATE_ACTIVE_IMAGE = 'UPDATE_ACTIVE_IMAGE';
 
 export const OVERLAY_ERROR = 'OVERLAY_ERROR';
 
