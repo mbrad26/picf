@@ -4,7 +4,7 @@ import LikeStatus from './likeStatus';
 import FollowStatus from './followStatus';
 
 const OverlayBottom = ({ data }) => {
-  console.log('OVERLAY_TOP');
+  console.log('OVERLAY_BOTTOM');
   return (
     <div className='overlay-bottom'>
       <p id='user'>{data.username}</p> 
