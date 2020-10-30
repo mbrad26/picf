@@ -16,7 +16,7 @@ const LikeStatus = ({ data }) => {
   const { isOpen, likesActiveImage } = useSelector(state => state.modalState);
   const { url, name, userUid, likes } = data;
 
-  console.log('LIKES: ', likesActiveImage);
+  // console.log('LIKES: ', likesActiveImage);
 
   const handleLike = () => {
     dispatch(doAddLikeRequest({ url, name, userUid }));

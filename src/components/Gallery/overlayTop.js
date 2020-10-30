@@ -28,4 +28,4 @@ const OverlayTop = ({ data }) => {
   );
 };
 
-export default OverlayTop;
+export default React.memo(OverlayTop);

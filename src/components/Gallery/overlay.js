@@ -14,4 +14,4 @@ const Overlay = ({ data }) => {
   );
 };
 
-export default Overlay;
+export default React.memo(Overlay);

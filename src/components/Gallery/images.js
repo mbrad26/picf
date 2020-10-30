@@ -17,10 +17,13 @@ const Images = ({ imagesData }) => {
   console.log('IMAGES');
   const dispatch = useDispatch();
   const { overlayError } = useSelector(state => state.imagesState);
+  // const { isOpen } = useSelector(state => state.modalState);
   const [state, setState] = useState(INITIAL_STATE);
   const { data, error } = state;
+  // const 
 
   const setActiveImage = img => {
+
     dispatch(doSetActiveImage(img));
     // dispatch(doUpdateActiveImageLikes(img.likes));
   } 
@@ -29,6 +32,10 @@ const Images = ({ imagesData }) => {
     if(imagesData) {
       setState(state => ({ ...state, data: imagesData }));
     };
+
+    // if(isOpen) {
+    //   dispatch(doSetActiveImage(img));
+    // }
   }, [imagesData]);
 
   useEffect(() => {

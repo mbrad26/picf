@@ -4,6 +4,7 @@ import LikeStatus from './likeStatus';
 import FollowStatus from './followStatus';
 
 const OverlayBottom = ({ data }) => {
+  console.log('OVERLAY_TOP');
   return (
     <div className='overlay-bottom'>
       <p id='user'>{data.username}</p> 
@@ -16,4 +17,4 @@ const OverlayBottom = ({ data }) => {
   );
 };
 
-export default OverlayBottom;
+export default React.memo(OverlayBottom);
