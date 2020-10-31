@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './style.css';
+import User from '../User';
 import Home from '../Home';
 import SignIn from '../SignIn';
 import SignUp from '../SignUp';
@@ -33,6 +34,7 @@ const App = () => {
           <Route path={ROUTES.SIGN_IN} component={SignIn} />
           <Route path={ROUTES.ACCOUNT} component={Account} />
           <Route path={ROUTES.PASSWORD_RESET} component={PasswordReset} />
+          <Route path={ROUTES.USER} component={User} />
         </Switch>
       </div>
     </Router>

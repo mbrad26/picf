@@ -7,3 +7,4 @@ export const PASSWORD_RESET = '/password_reset';
 export const SETTINGS = '/account/settings';
 export const TIMELINE = '/account/timeline';
 export const HOME_TIMELINE = '/home/timeline';
+export const USER = '/users/:uid';

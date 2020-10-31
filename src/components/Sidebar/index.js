@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
+import { Link, useHistory } from 'react-router-dom';
 
 import './style.css';
 import Followers from '../Followers';

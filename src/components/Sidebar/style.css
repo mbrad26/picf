@@ -10,12 +10,12 @@
 
 .sidebar-avatars {
   display: inline-block;
-  margin-bottom: 20px;
+  /* margin-bottom: 5px; */
   cursor: pointer;
   font-size: small;
 }
 
-.sidebar-avatars > #avatar {
-  width: 35px;
-  height: 35px;
+.sidebar-avatars > a > #avatar {
+  width: 45px;
+  height: 45px;
 }
