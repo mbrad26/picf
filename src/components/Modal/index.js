@@ -8,27 +8,12 @@ import {
 import './style.css';
 import Overlay from '../Gallery/overlay';
 import { doCloseModal } from '../../redux/actions/images';
-// import { doSetActiveImage } from '../../redux/actions/images';
-// import { doUpdateActiveImage } from '../../redux/actions/modal';
 
 const ImageModal = () => {
   const dispatch = useDispatch();
   const { isOpen, activeImage } = useSelector(state => state.modalState);
 
   const closeModal = () => dispatch(doCloseModal());
-
-  // dispatch(doSetActiveImage(data));
-
-  // useEffect(() => {
-  //   const updateActiveImage = async () => 
-  //     await dispatch(doUpdateActiveImage(data));
-    
-  //   dispatch(doLikeStatusRequest());
-  //   if(isOpen) {
-  //     updateActiveImage(data);
-  //   }
-  // }, [dispatch, isOpen, data]);
-
 
   return (
     <Modal
@@ -39,7 +24,10 @@ const ImageModal = () => {
       show={isOpen}
       onHide={closeModal}
     >
-      <Image src={activeImage.url} alt='image' />
+      <Image 
+        src={activeImage.url} 
+        alt={activeImage.name} 
+      />
       <Overlay data={activeImage} />
     </Modal>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Overlay from './overlay';
 import { 
@@ -8,10 +8,10 @@ import {
 } from '../../redux/actions/modal';
 
 const ImageComponent = ({ img }) => {
+  console.log('IMAGE_COMPONENT');
   const dispatch = useDispatch();
-  const { overlayError } = useSelector(state => state.imagesState);
-
-  const setActiveImage = img => dispatch(doSetActiveImage(img));
+  
+  const setActiveImage = image => dispatch(doSetActiveImage(image));
 
   return (
     <>
@@ -22,7 +22,7 @@ const ImageComponent = ({ img }) => {
       />
       {img && <Overlay data={img} />}
     </>
-  )
-}
+  );
+};
 
-export default ImageComponent;
+export default React.memo(ImageComponent);

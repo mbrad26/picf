@@ -18,8 +18,6 @@ const LikeStatus = ({ data }) => {
   const { isOpen, activeImage } = useSelector(state => state.modalState);
   const { url, name, userUid, likes } = data;
 
-  // console.log('LIKES: ', likesActiveImage);
-
   const handleLike = () => {
     dispatch(doAddLikeRequest({ url, name, userUid }));
   };
@@ -30,10 +28,11 @@ const LikeStatus = ({ data }) => {
   
   useEffect(() => {
     dispatch(doLikeStatusRequest());
-    if(isOpen) {
+
+    if(isOpen && data.name === activeImage.name) {
       dispatch(doSetActiveImage(data));
     };
-  }, [dispatch, isOpen, data]);
+  }, [dispatch, isOpen, data, activeImage.name]);
 
   return (
     <em>
@@ -41,12 +40,7 @@ const LikeStatus = ({ data }) => {
         ? <FavoriteTwoToneIcon className='icon' onClick={handleUnlike} />
         : <FavoriteBorderTwoToneIcon className='icon' onClick={handleLike} />
       }
-      {isOpen 
-        ? <span className='numbers'> {activeImage.likes && activeImage.likes.length}</span>
-        : likes 
-        ? <span className='numbers'> {likes && likes.length}</span>
-        : null
-      }
+      <span className='numbers'> {likes && likes.length}</span>
     </em>
   );
 };
