@@ -27,7 +27,7 @@ const FollowStatus = ({ data }) => {
   const handleUnfollow = () => dispatch(doUnfollowRequest(userUid));
 
   useEffect(() => {
-    dispatch(doFollowStatusRequest())
+    dispatch(doFollowStatusRequest());
   }, [dispatch]);
 
   return (

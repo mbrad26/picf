@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
   Modal, 
@@ -17,10 +17,10 @@ const ImageModal = () => {
 
   return (
     <Modal
-      size="lg"
+      size='xl'
+      id='modal'
       fade='true'
       centered
-      scrollable
       show={isOpen}
       onHide={closeModal}
     >
