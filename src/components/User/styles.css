@@ -1,0 +1,21 @@
+.user-container {
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  margin-top: 35px;
+}
+
+.user-details {
+  grid-column: 2;
+}
+
+.user-avatar {
+  display: inline-block;
+  cursor: pointer;
+  font-size: large;
+  font-weight: bold;
+}
+
+.user-avatar > #avatar {
+  width: 100px;
+  height: 100px;
+}

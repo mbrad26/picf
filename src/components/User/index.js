@@ -2,6 +2,8 @@ import React from 'react';
 import { Image } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
+import './styles.css';
+
 const User = (props) => {
   console.log('USER', props);
   const { followers } = useSelector(state => state.userState);
@@ -11,14 +13,14 @@ const User = (props) => {
   console.log('USER_FOLLOWERS: ', user);
 
   return (
-    <>
-      <h1 style={{ 'color': 'red' }}>User</h1>
-      <div>
-        <Image id='avatar' src={user[0].avatarUrl} roundedCircle/>
-        <p>{user[0].username}</p>
+    <div className='user-container'>
+      <div className='user-details'>
+        <div className='user-avatar'>
+          <Image id='avatar' src={user[0].avatarUrl} roundedCircle />
+          <span> {user[0].username}</span>
+        </div>
       </div>
-
-    </>
+    </div>
   );
 };
 
