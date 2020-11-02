@@ -21,22 +21,20 @@ const User = (props) => {
   }, [dispatch, userUid]);
 
   return (
-    <div className='user-container'>
-      <div className='user-details'>
-        <div className='user-avatar'>
-          {user && 
-            <>
-              <Image id='avatar' src={user[0].avatarUrl} roundedCircle />
-              <span> {user[0].username}</span>
-            </>
-          }
-        </div>
-        <hr />
-        <div className='grid-container'>
-          <Images imagesData={imagesData} />
-        </div>
+    <>
+      <div className='user-avatar'>
+        {user && 
+          <>
+            <Image id='avatar' src={user[0].avatarUrl} roundedCircle />
+            <span> {user[0].username}</span>
+          </>
+        }
       </div>
-    </div>
+      <hr />
+      <div className='grid-container'>
+        <Images imagesData={imagesData} />
+      </div>
+    </>
   );
 };
 
