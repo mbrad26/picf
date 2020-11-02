@@ -12,9 +12,9 @@ const User = (props) => {
   const { followers } = useSelector(state => state.userState);
   const { imagesData } = useSelector(state => state.imagesState);
   const userUid = props.match.params.uid;
-  const user = followers.filter(user => user.uid === userUid);
+  const user = followers ? followers.filter(user => user.uid === userUid) : null;
 
-  console.log('USER_FOLLOWERS: ', user);
+  // console.log('USER_FOLLOWERS: ', user);
 
   useEffect(() => {
     dispatch(doUrlRequest(`images/${userUid}/timeline`));
@@ -24,8 +24,12 @@ const User = (props) => {
     <div className='user-container'>
       <div className='user-details'>
         <div className='user-avatar'>
-          <Image id='avatar' src={user[0].avatarUrl} roundedCircle />
-          <span> {user[0].username}</span>
+          {user && 
+            <>
+              <Image id='avatar' src={user[0].avatarUrl} roundedCircle />
+              <span> {user[0].username}</span>
+            </>
+          }
         </div>
         <hr />
         <div className='grid-container'>

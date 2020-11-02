@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import './style.css';
+import User from '../User';
 import Sidebar from '../Sidebar';
 import Gallery from '../Gallery';
 import * as ROUTES from '../constants/routes';
@@ -50,6 +51,7 @@ const Home = () => {
         <Switch>
           <Route exact path={ROUTES.HOME} component={Gallery} />
           <Route exact path={ROUTES.HOME_TIMELINE} component={Gallery} />
+          <Route path={ROUTES.USER} component={User} />
         </Switch>
       </div>
     </div>
