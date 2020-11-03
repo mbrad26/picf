@@ -1,10 +1,15 @@
-import React, { useEffect } from 'react';
-import { Image } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Image, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './styles.css';
 import Images from '../Gallery/images';
 import { doUrlRequest } from '../../redux/actions/images';
+import { 
+  doFollowRequest, 
+  doUnfollowRequest,
+  doFollowStatusRequest, 
+} from '../../redux/actions/user';
 import ImageModal from '../Modal';
 
 const User = (props) => {
@@ -14,9 +19,23 @@ const User = (props) => {
   const { imagesData } = useSelector(state => state.imagesState);
   const { isOpen } = useSelector(state => state.modalState);
   const userUid = props.match.params.uid;
+  const [state, setState] = useState(followers.some(user => user.uid === userUid));
+
   const user = followers ? followers.filter(user => user.uid === userUid) : null;
 
-  // console.log('USER_FOLLOWERS: ', user);
+  console.log('USER_FOLLOWERS: ', userUid);
+
+  const handleFollowUnfollow = () => {
+    if(followers.some(user => user.uid === userUid)) {
+      dispatch(doUnfollowRequest(userUid));
+    } else {
+      dispatch(doFollowRequest(userUid));
+    };
+  };
+
+  // useEffect(() => {
+  //   dispatch(doFollowStatusRequest());
+  // }, [dispatch]);
 
   useEffect(() => {
     dispatch(doUrlRequest(`images/${userUid}/timeline`));
@@ -28,7 +47,24 @@ const User = (props) => {
         {user && 
           <>
             <Image id='avatar' src={user[0].avatarUrl} roundedCircle />
-            <span> {user[0].username}</span>
+            <span id='username'> {user[0].username} </span>
+            <Button 
+              type='submit'
+              variant='light' 
+              onClick={handleFollowUnfollow}
+            >
+              {state
+                ? 'Unfollow'
+                : 'Follow'
+              }
+            </Button>
+            <div>
+              <span>   Nr of followers</span>
+              <span>     Following</span>
+
+              <span>     Nr of pictures</span>
+              <span>       Joined date</span>
+            </div>
           </>
         }
       </div>
