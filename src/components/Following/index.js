@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom';
 import { Image, Nav } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { doFollowingStatusRequest } from '../../redux/actions/user';
+
 const Following = () => {
   console.log('FOLLOWING');
   const dispatch = useDispatch();
   const { following } = useSelector(state => state.userState);
 
   useEffect(() => {
-
-  }, []);
+    dispatch(doFollowingStatusRequest());
+  }, [dispatch]);
 
   return (
     <>

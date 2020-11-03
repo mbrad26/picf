@@ -17,6 +17,8 @@ import  {
   SET_FOLLOWERS,
   UNFOLLOW_REQUEST,
   FOLLOW_REQUEST,
+  FOLLOWING_STATUS_REQUEST,
+  SET_FOLLOWING,
  } from '../constants/actionTypes';
 
 const doSignupRequest = credentials => ({
@@ -95,9 +97,19 @@ const doFollowStatusRequest = uid => ({
   payload: uid,
 });
 
+const doFollowingStatusRequest = uid => ({
+  type: FOLLOWING_STATUS_REQUEST,
+  payload: uid,
+});
+
 const doSetFollowers = followers => ({
   type: SET_FOLLOWERS,
   payload: followers,
+});
+
+const doSetFollowing = following => ({
+  type: SET_FOLLOWING,
+  payload: following,
 });
 
 const doUnfollowRequest = data => ({
@@ -124,4 +136,6 @@ export {
   doSetFollowers,
   doUnfollowRequest,
   doFollowRequest,
+  doFollowingStatusRequest,
+  doSetFollowing,
 };

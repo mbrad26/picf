@@ -4,6 +4,7 @@ import {
   SET_USER_SUCCESS,
   SET_AVATAR_UPLOAD_PROGRESS,
   SET_FOLLOWERS,
+  SET_FOLLOWING
 } from '../constants/actionTypes';
 
 const INITIAL_STATE = {
@@ -12,6 +13,7 @@ const INITIAL_STATE = {
   uploadProgress: '',
   avatarUrl: '',
   followers: null,
+  following: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -41,6 +43,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         followers: action.payload,
+    };
+    case SET_FOLLOWING:
+      return {
+        ...state,
+        following: action.payload,
     };
     default: return state;
   };
