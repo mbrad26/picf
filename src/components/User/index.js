@@ -5,12 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import './styles.css';
 import Images from '../Gallery/images';
 import { doUrlRequest } from '../../redux/actions/images';
+import ImageModal from '../Modal';
 
 const User = (props) => {
   console.log('USER', props);
   const dispatch = useDispatch();
   const { followers } = useSelector(state => state.userState);
   const { imagesData } = useSelector(state => state.imagesState);
+  const { isOpen } = useSelector(state => state.modalState);
   const userUid = props.match.params.uid;
   const user = followers ? followers.filter(user => user.uid === userUid) : null;
 
@@ -34,6 +36,8 @@ const User = (props) => {
       <div className='grid-container'>
         <Images imagesData={imagesData} />
       </div>
+
+      {isOpen && <ImageModal />}
     </>
   );
 };
