@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 import './style.css';
 import Followers from '../Followers';
+import Following from '../Following';
 import UploadForm from '../UploadForm/uploadForm';
 import * as ROUTES from  '../constants/routes';
 
@@ -22,6 +23,7 @@ const Sidebar = () => {
             <Nav.Link as={Link} to={ROUTES.HOME_TIMELINE}><span className='titles'>Timeline</span></Nav.Link>
 
             <Followers />
+            <Following />
           </>
         : <>
             <UploadForm />
@@ -31,6 +33,7 @@ const Sidebar = () => {
             <Nav.Link as={Link} to={ROUTES.TIMELINE}>Timeline</Nav.Link>
 
             <Followers />
+            <Following />
           </>
       } 
     </div>

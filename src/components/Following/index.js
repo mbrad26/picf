@@ -3,22 +3,20 @@ import { Link } from 'react-router-dom';
 import { Image, Nav } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { doFollowStatusRequest } from '../../redux/actions/user';
-
-const Followers = () => {
-  console.log('FOLLOWERS');
+const Following = () => {
+  console.log('FOLLOWING');
   const dispatch = useDispatch();
-  const { followers } = useSelector(state => state.userState);
+  const { following } = useSelector(state => state.userState);
 
   useEffect(() => {
-    dispatch(doFollowStatusRequest());
-  }, [dispatch]);
+
+  }, []);
 
   return (
     <>
-      <p className='titles'>Followers</p>
-      {followers &&
-        followers.map(user => 
+      <p className='titles'>Following</p>
+      {following && 
+        following.map(user => 
           <div key={user.uid}>
             <div className='sidebar-avatars'>
               <Nav.Link as={Link} to={`/home/users/${user.uid}`}>
@@ -30,7 +28,7 @@ const Followers = () => {
         )
       }
     </>
-  );
-};
+  )
+}
 
-export default Followers;
+export default Following;
