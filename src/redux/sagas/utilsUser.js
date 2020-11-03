@@ -1,5 +1,6 @@
-import { eventChannel } from 'redux-saga';
 import firebase from 'firebase/app';
+import { eventChannel } from 'redux-saga';
+import { call } from 'redux-saga/effects';
 
 import { auth, firestore, storage } from '../../firebase/config';
 
@@ -34,10 +35,15 @@ const userChannel = () => {
   });
 };
 
-const updateCurrentUserFollowing = (uid, username, userUid) => 
+function* updateCurrentUserFollowing(uid, userUid) {
+  const data = yield call(getUserSnapshotFromFirestore, userUid);
+  const username = data.username;
+  const avatarUrl = data.avatarUrl;
+
   firestore.collection('users').doc(uid)
            .collection('following').doc(userUid)
-           .set({ userUid, username });
+           .set({ userUid, username, avatarUrl });
+};
 
 const updateFollowedUserFollowers = (userUid, username, uid, avatarUrl) => 
   firestore.collection('users').doc(userUid)

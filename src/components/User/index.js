@@ -23,7 +23,7 @@ const User = (props) => {
 
   const user = followers ? followers.filter(user => user.uid === userUid) : null;
 
-  console.log('USER_FOLLOWERS: ', userUid);
+  // console.log('USER_FOLLOWERS: ', userUid);
 
   const handleFollowUnfollow = () => {
     if(followers.some(user => user.uid === userUid)) {

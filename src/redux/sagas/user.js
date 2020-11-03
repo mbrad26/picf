@@ -6,26 +6,26 @@ import {
 } from '../../firebase/config';
 import { 
   doRequestError, 
-  doSetUserSuccess, 
   doSetFollowers,
   doSetAvatarUrl,
-  doSetAvatarUploadProgress,
   doSetFollowing,
+  doSetUserSuccess, 
+  doSetAvatarUploadProgress,
 } from '../actions/user';
 import { 
   userChannel,
   avatarChannel,
-  setUserInFirestore, 
-  avatarUploadChannel,
-  getCurrentUserFromFirestore,
-  updateTimelineUserFollowers,
-  updateCurrentUserFollowing,
-  updateFollowedUserFollowers, 
-  removeFollowedUserFromFollowing,
-  removeFollowingUserFromFollowers,
   followersChannel,
   followingChannel,
+  setUserInFirestore, 
+  avatarUploadChannel,
+  updateCurrentUserFollowing,
+  updateFollowedUserFollowers, 
+  getCurrentUserFromFirestore,
+  updateTimelineUserFollowers,
   unfolowUserTimelineCollection,
+  removeFollowedUserFromFollowing,
+  removeFollowingUserFromFollowers,
  } from './utilsUser';
 import { 
   doOverlayError, 
@@ -101,7 +101,7 @@ function* manageFollowing({ payload: userUid }) {
   const avatarUrl = authUser.avatarUrl;
 
   try {
-    yield call(updateCurrentUserFollowing, uid, username, userUid);
+    yield call(updateCurrentUserFollowing, uid, userUid);
     yield call(updateFollowedUserFollowers, userUid, username, uid, avatarUrl);
     yield call(updateTimelineUserFollowers, uid, userUid);
   } catch (error) {

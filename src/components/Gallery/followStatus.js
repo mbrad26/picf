@@ -18,7 +18,7 @@ const FollowStatus = ({ data }) => {
   const { userUid, ownerFollowers } = data;
   const path = history.location.pathname;
 
-  console.log('PATH_FOLLOW_STATUS: ', path);
+  // console.log('DATA_DATA_DATA: ', data);
 
   const userFollowers = path === '/home/timeline' || path === '/account/timeline'
                           ? followers 
