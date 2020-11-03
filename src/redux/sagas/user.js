@@ -10,6 +10,7 @@ import {
   doSetFollowers,
   doSetAvatarUrl,
   doSetAvatarUploadProgress,
+  doSetFollowing,
 } from '../actions/user';
 import { 
   userChannel,
@@ -23,6 +24,7 @@ import {
   removeFollowedUserFromFollowing,
   removeFollowingUserFromFollowers,
   followersChannel,
+  followingChannel,
   unfolowUserTimelineCollection,
  } from './utilsUser';
 import { 
@@ -137,6 +139,23 @@ function* getFollowers() {
   };
 };
 
+function* getFollowing() {
+  const channel = yield call(followingChannel);
+
+  while(true) {
+    try {
+      const following = [];
+      const { data } = yield take(channel);
+
+      data.forEach(snap => following.push(snap.data()));
+
+      yield put(doSetFollowing(following));
+    } catch (error) {
+      yield put(doOverlayError(error));
+    }
+  };
+};
+
 function* avatarUpload({ payload: image }) {
   const channel = yield call(avatarUploadChannel, image);
 
@@ -178,4 +197,5 @@ export {
   manageFollowing,
   manageUnfollowing,
   getFollowers,
+  getFollowing,
 };
