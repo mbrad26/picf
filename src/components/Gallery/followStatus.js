@@ -18,6 +18,8 @@ const FollowStatus = ({ data }) => {
   const { userUid, ownerFollowers } = data;
   const path = history.location.pathname;
 
+  console.log('PATH_FOLLOW_STATUS: ', path);
+
   const userFollowers = path === '/home/timeline' || path === '/account/timeline'
                           ? followers 
                           : ownerFollowers;
@@ -31,20 +33,24 @@ const FollowStatus = ({ data }) => {
   }, [dispatch]);
 
   return (
-    <em>
-      {userUid === authUser.uid || (ownerFollowers && ownerFollowers.includes(authUser.uid))
-        ? <span> <PeopleAltIcon className='icon' onClick={handleUnfollow} /></span>
-        : <span> <GroupAddSharpIcon className='icon' onClick={handleFollow} /></span>
-      }
+    <>
+      {!path.includes('users') && 
+        <em>
+          {userUid === authUser.uid || (ownerFollowers && ownerFollowers.includes(authUser.uid))
+            ? <span> <PeopleAltIcon className='icon' onClick={handleUnfollow} /></span>
+            : <span> <GroupAddSharpIcon className='icon' onClick={handleFollow} /></span>
+          }
 
-      <span className='numbers'> {
-          userFollowers 
-            ? userFollowers.length
-            : 0
-        }
-      </span>
-    </em>
-  )
-}
+          <span className='numbers'> {
+              userFollowers 
+                ? userFollowers.length
+                : 0
+            }
+          </span>
+        </em>
+      }
+    </>
+  );
+};
 
 export default FollowStatus;
