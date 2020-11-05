@@ -21,7 +21,7 @@ const Following = () => {
         following.map(user => 
           <div key={user.uid}>
             <div className='sidebar-avatars'>
-              <Nav.Link as={Link} to={`/home/users/${user.uid}`}>
+              <Nav.Link as={Link} to={`/home/following/${user.uid}`}>
                 <Image id='avatar' src={user.avatarUrl} roundedCircle />
                 <span> {user.username}</span>
               </Nav.Link>

@@ -42,7 +42,7 @@ function* updateCurrentUserFollowing(uid, userUid) {
 
   firestore.collection('users').doc(uid)
            .collection('following').doc(userUid)
-           .set({ userUid, username, avatarUrl });
+           .set({ uid: userUid, username, avatarUrl });
 };
 
 const updateFollowedUserFollowers = (userUid, username, uid, avatarUrl) => 

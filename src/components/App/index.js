@@ -21,7 +21,10 @@ const App = () => {
   useEffect(() => {
     dispatch(doSetUserRequest());
   }, [dispatch]);
-
+  
+  // <Route path={ROUTES.FOLLOWERS} component={User} />
+  // <Route path={ROUTES.FOLLOWING} component={User} />
+  
   return (
     <Router>
       <div>
@@ -34,7 +37,6 @@ const App = () => {
           <Route path={ROUTES.SIGN_IN} component={SignIn} />
           <Route path={ROUTES.ACCOUNT} component={Account} />
           <Route path={ROUTES.PASSWORD_RESET} component={PasswordReset} />
-          <Route path={ROUTES.USER} component={User} />
         </Switch>
       </div>
     </Router>

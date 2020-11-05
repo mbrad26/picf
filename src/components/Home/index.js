@@ -51,7 +51,8 @@ const Home = () => {
         <Switch>
           <Route exact path={ROUTES.HOME} component={Gallery} />
           <Route exact path={ROUTES.HOME_TIMELINE} component={Gallery} />
-          <Route path={ROUTES.USER} component={User} />
+          <Route path={ROUTES.FOLLOWERS} component={User} />
+          <Route path={ROUTES.FOLLOWING} component={User} />
         </Switch>
       </div>
     </div>

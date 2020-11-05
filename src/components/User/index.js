@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Image, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -8,7 +8,7 @@ import { doUrlRequest } from '../../redux/actions/images';
 import { 
   doFollowRequest, 
   doUnfollowRequest,
-  doFollowStatusRequest, 
+  // doFollowStatusRequest, 
 } from '../../redux/actions/user';
 import ImageModal from '../Modal';
 
@@ -16,6 +16,7 @@ const User = (props) => {
   console.log('USER', props);
   const dispatch = useDispatch();
   const { followers } = useSelector(state => state.userState);
+  // const refFollowers = useRef(followers);
   const { imagesData } = useSelector(state => state.imagesState);
   const { isOpen } = useSelector(state => state.modalState);
   const userUid = props.match.params.uid;
@@ -23,7 +24,8 @@ const User = (props) => {
 
   const user = followers ? followers.filter(user => user.uid === userUid) : null;
 
-  // console.log('USER_FOLLOWERS: ', userUid);
+  console.log('USER_FOLLOWERS: ', followers);
+  console.log('USER_UID: ', userUid);
 
   const handleFollowUnfollow = () => {
     if(followers.some(user => user.uid === userUid)) {
