@@ -15,20 +15,22 @@ import ImageModal from '../Modal';
 const User = (props) => {
   console.log('USER', props);
   const dispatch = useDispatch();
-  const { followers } = useSelector(state => state.userState);
-  // const refFollowers = useRef(followers);
+  const { followers, following } = useSelector(state => state.userState);
   const { imagesData } = useSelector(state => state.imagesState);
   const { isOpen } = useSelector(state => state.modalState);
   const userUid = props.match.params.uid;
-  const [state, setState] = useState(followers.some(user => user.uid === userUid));
+  const users = props.history.location.pathname.includes('followers') 
+                  ? followers
+                  : following;
+  const [state, setState] = useState(users.some(user => user.uid === userUid));
 
-  const user = followers ? followers.filter(user => user.uid === userUid) : null;
+  const user = users ? users.filter(user => user.uid === userUid) : null;
 
-  console.log('USER_FOLLOWERS: ', followers);
-  console.log('USER_UID: ', userUid);
+  // console.log('USER_FOLLOWERS: ', users);
+  // console.log('USER_UID: ', userUid);
 
   const handleFollowUnfollow = () => {
-    if(followers.some(user => user.uid === userUid)) {
+    if(users.some(user => user.uid === userUid)) {
       dispatch(doUnfollowRequest(userUid));
     } else {
       dispatch(doFollowRequest(userUid));
