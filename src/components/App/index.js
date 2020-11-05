@@ -21,10 +21,7 @@ const App = () => {
   useEffect(() => {
     dispatch(doSetUserRequest());
   }, [dispatch]);
-  
-  // <Route path={ROUTES.FOLLOWERS} component={User} />
-  // <Route path={ROUTES.FOLLOWING} component={User} />
-  
+
   return (
     <Router>
       <div>

@@ -8,7 +8,7 @@ import { doUrlRequest } from '../../redux/actions/images';
 import { 
   doFollowRequest, 
   doUnfollowRequest,
-  // doFollowStatusRequest, 
+  doFollowStatusRequest, 
 } from '../../redux/actions/user';
 import ImageModal from '../Modal';
 
@@ -32,6 +32,7 @@ const User = (props) => {
   const handleFollowUnfollow = () => {
     if(users.some(user => user.uid === userUid)) {
       dispatch(doUnfollowRequest(userUid));
+      setState('');
     } else {
       dispatch(doFollowRequest(userUid));
     };

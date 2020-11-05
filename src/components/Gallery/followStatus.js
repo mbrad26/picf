@@ -18,8 +18,6 @@ const FollowStatus = ({ data }) => {
   const { userUid, ownerFollowers } = data;
   const path = history.location.pathname;
 
-  // console.log('DATA_DATA_DATA: ', data);
-
   const userFollowers = path === '/home/timeline' || path === '/account/timeline'
                           ? followers 
                           : ownerFollowers;
@@ -34,7 +32,7 @@ const FollowStatus = ({ data }) => {
 
   return (
     <>
-      {!path.includes('users') && 
+      {!['followers', 'following'].some(string => path.includes(string)) && 
         <em>
           {userUid === authUser.uid || (ownerFollowers && ownerFollowers.includes(authUser.uid))
             ? <span> <PeopleAltIcon className='icon' onClick={handleUnfollow} /></span>
