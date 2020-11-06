@@ -15,6 +15,7 @@ import ImageModal from '../Modal';
 const User = (props) => {
   console.log('USER', props);
   const dispatch = useDispatch();
+  const ref = useRef();
   const { followers, following } = useSelector(state => state.userState);
   const { imagesData } = useSelector(state => state.imagesState);
   const { isOpen } = useSelector(state => state.modalState);
@@ -22,21 +23,19 @@ const User = (props) => {
   const users = props.history.location.pathname.includes('followers') 
                   ? followers
                   : following;
-  const [state, setState] = useState(
-                                    users 
-                                      ? users.some(user => user.uid === userUid) 
-                                      : null
-                                    );
+  const [state, setState] = useState(ref.current 
+                                      ? ref.current.some(user => user.uid === userUid) 
+                                      : null);
 
-  const user = users ? users.filter(user => user.uid === userUid) : null;
+  const user = ref.current ? ref.current.filter(user => user.uid === userUid) : null;
 
-  // console.log('USER_FOLLOWERS: ', users);
+  console.log('USER_FOLLOWERS: ', ref);
   // console.log('USER_UID: ', userUid);
 
   const handleFollowUnfollow = () => {
     if(users.some(user => user.uid === userUid)) {
       dispatch(doUnfollowRequest(userUid));
-      setState([]);
+      setState(null);
     } else {
       dispatch(doFollowRequest(userUid));
       setState(user);
@@ -48,13 +47,14 @@ const User = (props) => {
   // }, [dispatch]);
 
   useEffect(() => {
+    ref.current = users
     dispatch(doUrlRequest(`images/${userUid}/timeline`));
-  }, [dispatch, userUid]);
+  }, [dispatch, users, userUid]);
 
   return (
     <>
       <div className='user-avatar'>
-        {user && 
+        {user && user[0] && 
           <>
             <Image id='avatar' src={user[0].avatarUrl} roundedCircle />
             <span id='username'> {user[0].username} </span>
