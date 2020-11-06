@@ -20,25 +20,27 @@ const User = (props) => {
   const { imagesData } = useSelector(state => state.imagesState);
   const { isOpen } = useSelector(state => state.modalState);
   const userUid = props.match.params.uid;
+
   const users = props.history.location.pathname.includes('followers') 
                   ? followers
                   : following;
+
   const [state, setState] = useState(ref.current 
                                       ? ref.current.some(user => user.uid === userUid) 
-                                      : null);
+                                      : false);
 
-  const user = ref.current ? ref.current.filter(user => user.uid === userUid) : null;
+  const user = ref.current ? ref.current.filter(user => user.uid === userUid) : false;
 
-  console.log('USER_FOLLOWERS: ', ref);
+  console.log('USER_FOLLOWERS: ', state);
   // console.log('USER_UID: ', userUid);
 
   const handleFollowUnfollow = () => {
     if(users.some(user => user.uid === userUid)) {
       dispatch(doUnfollowRequest(userUid));
-      setState(null);
+      setState(false);
     } else {
       dispatch(doFollowRequest(userUid));
-      setState(user);
+      setState(true);
     };
   };
 
@@ -47,7 +49,7 @@ const User = (props) => {
   // }, [dispatch]);
 
   useEffect(() => {
-    ref.current = users
+    ref.current = users;
     dispatch(doUrlRequest(`images/${userUid}/timeline`));
   }, [dispatch, users, userUid]);
 
@@ -63,8 +65,8 @@ const User = (props) => {
               variant='light' 
               onClick={handleFollowUnfollow}
             >
-              {state !== []
-                ? 'Unfollow'
+              {state
+                ? 'Unfollow'  
                 : 'Follow'
               }
             </Button>
