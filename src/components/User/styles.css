@@ -4,9 +4,14 @@
 } 
 
 .user-avatar > #avatar {
-  margin-top: 10px;
+  margin-left: 1em;
+  margin-top: 1em;
   width: 100px;
   height: 100px;
+}
+
+.user-details {
+  margin: 1em 1em 0px 1em;
 }
 
 #username {
@@ -15,6 +20,10 @@
 }
 
 .btn-light {
-  background-color: slategray;
-  color: aliceblue;
+  border: 1px solid black;
+}
+
+.btn-light:hover {
+  background-color: black;
+  color: azure;
 }

@@ -18,6 +18,7 @@
 
 .main {
   overflow-y: scroll;
-  max-height: 91vh;
+  min-height: 100vh;
   grid-row: span 10;
+  background-color: white;
 }

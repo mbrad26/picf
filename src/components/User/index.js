@@ -27,9 +27,9 @@ const User = (props) => {
 
   const [state, setState] = useState(ref.current 
                                       ? ref.current.some(user => user.uid === userUid) 
-                                      : false);
+                                      : null);
 
-  const user = ref.current ? ref.current.filter(user => user.uid === userUid) : false;
+  const user = ref.current ? ref.current.filter(user => user.uid === userUid) : null;
 
   console.log('USER_FOLLOWERS: ', state);
   // console.log('USER_UID: ', userUid);
@@ -70,7 +70,7 @@ const User = (props) => {
                 : 'Follow'
               }
             </Button>
-            <div>
+            <div className='user-details'>
               <span>   Nr of followers</span>
               <span>     Following</span>
 
