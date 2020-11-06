@@ -22,7 +22,11 @@ const User = (props) => {
   const users = props.history.location.pathname.includes('followers') 
                   ? followers
                   : following;
-  const [state, setState] = useState(users.some(user => user.uid === userUid));
+  const [state, setState] = useState(
+                                    users 
+                                      ? users.some(user => user.uid === userUid) 
+                                      : null
+                                    );
 
   const user = users ? users.filter(user => user.uid === userUid) : null;
 
@@ -32,9 +36,10 @@ const User = (props) => {
   const handleFollowUnfollow = () => {
     if(users.some(user => user.uid === userUid)) {
       dispatch(doUnfollowRequest(userUid));
-      setState('');
+      setState([]);
     } else {
       dispatch(doFollowRequest(userUid));
+      setState(user);
     };
   };
 
@@ -58,7 +63,7 @@ const User = (props) => {
               variant='light' 
               onClick={handleFollowUnfollow}
             >
-              {state
+              {state !== []
                 ? 'Unfollow'
                 : 'Follow'
               }
