@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 
 import store from '../../../redux/store';
-import Account from  '../../../components/Account';
+import Account from  '../../../components/Account/index';
 
 describe('Account', () => {
   it('renders snapshot', () => {

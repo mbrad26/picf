@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Settings renders a snapshot 1`] = `
+<div
+  class="settings-container"
+>
+  <h3>
+    Password reset
+  </h3>
+  <form>
+    <input
+      name="email"
+      placeholder="Email"
+      type="email"
+      value=""
+    />
+    <button
+      disabled=""
+      type="submit"
+    >
+      Reset
+    </button>
+  </form>
+  <h3>
+    Password change
+  </h3>
+  <form>
+    <input
+      name="passwordOne"
+      placeholder="New password"
+      type="text"
+      value=""
+    />
+    <input
+      name="passwordTwo"
+      placeholder="Confirm new password"
+      type="password"
+      value=""
+    />
+    <button
+      disabled=""
+      type="submit"
+    >
+      Change password
+    </button>
+  </form>
+</div>
+`;
