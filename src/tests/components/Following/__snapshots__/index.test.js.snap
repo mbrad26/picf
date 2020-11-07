@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Followers renders snapshot 1`] = `
+exports[`Following renders snapshot 1`] = `
 <p
   class="titles"
 >
-  Followers
+  Following
 </p>
 `;
