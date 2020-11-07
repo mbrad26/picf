@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders snapshot 1`] = `
+<div>
+  <nav
+    class="navbar navbar-expand navbar-light"
+  >
+    <span
+      class="navbar-brand"
+    >
+      <a
+        class="nav-link"
+        href="/"
+      >
+        Picturesque
+      </a>
+    </span>
+    <div
+      class="ml-auto navbar-nav"
+    >
+      <a
+        class="nav-link"
+        href="/signup"
+      >
+        Sign Up
+      </a>
+      <a
+        class="nav-link"
+        href="/signin"
+      >
+        Sign In
+      </a>
+    </div>
+  </nav>
+  <div>
+    <h1>
+      Landing Page
+    </h1>
+  </div>
+</div>
+`;

@@ -1,15 +1,15 @@
  .navbar {
-  background-color: #2196f3;
+  background-color: black;
   -webkit-transform: translateZ(0);
 }
 
 .navbar-light .navbar-nav .nav-link,
 .nav-link {
-  color: white;
+  color: silver;
 }
 
 .nav-link:hover {
-  color: black;
+  color: silver;
 }
 
 #signout-link {

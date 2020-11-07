@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './style.css';
-import User from '../User';
 import Home from '../Home';
 import SignIn from '../SignIn';
 import SignUp from '../SignUp';
