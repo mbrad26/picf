@@ -8,10 +8,12 @@ import {
   doUnlikeRequest,
   doSetLikeStatus,
   doLikeStatusRequest,
+  doDeleteRequest,
 } from '../../../redux/actions/images';
 import { 
   ADD_LIKE_REQUEST,
   CLOSE_MODAL,
+  DELETE_REQUEST,
   FILE_UPLOAD_REQUEST, 
   LIKE_STATUS_REQUEST, 
   SET_LIKE_STATUS, 
@@ -124,10 +126,17 @@ describe('doLikeStatusRequest', () => {
     expect(doLikeStatusRequest()).toEqual(expectedObject);
   });
 });
-describe('', () => {
-  it('returns the correct object', () => {
 
+describe('doDeleteRequest', () => {
+  it('returns the correct object', () => {
+    const name = {};
+    const expectedObject = {
+      type: DELETE_REQUEST,
+      payload: name,
+    }
   });
+
+  expect(doDeleteRequest(name)).toEqual(expectedObject);
 });
 
 describe('', () => {
