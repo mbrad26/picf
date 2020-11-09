@@ -13,45 +13,40 @@ import {
 import ImageModal from '../Modal';
 
 const User = (props) => {
-  console.log('USER', props);
+  console.log('USER');
   const dispatch = useDispatch();
   const ref = useRef();
   const { followers, following } = useSelector(state => state.userState);
   const { imagesData } = useSelector(state => state.imagesState);
   const { isOpen } = useSelector(state => state.modalState);
   const userUid = props.match.params.uid;
+  const isFollowing = following.some(user => user.uid === userUid);
+  const [state, setState] = useState(isFollowing);
 
   const users = props.history.location.pathname.includes('followers') 
                   ? followers
                   : following;
 
-  const [state, setState] = useState(ref.current 
-                                      ? ref.current.some(user => user.uid === userUid) 
-                                      : null);
-
   const user = ref.current ? ref.current.filter(user => user.uid === userUid) : null;
 
-  console.log('USER_FOLLOWERS: ', state);
-  // console.log('USER_UID: ', userUid);
+  console.log('STATE: ', state);
+  console.log('FOLLOWING: ', ref.current);
 
   const handleFollowUnfollow = () => {
-    if(users.some(user => user.uid === userUid)) {
+    if(state) {
       dispatch(doUnfollowRequest(userUid));
-      setState(false);
-    } else {
+    };
+    if(!state) {
       dispatch(doFollowRequest(userUid));
-      setState(true);
     };
   };
-
-  // useEffect(() => {
-  //   dispatch(doFollowStatusRequest());
-  // }, [dispatch]);
 
   useEffect(() => {
     ref.current = users;
     dispatch(doUrlRequest(`images/${userUid}/timeline`));
-  }, [dispatch, users, userUid]);
+
+    setState(isFollowing);
+  }, [dispatch, following, userUid, isFollowing]);
 
   return (
     <>
