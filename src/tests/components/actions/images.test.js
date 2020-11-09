@@ -7,11 +7,13 @@ import {
   doAddLikeRequest,
   doUnlikeRequest,
   doSetLikeStatus,
+  doLikeStatusRequest,
 } from '../../../redux/actions/images';
 import { 
   ADD_LIKE_REQUEST,
   CLOSE_MODAL,
   FILE_UPLOAD_REQUEST, 
+  LIKE_STATUS_REQUEST, 
   SET_LIKE_STATUS, 
   SET_UPLOAD_PROGRESS,
   SET_URLS,
@@ -113,9 +115,13 @@ describe('doSetLikeStatus', () => {
   });
 });
 
-describe('', () => {
+describe('doLikeStatusRequest', () => {
   it('returns the correct object', () => {
+    const expectedObject = {
+      type: LIKE_STATUS_REQUEST,
+    };
 
+    expect(doLikeStatusRequest()).toEqual(expectedObject);
   });
 });
 describe('', () => {
