@@ -5,6 +5,7 @@ import {
   doSetUrls,
   doCloseModal,
   doAddLikeRequest,
+  doUnlikeRequest,
 } from '../../../redux/actions/images';
 import { 
   ADD_LIKE_REQUEST,
@@ -12,6 +13,7 @@ import {
   FILE_UPLOAD_REQUEST, 
   SET_UPLOAD_PROGRESS,
   SET_URLS,
+  UNLIKE_REQUEST,
   URL_REQUEST,
  } from '../../../redux/constants/actionTypes';
 
@@ -85,9 +87,15 @@ describe('doAddLikeRequest', () => {
   });
 });
 
-describe('', () => {
+describe('doUnlikeRequest', () => {
   it('returns the correct object', () => {
+    const data = {};
+    const expectedObject = {
+      type: UNLIKE_REQUEST,
+      payload: data,
+    };
 
+    expect(doUnlikeRequest(data)).toEqual(expectedObject);
   });
 });
 
