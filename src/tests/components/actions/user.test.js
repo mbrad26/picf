@@ -3,9 +3,11 @@ import {
   doSigninRequest,
   doSignupRequest, 
   doSignoutRequest,
+  doSetUserRequest,
 } from '../../../redux/actions/user';
 import { 
   REQUEST_ERROR,
+  SET_USER_REQUEST,
   SIGNIN_REQUEST,
   SIGNOUT_REQUEST,
   SIGNUP_REQUEST, 
@@ -57,9 +59,13 @@ describe('doSignoutRequest', () => {
   });
 });
 
-describe('', () => {
+describe('doSetUserRequest', () => {
   it('returns the correct object', () => {
+    const expectedObject = {
+      type: SET_USER_REQUEST,
+    };
 
+    expect(doSetUserRequest()).toEqual(expectedObject);
   });
 });
 
