@@ -6,6 +6,7 @@ import {
   doSetUserRequest,
   doSetUserSuccess,
   doResetPasswordRequest,
+  doUpdatePasswordRequest,
 } from '../../../redux/actions/user';
 import { 
   REQUEST_ERROR,
@@ -15,6 +16,7 @@ import {
   SIGNUP_REQUEST, 
   SET_USER_SUCCESS,
   RESET_PASSWORD_REQUEST,
+  UPDATE_PASSWORD_REQUEST,
 } from '../../../redux/constants/actionTypes';
 
 describe('doSignupRequest', () => {
@@ -97,9 +99,15 @@ describe('doResetPasswordRequest', () => {
   });
 });
 
-describe('', () => {
+describe('doUpdatePasswordRequest', () => {
   it('returns the correct object', () => {
+    const password = {};
+    const expectedObject = {
+      type: UPDATE_PASSWORD_REQUEST,
+      payload: password,
+    };
 
+    expect(doUpdatePasswordRequest(password)).toEqual(expectedObject);
   });
 });
 
