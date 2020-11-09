@@ -2,10 +2,12 @@ import {
   doRequestError,
   doSigninRequest,
   doSignupRequest, 
+  doSignoutRequest,
 } from '../../../redux/actions/user';
 import { 
   REQUEST_ERROR,
   SIGNIN_REQUEST,
+  SIGNOUT_REQUEST,
   SIGNUP_REQUEST, 
 } from '../../../redux/constants/actionTypes';
 
@@ -45,9 +47,13 @@ describe('doSigninRequest', () => {
   });
 });
 
-describe('', () => {
+describe('doSignoutRequest', () => {
   it('returns the correct object', () => {
+    const expectedObject = {
+      type: SIGNOUT_REQUEST,
+    };
 
+    expect(doSignoutRequest()).toEqual(expectedObject);
   });
 });
 
