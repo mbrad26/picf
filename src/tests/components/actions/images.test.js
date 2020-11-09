@@ -9,6 +9,7 @@ import {
   doSetLikeStatus,
   doLikeStatusRequest,
   doDeleteRequest,
+  doOverlayError,
 } from '../../../redux/actions/images';
 import { 
   ADD_LIKE_REQUEST,
@@ -16,6 +17,7 @@ import {
   DELETE_REQUEST,
   FILE_UPLOAD_REQUEST, 
   LIKE_STATUS_REQUEST, 
+  OVERLAY_ERROR, 
   SET_LIKE_STATUS, 
   SET_UPLOAD_PROGRESS,
   SET_URLS,
@@ -133,20 +135,19 @@ describe('doDeleteRequest', () => {
     const expectedObject = {
       type: DELETE_REQUEST,
       payload: name,
-    }
-  });
-
-  expect(doDeleteRequest(name)).toEqual(expectedObject);
-});
-
-describe('', () => {
-  it('returns the correct object', () => {
-
+    };
+    expect(doDeleteRequest(name)).toEqual(expectedObject);
   });
 });
 
-describe('', () => {
+describe('doOverlayError', () => {
   it('returns the correct object', () => {
+    const error = {};
+    const expectedObject = {
+      type: OVERLAY_ERROR,
+      payload: error,
+    };
 
+    expect(doOverlayError(error)).toEqual(expectedObject);
   });
 });
