@@ -1,9 +1,12 @@
 import { 
   doFileUploadRequest, 
   doSetUploadProgress,
+  doUrlRequest,
 } from '../../../redux/actions/images';
-import { FILE_UPLOAD_REQUEST, 
+import { 
+  FILE_UPLOAD_REQUEST, 
   SET_UPLOAD_PROGRESS,
+  URL_REQUEST,
  } from '../../../redux/constants/actionTypes';
 
 describe('doFileUploadRequest', () => {
@@ -27,5 +30,17 @@ describe('doSetUploadProgress', () => {
     };
 
     expect(doSetUploadProgress(progress)).toEqual(expectedObject);
+  });
+});
+
+describe('doUrlRequest', () => {
+  it('returns the correct object', () => {
+    const collection = {};
+    const expectedObject = {
+      type: URL_REQUEST,
+      payload: collection,
+    };
+
+    expect(doUrlRequest(collection)).toEqual(expectedObject);
   });
 });
