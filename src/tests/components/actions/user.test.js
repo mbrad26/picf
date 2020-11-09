@@ -7,6 +7,7 @@ import {
   doSetUserSuccess,
   doResetPasswordRequest,
   doUpdatePasswordRequest,
+  doSigninWithGoogleRequest,
 } from '../../../redux/actions/user';
 import { 
   REQUEST_ERROR,
@@ -17,6 +18,7 @@ import {
   SET_USER_SUCCESS,
   RESET_PASSWORD_REQUEST,
   UPDATE_PASSWORD_REQUEST,
+  SIGNIN_WITH_GOOGLE_REQUEST,
 } from '../../../redux/constants/actionTypes';
 
 describe('doSignupRequest', () => {
@@ -111,9 +113,13 @@ describe('doUpdatePasswordRequest', () => {
   });
 });
 
-describe('', () => {
+describe('doSigninWithGoogleRequest', () => {
   it('returns the correct object', () => {
+    const expectedObject = {
+      type: SIGNIN_WITH_GOOGLE_REQUEST,
+    };
 
+    expect(doSigninWithGoogleRequest()).toEqual(expectedObject);
   });
 });
 
