@@ -3,8 +3,10 @@ import {
   doSetUploadProgress,
   doUrlRequest,
   doSetUrls,
+  doCloseModal,
 } from '../../../redux/actions/images';
 import { 
+  CLOSE_MODAL,
   FILE_UPLOAD_REQUEST, 
   SET_UPLOAD_PROGRESS,
   SET_URLS,
@@ -59,9 +61,13 @@ describe('doSetUrls', () => {
   });
 });
 
-describe('', () => {
+describe('doCloseModal', () => {
   it('returns the correct object', () => {
+    const expectedObject = {
+      type: CLOSE_MODAL,
+    };
 
+    expect(doCloseModal()).toEqual(expectedObject);
   });
 });
 
