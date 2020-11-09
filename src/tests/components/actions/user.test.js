@@ -9,6 +9,7 @@ import {
   doUpdatePasswordRequest,
   doSigninWithGoogleRequest,
   doEmailVerificationRequest,
+  doAvatarUploadRequest,
 } from '../../../redux/actions/user';
 import { 
   REQUEST_ERROR,
@@ -21,6 +22,7 @@ import {
   UPDATE_PASSWORD_REQUEST,
   SIGNIN_WITH_GOOGLE_REQUEST,
   EMAIL_VERIFICATION_REQUEST,
+  AVATAR_UPLOAD_REQUEST,
 } from '../../../redux/constants/actionTypes';
 
 describe('doSignupRequest', () => {
@@ -135,9 +137,15 @@ describe('doEmailVerificationRequest', () => {
   });
 });
 
-describe('', () => {
+describe('doAvatarUploadRequest', () => {
   it('returns the correct object', () => {
+    const file = {};
+    const expectedObject = {
+      type: AVATAR_UPLOAD_REQUEST,
+      payload: file,
+    };
 
+    expect(doAvatarUploadRequest(file)).toEqual(expectedObject);
   });
 });
 
