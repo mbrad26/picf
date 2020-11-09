@@ -16,6 +16,7 @@ import {
   doFollowRequest,
   doFollowStatusRequest,
   doFollowingStatusRequest,
+  doSetFollowers,
 } from '../../../redux/actions/user';
 import { 
   REQUEST_ERROR,
@@ -35,6 +36,8 @@ import {
   FOLLOW_REQUEST,
   FOLLOW_STATUS_REQUEST,
   FOLLOWING_STATUS_REQUEST,
+  SET_FOLLOWING,
+  SET_FOLLOWERS,
 } from '../../../redux/constants/actionTypes';
 
 describe('doSignupRequest', () => {
@@ -233,8 +236,14 @@ describe('doFollowingStatusRequest', () => {
   });
 });
 
-describe('', () => {
+describe('doSetFollowers', () => {
   it('returns the correct object', () => {
+    const followers = {};
+    const expectedObject = {
+      type: SET_FOLLOWERS,
+      payload: followers,
+    };
 
+    expect(doSetFollowers(followers)).toEqual(expectedObject);
   });
 });
