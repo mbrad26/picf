@@ -2,10 +2,12 @@ import {
   doFileUploadRequest, 
   doSetUploadProgress,
   doUrlRequest,
+  doSetUrls,
 } from '../../../redux/actions/images';
 import { 
   FILE_UPLOAD_REQUEST, 
   SET_UPLOAD_PROGRESS,
+  SET_URLS,
   URL_REQUEST,
  } from '../../../redux/constants/actionTypes';
 
@@ -42,5 +44,64 @@ describe('doUrlRequest', () => {
     };
 
     expect(doUrlRequest(collection)).toEqual(expectedObject);
+  });
+});
+
+describe('doSetUrls', () => {
+  it('returns the correct object', () => {
+    const urls = {};
+    const expectedObject = {
+      type: SET_URLS,
+      payload: urls,
+    };
+
+    expect(doSetUrls(urls)).toEqual(expectedObject);
+  });
+});
+
+describe('', () => {
+  it('returns the correct object', () => {
+
+  });
+});
+
+describe('', () => {
+  it('returns the correct object', () => {
+
+  });
+});
+
+describe('', () => {
+  it('returns the correct object', () => {
+
+  });
+});
+
+describe('', () => {
+  it('returns the correct object', () => {
+
+  });
+});
+
+describe('', () => {
+  it('returns the correct object', () => {
+
+  });
+});
+describe('', () => {
+  it('returns the correct object', () => {
+
+  });
+});
+
+describe('', () => {
+  it('returns the correct object', () => {
+
+  });
+});
+
+describe('', () => {
+  it('returns the correct object', () => {
+
   });
 });
