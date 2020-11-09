@@ -4,8 +4,10 @@ import {
   doUrlRequest,
   doSetUrls,
   doCloseModal,
+  doAddLikeRequest,
 } from '../../../redux/actions/images';
 import { 
+  ADD_LIKE_REQUEST,
   CLOSE_MODAL,
   FILE_UPLOAD_REQUEST, 
   SET_UPLOAD_PROGRESS,
@@ -71,9 +73,15 @@ describe('doCloseModal', () => {
   });
 });
 
-describe('', () => {
+describe('doAddLikeRequest', () => {
   it('returns the correct object', () => {
+    const data = {};
+    const expectedObject = {
+      type: ADD_LIKE_REQUEST,
+      payload: data,
+    };
 
+    expect(doAddLikeRequest(data)).toEqual(expectedObject);
   });
 });
 
