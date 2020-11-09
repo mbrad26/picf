@@ -8,6 +8,7 @@ import {
   doResetPasswordRequest,
   doUpdatePasswordRequest,
   doSigninWithGoogleRequest,
+  doEmailVerificationRequest,
 } from '../../../redux/actions/user';
 import { 
   REQUEST_ERROR,
@@ -19,6 +20,7 @@ import {
   RESET_PASSWORD_REQUEST,
   UPDATE_PASSWORD_REQUEST,
   SIGNIN_WITH_GOOGLE_REQUEST,
+  EMAIL_VERIFICATION_REQUEST,
 } from '../../../redux/constants/actionTypes';
 
 describe('doSignupRequest', () => {
@@ -123,9 +125,13 @@ describe('doSigninWithGoogleRequest', () => {
   });
 });
 
-describe('', () => {
+describe('doEmailVerificationRequest', () => {
   it('returns the correct object', () => {
+    const expectedObject = {
+      type: EMAIL_VERIFICATION_REQUEST,
+    };
 
+    expect(doEmailVerificationRequest()).toEqual(expectedObject);
   });
 });
 
