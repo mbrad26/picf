@@ -12,6 +12,7 @@ import {
   doAvatarUploadRequest,
   doSetAvatarUploadProgress,
   doSetAvatarUrl,
+  doGetAvatarUrl,
 } from '../../../redux/actions/user';
 import { 
   REQUEST_ERROR,
@@ -27,6 +28,7 @@ import {
   AVATAR_UPLOAD_REQUEST,
   SET_AVATAR_UPLOAD_PROGRESS,
   SET_AVATAR_URL,
+  AVATAR_REQUEST,
 } from '../../../redux/constants/actionTypes';
 
 describe('doSignupRequest', () => {
@@ -177,9 +179,15 @@ describe('doSetAvatarUrl', () => {
   });
 });
 
-describe('', () => {
+describe('doGetAvatarUrl', () => {
   it('returns the correct object', () => {
+    const uid = {};
+    const expectedObject = {
+      type: AVATAR_REQUEST,
+      payload: uid,
+    };
 
+    expect(doGetAvatarUrl(uid)).toEqual(expectedObject);
   });
 });
 
