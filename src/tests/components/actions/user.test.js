@@ -4,6 +4,7 @@ import {
   doSignupRequest, 
   doSignoutRequest,
   doSetUserRequest,
+  doSetUserSuccess,
 } from '../../../redux/actions/user';
 import { 
   REQUEST_ERROR,
@@ -11,6 +12,7 @@ import {
   SIGNIN_REQUEST,
   SIGNOUT_REQUEST,
   SIGNUP_REQUEST, 
+  SET_USER_SUCCESS,
 } from '../../../redux/constants/actionTypes';
 
 describe('doSignupRequest', () => {
@@ -69,9 +71,15 @@ describe('doSetUserRequest', () => {
   });
 });
 
-describe('', () => {
+describe('doSetUserSuccess', () => {
   it('returns the correct object', () => {
+    const user = {};
+    const expectedObject = {
+      type: SET_USER_SUCCESS,
+      payload: user,
+    };
 
+    expect(doSetUserSuccess(user)).toEqual(expectedObject);
   });
 });
 
