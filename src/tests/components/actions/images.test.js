@@ -6,11 +6,13 @@ import {
   doCloseModal,
   doAddLikeRequest,
   doUnlikeRequest,
+  doSetLikeStatus,
 } from '../../../redux/actions/images';
 import { 
   ADD_LIKE_REQUEST,
   CLOSE_MODAL,
   FILE_UPLOAD_REQUEST, 
+  SET_LIKE_STATUS, 
   SET_UPLOAD_PROGRESS,
   SET_URLS,
   UNLIKE_REQUEST,
@@ -99,9 +101,15 @@ describe('doUnlikeRequest', () => {
   });
 });
 
-describe('', () => {
+describe('doSetLikeStatus', () => {
   it('returns the correct object', () => {
+    const likes = {};
+    const expectedObject = {
+      type:SET_LIKE_STATUS,
+      payload: likes,
+    };
 
+    expect(doSetLikeStatus(likes)).toEqual(expectedObject);
   });
 });
 
