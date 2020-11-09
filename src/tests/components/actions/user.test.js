@@ -1,9 +1,11 @@
 import { 
   doRequestError,
+  doSigninRequest,
   doSignupRequest, 
 } from '../../../redux/actions/user';
 import { 
   REQUEST_ERROR,
+  SIGNIN_REQUEST,
   SIGNUP_REQUEST, 
 } from '../../../redux/constants/actionTypes';
 
@@ -31,9 +33,15 @@ describe('doRequestError', () => {
   });
 });
 
-describe('', () => {
+describe('doSigninRequest', () => {
   it('returns the correct object', () => {
+    const credentials = {};
+    const expectedObject = {
+      type: SIGNIN_REQUEST,
+      payload: credentials,
+    };
 
+    expect(doSigninRequest(credentials)).toEqual(expectedObject);
   });
 });
 
