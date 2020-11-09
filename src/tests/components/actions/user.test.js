@@ -15,6 +15,7 @@ import {
   doGetAvatarUrl,
   doFollowRequest,
   doFollowStatusRequest,
+  doFollowingStatusRequest,
 } from '../../../redux/actions/user';
 import { 
   REQUEST_ERROR,
@@ -33,6 +34,7 @@ import {
   AVATAR_REQUEST,
   FOLLOW_REQUEST,
   FOLLOW_STATUS_REQUEST,
+  FOLLOWING_STATUS_REQUEST,
 } from '../../../redux/constants/actionTypes';
 
 describe('doSignupRequest', () => {
@@ -219,9 +221,15 @@ describe('doFollowStatusRequest', () => {
   });
 });
 
-describe('', () => {
+describe('doFollowingStatusRequest', () => {
   it('returns the correct object', () => {
+    const uid = {};
+    const expectedObject = {
+      type: FOLLOWING_STATUS_REQUEST,
+      payload: uid,
+    };
 
+    expect(doFollowingStatusRequest(uid)).toEqual(expectedObject);
   });
 });
 
