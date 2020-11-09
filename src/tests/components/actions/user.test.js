@@ -10,6 +10,7 @@ import {
   doSigninWithGoogleRequest,
   doEmailVerificationRequest,
   doAvatarUploadRequest,
+  doSetAvatarUploadProgress,
 } from '../../../redux/actions/user';
 import { 
   REQUEST_ERROR,
@@ -23,6 +24,7 @@ import {
   SIGNIN_WITH_GOOGLE_REQUEST,
   EMAIL_VERIFICATION_REQUEST,
   AVATAR_UPLOAD_REQUEST,
+  SET_AVATAR_UPLOAD_PROGRESS,
 } from '../../../redux/constants/actionTypes';
 
 describe('doSignupRequest', () => {
@@ -149,9 +151,15 @@ describe('doAvatarUploadRequest', () => {
   });
 });
 
-describe('', () => {
+describe('doSetAvatarUploadProgress', () => {
   it('returns the correct object', () => {
+    const progress = {};
+    const expectedObject = {
+      type: SET_AVATAR_UPLOAD_PROGRESS,
+      payload: progress,
+    };
 
+    expect(doSetAvatarUploadProgress(progress)).toEqual(expectedObject);
   });
 });
 
