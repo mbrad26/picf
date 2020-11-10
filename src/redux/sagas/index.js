@@ -20,6 +20,7 @@ import {
   AVATAR_UPLOAD_REQUEST,
   AVATAR_REQUEST,
   FOLLOWING_STATUS_REQUEST,
+  SELECTED_USER_REQUEST,
 } from '../constants/actionTypes';
 import { 
   fileUpload, 
@@ -43,6 +44,7 @@ import {
   getFollowers,
   manageUnfollowing,
   getFollowing,
+  getSelectedUser,
  } from './user';
 
 function* watchAll() {
@@ -66,6 +68,7 @@ function* watchAll() {
     takeLatest(AVATAR_UPLOAD_REQUEST, avatarUpload),
     takeLatest(AVATAR_REQUEST, getAvatar),
     takeLatest(FOLLOWING_STATUS_REQUEST, getFollowing),
+    takeLatest(SELECTED_USER_REQUEST, getSelectedUser),
   ]);
 };
 

@@ -182,7 +182,19 @@ function* getAvatar({ payload: uid }) {
       yield put(doRequestError(error));
     }
   };
-}; 
+};
+
+function* getSelectedUser({ payload: uid }) {
+  // const channel = yield call();
+
+  // while(true) {
+  //   try {
+
+  //   } catch (error) {
+  //     yield put(doRequestError(error));
+  //   }
+  // };
+};
 
 export { 
   getAvatar,
@@ -198,4 +210,5 @@ export {
   manageUnfollowing,
   getFollowers,
   getFollowing,
+  getSelectedUser,
 };

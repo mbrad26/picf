@@ -4,6 +4,8 @@ import { call } from 'redux-saga/effects';
 
 import { auth, firestore, storage } from '../../firebase/config';
 
+const authUser = JSON.parse(localStorage.getItem('authUser'));
+
 function* getUserSnapshotFromFirestore(uid) {
   const userRef = yield firestore.doc(`users/${uid}`);
   const doc = yield userRef.get();
@@ -114,11 +116,11 @@ const unfolowUserTimelineCollection = (userUid, uid) => {
               );
 };
 
-const followersChannel = () => {
-  const authUser = JSON.parse(localStorage.getItem('authUser'));
+const followersChannel = (authUserUid = authUser.uid) => {
+  // const authUser = JSON.parse(localStorage.getItem('authUser'));
 
   return new eventChannel(emiter => {
-    const listener = firestore.collection('users').doc(`${authUser.uid}`)
+    const listener = firestore.collection('users').doc(`${authUserUid}`)
                               .collection('followers')
                               .onSnapshot(snapshot => emiter({ data: snapshot}));
 
@@ -126,11 +128,11 @@ const followersChannel = () => {
   });
 };
 
-const followingChannel = () => {
-  const authUser = JSON.parse(localStorage.getItem('authUser'));
+const followingChannel = (authUserUid = authUser.uid) => {
+  // const authUser = JSON.parse(localStorage.getItem('authUser'));
 
   return new eventChannel(emiter => {
-    const listener = firestore.collection('users').doc(`${authUser.uid}`)
+    const listener = firestore.collection('users').doc(`${authUserUid}`)
                               .collection('following')
                               .onSnapshot(snapshot => emiter({ data: snapshot}));
 
@@ -149,7 +151,7 @@ const avatarUploadChannel = image => {
       console.log(error);
     }, async ()=> {
       const url = await storage.ref(image.name).getDownloadURL();
-      const authUser = JSON.parse(localStorage.getItem('authUser'));
+      // const authUser = JSON.parse(localStorage.getItem('authUser'));
       const uid = authUser.uid;
       const name = image.name;
       
