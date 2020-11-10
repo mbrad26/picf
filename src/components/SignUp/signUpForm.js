@@ -14,7 +14,6 @@ const INITIAL_STATE = {
 };
 
 const SignUpForm = () => {
-  console.log('SIGN_UP_FORM');
   const history = useHistory();
   const dispatch = useDispatch();
   const { authUser, authError } = useSelector(state => state.userState);

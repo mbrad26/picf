@@ -10,7 +10,6 @@ const INITIAL_STATE = {
 };
 
 const PasswordChangeForm = () => {
-  console.log('PASSWORD_CHANGE_FORM');
   const dispatch = useDispatch();
   const { authError } = useSelector(state => state.userState);
   const [state, setState] = useState(INITIAL_STATE);

@@ -12,7 +12,6 @@ import NonAuthLinks from './nonAuthLinks';
 import * as ROUTES from '../constants/routes';
 
 const Navigation = () => {
-  console.log('NAVIGATION');
   const { authUser } = useSelector(state => state.userState);
 
   return (

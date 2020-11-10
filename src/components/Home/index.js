@@ -10,7 +10,6 @@ import * as ROUTES from '../constants/routes';
 import { doEmailVerificationRequest } from '../../redux/actions/user';
 
 const Home = () => {
-  console.log('HOME');
   const dispatch = useDispatch();
   const { authUser } = useSelector(state => state.userState);
 

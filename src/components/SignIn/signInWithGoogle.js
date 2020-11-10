@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { doSigninWithGoogleRequest } from '../../redux/actions/user';
 
 const SignInWithGoogle = () => {
-  console.log('SIGNIN_WITH_GOOGLE');
   const dispatch = useDispatch();
   const { authError } = useSelector(state => state.userState);
   const [error, setError] = useState(null);

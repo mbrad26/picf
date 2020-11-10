@@ -8,7 +8,6 @@ import {
 } from '../../redux/actions/images';
 
 const OverlayTop = ({ data }) => {
-  console.log('OVERLAY_TOP');
   const history = useHistory();
   const dispatch = useDispatch();
   const { authUser } = useSelector(state => state.userState);

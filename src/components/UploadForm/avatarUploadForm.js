@@ -9,7 +9,6 @@ import { types, INITIAL_STATE } from './utils';
 import { doAvatarUploadRequest } from '../../redux/actions/user';
 
 const AvatarUploadForm = () => {
-  console.log('AVATAR_UPLOAD_FORM');
   const dispatch = useDispatch();
   const [state, setState] = useState(INITIAL_STATE);
   const { uploadProgress, authError } = useSelector(state => state.userState);

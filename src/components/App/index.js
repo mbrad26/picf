@@ -14,7 +14,6 @@ import * as ROUTES from '../constants/routes';
 import { doSetUserRequest } from '../../redux/actions/user';
 
 const App = () => {
-  console.log('APP');
   const dispatch = useDispatch();
 
   useEffect(() => {

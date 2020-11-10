@@ -8,11 +8,11 @@ import { doUrlRequest } from '../../redux/actions/images';
 import { 
   doFollowRequest, 
   doUnfollowRequest,
+  doSelectedUserRequest,
 } from '../../redux/actions/user';
 import ImageModal from '../Modal';
 
 const User = (props) => {
-  console.log('USER', props);
   const dispatch = useDispatch();
   const ref = useRef();
   const { followers, following } = useSelector(state => state.userState);
@@ -39,10 +39,14 @@ const User = (props) => {
   };
 
   useEffect(() => {
+    dispatch(doSelectedUserRequest(userUid));
+  }, [userUid]);
+
+  useEffect(() => {
     ref.current = users;
     dispatch(doUrlRequest(`images/${userUid}/timeline`));
     setState(isFollowing);
-  }, [dispatch, following, userUid, isFollowing]);
+  }, [dispatch, users, following, userUid, isFollowing]);
 
   return (
     <>

@@ -46,7 +46,7 @@ function* updateCurrentUserFollowing(uid, userUid) {
   
   // firestore.collection('users').doc(uid)
   //          .update({ 
-  //            following: firebase.firestore.FieldValue.arrayUnion({ uid: userUid, username, avatarUrl })
+  //            following: firebase.firestore.FieldValue.arrayUnion(userUid)
   //          });
 };
 
@@ -57,7 +57,7 @@ const updateFollowedUserFollowers = (userUid, username, uid, avatarUrl) => {
 
   // firestore.collection('users').doc(userUid)
   //          .update({ 
-  //            followers: firebase.firestore.FieldValue.arrayUnion({ uid, username, avatarUrl })
+  //            followers: firebase.firestore.FieldValue.arrayUnion(uid)
   //          });
 };
 
@@ -83,14 +83,21 @@ const removeFollowingUserFromFollowers = (userUid, uid) => {
 
   // firestore.collection('users').doc(userUid)
   //          .update({ 
-  //            followers: firebase.firestore.FieldValue.arrayRemove(authUid)
+  //            followers: firebase.firestore.FieldValue.arrayRemove(uid)
   //          });
 };
 
-const removeFollowedUserFromFollowing = (userUid, uid) =>
+const removeFollowedUserFromFollowing = (userUid, uid) => {
   firestore.collection('users').doc(uid)
            .collection('following').doc(userUid)
            .delete();
+
+  // firestore.collection('users').doc(uid)
+  //          .update({ 
+  //            following: firebase.firestore.FieldValue.arrayRemove(userUid)
+  //          });
+
+};
 
 const unfolowUserTimelineCollection = (userUid, uid) => {
   const timelineRef = firestore.collection('timeline');

@@ -8,7 +8,6 @@ import ImageModal from '../Modal';
 import { doUrlRequest } from '../../redux/actions/images';
 
 const Gallery = () => {
-  console.log('GALLERY: ');
   const dispatch = useDispatch();
   const { isOpen } = useSelector(state => state.modalState);
   const { authUser } = useSelector(state => state.userState);

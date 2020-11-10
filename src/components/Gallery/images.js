@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import ImageComponent from './imageComponent';
 
 const Images = ({ imagesData }) => {
-  console.log('IMAGES');
   const [images, setImages] = useState();
 
   useEffect(() =>  {

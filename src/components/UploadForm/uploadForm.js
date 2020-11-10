@@ -9,7 +9,6 @@ import { types, INITIAL_STATE } from './utils';
 import { doFileUploadRequest } from '../../redux/actions/images';
 
 const UploadForm = () => {
-  console.log('UPLOAD_FORM');
   const dispatch = useDispatch();
   const [state, setState] = useState(INITIAL_STATE);
   const { uploadProgress, uploadError } = useSelector(state => state.imagesState);
@@ -62,4 +61,4 @@ const UploadForm = () => {
   );
 };
 
-export default UploadForm;
+export default React.memo(UploadForm);

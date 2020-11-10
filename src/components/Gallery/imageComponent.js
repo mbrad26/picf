@@ -8,7 +8,6 @@ import {
 } from '../../redux/actions/modal';
 
 const ImageComponent = ({ img }) => {
-  console.log('IMAGE_COMPONENT');
   const dispatch = useDispatch();
   
   const setActiveImage = image => dispatch(doSetActiveImage(image));

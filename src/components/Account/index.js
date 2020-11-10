@@ -11,7 +11,6 @@ import * as ROUTES from '../constants/routes';
 import { doEmailVerificationRequest } from '../../redux/actions/user';
 
 const Account = () => {
-  console.log('ACCOUNT');
   const dispatch = useDispatch();
   const { authUser } = useSelector(state => state.userState);
 

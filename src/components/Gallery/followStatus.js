@@ -51,4 +51,4 @@ const FollowStatus = ({ data }) => {
   );
 };
 
-export default FollowStatus;
+export default React.memo(FollowStatus);

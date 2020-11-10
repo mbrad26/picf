@@ -19,6 +19,8 @@ import  {
   FOLLOW_REQUEST,
   FOLLOWING_STATUS_REQUEST,
   SET_FOLLOWING,
+  SELECTED_USER_REQUEST,
+  SET_SELECTED_USER,
  } from '../constants/actionTypes';
 
 const doSignupRequest = credentials => ({
@@ -117,6 +119,16 @@ const doUnfollowRequest = data => ({
   payload: data,
 });
 
+const doSelectedUserRequest = uid => ({
+  type: SELECTED_USER_REQUEST,
+  payload: uid,
+});
+
+const doSetSelectedUser = data => ({
+  type: SET_SELECTED_USER,
+  payload: data,
+});
+
 export { 
   doRequestError,
   doSetAvatarUrl,
@@ -138,4 +150,6 @@ export {
   doFollowRequest,
   doFollowingStatusRequest,
   doSetFollowing,
+  doSelectedUserRequest,
+  doSetSelectedUser,
 };

@@ -9,7 +9,6 @@ import UploadForm from '../UploadForm/uploadForm';
 import * as ROUTES from  '../constants/routes';
 
 const Sidebar = () => {
-  console.log('SIDEBAR');
   const history = useHistory();
   const isHome = history.location.pathname.includes('/home');
 

@@ -5,7 +5,6 @@ import { Button } from 'react-bootstrap';
 import { doSignoutRequest } from '../../redux/actions/user';
 
 const SignOut = () => {
-  console.log('SIGN_OUT');
   const dispatch = useDispatch();
 
   const onClick = () => dispatch(doSignoutRequest());

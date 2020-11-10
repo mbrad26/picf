@@ -45,4 +45,5 @@ const LikeStatus = ({ data }) => {
   );
 };
 
-export default LikeStatus;
+export default React.memo(LikeStatus);
+

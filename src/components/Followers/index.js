@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { doFollowStatusRequest } from '../../redux/actions/user';
 
 const Followers = () => {
-  console.log('FOLLOWERS');
   const dispatch = useDispatch();
   const { followers } = useSelector(state => state.userState);
 
