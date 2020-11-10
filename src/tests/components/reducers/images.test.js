@@ -1,6 +1,7 @@
 import { 
   doSetUrls, 
-  doSetUploadProgress, 
+  doSetLikeStatus, 
+  doSetUploadProgress,
 } from '../../../redux/actions/images';
 import { doRequestError } from '../../../redux/actions/user';
 import imagesReducer from '../../../redux/reducers/images';
@@ -33,5 +34,12 @@ describe('imagesReducer', () => {
     const newState = imagesReducer(state, action);
 
     expect(newState).toEqual({ ...state, imagesData: {}});
+  });
+
+  it('returns like status', () => {
+    const action = doSetLikeStatus({});
+    const newState = imagesReducer(state, action);
+
+    expect(newState).toEqual({ ...state, likedStatus: {}});
   });
 });
