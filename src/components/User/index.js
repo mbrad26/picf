@@ -8,29 +8,26 @@ import { doUrlRequest } from '../../redux/actions/images';
 import { 
   doFollowRequest, 
   doUnfollowRequest,
-  doFollowStatusRequest, 
 } from '../../redux/actions/user';
 import ImageModal from '../Modal';
 
 const User = (props) => {
-  console.log('USER');
+  console.log('USER', props);
   const dispatch = useDispatch();
   const ref = useRef();
   const { followers, following } = useSelector(state => state.userState);
   const { imagesData } = useSelector(state => state.imagesState);
   const { isOpen } = useSelector(state => state.modalState);
   const userUid = props.match.params.uid;
-  const isFollowing = following.some(user => user.uid === userUid);
-  const [state, setState] = useState(isFollowing);
-
+  
   const users = props.history.location.pathname.includes('followers') 
-                  ? followers
-                  : following;
+                      ? followers
+                      : following;
 
+  const isFollowing = following && following.some(user => user.uid === userUid);
+  const [state, setState] = useState(isFollowing);
+  
   const user = ref.current ? ref.current.filter(user => user.uid === userUid) : null;
-
-  console.log('STATE: ', state);
-  console.log('FOLLOWING: ', ref.current);
 
   const handleFollowUnfollow = () => {
     if(state) {
@@ -44,7 +41,6 @@ const User = (props) => {
   useEffect(() => {
     ref.current = users;
     dispatch(doUrlRequest(`images/${userUid}/timeline`));
-
     setState(isFollowing);
   }, [dispatch, following, userUid, isFollowing]);
 

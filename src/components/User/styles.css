@@ -1,6 +1,7 @@
 .user-avatar {
   display: inline-block;
   cursor: pointer;
+  height: 156px;
 } 
 
 .user-avatar > #avatar {
