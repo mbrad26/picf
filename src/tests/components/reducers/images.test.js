@@ -1,9 +1,12 @@
-import { doSetUploadProgress } from '../../../redux/actions/images';
+import { 
+  doSetUrls, 
+  doSetUploadProgress, 
+} from '../../../redux/actions/images';
 import { doRequestError } from '../../../redux/actions/user';
 import imagesReducer from '../../../redux/reducers/images';
 
 describe('imagesReducer', () => {
-  const initialState = { 
+  const state = { 
     uploadError: null, 
     overlayError: null, 
     uploadProgress: '', 
@@ -12,7 +15,6 @@ describe('imagesReducer', () => {
   };
 
   it('returns error message', () => {
-    const state =  initialState;
     const action = doRequestError({});
     const newState = imagesReducer(state, action);
 
@@ -20,10 +22,16 @@ describe('imagesReducer', () => {
   });
 
   it('returns upload progress', () => {
-    const state = initialState;
     const action = doSetUploadProgress({});
     const newState = imagesReducer(state, action);
 
     expect(newState).toEqual({ ...state, uploadProgress: {}});
+  });
+
+  it('returns images urls', () => {
+    const action = doSetUrls({});
+    const newState = imagesReducer(state, action);
+
+    expect(newState).toEqual({ ...state, imagesData: {}});
   });
 });
