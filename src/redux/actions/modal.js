@@ -1,5 +1,6 @@
 import { 
-  SET_ACTIVE_IMAGE, 
+  CLOSE_MODAL, 
+  SET_ACTIVE_IMAGE,
 } from '../constants/actionTypes';
 
 const doSetActiveImage = img => ({
@@ -7,6 +8,11 @@ const doSetActiveImage = img => ({
   payload: img,
 });
 
+const doCloseModal = () => ({
+  type: CLOSE_MODAL,
+});
+
 export { 
+  doCloseModal,
   doSetActiveImage,
 };

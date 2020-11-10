@@ -1,6 +1,5 @@
 import { 
   ADD_LIKE_REQUEST,
-  CLOSE_MODAL,
   LIKE_STATUS_REQUEST,
   FILE_UPLOAD_REQUEST, 
   SET_LIKE_STATUS, 
@@ -30,10 +29,6 @@ const doUrlRequest = collection => ({
 const doSetUrls = urls => ({
   type: SET_URLS,
   payload: urls,
-});
-
-const doCloseModal = () => ({
-  type: CLOSE_MODAL,
 });
 
 const doAddLikeRequest = data => ({
@@ -70,7 +65,6 @@ export {
   doSetUploadProgress,
   doUrlRequest,
   doSetUrls,
-  doCloseModal,
   doAddLikeRequest,
   doUnlikeRequest,
   doSetLikeStatus,

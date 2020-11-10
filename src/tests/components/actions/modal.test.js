@@ -1,8 +1,10 @@
 import { 
-  doSetActiveImage 
+  doCloseModal,
+  doSetActiveImage, 
 } from '../../../redux/actions/modal';
 import { 
-  SET_ACTIVE_IMAGE 
+  CLOSE_MODAL,
+  SET_ACTIVE_IMAGE, 
 } from '../../../redux/constants/actionTypes';
 
 describe('doSetActiveImage', () => {
@@ -14,5 +16,15 @@ describe('doSetActiveImage', () => {
     };
 
     expect(doSetActiveImage(img)).toEqual(expectedObject);
+  });
+});
+
+describe('doCloseModal', () => {
+  it('returns the correct object', () => {
+    const expectedObject = {
+      type: CLOSE_MODAL,
+    };
+
+    expect(doCloseModal()).toEqual(expectedObject);
   });
 });

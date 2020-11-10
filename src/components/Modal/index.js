@@ -7,7 +7,7 @@ import {
 
 import './style.css';
 import Overlay from '../Gallery/overlay';
-import { doCloseModal } from '../../redux/actions/images';
+import { doCloseModal } from '../../redux/actions/modal';
 
 const ImageModal = () => {
   const dispatch = useDispatch();
