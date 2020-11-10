@@ -1,5 +1,6 @@
 import { 
   doSetUrls, 
+  doOverlayError,
   doSetLikeStatus, 
   doSetUploadProgress,
 } from '../../../redux/actions/images';
@@ -41,5 +42,12 @@ describe('imagesReducer', () => {
     const newState = imagesReducer(state, action);
 
     expect(newState).toEqual({ ...state, likedStatus: {}});
+  });
+
+  it('returns overlay error', () => {
+    const action = doOverlayError({});
+    const newState = imagesReducer(state, action);
+
+    expect(newState).toEqual({ ...state, overlayError: {}});
   });
 });
