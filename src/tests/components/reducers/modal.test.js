@@ -23,4 +23,11 @@ describe('modalReducer', () => {
 
     expect(newState).toEqual({ ...state, isOpen: false, activeImage: '' });
   });
+
+  it('returns initial state', () => {
+    const action = {};
+    const newState = modalReducer(state, action);
+
+    expect(newState).toEqual(state);
+  });
 });
