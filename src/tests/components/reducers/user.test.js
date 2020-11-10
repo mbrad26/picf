@@ -1,5 +1,7 @@
 import { 
-  doRequestError, doSetUserSuccess,
+  doRequestError, 
+  doSetUserSuccess,
+  doSetAvatarUploadProgress,
 } from '../../../redux/actions/user';
 import userReducer from '../../../redux/reducers/user';
 
@@ -25,5 +27,12 @@ describe('userReducer', () => {
     const newState = userReducer(state, action);
 
     expect(newState).toEqual({ ...state, authError: null, authUser: {} });
+  });
+
+  it('returns user avatar upload progress', () => {
+    const action = doSetAvatarUploadProgress({});
+    const newState = userReducer(state, action);
+
+    expect(newState).toEqual({ ...state, uploadProgress: {} });
   });
 });
