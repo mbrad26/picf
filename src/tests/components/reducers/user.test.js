@@ -4,6 +4,7 @@ import {
   doRequestError, 
   doSetUserSuccess,
   doSetAvatarUploadProgress,
+  doSetFollowing,
 } from '../../../redux/actions/user';
 import userReducer from '../../../redux/reducers/user';
 
@@ -50,5 +51,12 @@ describe('userReducer', () => {
     const newState = userReducer(state, action);
 
     expect(newState).toEqual({ ...state, followers: {} });
+  });
+
+  it('returns user following', () => {
+    const action = doSetFollowing({});
+    const newState = userReducer(state, action);
+
+    expect(newState).toEqual({ ...state, following: {} });
   });
 });
