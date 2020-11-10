@@ -1,4 +1,5 @@
 import { 
+  doSetAvatarUrl,
   doRequestError, 
   doSetUserSuccess,
   doSetAvatarUploadProgress,
@@ -34,5 +35,12 @@ describe('userReducer', () => {
     const newState = userReducer(state, action);
 
     expect(newState).toEqual({ ...state, uploadProgress: {} });
+  });
+
+  it('returns user avatar url', () => {
+    const action = doSetAvatarUrl({});
+    const newState = userReducer(state, action);
+
+    expect(newState).toEqual({ ...state, avatarUrl: {} });
   });
 });
