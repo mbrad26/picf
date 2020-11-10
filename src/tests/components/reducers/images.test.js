@@ -50,4 +50,11 @@ describe('imagesReducer', () => {
 
     expect(newState).toEqual({ ...state, overlayError: {}});
   });
+
+  it('returns initial state', () => {
+    const action = {};
+    const newState = imagesReducer(state, action);
+
+    expect(newState).toEqual(state);
+  });
 });
