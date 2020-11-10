@@ -1,4 +1,5 @@
 import { 
+  doSetFollowers,
   doSetAvatarUrl,
   doRequestError, 
   doSetUserSuccess,
@@ -42,5 +43,12 @@ describe('userReducer', () => {
     const newState = userReducer(state, action);
 
     expect(newState).toEqual({ ...state, avatarUrl: {} });
+  });
+
+  it('returns user followers', () => {
+    const action = doSetFollowers({});
+    const newState = userReducer(state, action);
+
+    expect(newState).toEqual({ ...state, followers: {} });
   });
 });
