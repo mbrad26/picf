@@ -59,4 +59,11 @@ describe('userReducer', () => {
 
     expect(newState).toEqual({ ...state, following: {} });
   });
+
+  it('returns initial state', () => {
+    const action = {};
+    const newState = userReducer(state, action);
+
+    expect(newState).toEqual(state);
+  });
 });
