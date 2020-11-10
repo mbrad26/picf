@@ -1,5 +1,5 @@
 import { 
-  doRequestError,
+  doRequestError, doSetUserSuccess,
 } from '../../../redux/actions/user';
 import userReducer from '../../../redux/reducers/user';
 
@@ -18,5 +18,12 @@ describe('userReducer', () => {
     const newState = userReducer(state, action);
 
     expect(newState).toEqual({ ...state, authError: {} });
+  });
+
+  it('sets auth user', () => {
+    const action = doSetUserSuccess({});
+    const newState = userReducer(state, action);
+
+    expect(newState).toEqual({ ...state, authError: null, authUser: {} });
   });
 });
