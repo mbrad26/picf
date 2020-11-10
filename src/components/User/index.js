@@ -15,7 +15,7 @@ import ImageModal from '../Modal';
 const User = (props) => {
   const dispatch = useDispatch();
   const ref = useRef();
-  const { followers, following } = useSelector(state => state.userState);
+  const { followers, following, selectedUser } = useSelector(state => state.userState);
   const { imagesData } = useSelector(state => state.imagesState);
   const { isOpen } = useSelector(state => state.modalState);
   const userUid = props.match.params.uid;
@@ -66,8 +66,8 @@ const User = (props) => {
               }
             </Button>
             <div className='user-details'>
-              <span>   Nr of followers</span>
-              <span>     Following</span>
+            <span>   {selectedUser && selectedUser.followers.length}</span>
+              <span>     {selectedUser && selectedUser.following.length}</span>
 
               <span>     Nr of pictures</span>
               <span>       Joined date</span>

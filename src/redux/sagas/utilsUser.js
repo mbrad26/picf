@@ -143,7 +143,6 @@ const selectedUserChannel = uid => {
     const listener = firestore.collection('users')
                               .doc(`${uid}`)
                               .onSnapshot(snapshot => {
-                                console.log('SELECTED_USER: ', snapshot.data());
                                 emiter({ data: snapshot.data()});
                               });
     
