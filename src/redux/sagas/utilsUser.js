@@ -46,10 +46,10 @@ function* updateCurrentUserFollowing(uid, userUid) {
            .collection('following').doc(userUid)
            .set({ uid: userUid, username, avatarUrl });
   
-  // firestore.collection('users').doc(uid)
-  //          .update({ 
-  //            following: firebase.firestore.FieldValue.arrayUnion(userUid)
-  //          });
+  firestore.collection('users').doc(uid)
+           .update({ 
+             following: firebase.firestore.FieldValue.arrayUnion(userUid)
+           });
 };
 
 const updateFollowedUserFollowers = (userUid, username, uid, avatarUrl) => {
@@ -57,10 +57,10 @@ const updateFollowedUserFollowers = (userUid, username, uid, avatarUrl) => {
            .collection('followers').doc(uid)
            .set({ uid , username, avatarUrl});
 
-  // firestore.collection('users').doc(userUid)
-  //          .update({ 
-  //            followers: firebase.firestore.FieldValue.arrayUnion(uid)
-  //          });
+  firestore.collection('users').doc(userUid)
+           .update({ 
+             followers: firebase.firestore.FieldValue.arrayUnion(uid)
+           });
 };
 
 const updateTimelineUserFollowers = (uid, userUid) => {
@@ -83,10 +83,10 @@ const removeFollowingUserFromFollowers = (userUid, uid) => {
            .collection('followers').doc(uid)
            .delete();
 
-  // firestore.collection('users').doc(userUid)
-  //          .update({ 
-  //            followers: firebase.firestore.FieldValue.arrayRemove(uid)
-  //          });
+  firestore.collection('users').doc(userUid)
+           .update({ 
+             followers: firebase.firestore.FieldValue.arrayRemove(uid)
+           });
 };
 
 const removeFollowedUserFromFollowing = (userUid, uid) => {
@@ -94,11 +94,10 @@ const removeFollowedUserFromFollowing = (userUid, uid) => {
            .collection('following').doc(userUid)
            .delete();
 
-  // firestore.collection('users').doc(uid)
-  //          .update({ 
-  //            following: firebase.firestore.FieldValue.arrayRemove(userUid)
-  //          });
-
+  firestore.collection('users').doc(uid)
+           .update({ 
+             following: firebase.firestore.FieldValue.arrayRemove(userUid)
+           });
 };
 
 const unfolowUserTimelineCollection = (userUid, uid) => {
@@ -117,25 +116,37 @@ const unfolowUserTimelineCollection = (userUid, uid) => {
 };
 
 const followersChannel = (authUserUid = authUser.uid) => {
-  // const authUser = JSON.parse(localStorage.getItem('authUser'));
-
   return new eventChannel(emiter => {
     const listener = firestore.collection('users').doc(`${authUserUid}`)
                               .collection('followers')
-                              .onSnapshot(snapshot => emiter({ data: snapshot}));
+                              .onSnapshot(snapshot => {
+                                // console.log('SELECTED_USER: ', snapshot.data());
+                                emiter({ data: snapshot })
+                              });
 
     return () => listener.off();
   });
 };
 
 const followingChannel = (authUserUid = authUser.uid) => {
-  // const authUser = JSON.parse(localStorage.getItem('authUser'));
-
   return new eventChannel(emiter => {
     const listener = firestore.collection('users').doc(`${authUserUid}`)
                               .collection('following')
                               .onSnapshot(snapshot => emiter({ data: snapshot}));
 
+    return () => listener.off();
+  });
+};
+
+const selectedUserChannel = uid => {
+  return new eventChannel(emiter => {
+    const listener = firestore.collection('users')
+                              .doc(`${uid}`)
+                              .onSnapshot(snapshot => {
+                                console.log('SELECTED_USER: ', snapshot.data());
+                                emiter({ data: snapshot.data()});
+                              });
+    
     return () => listener.off();
   });
 };
@@ -177,6 +188,7 @@ export {
   avatarChannel,
   setUserInFirestore,
   avatarUploadChannel,
+  selectedUserChannel,
   getCurrentUserFromFirestore,
   getUserSnapshotFromFirestore,
   followersChannel,

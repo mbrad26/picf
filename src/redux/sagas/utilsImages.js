@@ -7,6 +7,8 @@ import {
   timestamp 
 } from '../../firebase/config';
 
+const authUser = JSON.parse(localStorage.getItem('authUser'));
+
 const storageChannel = selected => {
   return new eventChannel(emiter => {
     const listener = storage.ref(selected.name).put(selected)
@@ -18,7 +20,6 @@ const storageChannel = selected => {
       console.log(error);
     }, async ()=> {
       const url = await storage.ref(selected.name).getDownloadURL();
-      const authUser = JSON.parse(localStorage.getItem('authUser'));
       const createdAt = timestamp();
       const uid = authUser.uid;
       const username = authUser.username;
@@ -65,7 +66,7 @@ const imagesUrlsChannel = collection => {
 };
 
 const favouritesChannel = () => {
-  const authUser = JSON.parse(localStorage.getItem('authUser'));
+  // const authUser = JSON.parse(localStorage.getItem('authUser'));
   
   return new eventChannel(emiter => {
     const listener = firestore.collection('users').doc(`${authUser.uid}`)

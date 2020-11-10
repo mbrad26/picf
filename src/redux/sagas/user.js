@@ -11,6 +11,7 @@ import {
   doSetFollowing,
   doSetUserSuccess, 
   doSetAvatarUploadProgress,
+  doSetSelectedUser,
 } from '../actions/user';
 import { 
   userChannel,
@@ -19,6 +20,7 @@ import {
   followingChannel,
   setUserInFirestore, 
   avatarUploadChannel,
+  selectedUserChannel,
   updateCurrentUserFollowing,
   updateFollowedUserFollowers, 
   getCurrentUserFromFirestore,
@@ -185,15 +187,17 @@ function* getAvatar({ payload: uid }) {
 };
 
 function* getSelectedUser({ payload: uid }) {
-  // const channel = yield call();
+  const channel = yield call(selectedUserChannel, uid);
 
-  // while(true) {
-  //   try {
+  while(true) {
+    try {
+      const { data } = yield take(channel);
 
-  //   } catch (error) {
-  //     yield put(doRequestError(error));
-  //   }
-  // };
+      yield put(doSetSelectedUser(data));
+    } catch (error) {
+      yield put(doRequestError(error));
+    }
+  };
 };
 
 export { 

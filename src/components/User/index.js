@@ -40,7 +40,7 @@ const User = (props) => {
 
   useEffect(() => {
     dispatch(doSelectedUserRequest(userUid));
-  }, [userUid]);
+  }, [dispatch, userUid]);
 
   useEffect(() => {
     ref.current = users;
