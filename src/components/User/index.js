@@ -19,15 +19,16 @@ const User = (props) => {
   const { imagesData } = useSelector(state => state.imagesState);
   const { isOpen } = useSelector(state => state.modalState);
   const userUid = props.match.params.uid;
-  
   const users = props.history.location.pathname.includes('followers') 
                       ? followers
                       : following;
-
   const isFollowing = following && following.some(user => user.uid === userUid);
   const [state, setState] = useState(isFollowing);
-  
+
   const user = ref.current ? ref.current.filter(user => user.uid === userUid) : null;
+
+  const month = selectedUser ? new Date(selectedUser.joined.seconds * 1000).getMonth() : null;
+  const year = selectedUser ? new Date(selectedUser.joined.seconds * 1000).getFullYear() : null;
 
   const handleFollowUnfollow = () => {
     if(state) {
@@ -37,13 +38,10 @@ const User = (props) => {
       dispatch(doFollowRequest(userUid));
     };
   };
-
-  useEffect(() => {
-    dispatch(doSelectedUserRequest(userUid));
-  }, [dispatch, userUid]);
-
+  
   useEffect(() => {
     ref.current = users;
+    dispatch(doSelectedUserRequest(userUid));
     dispatch(doUrlRequest(`images/${userUid}/timeline`));
     setState(isFollowing);
   }, [dispatch, users, following, userUid, isFollowing]);
@@ -71,11 +69,14 @@ const User = (props) => {
                 </Button>
               </div>
               <div className='user-details'>
-                <span>   {selectedUser && selectedUser.followers.length} Followers</span>
-                <span> * {selectedUser && selectedUser.following.length} Following</span>
-
-                <span>     Nr of pictures</span>
-                <span>       Joined date</span>
+                <div className='followers-following'>
+                  <span>{selectedUser && selectedUser.followers.length} Followers</span>
+                  <span> * {selectedUser && selectedUser.following.length} Following</span>
+                </div>
+                <div className='photos-joined'>
+                  <span id='photos'>{imagesData.length} Photos </span>
+                  <span>  Joined {year}</span>
+                </div>
               </div>
             </div>
           </>

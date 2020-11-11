@@ -66,8 +66,6 @@ const imagesUrlsChannel = collection => {
 };
 
 const favouritesChannel = () => {
-  // const authUser = JSON.parse(localStorage.getItem('authUser'));
-  
   return new eventChannel(emiter => {
     const listener = firestore.collection('users').doc(`${authUser.uid}`)
                               .collection('favourites')

@@ -1,7 +1,8 @@
 .user-avatar {
   display: grid;
-  grid-template-columns: 1fr 10fr;
+  grid-template-columns: 1fr 8fr;
   cursor: pointer;
+  padding-right: 100px;
 } 
 
 .avatar-container > #avatar {
@@ -12,6 +13,20 @@
 
 .username-button {
   padding-top: 25px;
+}
+
+.user-details {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.photos-joined {
+  grid-column: 3 / 4;
+  margin-right: 16px;
+}
+
+#photos {
+  margin-right: 25px;
 }
 
 #username {

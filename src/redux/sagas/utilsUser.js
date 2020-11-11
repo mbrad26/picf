@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import { eventChannel } from 'redux-saga';
 import { call } from 'redux-saga/effects';
 
-import { auth, firestore, storage } from '../../firebase/config';
+import { auth, firestore, storage, timestamp } from '../../firebase/config';
 
 const authUser = JSON.parse(localStorage.getItem('authUser'));
 
@@ -25,7 +25,7 @@ function* getCurrentUserFromFirestore(authUser) {
 function* setUserInFirestore(uid, username, email) {
   yield firestore.collection('users')
                  .doc(uid)
-                 .set({ username, email });
+                 .set({ username, email, joined: timestamp() });
 };
 
 const userChannel = () => {
@@ -120,7 +120,6 @@ const followersChannel = (authUserUid = authUser.uid) => {
     const listener = firestore.collection('users').doc(`${authUserUid}`)
                               .collection('followers')
                               .onSnapshot(snapshot => {
-                                // console.log('SELECTED_USER: ', snapshot.data());
                                 emiter({ data: snapshot })
                               });
 
