@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
-import { Image } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './styles.css';
 import ImageModal from '../Modal';
 import UserImages from './userImages';
+import UserAvatar from './userAvatar';
 import UserDetails from './userDetails';
 import { doUrlRequest } from '../../redux/actions/images';
 
@@ -31,9 +31,7 @@ const User = (props) => {
       <div className='user-avatar'>
         {user && user[0] && 
           <>
-            <div className='avatar-container'>
-              <Image id='avatar' src={user[0].avatarUrl} roundedCircle />
-            </div>
+            <UserAvatar url={user[0].avatarUrl} />
             <UserDetails 
               user={user} 
               photos={photos}
