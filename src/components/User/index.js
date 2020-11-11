@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './styles.css';
 import ImageModal from '../Modal';
-import Images from '../Gallery/images';
+import UserImages from './userImages';
 import UserDetails from './userDetails';
 import { doUrlRequest } from '../../redux/actions/images';
 
@@ -45,9 +45,7 @@ const User = (props) => {
         }
       </div>
       <hr />
-      <div className='grid-container'>
-        <Images imagesData={imagesData} />
-      </div>
+      <UserImages imagesData={imagesData} />
 
       {isOpen && <ImageModal />}
     </>
