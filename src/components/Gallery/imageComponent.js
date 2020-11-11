@@ -15,6 +15,7 @@ const ImageComponent = ({ img }) => {
   return (
     <>
       <Image 
+        loading='lazy'
         src={img.url} 
         alt={img.name} 
         onClick={() => setActiveImage(img)} 

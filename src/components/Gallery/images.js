@@ -5,6 +5,8 @@ import ImageComponent from './imageComponent';
 const Images = ({ imagesData }) => {
   const [images, setImages] = useState();
 
+  console.log('IMAGES_DATA: ', imagesData);
+  
   useEffect(() =>  {
     if(imagesData) {
       setImages(imagesData);

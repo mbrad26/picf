@@ -21,7 +21,7 @@ const Followers = () => {
           <div key={user.uid}>
             <div className='sidebar-avatars'>
               <Nav.Link as={Link} to={`/home/followers/${user.uid}`}>
-                <Image id='avatar' src={user.avatarUrl} roundedCircle />
+                <Image loading='eager' id='avatar' src={user.avatarUrl} roundedCircle />
                 <span> {user.username}</span>
               </Nav.Link>
             </div>

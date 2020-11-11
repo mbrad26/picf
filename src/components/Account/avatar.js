@@ -16,7 +16,7 @@ const Avatar = ({ uid }) => {
 
   return (
     <>
-      <Image id='avatar' src={state} roundedCircle/>
+      <Image loading='eager' id='avatar' src={state} roundedCircle/>
     </>
   );
 };

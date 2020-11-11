@@ -54,23 +54,27 @@ const User = (props) => {
         {user && user[0] && 
           <>
             <Image id='avatar' src={user[0].avatarUrl} roundedCircle />
-            <span id='username'> {user[0].username} </span>
-            <Button 
-              type='submit'
-              variant='light' 
-              onClick={handleFollowUnfollow}
-            >
-              {state
-                ? 'Unfollow'  
-                : 'Follow'
-              }
-            </Button>
-            <div className='user-details'>
-            <span>   {selectedUser && selectedUser.followers.length}</span>
-              <span>     {selectedUser && selectedUser.following.length}</span>
+            <div>
+              <div>
+                <span id='username'> {user[0].username} </span>
+                <Button 
+                  type='submit'
+                  variant='light' 
+                  onClick={handleFollowUnfollow}
+                >
+                  {state
+                    ? 'Unfollow'  
+                    : 'Follow'
+                  }
+                </Button>
+              </div>
+              <div className='user-details'>
+                <span>   {selectedUser && selectedUser.followers.length} Followers</span>
+                <span> * {selectedUser && selectedUser.following.length} Following</span>
 
-              <span>     Nr of pictures</span>
-              <span>       Joined date</span>
+                <span>     Nr of pictures</span>
+                <span>       Joined date</span>
+              </div>
             </div>
           </>
         }
