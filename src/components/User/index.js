@@ -27,7 +27,6 @@ const User = (props) => {
 
   const user = ref.current ? ref.current.filter(user => user.uid === userUid) : null;
 
-  const month = selectedUser ? new Date(selectedUser.joined.seconds * 1000).getMonth() : null;
   const year = selectedUser ? new Date(selectedUser.joined.seconds * 1000).getFullYear() : null;
 
   const handleFollowUnfollow = () => {
@@ -56,15 +55,15 @@ const User = (props) => {
             </div>
             <div className='details-container'>
               <div className='username-button'>
-                <span id='username'> {user[0].username} </span>
+                <span id='username'> {user[0].username}</span>
                 <Button 
                   type='submit'
                   variant='light' 
                   onClick={handleFollowUnfollow}
                 >
                   {state
-                    ? 'Unfollow'  
-                    : 'Follow'
+                    ? <span>Unfollow</span>
+                    : <span>Follow</span>
                   }
                 </Button>
               </div>

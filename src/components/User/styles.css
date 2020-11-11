@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 8fr;
   cursor: pointer;
-  padding-right: 100px;
+  padding-right: 70px;
 } 
 
 .avatar-container > #avatar {
@@ -18,15 +18,21 @@
 .user-details {
   display: grid;
   grid-template-columns: auto 1fr;
+  margin-top: 2px;
+  font-weight: 200;
 }
 
 .photos-joined {
   grid-column: 3 / 4;
-  margin-right: 16px;
+  margin-right: 10px;
+}
+
+#user-add-icon {
+  font-size: 1.5rem;
 }
 
 #photos {
-  margin-right: 25px;
+  margin-right: 15px;
 }
 
 #username {
@@ -35,10 +41,15 @@
 }
 
 .btn-light {
+  margin-left: 1rem;
   border: 1px solid black;
 }
 
 .btn-light:hover {
   background-color: black;
   color: azure;
+}
+
+hr {
+  margin-top: 0px;
 }
