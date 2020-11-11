@@ -53,9 +53,11 @@ const User = (props) => {
       <div className='user-avatar'>
         {user && user[0] && 
           <>
-            <Image id='avatar' src={user[0].avatarUrl} roundedCircle />
-            <div>
-              <div>
+            <div className='avatar-container'>
+              <Image id='avatar' src={user[0].avatarUrl} roundedCircle />
+            </div>
+            <div className='details-container'>
+              <div className='username-button'>
                 <span id='username'> {user[0].username} </span>
                 <Button 
                   type='submit'

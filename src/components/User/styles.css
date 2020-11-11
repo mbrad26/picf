@@ -1,17 +1,17 @@
 .user-avatar {
-  display: inline-block;
+  display: grid;
+  grid-template-columns: 1fr 10fr;
   cursor: pointer;
-  height: 156px;
 } 
 
-.user-avatar > #avatar {
-  margin-left: 1em;
-  margin-top: 1em;
+.avatar-container > #avatar {
+  margin: 1em;
   width: 100px;
   height: 100px;
 }
 
-.user-details {
+.username-button {
+  padding-top: 25px;
 }
 
 #username {
