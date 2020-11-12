@@ -20,6 +20,7 @@ import {
   doSetFollowing,
   doUnfollowRequest,
   doSelectedUserRequest,
+  doSetSelectedUser,
 } from '../../../redux/actions/user';
 import { 
   REQUEST_ERROR,
@@ -43,6 +44,7 @@ import {
   SET_FOLLOWERS,
   UNFOLLOW_REQUEST,
   SELECTED_USER_REQUEST,
+  SET_SELECTED_USER,
 } from '../../../redux/constants/actionTypes';
 
 describe('doSignupRequest', () => {
@@ -286,5 +288,17 @@ describe('doSelectedUserRequest', () => {
     };
 
     expect(doSelectedUserRequest(uid)).toEqual(expectedObject);
+  });
+});
+
+describe('doSetSelectedUser', () => {
+  it('returns the correct object', () => {
+    const data = {};
+    const expectedObject = {
+      type: SET_SELECTED_USER,
+      payload: data,
+    };
+
+    expect(doSetSelectedUser(data)).toEqual(expectedObject);
   });
 });
