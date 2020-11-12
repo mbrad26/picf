@@ -3,6 +3,7 @@
   grid-template-columns: 1fr 8fr;
   cursor: pointer;
   padding-right: 70px;
+  height: 156px;
 } 
 
 .avatar-container > #avatar {
