@@ -17,7 +17,7 @@ const ImageModal = () => {
 
   return (
     <Modal
-      size='xl'
+      size='lg'
       id='modal'
       fade='true'
       centered
