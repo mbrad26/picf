@@ -18,4 +18,14 @@
 #avatar {
   width: 150px;
   height: 150px;
+  margin-bottom: 1rem;
 }
+
+.MuiBadge-badge {
+  /* height: 25px; */
+}
+
+.form-label {
+  cursor: pointer;
+  margin: 0px;
+} 

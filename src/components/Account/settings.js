@@ -6,9 +6,11 @@ import PasswordResetForm from '../PasswordForget/passwordResetForm';
 const Settings = () => {
   return (
     <div className='settings-container'>
-      <h3>Password reset</h3>
+      <h3>Account settings</h3>
+      <hr />
+      <h5>Password reset</h5>
       <PasswordResetForm />
-      <h3>Password change</h3>
+      <h5>Password change</h5>
       <PasswordChangeForm />
     </div>
   )

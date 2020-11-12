@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { 
-  Form,
-  ProgressBar, 
-} from 'react-bootstrap';
+import { Form, ProgressBar } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { types, INITIAL_STATE } from './utils';
@@ -49,6 +46,8 @@ const AvatarUploadForm = () => {
         <Form.File
           type='file'
           onChange={onUpload}
+          id="avatar-upload"
+          hidden
         />
       </Form.Group>
       
