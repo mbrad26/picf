@@ -5,6 +5,7 @@ import {
   doSetUserSuccess,
   doSetAvatarUploadProgress,
   doSetFollowing,
+  doSetSelectedUser,
 } from '../../../redux/actions/user';
 import userReducer from '../../../redux/reducers/user';
 
@@ -16,6 +17,7 @@ describe('userReducer', () => {
     avatarUrl: '',
     followers: null,
     following: null,
+    selectedUser: null,
   };
 
   it('returns auth error', () => {
@@ -58,6 +60,13 @@ describe('userReducer', () => {
     const newState = userReducer(state, action);
 
     expect(newState).toEqual({ ...state, following: {} });
+  });
+
+  it('returns selected user', () => {
+    const action = doSetSelectedUser({});
+    const newState = userReducer(state, action);
+
+    expect(newState).toEqual({ ...state, selectedUser: {} });
   });
 
   it('returns initial state', () => {
