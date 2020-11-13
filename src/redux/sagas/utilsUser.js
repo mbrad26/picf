@@ -180,6 +180,10 @@ const avatarChannel = uid => {
   });
 };
 
+const updateUsernameInFirestore = username => 
+  firestore.collection('users').doc(authUser.uid)
+          .update({ username });
+
 export {
   userChannel,
   avatarChannel,
@@ -196,4 +200,5 @@ export {
   updateCurrentUserFollowing,
   updateFollowedUserFollowers,
   updateTimelineUserFollowers,
+  updateUsernameInFirestore,
 };

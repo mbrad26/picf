@@ -2,6 +2,7 @@ import { call, put, take } from 'redux-saga/effects';
 
 import { 
   auth, 
+  firestore,
   googleProvider, 
 } from '../../firebase/config';
 import { 
@@ -28,10 +29,13 @@ import {
   unfolowUserTimelineCollection,
   removeFollowedUserFromFollowing,
   removeFollowingUserFromFollowers,
+  updateUsernameInFirestore,
  } from './utilsUser';
 import { 
   doOverlayError, 
 } from '../actions/images';
+
+const authUser = JSON.parse(localStorage.getItem('authUser'));
 
 function* signUpUser({ payload: { username, email, passwordOne }}) {
   try {
@@ -97,7 +101,6 @@ function* signInWithGoogle() {
 };
 
 function* manageFollowing({ payload: userUid }) {
-  const authUser = JSON.parse(localStorage.getItem('authUser'));
   const uid = authUser.uid;
   const username = authUser.username;
   const avatarUrl = authUser.avatarUrl;
@@ -112,7 +115,6 @@ function* manageFollowing({ payload: userUid }) {
 };
 
 function* manageUnfollowing({ payload: userUid }) {
-  const authUser = JSON.parse(localStorage.getItem('authUser'));
   const uid = authUser.uid;
 
   try {
@@ -200,6 +202,16 @@ function* getSelectedUser({ payload: uid }) {
   };
 };
 
+function* updateUsername({ payload: username }) {
+  try {
+    yield call(updateUsernameInFirestore, username);
+    
+    yield call(setCurrentUser);
+  } catch (error) {
+    yield put(doRequestError(error));
+  }
+};
+
 export { 
   getAvatar,
   signUpUser, 
@@ -215,4 +227,5 @@ export {
   getFollowers,
   getFollowing,
   getSelectedUser,
+  updateUsername,
 };
