@@ -30,20 +30,20 @@ const SignInForm = () => {
     if(authUser) {
       setState(INITIAL_STATE);
       history.push(ROUTES.HOME);
-    }
+    };
   }, [authUser, history]);
 
   useEffect(() => {
     if(authError) {
       setState(state => ({ ...state, error: authError }));
-    }
+    };
   }, [authError]);
 
   
   return (
     <form onSubmit={onSubmit}>
       <input 
-        type='text'
+        type='email'
         name='email'
         value={email}
         onChange={onChange}

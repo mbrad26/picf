@@ -57,7 +57,7 @@ const SignUpForm = () => {
         placeholder='Username' 
       />
       <input 
-        type='text'
+        type='email'
         name='email'
         value={email}
         onChange={onChange}

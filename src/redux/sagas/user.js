@@ -29,6 +29,7 @@ import {
   removeFollowedUserFromFollowing,
   removeFollowingUserFromFollowers,
   updateUsernameInFirestore,
+  // updateEmailInFirestore,
  } from './utilsUser';
 import { 
   doOverlayError, 
@@ -59,6 +60,7 @@ function* signInUser({ payload: { email, password }}) {
 function* signOutUser() {
   try {
     yield auth.signOut();
+    localStorage.setItem('authUser', null);
   } catch (error) {
     yield put(doRequestError(error));
   };
@@ -211,6 +213,22 @@ function* updateUsername({ payload: username }) {
   }
 };
 
+const updateEmail = ({ payload: email }) => {
+  const user = auth.currentUser;
+
+  user.updateEmail(email).then(function() {
+    console.log('UPDATE SUCCESFUL');
+  }).catch(function (error) {
+    // yield put(doRequestError(error));
+  });
+
+  // try {
+  //   yield auth.currentUser.updateEmail(email);
+  // } catch (error) {
+  //   yield put(doRequestError(error));
+  // };
+};
+
 export { 
   getAvatar,
   signUpUser, 
@@ -227,4 +245,5 @@ export {
   getFollowing,
   getSelectedUser,
   updateUsername,
+  updateEmail,
 };

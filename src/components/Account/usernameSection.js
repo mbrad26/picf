@@ -1,4 +1,4 @@
-import React,  { useState } from 'react';
+import React,  { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { doUpdateUsernameRequest } from '../../redux/actions/user';
@@ -16,6 +16,12 @@ const UsernameSection = () => {
 
   const onChange = event => 
     setState({ ...state, username: event.target.value });
+
+  useEffect(() => {
+    if(authError) {
+      setState(state => ({ ...state, error: authError }));
+    };
+  }, [authError]);
 
   return (
     <div className='section'>

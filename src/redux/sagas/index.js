@@ -22,6 +22,7 @@ import {
   FOLLOWING_STATUS_REQUEST,
   SELECTED_USER_REQUEST,
   UPDATE_USERNAME_REQUEST,
+  UPDATE_EMAIL_REQUEST,
 } from '../constants/actionTypes';
 import { 
   fileUpload, 
@@ -47,6 +48,7 @@ import {
   getFollowing,
   getSelectedUser,
   updateUsername,
+  updateEmail,
  } from './user';
 
 function* watchAll() {
@@ -72,6 +74,7 @@ function* watchAll() {
     takeLatest(FOLLOWING_STATUS_REQUEST, getFollowing),
     takeLatest(SELECTED_USER_REQUEST, getSelectedUser),
     takeLatest(UPDATE_USERNAME_REQUEST, updateUsername),
+    takeLatest(UPDATE_EMAIL_REQUEST, updateEmail),
   ]);
 };
 

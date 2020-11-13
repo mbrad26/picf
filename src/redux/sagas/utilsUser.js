@@ -25,7 +25,7 @@ function* getCurrentUserFromFirestore(authUser) {
 function* setUserInFirestore(uid, username, email) {
   yield firestore.collection('users')
                  .doc(uid)
-                 .set({ username, email, joined: timestamp() });
+                 .set({ username, email, joined: timestamp(), followers: [], following: [] });
 };
 
 const userChannel = () => {
@@ -184,6 +184,8 @@ const updateUsernameInFirestore = username =>
   firestore.collection('users').doc(authUser.uid)
           .update({ username });
 
+// const updateEmailInFirestore = email => null
+
 export {
   userChannel,
   avatarChannel,
@@ -201,4 +203,5 @@ export {
   updateFollowedUserFollowers,
   updateTimelineUserFollowers,
   updateUsernameInFirestore,
+  // updateEmailInFirestore,
 };

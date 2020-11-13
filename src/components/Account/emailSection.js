@@ -1,4 +1,4 @@
-import React,  { useState } from 'react';
+import React,  { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { doUpdateEmailRequest } from '../../redux/actions/user';
@@ -9,6 +9,8 @@ const EmailSection = () => {
   const [state, setState] = useState({ email: authUser.email, error: authError});
   const { email, error } = state;
 
+  console.log('EMAIL: ', email);
+
   const onSubmit = event => {
     event.preventDefault();
     dispatch(doUpdateEmailRequest(email));
@@ -16,6 +18,12 @@ const EmailSection = () => {
 
   const onChange = event => 
     setState({ ...state, email: event.target.value });
+  
+  useEffect(() => {
+    if(authError) {
+      setState(state => ({ ...state, error: authError }));
+    };
+  }, [authError]);
 
   return (
     <div className='section'>
