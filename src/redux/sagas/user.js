@@ -2,7 +2,6 @@ import { call, put, take } from 'redux-saga/effects';
 
 import { 
   auth, 
-  firestore,
   googleProvider, 
 } from '../../firebase/config';
 import { 

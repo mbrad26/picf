@@ -9,8 +9,6 @@ const UsernameSection = () => {
   const [state, setState] = useState({ username: authUser.username, error: authError});
   const { username, error } = state;
 
-  console.log('USERNAME: ', username);
-
   const onSubmit = event => {
     event.preventDefault();
     dispatch(doUpdateUsernameRequest(username));
@@ -20,7 +18,7 @@ const UsernameSection = () => {
     setState({ ...state, username: event.target.value });
 
   return (
-    <div>
+    <div className='section'>
       <h5>Username</h5>
       <form onSubmit={onSubmit}>
         <input 
@@ -28,14 +26,14 @@ const UsernameSection = () => {
           name='username'
           value={username}
           onChange={onChange}
-          placeholder='Username' 
+          placeholder='Username'
         />
       <button type='submit'>Update username</button>
 
       {error && <p>{error.message}</p>}
     </form>
     </div>
-  )
-}
+  );
+};
 
 export default UsernameSection;

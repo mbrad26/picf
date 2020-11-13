@@ -22,7 +22,7 @@ import  {
   SELECTED_USER_REQUEST,
   SET_SELECTED_USER,
   UPDATE_USERNAME_REQUEST,
-  // SET_USERNAME,
+  UPDATE_EMAIL_REQUEST,
  } from '../constants/actionTypes';
 
 const doSignupRequest = credentials => ({
@@ -136,10 +136,10 @@ const doUpdateUsernameRequest = username => ({
   payload: username,
 });
 
-// const doSetUsername = data => ({
-//   type: SET_USERNAME,
-//   payload: data,
-// });
+const doUpdateEmailRequest = email => ({
+  type: UPDATE_EMAIL_REQUEST,
+  payload: email,
+});
 
 export { 
   doRequestError,
@@ -165,5 +165,5 @@ export {
   doSelectedUserRequest,
   doSetSelectedUser,
   doUpdateUsernameRequest,
-  // doSetUsername,
+  doUpdateEmailRequest,
 };
