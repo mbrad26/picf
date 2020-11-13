@@ -160,7 +160,6 @@ const avatarUploadChannel = image => {
       console.log(error);
     }, async ()=> {
       const url = await storage.ref(image.name).getDownloadURL();
-      // const authUser = JSON.parse(localStorage.getItem('authUser'));
       const uid = authUser.uid;
       const name = image.name;
       

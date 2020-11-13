@@ -21,11 +21,8 @@
   margin-bottom: 1rem;
 }
 
-.MuiBadge-badge {
-  /* height: 25px; */
-}
-
-.form-label {
+label {
   cursor: pointer;
   margin: 0px;
+  padding: 7px 0px 7px 0px;
 } 

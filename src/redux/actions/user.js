@@ -21,6 +21,8 @@ import  {
   SET_FOLLOWING,
   SELECTED_USER_REQUEST,
   SET_SELECTED_USER,
+  UPDATE_USERNAME_REQUEST,
+  // SET_USERNAME,
  } from '../constants/actionTypes';
 
 const doSignupRequest = credentials => ({
@@ -129,6 +131,16 @@ const doSetSelectedUser = data => ({
   payload: data,
 });
 
+const doUpdateUsernameRequest = username => ({
+  type: UPDATE_USERNAME_REQUEST,
+  payload: username,
+});
+
+// const doSetUsername = data => ({
+//   type: SET_USERNAME,
+//   payload: data,
+// });
+
 export { 
   doRequestError,
   doSetAvatarUrl,
@@ -152,4 +164,6 @@ export {
   doSetFollowing,
   doSelectedUserRequest,
   doSetSelectedUser,
+  doUpdateUsernameRequest,
+  // doSetUsername,
 };

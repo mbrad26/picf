@@ -1,5 +1,4 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
 import Badge from '@material-ui/core/Badge';
 
 import Avatar from './avatar';
@@ -17,7 +16,7 @@ const AvatarSection = () => {
       <Badge 
         color="secondary" 
         overlap="circle" 
-        badgeContent={<Form.Label for="avatar-upload"><span>Edit Avatar</span></Form.Label>}
+        badgeContent={<label htmlFor="avatar-upload"><span>Edit Avatar</span></label>}
         anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
       >
         <Avatar uid={uid} />
