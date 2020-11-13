@@ -10,6 +10,7 @@ const EmailSection = () => {
   const { email, error } = state;
 
   console.log('EMAIL: ', email);
+  console.log('LOCAL_STORAGE: ', localStorage);
 
   const onSubmit = event => {
     event.preventDefault();
