@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
-import FollowedUser from './followedUser';
 import { doFollowingStatusRequest } from '../../redux/actions/user';
+
+const FollowedUser = lazy(() => import('./followedUser'));
 
 const Following = () => {
   const dispatch = useDispatch();
@@ -17,15 +18,18 @@ const Following = () => {
   return (
     <>
       <p className='titles'>Following</p>
-      {following && 
-        following.map(user => 
-          <div className='sidebar-avatars' key={user.uid}>
-            <Nav.Link as={Link} to={`/home/following/${user.uid}`}>
-              <FollowedUser user={user} />
-            </Nav.Link>
-          </div>
-        )
-      }
+
+      <Suspense fallback={<p>Loading...</p>}>
+        {following && 
+          following.map(user => 
+            <div className='sidebar-avatars' key={user.uid}>
+              <Nav.Link as={Link} to={`/home/following/${user.uid}`}>
+                <FollowedUser user={user} />
+              </Nav.Link>
+            </div>
+          )
+        }
+      </Suspense>
     </>
   );
 };
