@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import Badge from '@material-ui/core/Badge';
 
 import Avatar from './avatar';

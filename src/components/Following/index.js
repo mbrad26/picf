@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Image, Nav } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
+import FollowedUser from './followedUser';
 import { doFollowingStatusRequest } from '../../redux/actions/user';
 
 const Following = () => {
@@ -20,8 +21,7 @@ const Following = () => {
         following.map(user => 
           <div className='sidebar-avatars' key={user.uid}>
             <Nav.Link as={Link} to={`/home/following/${user.uid}`}>
-              <Image loading='eager' id='avatar' src={user.avatarUrl} roundedCircle />
-              <span> {user.username}</span>
+              <FollowedUser user={user} />
             </Nav.Link>
           </div>
         )
