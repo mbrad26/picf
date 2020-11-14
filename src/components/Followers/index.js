@@ -1,6 +1,6 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { Image, Nav } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { doFollowStatusRequest } from '../../redux/actions/user';
