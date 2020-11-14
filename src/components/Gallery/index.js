@@ -28,8 +28,6 @@ const Gallery = () => {
     <div className='grid-container'>
       <Images imagesData={imagesData} />
 
-      {imagesData.length === 0 && <p>You have no pictures to show!</p>}
-
       {isOpen && <ImageModal />}
     </div>
   );

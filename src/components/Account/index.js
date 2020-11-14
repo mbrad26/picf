@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import './style.css';
-import Profile from './profile';
-import Sidebar from '../Sidebar';
-import Gallery from '../Gallery';
-import Settings from './settings';
 import * as ROUTES from '../constants/routes';
 import { doEmailVerificationRequest } from '../../redux/actions/user';
+
+const Sidebar = lazy(() => import('../Sidebar'));
+const Profile = lazy(() => import('./profile'));
+const Settings = lazy(() => import('./settings'));
+const Gallery = lazy(() => import('../Gallery'));
 
 const Account = () => {
   const dispatch = useDispatch();
@@ -45,13 +46,17 @@ const Account = () => {
   return (
     <div className='component-container'>
       <div className='sidebar'>
-        <Sidebar />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Sidebar />
+        </Suspense>
       </div>
       <div className='main'>
         <Switch>
-          <Route exact path={ROUTES.ACCOUNT} component={Profile} />
-          <Route path={ROUTES.SETTINGS} component={Settings} />
-          <Route path={ROUTES.TIMELINE} component={Gallery} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Route exact path={ROUTES.ACCOUNT} component={Profile} />
+            <Route path={ROUTES.SETTINGS} component={Settings} />
+            <Route path={ROUTES.TIMELINE} component={Gallery} />
+          </Suspense>
         </Switch>
       </div>
     </div>

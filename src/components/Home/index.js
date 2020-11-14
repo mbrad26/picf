@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import './style.css';
-import Sidebar from '../Sidebar';
 import * as ROUTES from '../constants/routes';
 import { doEmailVerificationRequest } from '../../redux/actions/user';
 
+const Sidebar = lazy(() => import('../Sidebar'));
 const User = lazy(() => import('../User'));
 const Gallery = lazy(() => import('../Gallery'));
 
@@ -45,12 +45,14 @@ const Home = () => {
   return (
     <div className='home-container'>
       <div className='sidebar'>
-        <Sidebar />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Sidebar />
+        </Suspense>
       </div>
       <div className='main'>
         <Switch>
-          <Route exact path={ROUTES.HOME} component={Gallery} />
           <Suspense fallback={<div>Loading...</div>}>
+            <Route exact path={ROUTES.HOME} component={Gallery} />
             <Route exact path={ROUTES.HOME_TIMELINE} component={Gallery} />
             <Route path={ROUTES.FOLLOWERS} component={User} />
             <Route path={ROUTES.FOLLOWING} component={User} />
