@@ -2,9 +2,9 @@
 
 ## Work in progress ...
 
-[<img src="images/Screenshot 2020-10-06 at 17.27.18.png" width="55%">]()
+[<img src="images/Screenshot 2020-11-14 at 14.30.09.png" width="55%">]()
 
-[<img src="images/Screenshot 2020-10-28 at 17.08.03.png" width="55%">]()
+[<img src="images/Screenshot 2020-11-14 at 14.30.52.png" width="55%">]()
 
 ### Getting started
 
@@ -39,6 +39,8 @@ Clone this repository to your local machine.
 * Image Overlay with likes, followers and delete
 * Click on an image opens a modal
 * Follow and Unfollow user
+* User Profile Page
+* User can update avatar, username, email
 
 #### To do
 
