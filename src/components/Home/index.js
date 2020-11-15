@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import './style.css';
@@ -11,7 +11,7 @@ const User = lazy(() => import('../User'));
 const Gallery = lazy(() => import('../Gallery'));
 
 const Home = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { authUser } = useSelector(state => state.userState);
 
   // const onClick = () => dispatch(doEmailVerificationRequest());
