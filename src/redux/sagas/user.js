@@ -41,9 +41,9 @@ function* signUpUser({ payload: { username, email, passwordOne }}) {
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, passwordOne);
     yield setUserInFirestore(user.uid, username, email);
-    yield auth.currentUser.sendEmailVerification({
-      url: process.env.REACT_APP_DEV_CONFIRMATION_EMAIL_REDIRECT,
-    });
+    // yield auth.currentUser.sendEmailVerification({
+    //   url: process.env.REACT_APP_DEV_CONFIRMATION_EMAIL_REDIRECT,
+    // });
   } catch (error) {
     yield put(doRequestError(error));
   };

@@ -11,7 +11,7 @@ import  {
   RESET_PASSWORD_REQUEST,
   UPDATE_PASSWORD_REQUEST,
   SIGNIN_WITH_GOOGLE_REQUEST,
-  EMAIL_VERIFICATION_REQUEST,
+  // EMAIL_VERIFICATION_REQUEST,
   SET_AVATAR_UPLOAD_PROGRESS,
   FOLLOW_STATUS_REQUEST,
   SET_FOLLOWERS,
@@ -67,9 +67,9 @@ const doSigninWithGoogleRequest = () => ({
   type: SIGNIN_WITH_GOOGLE_REQUEST,
 });
 
-const doEmailVerificationRequest = () => ({
-  type: EMAIL_VERIFICATION_REQUEST,
-});
+// const doEmailVerificationRequest = () => ({
+//   type: EMAIL_VERIFICATION_REQUEST,
+// });
 
 const doAvatarUploadRequest = file => ({
   type: AVATAR_UPLOAD_REQUEST,
@@ -155,7 +155,7 @@ export {
   doUpdatePasswordRequest,
   doSigninWithGoogleRequest,
   doSetAvatarUploadProgress,
-  doEmailVerificationRequest,
+  // doEmailVerificationRequest,
   doFollowStatusRequest,
   doSetFollowers,
   doUnfollowRequest,
