@@ -6,6 +6,9 @@ import { auth, firestore, storage, timestamp } from '../../firebase/config';
 
 const authUser = JSON.parse(localStorage.getItem('authUser'));
 
+const getAvatarUrl = name => 
+  storage.ref(name).getDownloadURL(); 
+
 function* getUserSnapshotFromFirestore(uid) {
   const userRef = yield firestore.doc(`users/${uid}`);
   const doc = yield userRef.get();
@@ -23,9 +26,15 @@ function* getCurrentUserFromFirestore(authUser) {
 };
 
 function* setUserInFirestore(uid, username, email) {
+  const avatarUrl = yield call(getAvatarUrl, 'smile.png');
   yield firestore.collection('users')
                  .doc(uid)
-                 .set({ username, email, joined: timestamp() });
+                 .set({ 
+                   avatarUrl,
+                   username, 
+                   email, 
+                   joined: timestamp(), 
+                });
 };
 
 const userChannel = () => {
@@ -149,6 +158,7 @@ const selectedUserChannel = uid => {
   });
 };
 
+
 const avatarUploadChannel = image => {
   return new eventChannel(emiter => {
     const listener = storage.ref(image.name).put(image)
@@ -159,7 +169,7 @@ const avatarUploadChannel = image => {
     }, error => {
       console.log(error);
     }, async ()=> {
-      const url = await storage.ref(image.name).getDownloadURL();
+      const url = await getAvatarUrl(image.name);
       const uid = authUser.uid;
       const name = image.name;
       
