@@ -149,15 +149,15 @@ describe('doSigninWithGoogleRequest', () => {
   });
 });
 
-describe('doEmailVerificationRequest', () => {
-  it('returns the correct object', () => {
-    const expectedObject = {
-      type: EMAIL_VERIFICATION_REQUEST,
-    };
+// describe('doEmailVerificationRequest', () => {
+//   it('returns the correct object', () => {
+//     const expectedObject = {
+//       type: EMAIL_VERIFICATION_REQUEST,
+//     };
 
-    expect(doEmailVerificationRequest()).toEqual(expectedObject);
-  });
-});
+//     expect(doEmailVerificationRequest()).toEqual(expectedObject);
+//   });
+// });
 
 describe('doAvatarUploadRequest', () => {
   it('returns the correct object', () => {
@@ -221,25 +221,21 @@ describe('doFollowRequest', () => {
 
 describe('doFollowStatusRequest', () => {
   it('returns the correct object', () => {
-    const uid = {};
     const expectedObject = {
       type: FOLLOW_STATUS_REQUEST,
-      payload: uid,
     };
 
-    expect(doFollowStatusRequest(uid)).toEqual(expectedObject);
+    expect(doFollowStatusRequest()).toEqual(expectedObject);
   });
 });
 
 describe('doFollowingStatusRequest', () => {
   it('returns the correct object', () => {
-    const uid = {};
     const expectedObject = {
       type: FOLLOWING_STATUS_REQUEST,
-      payload: uid,
     };
 
-    expect(doFollowingStatusRequest(uid)).toEqual(expectedObject);
+    expect(doFollowingStatusRequest()).toEqual(expectedObject);
   });
 });
 
