@@ -23,7 +23,7 @@ import {
   doSetUploadProgress,
 } from '../actions/images';
 
-const authUser = JSON.parse(localStorage.getItem('authUser'));
+// const authUser = JSON.parse(localStorage.getItem('authUser'));
 
 function* fileUpload({ payload: selected }) {
   const channel = yield call(storageChannel, selected);
@@ -54,6 +54,7 @@ function* getImagesUrls({ payload: collection }) {
 };
 
 function* likeImage({ payload: { url, name, userUid } }) {
+  const authUser = JSON.parse(localStorage.getItem('authUser'));
   const authUid = authUser.uid;
 
   try {
@@ -70,6 +71,7 @@ function* likeImage({ payload: { url, name, userUid } }) {
 };
 
 function* unLikeImage({ payload: { name, userUid } }) {
+  const authUser = JSON.parse(localStorage.getItem('authUser'));
   const authUid = authUser.uid;
 
   try {
@@ -101,6 +103,7 @@ function* getLikedImages() {
 };
 
 function* deleteImage({ payload: name }) {
+  const authUser = JSON.parse(localStorage.getItem('authUser'));
   const uid = authUser.uid;
   const ref = storage.ref(name);
 

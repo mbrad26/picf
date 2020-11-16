@@ -5,8 +5,12 @@ exports[`Settings renders a snapshot 1`] = `
   class="settings-container"
 >
   <h3>
-    Password reset
+    Account settings
   </h3>
+  <hr />
+  <h5>
+    Password reset
+  </h5>
   <form>
     <input
       name="email"
@@ -21,9 +25,9 @@ exports[`Settings renders a snapshot 1`] = `
       Reset
     </button>
   </form>
-  <h3>
+  <h5>
     Password change
-  </h3>
+  </h5>
   <form>
     <input
       name="passwordOne"

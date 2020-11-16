@@ -23,6 +23,7 @@ import  {
   SET_SELECTED_USER,
   UPDATE_USERNAME_REQUEST,
   UPDATE_EMAIL_REQUEST,
+  RESET_AUTHUSER,
  } from '../constants/actionTypes';
 
 const doSignupRequest = credentials => ({
@@ -42,6 +43,10 @@ const doSigninRequest = credentials => ({
 
 const doSignoutRequest = () => ({
   type: SIGNOUT_REQUEST,
+});
+
+const doResetAuthUser = () => ({
+  type: RESET_AUTHUSER,
 });
 
 const doSetUserRequest = () => ({
@@ -96,14 +101,12 @@ const doFollowRequest = data => ({
   payload: data,
 });
 
-const doFollowStatusRequest = uid => ({
+const doFollowStatusRequest = () => ({
   type: FOLLOW_STATUS_REQUEST,
-  payload: uid,
 });
 
-const doFollowingStatusRequest = uid => ({
+const doFollowingStatusRequest = () => ({
   type: FOLLOWING_STATUS_REQUEST,
-  payload: uid,
 });
 
 const doSetFollowers = followers => ({
@@ -166,4 +169,5 @@ export {
   doSetSelectedUser,
   doUpdateUsernameRequest,
   doUpdateEmailRequest,
+  doResetAuthUser,
 };

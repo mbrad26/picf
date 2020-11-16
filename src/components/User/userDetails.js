@@ -54,7 +54,7 @@ const UserDetails = ({
       <div className='user-details'>
         <div className='followers-following'>
           <span>{selectedUser && selectedUser.followers.length} Followers</span>
-          <span> * {selectedUser && selectedUser.following.length} Following</span>
+          <span> * {selectedUser && selectedUser.following && selectedUser.following.length} Following</span>
         </div>
         <div className='photos-joined'>
           <span id='photos'>{photos} Photos </span>

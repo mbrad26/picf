@@ -113,3 +113,14 @@ em {
   font-style: normal;
 }
 
+.overlay-bottom .user-avatar-username {
+  /* display: inline-block; */
+  cursor: pointer;
+  font-size: small;
+}
+
+.overlay-bottom .user-avatar-username > #avatar {
+  width: 45px;
+  height: 45px;
+}
+

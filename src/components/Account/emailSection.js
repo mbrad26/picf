@@ -9,9 +9,6 @@ const EmailSection = () => {
   const [state, setState] = useState({ email: authUser.email, error: authError});
   const { email, error } = state;
 
-  console.log('EMAIL: ', email);
-  console.log('LOCAL_STORAGE: ', localStorage);
-
   const onSubmit = event => {
     event.preventDefault();
     dispatch(doUpdateEmailRequest(email));

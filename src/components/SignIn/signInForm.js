@@ -18,6 +18,8 @@ const SignInForm = () => {
   const [state, setState] = useState(INITIAL_STATE);
   const { email, password, error } = state;
 
+  console.log('LOCAL_STORAGE: ', localStorage);
+
   const onChange = event => 
     setState({ ...state, [event.target.name]: event.target.value });
 
@@ -39,7 +41,6 @@ const SignInForm = () => {
     };
   }, [authError]);
 
-  
   return (
     <form onSubmit={onSubmit}>
       <input 

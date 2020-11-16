@@ -6,6 +6,7 @@ import {
   SET_FOLLOWERS,
   SET_FOLLOWING,
   SET_SELECTED_USER,
+  RESET_AUTHUSER,
 } from '../constants/actionTypes';
 
 const INITIAL_STATE = {
@@ -30,6 +31,14 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         authError: null,
         authUser: action.payload,
+      };
+    case RESET_AUTHUSER:
+      return {
+        ...state,
+        avatarUrl: '',
+        authError: null,
+        followers: null,
+        following: null,
       };
     case SET_AVATAR_UPLOAD_PROGRESS:
       return {

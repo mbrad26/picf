@@ -4,7 +4,7 @@ import { call } from 'redux-saga/effects';
 
 import { auth, firestore, storage, timestamp } from '../../firebase/config';
 
-const authUser = JSON.parse(localStorage.getItem('authUser'));
+// const authUser = JSON.parse(localStorage.getItem('authUser'));
 
 const getAvatarUrl = name => 
   storage.ref(name).getDownloadURL(); 
@@ -124,9 +124,12 @@ const unfolowUserTimelineCollection = (userUid, uid) => {
               );
 };
 
-const followersChannel = (authUserUid = authUser.uid) => {
+const followersChannel = () => {
+  const authUser = JSON.parse(localStorage.getItem('authUser'));
+  const uid = authUser.uid;
+  
   return new eventChannel(emiter => {
-    const listener = firestore.collection('users').doc(`${authUserUid}`)
+    const listener = firestore.collection('users').doc(`${uid}`)
                               .collection('followers')
                               .onSnapshot(snapshot => {
                                 emiter({ data: snapshot })
@@ -136,9 +139,12 @@ const followersChannel = (authUserUid = authUser.uid) => {
   });
 };
 
-const followingChannel = (authUserUid = authUser.uid) => {
+const followingChannel = () => {
+  const authUser = JSON.parse(localStorage.getItem('authUser'));
+  const uid = authUser.uid;
+  
   return new eventChannel(emiter => {
-    const listener = firestore.collection('users').doc(`${authUserUid}`)
+    const listener = firestore.collection('users').doc(`${uid}`)
                               .collection('following')
                               .onSnapshot(snapshot => emiter({ data: snapshot}));
 
@@ -169,6 +175,7 @@ const avatarUploadChannel = image => {
     }, error => {
       console.log(error);
     }, async ()=> {
+      const authUser = JSON.parse(localStorage.getItem('authUser'));
       const url = await getAvatarUrl(image.name);
       const uid = authUser.uid;
       const name = image.name;
@@ -190,9 +197,12 @@ const avatarChannel = uid => {
   });
 };
 
-const updateUsernameInFirestore = username => 
+const updateUsernameInFirestore = username => {
+  const authUser = JSON.parse(localStorage.getItem('authUser'));
+
   firestore.collection('users').doc(authUser.uid)
           .update({ username });
+}
 
 // const updateEmailInFirestore = email => null
 
