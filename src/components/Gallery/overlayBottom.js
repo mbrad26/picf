@@ -4,9 +4,11 @@ import { Image } from 'react-bootstrap';
 import LikeStatus from './likeStatus';
 import FollowStatus from './followStatus';
 
-const OverlayBottom = ({ data }) => {
-  return (
-    <div className='overlay-bottom'>
+const OverlayBottom = ({ data, setActiveImage }) => 
+    <div 
+      className='overlay-bottom'
+      onClick={() => setActiveImage(data)}
+    >
       <div className='user-avatar-username'>
         <Image loading='eager' id='avatar' src={data.avatarUrl} roundedCircle />
         <p id='user'>{data.username}</p> 
@@ -17,7 +19,5 @@ const OverlayBottom = ({ data }) => {
         <LikeStatus data={data} />
       </div>
     </div>
-  );
-};
 
 export default React.memo(OverlayBottom);

@@ -20,7 +20,7 @@ const ImageComponent = ({ img }) => {
         alt={img.name} 
         onClick={() => setActiveImage(img)} 
       />
-      {img && <Overlay data={img} />}
+      {img && <Overlay data={img} setActiveImage={setActiveImage} />}
     </>
   );
 };

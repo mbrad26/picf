@@ -24,6 +24,7 @@ function* getCurrentUserFromFirestore(authUser) {
 };
 
 function* setUserInFirestore(uid, username, email) {
+  // storage.ref(`${uid}/`)
   const avatarUrl = yield call(getAvatarUrl, 'smile.png');
   yield firestore.collection('users')
                  .doc(uid)
