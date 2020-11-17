@@ -149,15 +149,15 @@ describe('doSigninWithGoogleRequest', () => {
   });
 });
 
-// describe('doEmailVerificationRequest', () => {
-//   it('returns the correct object', () => {
-//     const expectedObject = {
-//       type: EMAIL_VERIFICATION_REQUEST,
-//     };
+describe('doEmailVerificationRequest', () => {
+  it('returns the correct object', () => {
+    const expectedObject = {
+      type: EMAIL_VERIFICATION_REQUEST,
+    };
 
-//     expect(doEmailVerificationRequest()).toEqual(expectedObject);
-//   });
-// });
+    expect(doEmailVerificationRequest()).toEqual(expectedObject);
+  });
+});
 
 describe('doAvatarUploadRequest', () => {
   it('returns the correct object', () => {
