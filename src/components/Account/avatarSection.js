@@ -6,7 +6,7 @@ import AvatarUploadForm from '../UploadForm/avatarUploadForm';
 
 const AvatarSection = () => {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
-  const uid = authUser.uid;
+  const uid = authUser && authUser.uid;
 
   return (
     <div>
