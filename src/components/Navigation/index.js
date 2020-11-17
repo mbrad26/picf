@@ -20,7 +20,7 @@ const Navigation = () => {
         <Nav.Link as={Link} to={ROUTES.LANDING}>Picturesque</Nav.Link>
       </Navbar.Brand>
       <Nav className='ml-auto'>
-        {authUser ? <AuthLinks /> : <NonAuthLinks />}
+        {authUser ? <AuthLinks user={authUser} /> : <NonAuthLinks />}
       </Nav>
     </Navbar>
   );

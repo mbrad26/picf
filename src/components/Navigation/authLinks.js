@@ -1,19 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Nav } from 'react-bootstrap';
 import { Link, useHistory, withRouter } from 'react-router-dom';
 
 import SignOut from '../SignOut';
 import * as ROUTES from '../constants/routes';
 
-const AuthLinks = () => {
+const AuthLinks = ({ user }) => {
   const history = useHistory();
-  const { authUser } = useSelector(state => state.userState);
   const isHome = history.location.pathname.includes('/home');
 
   return  (
     <>
-      <Nav.Link>{authUser.username}</Nav.Link>
+      <Nav.Link>{user.username}</Nav.Link>
 
       {isHome
         ? <Nav.Link as={Link} to={ROUTES.ACCOUNT}>Account</Nav.Link>

@@ -4,8 +4,6 @@ import { call } from 'redux-saga/effects';
 
 import { auth, firestore, storage, timestamp } from '../../firebase/config';
 
-// const authUser = JSON.parse(localStorage.getItem('authUser'));
-
 const getAvatarUrl = name => 
   storage.ref(name).getDownloadURL(); 
 
