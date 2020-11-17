@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { 
@@ -13,6 +13,11 @@ import * as ROUTES from '../constants/routes';
 
 const Navigation = () => {
   const { authUser } = useSelector(state => state.userState);
+  const [user, setUser] = useState(authUser);
+
+  useEffect(() => {
+    setUser(authUser);
+  }, [authUser]);
 
   return (
     <Navbar>
@@ -20,7 +25,7 @@ const Navigation = () => {
         <Nav.Link as={Link} to={ROUTES.LANDING}>Picturesque</Nav.Link>
       </Navbar.Brand>
       <Nav className='ml-auto'>
-        {authUser ? <AuthLinks user={authUser} /> : <NonAuthLinks />}
+        {user ? <AuthLinks user={user} /> : <NonAuthLinks />}
       </Nav>
     </Navbar>
   );
