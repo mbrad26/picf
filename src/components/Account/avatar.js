@@ -10,7 +10,7 @@ const Avatar = ({ uid }) => {
   const [state, setState] = useState(avatarUrl);
 
   useEffect(() => {
-    dispatch(doGetAvatarUrl(uid));
+    uid && dispatch(doGetAvatarUrl(uid));
     setState(avatarUrl);
   }, [dispatch, uid, avatarUrl]);
 
