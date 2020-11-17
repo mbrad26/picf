@@ -40,6 +40,7 @@ img {
 
 .overlay-top {
   position: absolute; 
+  cursor: pointer;
   top: 0px; 
   background: linear-gradient(to bottom,rgba(0,0,0,.4) 0,transparent); 
   color: #fff; 
@@ -54,6 +55,7 @@ img {
 
 .overlay-bottom {
   position: absolute; 
+  cursor: pointer;
   bottom: 0px; 
   background: linear-gradient(0deg,rgba(0,0,0,.4) 0,transparent); 
   color: #fff; 

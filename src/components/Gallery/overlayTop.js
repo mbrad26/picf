@@ -7,7 +7,7 @@ import {
   doDeleteRequest, 
 } from '../../redux/actions/images';
 
-const OverlayTop = ({ data }) => {
+const OverlayTop = ({ data, setActiveImage }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { authUser } = useSelector(state => state.userState);
@@ -16,7 +16,10 @@ const OverlayTop = ({ data }) => {
   const handleDelete = () => dispatch(doDeleteRequest(data.name));
 
   return (
-    <div className='overlay-top'>
+    <div 
+      className='overlay-top'
+      onClick={() => setActiveImage(data)}
+    >
       {path === '/home/timeline' || path === '/account/timeline'
         ? <HighlightOffIcon className='icon' onClick={handleDelete} />
         : path === '/home' && authUser.uid === data.userUid

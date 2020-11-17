@@ -5,7 +5,7 @@ import OverlayBottom from './overlayBottom';
 
 const Overlay = ({ data, setActiveImage }) => 
   <>
-    <OverlayTop data={data} />
+    <OverlayTop data={data} setActiveImage={setActiveImage} />
     <OverlayBottom data={data} setActiveImage={setActiveImage} />
   </>
 
