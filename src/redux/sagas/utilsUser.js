@@ -28,6 +28,7 @@ function* setUserInFirestore(uid, username, email) {
   yield firestore.collection('users')
                  .doc(uid)
                  .set({ 
+                   uid,
                    avatarUrl,
                    username, 
                    email, 
@@ -170,21 +171,36 @@ const selectedUserChannel = uid => {
 const avatarUploadChannel = image => {
   return new eventChannel(emiter => {
     const listener = storage.ref(image.name).put(image)
-    .on('state_changed', snapshot => {
-      let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                            .on('state_changed', snapshot => {
+                              let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       
       emiter({ data: progress });
     }, error => {
-      console.log(error);
+      console.log(error.message);
     }, async ()=> {
       const authUser = JSON.parse(localStorage.getItem('authUser'));
       const url = await getAvatarUrl(image.name);
       const uid = authUser.uid;
       const name = image.name;
+      const userRef = firestore.collection('users');
       
-      firestore.collection('users').doc(uid).update({ avatarUrl: url, name });
+      userRef.doc(uid).update({ avatarUrl: url, name });
 
-      // firestore.collection('users').
+      userRef.where('uid', '!=', uid)
+              .get()
+              .then(snapshot =>
+                snapshot.forEach(doc => {
+                  userRef.doc(doc.data().uid)
+                         .collection('followers')
+                         .doc(uid)
+                         .update({ avatarUrl: url })
+                  
+                  userRef.doc(doc.data().uid)
+                         .collection('following')
+                         .doc(uid)
+                         .update({ avatarUrl: url })
+                })
+              );
     });
     
     return () => listener.off();

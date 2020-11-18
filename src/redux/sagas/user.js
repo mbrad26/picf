@@ -105,8 +105,6 @@ function* signInWithGoogle() {
 function* manageFollowing({ payload: userUid }) {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
   const uid = authUser.uid;
-  // const username = authUser.username;
-  // const avatarUrl = authUser.avatarUrl;
 
   try {
     yield call(updateCurrentUserFollowing, uid, userUid);
