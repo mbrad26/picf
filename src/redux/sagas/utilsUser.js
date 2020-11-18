@@ -24,7 +24,6 @@ function* getCurrentUserFromFirestore(authUser) {
 };
 
 function* setUserInFirestore(uid, username, email) {
-  // storage.ref(`${uid}/`)
   const avatarUrl = yield call(getAvatarUrl, 'smile.png');
   yield firestore.collection('users')
                  .doc(uid)
@@ -60,7 +59,11 @@ function* updateCurrentUserFollowing(uid, userUid) {
            });
 };
 
-const updateFollowedUserFollowers = (userUid, username, uid, avatarUrl) => {
+function* updateFollowedUserFollowers(userUid, uid) {
+  const data = yield call(getUserSnapshotFromFirestore, uid);
+  const username = data.username;
+  const avatarUrl = data.avatarUrl;
+
   firestore.collection('users').doc(userUid)
            .collection('followers').doc(uid)
            .set({ uid , username, avatarUrl});
@@ -180,6 +183,8 @@ const avatarUploadChannel = image => {
       const name = image.name;
       
       firestore.collection('users').doc(uid).update({ avatarUrl: url, name });
+
+      // firestore.collection('users').
     });
     
     return () => listener.off();

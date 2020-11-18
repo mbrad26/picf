@@ -1,21 +1,12 @@
 import React, { lazy } from 'react';
-// import { Avatar } from '@material-ui/core';
-// import { Image } from 'react-bootstrap';
-
-import Avatar from '../Account/avatar';
+import { Image } from 'react-bootstrap';
 
 const Username = lazy(() => import('./username'));
 
-const FollowedUser = ({ user }) => {
-  console.log('USER_FOLLOWED: ', user);
-
-  // <Image loading='eager' id='avatar' src={user.avatarUrl} roundedCircle />
-  return (
-    <>
-      <Avatar uid={user.uid} />
-      <Username username={user.username} />
-    </>
-  );
-};
+const FollowedUser = ({ user }) => 
+  <>
+    <Image loading='eager' id='avatar' src={user.avatarUrl} roundedCircle />
+    <Username username={user.username} />
+  </>
 
 export default FollowedUser;
