@@ -18,7 +18,11 @@ const LandingPageGallery = () => {
       {imagesData &&
         imagesData.map(obj => 
           <div className='landing-page-gallery-item' key={obj.url}>
-            <Image src={obj.url} />
+            <Image 
+              loading='lazy'
+              src={obj.url} 
+              alt={obj.name}
+            />
             <LandingPageOverlay data={obj} />
           </div>
       )}
