@@ -1,12 +1,12 @@
 .grid-container {
+  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-auto-rows: minmax(250px, 1fr);
   grid-auto-flow: dense;
   grid-gap: .5em;
   margin: 1em;
-  display: grid;
-  overflow: scroll;
   height: 100vh;
+  overflow: scroll;
 }
 
 .grid-item:first-child {
@@ -115,7 +115,6 @@ em {
 }
 
 .overlay-bottom .user-avatar-username {
-  /* display: inline-block; */
   cursor: pointer;
   font-size: small;
 }

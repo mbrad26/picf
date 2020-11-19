@@ -1,0 +1,44 @@
+.landing-page-container {
+  display: grid;
+  grid-template-columns: 8fr 4fr;
+  /* grid-template-rows: ; */
+}
+
+.landing-page-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: minmax(250px, 1fr);
+  grid-auto-flow: dense;
+  grid-gap: .5em;
+  margin: 1em;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.landing-page-sign-up {
+
+}
+
+.landing-page-gallery-item:first-child {
+  grid-row: span 1;
+}
+
+.landing-page-gallery-item:nth-of-type(2n) {
+  grid-row: span 2;
+}
+
+.landing-page-gallery-item:nth-of-type(5n) {
+  grid-row: span 2;
+}
+
+.landing-page-gallery-item {
+  position: relative !important;
+}
+
+img {
+  cursor: zoom-in;
+  width: 100%;
+  height: 100%; 
+  object-fit: cover;
+  object-position: 50% 50%;
+} 

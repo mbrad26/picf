@@ -23,8 +23,6 @@ import {
   doSetUploadProgress,
 } from '../actions/images';
 
-// const authUser = JSON.parse(localStorage.getItem('authUser'));
-
 function* fileUpload({ payload: selected }) {
   const channel = yield call(storageChannel, selected);
 
