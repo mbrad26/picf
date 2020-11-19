@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './styles.css';
+import SignIn from '../SignIn';
 import LandingPageGallery from './gallery';
 
 const LandingPage = () => {
@@ -10,7 +11,7 @@ const LandingPage = () => {
         <LandingPageGallery />
       </div>
       <div className="landing-page-signup">
-        sign-up
+        <SignIn />
       </div>
     </div>
   );
