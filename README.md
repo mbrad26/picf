@@ -4,7 +4,7 @@
 
 ## Work in progress ...
 
-[<img src="images/Screenshot 2020-11-14 at 14.30.09.png" width="55%">]()
+[<img src="images/Screenshot 2020-11-20 at 17.25.18.png" width="55%">]()
 
 [<img src="images/Screenshot 2020-11-14 at 14.30.52.png" width="55%">]()
 
