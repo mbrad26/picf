@@ -1,7 +1,6 @@
 .landing-page-container {
   display: grid;
-  grid-template-columns: 8fr 4fr;
-  /* grid-template-rows: ; */
+  grid-template-columns: 8fr minmax(310px, 4fr);
 }
 
 .landing-page-gallery {
@@ -12,10 +11,11 @@
   grid-gap: .5em;
   height: 100vh;
   overflow: scroll;
+  background-color: rgb(20, 20, 20);
 }
 
 .landing-page-sign-up {
-
+  padding: 30rem;
 }
 
 .landing-page-gallery-item:first-child {

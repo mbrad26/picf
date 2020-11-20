@@ -39,8 +39,6 @@ const SignInForm = () => {
     };
   }, [authError]);
 
-  console.log('HISTORY_SIGNIN: ', history.location.pathname);
-
   return (
     <form onSubmit={onSubmit}>
       <input 
@@ -57,7 +55,7 @@ const SignInForm = () => {
         onChange={onChange}
         placeholder='Password'
       />
-      <button type='submit'>Sign In</button>
+      <button type='submit'>Sign in</button>
 
       {error && <p>{error.message}</p>}
     </form>
