@@ -1,5 +1,5 @@
 import React, { useEffect, lazy, Suspense } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './style.css';
@@ -8,7 +8,6 @@ import * as ROUTES from '../constants/routes';
 import { doSetUserRequest } from '../../redux/actions/user';
 
 const Home = lazy(() => import('../Home'));
-const SignIn = lazy(() => import('../SignIn'));
 const SignUp = lazy(() => import('../SignUp'));
 const Account = lazy(() => import('../Account'));
 const LandingPage = lazy(() => import('../Landing'));
@@ -16,6 +15,7 @@ const PasswordReset = lazy(() => import('../PasswordForget'));
 
 const App = () => {
   const dispatch = useDispatch();
+  const { authUser } = useSelector(state => state.userState);
 
   useEffect(() => {
     dispatch(doSetUserRequest());
@@ -24,14 +24,13 @@ const App = () => {
   return (
     <Router>
       <div>
-        <Navigation />
+        {authUser && <Navigation />}
 
         <Switch>
           <Suspense fallback={<div>Loading...</div>}>
             <Route exact path={ROUTES.LANDING} component={LandingPage} />
             <Route path={ROUTES.HOME} component={Home} />
             <Route path={ROUTES.SIGN_UP} component={SignUp} />
-            <Route path={ROUTES.SIGN_IN} component={SignIn} />
             <Route path={ROUTES.ACCOUNT} component={Account} />
             <Route path={ROUTES.PASSWORD_RESET} component={PasswordReset} />
           </Suspense>

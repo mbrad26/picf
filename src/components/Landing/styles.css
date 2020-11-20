@@ -10,7 +10,6 @@
   grid-auto-rows: minmax(250px, 1fr);
   grid-auto-flow: dense;
   grid-gap: .5em;
-  margin: 1em;
   height: 100vh;
   overflow: scroll;
 }

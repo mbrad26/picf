@@ -39,6 +39,8 @@ const SignInForm = () => {
     };
   }, [authError]);
 
+  console.log('HISTORY_SIGNIN: ', history.location.pathname);
+
   return (
     <form onSubmit={onSubmit}>
       <input 
