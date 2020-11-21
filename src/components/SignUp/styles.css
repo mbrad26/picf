@@ -1,33 +1,24 @@
-.signin-container {
-  margin: 7rem 2.5rem 2.5rem;
+.signup-container {
+  margin: 7rem auto;
+  max-width: 25rem;
   text-align: center;
   vertical-align: middle;
 }
 
-#signin-google {
-  text-decoration: underline;
-  cursor: pointer;
-  color: #800080
-}
-
-.signin-container .MuiSvgIcon-root {
+.signup-container .MuiSvgIcon-root {
   font-size: 3.5rem;
   color: #f808f8;
-  margin: 18px;
+  margin: 38px;
 }
 
-.signin-container p a {
+.signup-container p a{
   font-weight: 500;
   color: #1976d2;
 }
 
-.signin-container p {
+.signup-container p {
   font-weight: 500;
-  margin-bottom: 10px;
-}
-
-.signin-container .welcome-or {
-  margin-bottom: 8px;
+  margin: 36px auto 16px;
 }
 
 input {
@@ -38,7 +29,7 @@ input {
   border: .5px solid black;
 }
 
-.signin-container button {
+.signup-container button {
   display: table-cell;
   vertical-align: middle;
   background-color:#1976d2;
@@ -51,10 +42,10 @@ input {
   border-radius: 4px;
 }
 
-button #text {
-  margin: auto;
+.signup-container button:hover {
+  background-color: rgb(33, 69, 136);
 }
 
-.signin-container button:hover {
-  background-color: rgb(33, 69, 136);
+.signup-container button:disabled {
+  background-color:#72a1cf;
 }

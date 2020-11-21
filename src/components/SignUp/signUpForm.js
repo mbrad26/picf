@@ -64,14 +64,14 @@ const SignUpForm = () => {
         placeholder='Email' 
       />
       <input 
-        type='text'
+        type='password'
         name='passwordOne'
         value={passwordOne}
         onChange={onChange}
         placeholder='Password' 
       />
       <input 
-        type='text'
+        type='password'
         name='passwordTwo'
         value={passwordTwo}
         onChange={onChange}
@@ -79,7 +79,7 @@ const SignUpForm = () => {
       />
       <button type='submit' disabled={isInvalid}>Sign Up</button>
 
-      {error && <p>{error.message}</p>}
+      {error && <p className='error'>{error.message}</p>}
     </form>
   );
 };

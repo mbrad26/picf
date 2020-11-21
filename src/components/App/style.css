@@ -2,3 +2,7 @@ body {
   font-family: 'Space Mono', monospace;
   margin: 0px;
 }
+
+.error {
+  color: #da0231;
+}
