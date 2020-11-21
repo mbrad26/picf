@@ -21,7 +21,7 @@ const SignInWithGoogle = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <button type='submit'><i class="fab fa-google-plus-g"></i> Sign in with Google</button>
+      <button type='submit'><i className="fab fa-google-plus-g"></i> Sign in with Google</button>
 
       {error && <p>{error.message}</p>}
     </form>

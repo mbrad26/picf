@@ -7,6 +7,7 @@
   margin: 1em;
   height: 100vh;
   overflow: scroll;
+  background-color: black;
 }
 
 .grid-item:first-child {

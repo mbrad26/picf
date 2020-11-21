@@ -22,7 +22,7 @@ const Navigation = () => {
   return (
     <Navbar>
       <Navbar.Brand>
-        <Nav.Link as={Link} to={ROUTES.LANDING}>Picturesque</Nav.Link>
+        <Nav.Link as={Link} to={ROUTES.HOME}>Picturesque</Nav.Link>
       </Navbar.Brand>
       <Nav className='ml-auto'>
         {user ? <AuthLinks user={user} /> : <NonAuthLinks />}

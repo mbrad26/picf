@@ -2,7 +2,9 @@ import React from 'react';
 
 import './styles.css';
 import SignIn from '../SignIn';
+import SignUp from '../SignUp';
 import LandingPageGallery from './gallery';
+import * as ROUTES from '../constants/routes';
 
 const LandingPage = () => {
   return (
