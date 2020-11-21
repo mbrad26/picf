@@ -56,7 +56,7 @@ const UploadForm = () => {
       </Form.Group>
       
       {progress && <ProgressBar now={Math.floor(progress)} />} 
-      {error && <p>{error.message}</p>}
+      {error && <p className='error'>{error.message}</p>}
     </Form> 
   );
 };

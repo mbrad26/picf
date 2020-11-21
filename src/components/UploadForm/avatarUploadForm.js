@@ -52,7 +52,7 @@ const AvatarUploadForm = () => {
       </Form.Group>
       
       {progress && <ProgressBar now={Math.floor(progress)} />} 
-      {error && <p>{error}</p>}
+      {error && <p className='error'>{error}</p>}
     </Form> 
   );
 };

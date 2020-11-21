@@ -23,7 +23,7 @@ const SignInWithGoogle = () => {
     <form onSubmit={onSubmit}>
       <button type='submit'><i className="fab fa-google-plus-g"></i> Sign in with Google</button>
 
-      {error && <p>{error.message}</p>}
+      {error && <p className='error'>{error.message}</p>}
     </form>
   );
 };
