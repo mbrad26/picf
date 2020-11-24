@@ -13,7 +13,7 @@ const AvatarSection = () => {
       <Avatar uid={uid} />
       <AvatarUploadForm />
     </div>
-  )
-}
+  );
+};
 
 export default AvatarSection;

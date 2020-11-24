@@ -15,9 +15,9 @@ const Avatar = ({ uid }) => {
   }, [dispatch, uid, avatarUrl]);
 
   return (
-    <>
+    <div className='image-container'>
       <Image loading='eager' id='avatar' src={state} roundedCircle/>
-    </>
+    </div>
   );
 };
 
