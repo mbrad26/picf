@@ -1,17 +1,14 @@
 import React,  { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { doUpdateUsernameRequest } from '../../redux/actions/user';
-
-const UsernameSection = () => {
-  const dispatch = useDispatch();
+const UsernameSection = ({ setUsernameAndEmail }) => {
   const { authUser, authError } = useSelector(state => state.userState);
   const [state, setState] = useState({ username: authUser.username, error: authError});
   const { username, error } = state;
 
   const onSubmit = event => {
     event.preventDefault();
-    dispatch(doUpdateUsernameRequest(username));
+    setUsernameAndEmail({ ...state, username });
   };
 
   const onChange = event => 
