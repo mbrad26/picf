@@ -21,8 +21,7 @@ import  {
   SET_FOLLOWING,
   SELECTED_USER_REQUEST,
   SET_SELECTED_USER,
-  UPDATE_USERNAME_REQUEST,
-  UPDATE_EMAIL_REQUEST,
+  UPDATE_USER_DETAILS_REQUEST,
   RESET_AUTHUSER,
  } from '../constants/actionTypes';
 
@@ -134,14 +133,9 @@ const doSetSelectedUser = data => ({
   payload: data,
 });
 
-const doUpdateUsernameRequest = username => ({
-  type: UPDATE_USERNAME_REQUEST,
-  payload: username,
-});
-
-const doUpdateEmailRequest = email => ({
-  type: UPDATE_EMAIL_REQUEST,
-  payload: email,
+const doUpdateUserDetailsRequest = details => ({
+  type: UPDATE_USER_DETAILS_REQUEST,
+  payload: details,
 });
 
 export { 
@@ -167,7 +161,6 @@ export {
   doSetFollowing,
   doSelectedUserRequest,
   doSetSelectedUser,
-  doUpdateUsernameRequest,
-  doUpdateEmailRequest,
   doResetAuthUser,
+  doUpdateUserDetailsRequest,
 };

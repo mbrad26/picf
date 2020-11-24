@@ -204,7 +204,7 @@ function* getSelectedUser({ payload: uid }) {
   };
 };
 
-function* updateUsername({ payload: username }) {
+function* updateUsername(username) {
   try {
     yield call(updateUsernameInFirestore, username);
     
@@ -214,7 +214,7 @@ function* updateUsername({ payload: username }) {
   }
 };
 
-const updateEmail = ({ payload: email }) => {
+const updateEmail = (email) => {
   const user = auth.currentUser;
 
   user.updateEmail(email).then(function() {
@@ -228,6 +228,11 @@ const updateEmail = ({ payload: email }) => {
   // } catch (error) {
   //   yield put(doRequestError(error));
   // };
+};
+
+function* updateUserDetails({ payload: { username, email} }) {
+  yield call(updateUsername, username);
+  yield call(updateEmail, email);
 };
 
 export { 
@@ -245,6 +250,5 @@ export {
   getFollowers,
   getFollowing,
   getSelectedUser,
-  updateUsername,
-  updateEmail,
+  updateUserDetails,
 };
