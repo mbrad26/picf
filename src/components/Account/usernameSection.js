@@ -24,7 +24,7 @@ const UsernameSection = () => {
   }, [authError]);
 
   return (
-    <div className='section'>
+    <div className='username-section'>
       <h5>Username</h5>
       <form onSubmit={onSubmit}>
         <input 

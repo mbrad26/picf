@@ -7,12 +7,15 @@ import UsernameSection from './usernameSection';
 const Profile = () => {
   return (
     <div className='profile-container'>
-      <AvatarSection />
-      <UsernameSection />
-      <EmailSection />
-      <h5>Details</h5>
+      <h3>Profile</h3>
+      <hr />
+      <div className='sections-container'>
+        <AvatarSection />
+        <UsernameSection />
+        <EmailSection />
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default Profile;

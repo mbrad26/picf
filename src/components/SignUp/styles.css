@@ -47,8 +47,3 @@ input {
 .signup-container button:hover {
   background-color: rgb(33, 69, 136);
 }
-
-.signup-container button:disabled {
-  background-color:#72a1cf;
-  border: 1px solid #72a1cf;
-}

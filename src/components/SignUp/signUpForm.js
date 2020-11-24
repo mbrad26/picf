@@ -20,12 +20,6 @@ const SignUpForm = () => {
   const [state, setState] = useState(INITIAL_STATE);
   const { username, email, passwordOne, passwordTwo, error } = state;
 
-  const isInvalid = 
-    passwordOne !== passwordTwo ||
-    passwordOne === '' ||
-    email === '' ||
-    username === '';
-    
   const onSubmit = event => {
     event.preventDefault();
     dispatch(doSignupRequest({ username, email, passwordOne }));
@@ -77,7 +71,7 @@ const SignUpForm = () => {
         onChange={onChange}
         placeholder='Confirm Password' 
       />
-      <button type='submit' disabled={isInvalid}>Sign Up</button>
+      <button type='submit'>Sign Up</button>
 
       {error && <p className='error'>{error.message}</p>}
     </form>

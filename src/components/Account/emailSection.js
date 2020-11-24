@@ -24,7 +24,7 @@ const EmailSection = () => {
   }, [authError]);
 
   return (
-    <div className='section'>
+    <div className='email-section'>
       <h5>Email</h5>
       <form onSubmit={onSubmit}>
         <input 

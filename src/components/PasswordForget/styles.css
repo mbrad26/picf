@@ -43,3 +43,8 @@ input {
   border: 1px solid #1976d2;
   border-radius: 4px;
 }
+
+.password-reset-container button:hover {
+  cursor: pointer;
+  background-color: rgb(33, 69, 136);
+}

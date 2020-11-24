@@ -9,9 +9,7 @@ const AvatarSection = () => {
   const uid = authUser && authUser.uid;
 
   return (
-    <div>
-      <h3>Profile</h3>
-      <hr />
+    <div className='avatar-section'>
       <h5>Profile picture</h5>
       <Badge 
         color="secondary" 

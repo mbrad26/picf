@@ -9,7 +9,6 @@ const INITIAL_STATE = {
 };
 
 const PasswordResetForm = () => {
-  console.log('PASSWORD_RESET');
   const dispatch = useDispatch();
   const { authError } = useSelector(state => state.userState);
   const [state, setState] = useState(INITIAL_STATE);

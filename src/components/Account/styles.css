@@ -11,8 +11,46 @@
   margin: 1em;
 }
 
+/* hr {
+  margin: 1rem;
+} */
+
 .profile-container {
   margin: 1em;
+}
+
+.sections-container {
+  display: grid;
+  grid-template-columns: 3fr 9fr;
+}
+
+.email-section {
+  grid-column: 2;
+}
+
+.profile-container button {
+  display: table-cell;
+  vertical-align: middle;
+  background-color:#1976d2;
+  text-decoration: none;
+  color: #f0f8ff;
+  width: 100%;
+  height: 2.2rem;
+  margin: 1rem auto;
+  border: 1px solid #1976d2;
+  border-radius: 4px;
+}
+
+.profile-container button:hover {
+  background-color: rgb(33, 69, 136);
+}
+
+input {
+  width: 100%;
+  height: 3.5rem;
+  margin: 1rem auto;
+  padding: .7rem;
+  border: .5px solid black;
 }
 
 #avatar {
@@ -27,6 +65,3 @@ label {
   padding: 7px 0px 7px 0px;
 } 
 
-.section {
-  margin-bottom: 1.5rem;
-}
