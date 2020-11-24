@@ -41,7 +41,7 @@ const PasswordResetForm = () => {
         onChange={onChange}
         placeholder='Email'
       />
-      <button type='submit' disabled={isInvalid}>Reset</button>
+      <button type='submit' disabled={isInvalid}>Send password reset link</button>
 
       {error && <p>{error.message}</p>}
     </form>

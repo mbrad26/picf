@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import './style.css';
+import './styles.css';
 import Images from './images';
 import ImageModal from '../Modal';
 import { doUrlRequest } from '../../redux/actions/images';

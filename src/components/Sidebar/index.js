@@ -2,7 +2,7 @@ import React from 'react';
 import { Nav } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 
-import './style.css';
+import './styles.css';
 import Followers from '../Followers';
 import Following from '../Following';
 import UploadForm from '../UploadForm/uploadForm';

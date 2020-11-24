@@ -5,7 +5,7 @@ import {
   Image,
  } from 'react-bootstrap';
 
-import './style.css';
+import './styles.css';
 import Overlay from '../Gallery/overlay';
 import { doCloseModal } from '../../redux/actions/modal';
 

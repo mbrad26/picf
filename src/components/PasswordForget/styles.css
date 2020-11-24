@@ -1,4 +1,4 @@
-.signup-container {
+.password-reset-container {
   margin: 5rem auto;
   padding: 2rem;
   max-width: 35rem;
@@ -7,20 +7,20 @@
   vertical-align: middle;
 }
 
-.signup-container .MuiSvgIcon-root {
+.password-reset-container .MuiSvgIcon-root {
   font-size: 3.5rem;
   color: #f808f8;
   margin: 28px;
 }
 
-.signup-container p a {
-  font-weight: 500;
-  color: #1976d2;
+.password-reset-container h1 {
+  font-size: 2.4rem;
 }
 
-.signup-container p {
+.password-reset-container p {
   font-weight: 500;
-  margin: 20px auto 26px;
+  color: rgb(143, 143, 143);
+  margin: 30px auto 26px;
 }
 
 input {
@@ -31,7 +31,7 @@ input {
   border: .5px solid black;
 }
 
-.signup-container button {
+.password-reset-container button {
   display: table-cell;
   vertical-align: middle;
   background-color:#1976d2;
@@ -42,13 +42,4 @@ input {
   margin: 1rem auto;
   border: 1px solid #1976d2;
   border-radius: 4px;
-}
-
-.signup-container button:hover {
-  background-color: rgb(33, 69, 136);
-}
-
-.signup-container button:disabled {
-  background-color:#72a1cf;
-  border: 1px solid #72a1cf;
 }

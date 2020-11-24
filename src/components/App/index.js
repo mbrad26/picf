@@ -2,7 +2,7 @@ import React, { useEffect, lazy, Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import './style.css';
+import './styles.css';
 import Navigation from '../Navigation';
 import * as ROUTES from '../constants/routes';
 import { doSetUserRequest } from '../../redux/actions/user';

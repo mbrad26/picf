@@ -13,7 +13,7 @@
 .signin-container .MuiSvgIcon-root {
   font-size: 3.5rem;
   color: #f808f8;
-  margin: 18px;
+  margin: 23px;
 }
 
 .signin-container p a {
@@ -23,7 +23,8 @@
 
 .signin-container p {
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
 }
 
 .signin-container .welcome-or {
