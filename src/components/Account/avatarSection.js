@@ -10,7 +10,7 @@ const AvatarSection = () => {
 
   return (
     <div className='avatar-section'>
-      <h5>Profile picture</h5>
+      <h5>Profile avatar</h5>
       <Badge 
         color="secondary" 
         overlap="circle" 
@@ -20,6 +20,7 @@ const AvatarSection = () => {
         <Avatar uid={uid} />
       </Badge>
       <AvatarUploadForm />
+      <span>Edit Avatar</span>
     </div>
   )
 }

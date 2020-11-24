@@ -7,7 +7,7 @@ import UsernameSection from './usernameSection';
 const Profile = () => {
   return (
     <div className='profile-container'>
-      <h3>Profile</h3>
+      <h3>Edit profile details</h3>
       <hr />
       <div className='sections-container'>
         <AvatarSection />
