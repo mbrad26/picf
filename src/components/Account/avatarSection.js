@@ -1,5 +1,4 @@
 import React from 'react';
-import Badge from '@material-ui/core/Badge';
 
 import Avatar from './avatar';
 import AvatarUploadForm from '../UploadForm/avatarUploadForm';
@@ -11,16 +10,8 @@ const AvatarSection = () => {
   return (
     <div className='avatar-section'>
       <h5>Profile avatar</h5>
-      <Badge 
-        color="secondary" 
-        overlap="circle" 
-        badgeContent={<label htmlFor="avatar-upload"><span>Edit Avatar</span></label>}
-        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-      >
-        <Avatar uid={uid} />
-      </Badge>
+      <Avatar uid={uid} />
       <AvatarUploadForm />
-      <span>Edit Avatar</span>
     </div>
   )
 }

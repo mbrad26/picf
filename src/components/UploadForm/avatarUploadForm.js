@@ -50,7 +50,7 @@ const AvatarUploadForm = () => {
           hidden
         />
       </Form.Group>
-      
+      <label htmlFor="avatar-upload"><span>Edit Avatar</span></label>
       {progress && <ProgressBar now={Math.floor(progress)} />} 
       {error && <p className='error'>{error}</p>}
     </Form> 
