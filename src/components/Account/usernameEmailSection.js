@@ -5,7 +5,12 @@ import { doUpdateUserDetailsRequest } from '../../redux/actions/user';
 
 const UsernameAndEmailSection = () => {
   const dispatch = useDispatch();
-  const { authUser, authError } = useSelector(state => state.userState);
+  const { 
+    authUser, 
+    authError, 
+    updateEmail, 
+    updateUsername, 
+  } = useSelector(state => state.userState);
   const [state, setState] = useState({ 
     username: authUser.username, 
     email: authUser.email,
@@ -30,6 +35,10 @@ const UsernameAndEmailSection = () => {
   return (
     <div className='username-section'>
       <h5>Username</h5>
+
+      {updateUsername && <p style={{ 'color': 'green' }}>Username update successful</p>}
+      {updateEmail && <p style={{ 'color': 'green' }}>Email update successful</p>}
+
       <form onSubmit={onSubmit}>
         <input 
           type='text'

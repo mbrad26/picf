@@ -7,6 +7,8 @@ import {
   SET_FOLLOWING,
   SET_SELECTED_USER,
   RESET_AUTHUSER,
+  UPDATE_USERNAME_SUCCESS,
+  UPDATE_EMAIL_SUCCESS,
 } from '../constants/actionTypes';
 
 const INITIAL_STATE = {
@@ -17,6 +19,8 @@ const INITIAL_STATE = {
   followers: null,
   following: null,
   selectedUser: null,
+  updateUsername: null,
+  updateEmail: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -64,6 +68,16 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         selectedUser: action.payload,
+      };
+    case UPDATE_USERNAME_SUCCESS:
+      return {
+        ...state,
+        updateUsername: true,
+      };
+    case UPDATE_EMAIL_SUCCESS:
+      return {
+        ...state,
+        updateEmail: true,
       };
     default: return state;
   };

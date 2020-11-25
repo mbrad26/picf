@@ -13,6 +13,8 @@ import {
   doSetAvatarUploadProgress,
   doSetSelectedUser,
   doResetAuthUser,
+  doUpdateUsernameSuccess,
+  doUpdateEmailSuccess,
 } from '../actions/user';
 import { 
   userChannel,
@@ -207,8 +209,9 @@ function* getSelectedUser({ payload: uid }) {
 function* updateUsername(username) {
   try {
     yield call(updateUsernameInFirestore, username);
-    
     yield call(setCurrentUser);
+
+    yield put(doUpdateUsernameSuccess());
   } catch (error) {
     yield put(doRequestError(error));
   }
@@ -222,8 +225,9 @@ function* updateEmail(email) {
     yield user.sendEmailVerification({
       url: process.env.REACT_APP_DEV_CONFIRMATION_EMAIL_REDIRECT,
     });
-  
     yield call(updateEmailInFirestore, user, email);
+
+    yield put(doUpdateEmailSuccess());
   } catch (error) {
     yield put(doRequestError(error));
   }
