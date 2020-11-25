@@ -30,7 +30,7 @@ import {
   removeFollowedUserFromFollowing,
   removeFollowingUserFromFollowers,
   updateUsernameInFirestore,
-  // updateEmailInFirestore,
+  updateEmailInFirestore,
  } from './utilsUser';
 import { 
   doOverlayError, 
@@ -214,25 +214,20 @@ function* updateUsername(username) {
   }
 };
 
-const updateEmail = (email) => {
+function* updateEmail(email) {
   const user = auth.currentUser;
 
-  user.updateEmail(email).then(function() {
-    console.log('UPDATE SUCCESFUL');
-  }).catch(function (error) {
-    // yield put(doRequestError(error));
+  yield user.updateEmail(email);
+  yield user.sendEmailVerification({
+    url: process.env.REACT_APP_DEV_CONFIRMATION_EMAIL_REDIRECT,
   });
 
-  // try {
-  //   yield auth.currentUser.updateEmail(email);
-  // } catch (error) {
-  //   yield put(doRequestError(error));
-  // };
+  yield call(updateEmailInFirestore, user, email);
 };
 
 function* updateUserDetails({ payload: { username, email} }) {
-  yield call(updateUsername, username);
   yield call(updateEmail, email);
+  yield call(updateUsername, username);
 };
 
 export { 

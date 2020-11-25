@@ -222,9 +222,12 @@ const updateUsernameInFirestore = username => {
 
   firestore.collection('users').doc(authUser.uid)
           .update({ username });
-}
+};
 
-// const updateEmailInFirestore = email => null
+const updateEmailInFirestore = (user, email) =>
+  firestore.collection('users')
+           .doc(user.uid)
+           .update({ email });
 
 export {
   userChannel,
@@ -243,5 +246,5 @@ export {
   updateFollowedUserFollowers,
   updateTimelineUserFollowers,
   updateUsernameInFirestore,
-  // updateEmailInFirestore,
+  updateEmailInFirestore,
 };

@@ -22,7 +22,7 @@ exports[`Settings renders a snapshot 1`] = `
       disabled=""
       type="submit"
     >
-      Reset
+      Send password reset link
     </button>
   </form>
   <h5>
