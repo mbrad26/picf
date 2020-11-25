@@ -217,12 +217,16 @@ function* updateUsername(username) {
 function* updateEmail(email) {
   const user = auth.currentUser;
 
-  yield user.updateEmail(email);
-  yield user.sendEmailVerification({
-    url: process.env.REACT_APP_DEV_CONFIRMATION_EMAIL_REDIRECT,
-  });
-
-  yield call(updateEmailInFirestore, user, email);
+  try {
+    yield user.updateEmail(email);
+    yield user.sendEmailVerification({
+      url: process.env.REACT_APP_DEV_CONFIRMATION_EMAIL_REDIRECT,
+    });
+  
+    yield call(updateEmailInFirestore, user, email);
+  } catch (error) {
+    yield put(doRequestError(error));
+  }
 };
 
 function* updateUserDetails({ payload: { username, email} }) {
