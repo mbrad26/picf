@@ -9,6 +9,8 @@ import {
   RESET_AUTHUSER,
   UPDATE_USERNAME_SUCCESS,
   UPDATE_EMAIL_SUCCESS,
+  UPDATE_EMAIL_ERROR,
+  UPDATE_USERNAME_ERROR,
 } from '../constants/actionTypes';
 
 const INITIAL_STATE = {
@@ -21,6 +23,8 @@ const INITIAL_STATE = {
   selectedUser: null,
   updateUsername: null,
   updateEmail: null,
+  updateEmailError: null,
+  updateUsernameError: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -78,6 +82,16 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         updateEmail: true,
+      };
+    case UPDATE_EMAIL_ERROR:
+      return {
+        ...state,
+        updateEmailError: action.payload,
+      };
+    case UPDATE_USERNAME_ERROR:
+      return {
+        ...state,
+        updateUsernameError: action.payload,
       };
     default: return state;
   };
