@@ -21,12 +21,13 @@ import  {
   SET_FOLLOWING,
   SELECTED_USER_REQUEST,
   SET_SELECTED_USER,
-  UPDATE_USER_DETAILS_REQUEST,
   RESET_AUTHUSER,
   UPDATE_USERNAME_SUCCESS,
   UPDATE_EMAIL_SUCCESS,
   UPDATE_EMAIL_ERROR,
   UPDATE_USERNAME_ERROR,
+  UPDATE_USERNAME_REQUEST,
+  UPDATE_EMAIL_REQUEST,
  } from '../constants/actionTypes';
 
 const doSignupRequest = credentials => ({
@@ -137,9 +138,14 @@ const doSetSelectedUser = data => ({
   payload: data,
 });
 
-const doUpdateUserDetailsRequest = details => ({
-  type: UPDATE_USER_DETAILS_REQUEST,
-  payload: details,
+const doUpdateUsernameRequest = username => ({
+  type: UPDATE_USERNAME_REQUEST,
+  payload: username,
+});
+
+const doUpdateEmailRequest = email => ({
+  type: UPDATE_EMAIL_REQUEST,
+  payload: email,
 });
 
 const doUpdateUsernameSuccess = () => ({
@@ -184,9 +190,10 @@ export {
   doSelectedUserRequest,
   doSetSelectedUser,
   doResetAuthUser,
-  doUpdateUserDetailsRequest,
   doUpdateUsernameSuccess,
   doUpdateEmailSuccess,
   doUpdateEmailError,
   doUpdateUsernameError,
+  doUpdateEmailRequest,
+  doUpdateUsernameRequest,
 };

@@ -1,7 +1,7 @@
 import React,  { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { doUpdateUserDetailsRequest } from '../../redux/actions/user';
+import { doUpdateUsernameRequest, doUpdateEmailRequest } from '../../redux/actions/user';
 
 const UsernameAndEmailSection = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const UsernameAndEmailSection = () => {
     if(username != usernameRef.current || email != emailRef.current) {
       usernameRef.current = authUser.username;
       emailRef.current = authUser.email;
-      dispatch(doUpdateUserDetailsRequest({ username, email }));
+      // dispatch(doUpdateUserDetailsRequest({ username, email }));
     };
   };
 
