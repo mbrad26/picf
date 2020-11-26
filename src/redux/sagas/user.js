@@ -207,35 +207,29 @@ function* getSelectedUser({ payload: uid }) {
 };
 
 function* updateUsername(username) {
-  try {
-    yield call(updateUsernameInFirestore, username);
-    yield call(setCurrentUser);
-
-    yield put(doUpdateUsernameSuccess());
-  } catch (error) {
-    yield put(doRequestError(error));
-  }
+  yield call(updateUsernameInFirestore, username);
+  yield call(setCurrentUser);
+  yield put(doUpdateUsernameSuccess());
 };
 
 function* updateEmail(email) {
   const user = auth.currentUser;
 
-  try {
-    yield user.updateEmail(email);
-    yield user.sendEmailVerification({
-      url: process.env.REACT_APP_DEV_CONFIRMATION_EMAIL_REDIRECT,
-    });
-    yield call(updateEmailInFirestore, user, email);
-
-    yield put(doUpdateEmailSuccess());
-  } catch (error) {
-    yield put(doRequestError(error));
-  }
+  yield user.updateEmail(email);
+  yield user.sendEmailVerification({
+    url: process.env.REACT_APP_DEV_CONFIRMATION_EMAIL_REDIRECT,
+  });
+  yield call(updateEmailInFirestore, user, email);
+  yield put(doUpdateEmailSuccess());
 };
 
 function* updateUserDetails({ payload: { username, email} }) {
-  yield call(updateEmail, email);
-  yield call(updateUsername, username);
+  try {
+    yield call(updateEmail, email);
+    yield call(updateUsername, username);
+  } catch (error) {
+    yield put(doRequestError(error));
+  }
 };
 
 export { 

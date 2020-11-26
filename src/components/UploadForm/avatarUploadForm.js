@@ -56,7 +56,7 @@ const AvatarUploadForm = () => {
         </label>
       </div>
       {progress && <ProgressBar now={Math.floor(progress)} />} 
-      {error && <p className='error'>{error}</p>}
+      {error && <p className='error'>{error.message}</p>}
     </Form> 
   );
 };

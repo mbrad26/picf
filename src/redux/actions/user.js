@@ -25,6 +25,8 @@ import  {
   RESET_AUTHUSER,
   UPDATE_USERNAME_SUCCESS,
   UPDATE_EMAIL_SUCCESS,
+  UPDATE_EMAIL_ERROR,
+  UPDATE_USERNAME_ERROR,
  } from '../constants/actionTypes';
 
 const doSignupRequest = credentials => ({
@@ -148,6 +150,16 @@ const doUpdateEmailSuccess = () => ({
   type: UPDATE_EMAIL_SUCCESS,
 });
 
+const doUpdateEmailError = error => ({
+  type: UPDATE_EMAIL_ERROR,
+  payload: error,
+});
+
+const doUpdateUsernameError = error => ({
+  type: UPDATE_USERNAME_ERROR,
+  payload: error,
+});
+
 export { 
   doRequestError,
   doSetAvatarUrl,
@@ -175,4 +187,6 @@ export {
   doUpdateUserDetailsRequest,
   doUpdateUsernameSuccess,
   doUpdateEmailSuccess,
+  doUpdateEmailError,
+  doUpdateUsernameError,
 };

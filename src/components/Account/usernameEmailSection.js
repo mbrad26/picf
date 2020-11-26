@@ -1,4 +1,4 @@
-import React,  { useState, useEffect } from 'react';
+import React,  { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { doUpdateUserDetailsRequest } from '../../redux/actions/user';
@@ -8,19 +8,27 @@ const UsernameAndEmailSection = () => {
   const { 
     authUser, 
     authError, 
-    updateEmail, 
     updateUsername, 
   } = useSelector(state => state.userState);
+  const usernameRef = useRef(authUser.username);
+  const emailRef = useRef(authUser.email);
   const [state, setState] = useState({ 
     username: authUser.username, 
     email: authUser.email,
-    error: authError
+    updateSuccess: updateUsername,
+    error: authError,
   });
-  const { username, email, error } = state;
+  const { username, email, updateSuccess, error } = state;
+
+  console.log('USERNAME_REF: ', usernameRef);
 
   const onSubmit = event => {
     event.preventDefault();
-    dispatch(doUpdateUserDetailsRequest({ username, email }));
+    if(username != usernameRef.current || email != emailRef.current) {
+      usernameRef.current = authUser.username;
+      emailRef.current = authUser.email;
+      dispatch(doUpdateUserDetailsRequest({ username, email }));
+    };
   };
 
   const onChange = event => 
@@ -30,14 +38,16 @@ const UsernameAndEmailSection = () => {
     if(authError) {
       setState(state => ({ ...state, error: authError }));
     };
-  }, [authError]);
+    if(updateUsername) {
+      setState(state => ({ ...state, updateSuccess: updateUsername }));
+    }
+  }, [authError, updateUsername]);
 
   return (
     <div className='username-section'>
       <h5>Username</h5>
 
-      {updateUsername && <p style={{ 'color': 'green' }}>Username update successful</p>}
-      {updateEmail && <p style={{ 'color': 'green' }}>Email update successful</p>}
+      {updateSuccess && <p style={{ 'color': 'green' }}>Username update successful</p>}
 
       <form onSubmit={onSubmit}>
         <input 
