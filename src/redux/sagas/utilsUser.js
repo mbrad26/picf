@@ -221,13 +221,13 @@ const updateUsernameInFirestore = username => {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
 
   firestore.collection('users').doc(authUser.uid)
-          .update({ username });
+          .update({ username: username });
 };
 
 const updateEmailInFirestore = (user, email) =>
   firestore.collection('users')
            .doc(user.uid)
-           .update({ email });
+           .update({ email: email });
 
 export {
   userChannel,

@@ -24,10 +24,14 @@ const UsernameAndEmailSection = () => {
 
   const onSubmit = event => {
     event.preventDefault();
-    if(username != usernameRef.current || email != emailRef.current) {
+    if(username !== usernameRef.current) {
       usernameRef.current = authUser.username;
+      dispatch(doUpdateUsernameRequest(username));
+    };
+    
+    if(email !== emailRef.current) {
       emailRef.current = authUser.email;
-      // dispatch(doUpdateUserDetailsRequest({ username, email }));
+      dispatch(doUpdateEmailRequest(email));
     };
   };
 
@@ -67,8 +71,8 @@ const UsernameAndEmailSection = () => {
         />
         <button type='submit'>Update details</button>
 
-      {error && <p>{error.message}</p>}
-    </form>
+        {error && <p>{error.message}</p>}
+      </form>
     </div>
   );
 };

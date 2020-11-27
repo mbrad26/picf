@@ -11,7 +11,7 @@ const AuthLinks = ({ user }) => {
 
   return  (
     <>
-      <Nav.Link>{user.username}</Nav.Link>
+      <Nav.Link>{user && user.username}</Nav.Link>
 
       {isHome
         ? <Nav.Link as={Link} to={ROUTES.ACCOUNT}>Account</Nav.Link>

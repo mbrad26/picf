@@ -15,6 +15,8 @@ import {
   doResetAuthUser,
   doUpdateUsernameSuccess,
   doUpdateEmailSuccess,
+  doUpdateEmailError,
+  doUpdateUsernameError,
 } from '../actions/user';
 import { 
   userChannel,
@@ -206,29 +208,28 @@ function* getSelectedUser({ payload: uid }) {
   };
 };
 
-function* updateUsername(username) {
-  yield call(updateUsernameInFirestore, username);
-  yield call(setCurrentUser);
-  yield put(doUpdateUsernameSuccess());
+function* updateUsername({ payload: username }) {
+  try {
+    yield call(updateUsernameInFirestore, username);
+    yield call(setCurrentUser);
+    yield put(doUpdateUsernameSuccess());
+  } catch (error) {
+    yield put(doUpdateUsernameError(error));
+  }
 };
 
-function* updateEmail(email) {
+function* updateEmail({ payload: email }) {
   const user = auth.currentUser;
 
-  yield user.updateEmail(email);
-  yield user.sendEmailVerification({
-    url: process.env.REACT_APP_DEV_CONFIRMATION_EMAIL_REDIRECT,
-  });
-  yield call(updateEmailInFirestore, user, email);
-  yield put(doUpdateEmailSuccess());
-};
-
-function* updateUserDetails({ payload: { username, email} }) {
   try {
-    yield call(updateEmail, email);
-    yield call(updateUsername, username);
+    yield user.updateEmail(email);
+    yield user.sendEmailVerification({
+      url: process.env.REACT_APP_DEV_CONFIRMATION_EMAIL_REDIRECT,
+    });
+    yield call(updateEmailInFirestore, user, email);
+    yield put(doUpdateEmailSuccess());
   } catch (error) {
-    yield put(doRequestError(error));
+    yield put(doUpdateEmailError(error));
   }
 };
 
@@ -247,5 +248,6 @@ export {
   getFollowers,
   getFollowing,
   getSelectedUser,
-  updateUserDetails,
+  updateUsername,
+  updateEmail,
 };
