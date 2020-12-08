@@ -52,6 +52,7 @@ const UsernameAndEmailSection = () => {
       <h5>Username</h5>
 
       {updateSuccess && <p style={{ 'color': 'green' }}>Username update successful</p>}
+      {error && <p style={{ 'color': 'red' }}>Username update fail</p>}
 
       <form onSubmit={onSubmit}>
         <input 
