@@ -15,8 +15,6 @@ const Navigation = () => {
   const { authUser } = useSelector(state => state.userState);
   const [user, setUser] = useState(authUser);
 
-  console.log('NAVIGATION_USER: ', authUser.username);
-
   useEffect(() => {
     if(authUser) {
       setUser(authUser);

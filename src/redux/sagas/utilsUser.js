@@ -219,12 +219,33 @@ const avatarChannel = uid => {
 
 const updateUsernameInFirestore = username => {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
-
-  firestore.collection('users').doc(authUser.uid)
+  const usersRef = firestore.collection('users');
+  
+  usersRef.doc(authUser.uid)
           .update({ username: username });
+
+  usersRef.where('uid', '!=', authUser.uid)
+        .get()
+        .then(snapshot => {
+          if (snapshot.exists) {
+            snapshot.forEach(doc => {
+              usersRef.doc(doc.data().uid)
+                      .collection('followers')
+                      .doc(authUser.uid)
+                      .update({ username: username })
+              
+              usersRef.doc(doc.data().uid)
+                      .collection('following')
+                      .doc(authUser.uid)
+                      .update({ username: username })
+              }
+            )
+          }
+        }
+      )
 };
 
-const updateEmailInFirestore = (user, email) =>
+const updateEmailInFirestore = (user, email) => 
   firestore.collection('users')
            .doc(user.uid)
            .update({ email: email });

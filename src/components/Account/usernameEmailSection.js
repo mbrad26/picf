@@ -20,7 +20,7 @@ const UsernameAndEmailSection = () => {
   });
   const { username, email, updateSuccess, error } = state;
 
-  console.log('USERNAME_REF: ', usernameRef);
+  console.log('USERNAME_REF: ', updateSuccess);
 
   const onSubmit = event => {
     event.preventDefault();
@@ -44,7 +44,7 @@ const UsernameAndEmailSection = () => {
     };
     if(updateUsername) {
       setState(state => ({ ...state, updateSuccess: updateUsername }));
-    }
+    };
   }, [authError, updateUsername]);
 
   return (
@@ -70,8 +70,6 @@ const UsernameAndEmailSection = () => {
           placeholder='Email'
         />
         <button type='submit'>Update details</button>
-
-        {error && <p>{error.message}</p>}
       </form>
     </div>
   );

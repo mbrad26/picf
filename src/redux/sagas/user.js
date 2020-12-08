@@ -211,8 +211,8 @@ function* getSelectedUser({ payload: uid }) {
 function* updateUsername({ payload: username }) {
   try {
     yield call(updateUsernameInFirestore, username);
-    yield call(setCurrentUser);
     yield put(doUpdateUsernameSuccess());
+    yield call(setCurrentUser);
   } catch (error) {
     yield put(doUpdateUsernameError(error));
   }
