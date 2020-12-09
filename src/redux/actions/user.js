@@ -143,9 +143,9 @@ const doUpdateUsernameRequest = username => ({
   payload: username,
 });
 
-const doUpdateEmailRequest = email => ({
+const doUpdateEmailRequest = credentials => ({
   type: UPDATE_EMAIL_REQUEST,
-  payload: email,
+  payload: credentials,
 });
 
 const doUpdateUsernameSuccess = () => ({

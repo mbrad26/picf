@@ -34,7 +34,7 @@ const UsernameAndEmailSection = () => {
     if(email !== emailRef.current) {
       setState({ ...state, isOpen: true });
       emailRef.current = authUser.email;
-      if(password != '') dispatch(doUpdateEmailRequest(email));
+      if(password != '') dispatch(doUpdateEmailRequest({ email, password }));
     };
   };
 

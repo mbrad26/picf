@@ -1,3 +1,4 @@
+import firebase from 'firebase/app';
 import { call, put, take } from 'redux-saga/effects';
 
 import { 
@@ -39,7 +40,6 @@ import {
 import { 
   doOverlayError, 
 } from '../actions/images';
-
 
 function* signUpUser({ payload: { username, email, passwordOne }}) {
   try {
@@ -218,19 +218,22 @@ function* updateUsername({ payload: username }) {
   }
 };
 
-function* updateEmail({ payload: email }) {
+function* updateEmail({ payload: { email, password } }) {
   const user = auth.currentUser;
-
-  try {
-    yield user.updateEmail(email);
-    yield user.sendEmailVerification({
-      url: process.env.REACT_APP_DEV_CONFIRMATION_EMAIL_REDIRECT,
-    });
-    yield call(updateEmailInFirestore, user, email);
-    yield put(doUpdateEmailSuccess());
-  } catch (error) {
-    yield put(doUpdateEmailError(error));
-  }
+  const credential = firebase.auth.EmailAuthProvider
+                             .credential(user.email, password);
+                       
+  yield user.reauthenticateWithCredential(credential)
+            .then(function* () {
+              yield user.updateEmail(email);
+              yield user.sendEmailVerification({
+                url: process.env.REACT_APP_DEV_CONFIRMATION_EMAIL_REDIRECT,
+              });
+              yield call(updateEmailInFirestore, user, email);
+              yield put(doUpdateEmailSuccess());
+            }).catch(function* (error) {
+              yield put(doUpdateEmailError(error));
+            });
 };
 
 export { 
