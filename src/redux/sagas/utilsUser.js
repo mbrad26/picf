@@ -227,20 +227,18 @@ const updateUsernameInFirestore = username => {
   usersRef.where('uid', '!=', authUser.uid)
         .get()
         .then(snapshot => {
-          if (snapshot.exists) {
-            snapshot.forEach(doc => {
-              usersRef.doc(doc.data().uid)
-                      .collection('followers')
-                      .doc(authUser.uid)
-                      .update({ username: username })
-              
-              usersRef.doc(doc.data().uid)
-                      .collection('following')
-                      .doc(authUser.uid)
-                      .update({ username: username })
-              }
-            )
-          }
+          snapshot.forEach(doc => {
+            usersRef.doc(doc.data().uid)
+                    .collection('followers')
+                    .doc(authUser.uid)
+                    .update({ username: username })
+            
+            usersRef.doc(doc.data().uid)
+                    .collection('following')
+                    .doc(authUser.uid)
+                    .update({ username: username })
+            }
+          )
         }
       )
 };

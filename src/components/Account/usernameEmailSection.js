@@ -20,12 +20,13 @@ const UsernameAndEmailSection = () => {
   });
   const { username, email, updateSuccess, error } = state;
 
-  console.log('USERNAME_REF: ', updateSuccess);
+  console.log('USERNAME_REF: ', usernameRef);
+  console.log('USERNAME: ', username);
+  console.log('AUTHUSER_USERNAME: ', authUser.username);
 
   const onSubmit = event => {
     event.preventDefault();
     if(username !== usernameRef.current) {
-      usernameRef.current = authUser.username;
       dispatch(doUpdateUsernameRequest(username));
     };
     
@@ -44,8 +45,9 @@ const UsernameAndEmailSection = () => {
     };
     if(updateUsername) {
       setState(state => ({ ...state, updateSuccess: updateUsername }));
+      usernameRef.current = authUser.username;
     };
-  }, [authError, updateUsername]);
+  }, [authError, updateUsername, authUser.username]);
 
   return (
     <div className='username-section'>
