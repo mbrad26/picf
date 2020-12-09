@@ -5,13 +5,14 @@ import { doUpdateUsernameRequest, doUpdateEmailRequest } from '../../redux/actio
 
 const UsernameAndEmailSection = () => {
   const dispatch = useDispatch();
-  const { authUser, authError, updateUsername } = useSelector(state => state.userState);
+  const { authUser, authError, updateUsername, updateEmail } = useSelector(state => state.userState);
   const usernameRef = useRef(authUser.username);
   const emailRef = useRef(authUser.email);
   const [state, setState] = useState({ 
     username: authUser.username, 
     email: authUser.email,
     updateSuccess: updateUsername,
+    updateEmailSuccess: updateEmail,
     error: authError,
     isOpen: false,
     password: '',
@@ -30,11 +31,9 @@ const UsernameAndEmailSection = () => {
     if(username !== usernameRef.current) {
       dispatch(doUpdateUsernameRequest(username));
     };
-    
     if(email !== emailRef.current) {
       setState({ ...state, isOpen: true });
-      emailRef.current = authUser.email;
-      if(password != '') dispatch(doUpdateEmailRequest({ email, password }));
+      if(password !== '') dispatch(doUpdateEmailRequest({ email, password }));
     };
   };
 
@@ -46,7 +45,11 @@ const UsernameAndEmailSection = () => {
       setState(state => ({ ...state, updateSuccess: updateUsername }));
       usernameRef.current = authUser.username;
     };
-  }, [authError, updateUsername, authUser.username]);
+    if(updateEmail) {
+      setState(state => ({ ...state, updateEmailSuccess: updateEmail}));
+      emailRef.current = authUser.email;
+    }
+  }, [authError, updateUsername, authUser.username, updateEmail, authUser.email]);
 
   return (
     <div className='username-section'>

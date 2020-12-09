@@ -219,21 +219,28 @@ function* updateUsername({ payload: username }) {
 };
 
 function* updateEmail({ payload: { email, password } }) {
+  let emailSuccess, emailError;
   const user = auth.currentUser;
   const credential = firebase.auth.EmailAuthProvider
                              .credential(user.email, password);
                        
   yield user.reauthenticateWithCredential(credential)
-            .then(function* () {
-              yield user.updateEmail(email);
-              yield user.sendEmailVerification({
+            .then(async () => {
+              await user.updateEmail(email);
+              await user.sendEmailVerification({
                 url: process.env.REACT_APP_DEV_CONFIRMATION_EMAIL_REDIRECT,
               });
-              yield call(updateEmailInFirestore, user, email);
-              yield put(doUpdateEmailSuccess());
-            }).catch(function* (error) {
-              yield put(doUpdateEmailError(error));
+              await updateEmailInFirestore(user, email);
+              emailSuccess = true;
+            }).catch((error) => {
+              emailSuccess = false;
+              emailError = error;
             });
+            
+  emailSuccess 
+          ? yield put(doUpdateEmailSuccess())
+          : yield put(doUpdateEmailError(emailError));
+  
 };
 
 export { 
