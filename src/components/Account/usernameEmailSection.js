@@ -5,11 +5,7 @@ import { doUpdateUsernameRequest, doUpdateEmailRequest } from '../../redux/actio
 
 const UsernameAndEmailSection = () => {
   const dispatch = useDispatch();
-  const { 
-    authUser, 
-    authError, 
-    updateUsername, 
-  } = useSelector(state => state.userState);
+  const { authUser, authError, updateUsername } = useSelector(state => state.userState);
   const usernameRef = useRef(authUser.username);
   const emailRef = useRef(authUser.email);
   const [state, setState] = useState({ 
@@ -17,12 +13,17 @@ const UsernameAndEmailSection = () => {
     email: authUser.email,
     updateSuccess: updateUsername,
     error: authError,
+    isOpen: false,
+    password: '',
   });
-  const { username, email, updateSuccess, error } = state;
+  const { username, email, updateSuccess, error, isOpen, password } = state;
 
-  console.log('USERNAME_REF: ', usernameRef);
-  console.log('USERNAME: ', username);
-  console.log('AUTHUSER_USERNAME: ', authUser.username);
+  console.log('USERNAME_REF: ', emailRef);
+  console.log('USERNAME: ', email);
+  console.log('AUTHUSER_USERNAME: ', authUser.email);
+
+  const onChange = event => 
+    setState({ ...state, [event.target.name]: event.target.value });
 
   const onSubmit = event => {
     event.preventDefault();
@@ -31,13 +32,11 @@ const UsernameAndEmailSection = () => {
     };
     
     if(email !== emailRef.current) {
+      setState({ ...state, isOpen: true });
       emailRef.current = authUser.email;
-      dispatch(doUpdateEmailRequest(email));
+      if(password != '') dispatch(doUpdateEmailRequest(email));
     };
   };
-
-  const onChange = event => 
-    setState({ ...state, [event.target.name]: event.target.value });
 
   useEffect(() => {
     if(authError) {
@@ -65,14 +64,30 @@ const UsernameAndEmailSection = () => {
           placeholder='Username'
         />
 
+        <button type='submit'>Update Username</button>
+
         <input 
           type='email'
           name='email'
           value={email}
           onChange={onChange}
           placeholder='Email'
-        />
-        <button type='submit'>Update details</button>
+          />
+
+        {isOpen && 
+          <>
+            <p>Please enter your password</p>
+            <input 
+              type='password'
+              name='password'
+              value={password}
+              onChange={onChange}
+              placeholder='Password'
+            />
+          </>
+        }
+
+        <button type='submit'>Update Email</button>
       </form>
     </div>
   );
