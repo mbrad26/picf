@@ -46,7 +46,7 @@ const UsernameAndEmailSection = () => {
       usernameRef.current = authUser.username;
     };
     if(updateEmail) {
-      setState(state => ({ ...state, updateEmailSuccess: updateEmail}));
+      setState(state => ({ ...state, updateEmailSuccess: updateEmail }));
       emailRef.current = authUser.email;
     }
   }, [authError, updateUsername, authUser.username, updateEmail, authUser.email]);
