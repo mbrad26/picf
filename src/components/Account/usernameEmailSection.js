@@ -8,8 +8,8 @@ const UsernameAndEmailSection = () => {
   const { authUser, authError, updateUsername, updateEmail } = useSelector(state => state.userState);
   const usernameRef = useRef(authUser.username);
   const emailRef = useRef(authUser.email);
-  const [state, setState] = useState({ 
-    username: authUser.username, 
+  const [state, setState] = useState({
+    username: authUser.username,
     email: authUser.email,
     updateSuccess: updateUsername,
     updateEmailSuccess: updateEmail,
@@ -23,7 +23,7 @@ const UsernameAndEmailSection = () => {
   console.log('USERNAME: ', email);
   console.log('AUTHUSER_USERNAME: ', authUser.email);
 
-  const onChange = event => 
+  const onChange = event =>
     setState({ ...state, [event.target.name]: event.target.value });
 
   const onSubmit = event => {
@@ -59,7 +59,7 @@ const UsernameAndEmailSection = () => {
       {error && <p style={{ 'color': 'red' }}>Username update fail</p>}
 
       <form onSubmit={onSubmit}>
-        <input 
+        <input
           type='text'
           name='username'
           value={username}
@@ -69,7 +69,7 @@ const UsernameAndEmailSection = () => {
 
         <button type='submit'>Update Username</button>
 
-        <input 
+        <input
           type='email'
           name='email'
           value={email}
@@ -77,10 +77,10 @@ const UsernameAndEmailSection = () => {
           placeholder='Email'
           />
 
-        {isOpen && 
+        {isOpen &&
           <>
             <p>Please enter your password</p>
-            <input 
+            <input
               type='password'
               name='password'
               value={password}

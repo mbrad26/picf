@@ -1,8 +1,6 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/24aa2e39-24de-4c54-8451-cd2fa867c916/deploy-status)](https://app.netlify.com/sites/picturesque-mbrad26/deploys)
 
-# Picturesque
-
-## Work in progress ...
+# Picturesque - Work in progress ...
 
 [<img src="images/Screenshot 2020-11-20 at 17.25.18.png" width="55%">]()
 

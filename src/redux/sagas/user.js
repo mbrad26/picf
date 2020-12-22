@@ -1,16 +1,16 @@
 import firebase from 'firebase/app';
 import { call, put, take } from 'redux-saga/effects';
 
-import { 
-  auth, 
-  googleProvider, 
+import {
+  auth,
+  googleProvider,
 } from '../../firebase/config';
-import { 
-  doRequestError, 
+import {
+  doRequestError,
   doSetFollowers,
   doSetAvatarUrl,
   doSetFollowing,
-  doSetUserSuccess, 
+  doSetUserSuccess,
   doSetAvatarUploadProgress,
   doSetSelectedUser,
   doResetAuthUser,
@@ -19,16 +19,16 @@ import {
   doUpdateEmailError,
   doUpdateUsernameError,
 } from '../actions/user';
-import { 
+import {
   userChannel,
   avatarChannel,
   followersChannel,
   followingChannel,
-  setUserInFirestore, 
+  setUserInFirestore,
   avatarUploadChannel,
   selectedUserChannel,
   updateCurrentUserFollowing,
-  updateFollowedUserFollowers, 
+  updateFollowedUserFollowers,
   getCurrentUserFromFirestore,
   updateTimelineUserFollowers,
   unfolowUserTimelineCollection,
@@ -37,8 +37,8 @@ import {
   updateUsernameInFirestore,
   updateEmailInFirestore,
  } from './utilsUser';
-import { 
-  doOverlayError, 
+import {
+  doOverlayError,
 } from '../actions/images';
 
 function* signUpUser({ payload: { username, email, passwordOne }}) {
@@ -172,7 +172,7 @@ function* avatarUpload({ payload: image }) {
   while(true) {
     try {
       const { data } = yield take(channel);
-  
+
       yield put(doSetAvatarUploadProgress(data));
     } catch (error) {
       yield put(doRequestError(error));
@@ -223,7 +223,7 @@ function* updateEmail({ payload: { email, password } }) {
   const user = auth.currentUser;
   const credential = firebase.auth.EmailAuthProvider
                              .credential(user.email, password);
-                       
+
   yield user.reauthenticateWithCredential(credential)
             .then(async () => {
               await user.updateEmail(email);
@@ -236,20 +236,20 @@ function* updateEmail({ payload: { email, password } }) {
               emailSuccess = false;
               emailError = error;
             });
-            
-  emailSuccess 
+
+  emailSuccess
           ? yield put(doUpdateEmailSuccess())
           : yield put(doUpdateEmailError(emailError));
-  
+
 };
 
-export { 
+export {
   getAvatar,
-  signUpUser, 
-  signInUser, 
-  signOutUser, 
+  signUpUser,
+  signInUser,
+  signOutUser,
   avatarUpload,
-  resetPassword, 
+  resetPassword,
   updatePassword,
   setCurrentUser,
   signInWithGoogle,

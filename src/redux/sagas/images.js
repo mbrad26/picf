@@ -2,9 +2,9 @@ import { call, put, take } from 'redux-saga/effects';
 
 import { doRequestError } from '../actions/user';
 import { storage, timestamp } from '../../firebase/config';
-import { 
-  storageChannel, 
-  imagesUrlsChannel, 
+import {
+  storageChannel,
+  imagesUrlsChannel,
   favouritesChannel,
   removeLikesImagesCollection,
   updateLikesImagesCollection,
@@ -16,10 +16,10 @@ import {
   deleteLikeImageInUsersCollection,
   deleteImageFromTimelineCollection,
 } from './utilsImages';
-import { 
-  doSetUrls, 
-  doOverlayError, 
-  doSetLikeStatus, 
+import {
+  doSetUrls,
+  doOverlayError,
+  doSetLikeStatus,
   doSetUploadProgress,
 } from '../actions/images';
 
@@ -29,7 +29,7 @@ function* fileUpload({ payload: selected }) {
   while(true) {
     try {
       const { data } = yield take(channel);
-  
+
       yield put(doSetUploadProgress(data));
     } catch (error) {
       yield put(doRequestError(error));
@@ -39,7 +39,7 @@ function* fileUpload({ payload: selected }) {
 
 function* getImagesUrls({ payload: collection }) {
   const channel = yield call(imagesUrlsChannel, collection);
-  
+
   while(true) {
     try {
       const { data } = yield take(channel);
@@ -76,7 +76,7 @@ function* unLikeImage({ payload: { name, userUid } }) {
     yield call(deleteLikeImageInUsersCollection, authUid, name);
     yield call(removeLikesTimelineCollection, name, authUid);
     yield call(removeLikesImagesCollection, userUid, name, authUid);
-    
+
     yield call(getLikedImages);
   } catch (error) {
     yield put(doOverlayError(error));
@@ -108,17 +108,17 @@ function* deleteImage({ payload: name }) {
   yield ref.delete()
            .then(console.log('Image deleted!'))
            .catch(error => console.log('ERROR: ', error));
-  
+
   yield call(deleteImageFromTimelineCollection, name);
   yield call(deleteImageFromImagesCollection, uid, name);
   yield call(deleteImageFromUsersCollection, uid, name);
 };
 
-export { 
+export {
   likeImage,
-  fileUpload, 
+  fileUpload,
   unLikeImage,
   deleteImage,
-  getImagesUrls, 
+  getImagesUrls,
   getLikedImages,
 };

@@ -4,8 +4,8 @@ import { call } from 'redux-saga/effects';
 
 import { auth, firestore, storage, timestamp } from '../../firebase/config';
 
-const getAvatarUrl = name => 
-  storage.ref(name).getDownloadURL(); 
+const getAvatarUrl = name =>
+  storage.ref(name).getDownloadURL();
 
 function* getUserSnapshotFromFirestore(uid) {
   const userRef = yield firestore.doc(`users/${uid}`);
@@ -27,12 +27,12 @@ function* setUserInFirestore(uid, username, email) {
   const avatarUrl = yield call(getAvatarUrl, 'smile.png');
   yield firestore.collection('users')
                  .doc(uid)
-                 .set({ 
+                 .set({
                    uid,
                    avatarUrl,
-                   username, 
-                   email, 
-                   joined: timestamp(), 
+                   username,
+                   email,
+                   joined: timestamp(),
                 });
 };
 
@@ -53,9 +53,9 @@ function* updateCurrentUserFollowing(uid, userUid) {
   firestore.collection('users').doc(uid)
            .collection('following').doc(userUid)
            .set({ uid: userUid, username, avatarUrl });
-  
+
   firestore.collection('users').doc(uid)
-           .update({ 
+           .update({
              following: firebase.firestore.FieldValue.arrayUnion(userUid)
            });
 };
@@ -70,7 +70,7 @@ function* updateFollowedUserFollowers(userUid, uid) {
            .set({ uid , username, avatarUrl});
 
   firestore.collection('users').doc(userUid)
-           .update({ 
+           .update({
              followers: firebase.firestore.FieldValue.arrayUnion(uid)
            });
 };
@@ -81,9 +81,9 @@ const updateTimelineUserFollowers = (uid, userUid) => {
   timelineRef.where('userUid', '==', userUid)
               .get()
               .then(snapshot =>
-                snapshot.forEach(doc => 
+                snapshot.forEach(doc =>
                   timelineRef.doc(doc.data().name)
-                            .update({ 
+                            .update({
                               ownerFollowers: firebase.firestore.FieldValue.arrayUnion(uid)
                             })
                 )
@@ -96,7 +96,7 @@ const removeFollowingUserFromFollowers = (userUid, uid) => {
            .delete();
 
   firestore.collection('users').doc(userUid)
-           .update({ 
+           .update({
              followers: firebase.firestore.FieldValue.arrayRemove(uid)
            });
 };
@@ -107,7 +107,7 @@ const removeFollowedUserFromFollowing = (userUid, uid) => {
            .delete();
 
   firestore.collection('users').doc(uid)
-           .update({ 
+           .update({
              following: firebase.firestore.FieldValue.arrayRemove(userUid)
            });
 };
@@ -118,9 +118,9 @@ const unfolowUserTimelineCollection = (userUid, uid) => {
   timelineRef.where('userUid', '==', userUid)
              .get()
              .then(snapshot =>
-                snapshot.forEach(doc => 
+                snapshot.forEach(doc =>
                   timelineRef.doc(doc.data().name)
-                            .update({ 
+                            .update({
                               ownerFollowers: firebase.firestore.FieldValue.arrayRemove(uid)
                             })
                 )
@@ -130,7 +130,7 @@ const unfolowUserTimelineCollection = (userUid, uid) => {
 const followersChannel = () => {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
   const uid = authUser.uid;
-  
+
   return new eventChannel(emiter => {
     const listener = firestore.collection('users').doc(`${uid}`)
                               .collection('followers')
@@ -145,7 +145,7 @@ const followersChannel = () => {
 const followingChannel = () => {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
   const uid = authUser.uid;
-  
+
   return new eventChannel(emiter => {
     const listener = firestore.collection('users').doc(`${uid}`)
                               .collection('following')
@@ -162,18 +162,17 @@ const selectedUserChannel = uid => {
                               .onSnapshot(snapshot => {
                                 emiter({ data: snapshot.data()});
                               });
-    
+
     return () => listener.off();
   });
 };
-
 
 const avatarUploadChannel = image => {
   return new eventChannel(emiter => {
     const listener = storage.ref(image.name).put(image)
                             .on('state_changed', snapshot => {
                               let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      
+
       emiter({ data: progress });
     }, error => {
       console.log(error.message);
@@ -183,7 +182,7 @@ const avatarUploadChannel = image => {
       const uid = authUser.uid;
       const name = image.name;
       const userRef = firestore.collection('users');
-      
+
       userRef.doc(uid).update({ avatarUrl: url, name });
 
       userRef.where('uid', '!=', uid)
@@ -194,7 +193,7 @@ const avatarUploadChannel = image => {
                          .collection('followers')
                          .doc(uid)
                          .update({ avatarUrl: url })
-                  
+
                   userRef.doc(doc.data().uid)
                          .collection('following')
                          .doc(uid)
@@ -202,7 +201,7 @@ const avatarUploadChannel = image => {
                 })
               );
     });
-    
+
     return () => listener.off();
   });
 };
@@ -212,7 +211,7 @@ const avatarChannel = uid => {
     const listener = firestore.collection('users')
                               .doc(uid)
                               .onSnapshot(snap => emiter({ data: snap.data() }));
-      
+
     return () => listener.off();
   });
 };
@@ -220,7 +219,7 @@ const avatarChannel = uid => {
 const updateUsernameInFirestore = username => {
   const authUser = JSON.parse(localStorage.getItem('authUser'));
   const usersRef = firestore.collection('users');
-  
+
   usersRef.doc(authUser.uid)
           .update({ username: username });
 
@@ -232,7 +231,7 @@ const updateUsernameInFirestore = username => {
                     .collection('followers')
                     .doc(authUser.uid)
                     .update({ username: username })
-            
+
             usersRef.doc(doc.data().uid)
                     .collection('following')
                     .doc(authUser.uid)
@@ -243,7 +242,7 @@ const updateUsernameInFirestore = username => {
       )
 };
 
-const updateEmailInFirestore = (user, email) => 
+const updateEmailInFirestore = (user, email) =>
   firestore.collection('users')
            .doc(user.uid)
            .update({ email: email });
